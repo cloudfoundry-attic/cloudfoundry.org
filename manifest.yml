@@ -1,0 +1,15 @@
+---
+applications:
+- name: cforg
+  memory: 512M
+  instances: 2
+  host: cforg
+  domain: cfapps.io
+  path: .
+  command: bundle exec rake db:migrate && bundle exec rails s -p $PORT
+  services:
+    cleardb-amp-cforg:
+      label: cleardb
+      provider: cleardb
+      version: n/a
+      plan: amp
