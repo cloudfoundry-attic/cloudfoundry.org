@@ -374,6 +374,7 @@ ul.secondary li.active a.active {
   width: 1160px;
   margin: 0 auto;
   min-height: 100%;
+  padding: 0 40px;
 /*  padding-bottom: 120px;*/
 }
 #secondary-links ul.links li {
@@ -1091,7 +1092,7 @@ div.add-or-remove-shortcuts {
 
 #nav li a {
   margin: 0;
-  padding: 11px 63px 8px;
+  padding: 11px 71px 8px;
   -moz-text-shadow: 0 1px #fff;
   -webkit-text-shadow: 0 1px #fff;
   text-shadow: 0 1px #fff;
@@ -1121,7 +1122,7 @@ div.add-or-remove-shortcuts {
   background: linear-gradient(top, #a9d9f3 0%,#f9f9fa 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9d9f3', endColorstr='#f9f9fa',GradientType=0 );
   margin: 0;
-  padding: 11px 63px 8px;
+  padding: 11px 71px 8px;
   -moz-text-shadow: 0 1px #fff;
   -webkit-text-shadow: 0 1px #fff;
   text-shadow: 0 1px #fff;
@@ -1360,8 +1361,120 @@ p.home-title {
   border-radius: 5px;
 } 
 
+a, img {
+    border:none;
+}
 
+#nav li#wiki a {
+  padding: 11px 62px 8px;
+}
 
+#nav li#wiki a:hover {
+  padding: 11px 62px 8px;
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+}
+
+.view-content {
+  padding: 0 32px;
+}
+.view-footer {
+  margin-left: 30px;
+}
+#billboard-homepage {
+  margin-bottom:40px
+}
+#block-system-main {
+  width:770px;
+  float:left
+}
+.activity-homepage, .community-homepage {
+  float: left;
+  margin: 40px 40px 0 40px;
+  height: 375px;
+  width: 1080px;
+  background: none repeat scroll 0 0 rgba(255, 255, 255, 0.5);
+  -moz-box-shadow: 0 0 4px #999;
+  -webkit-box-shadow: 0 0 4px #999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+} 
+
+.source { 
+  float: right;
+  font-size: 10px;
+  margin: 5px;
+}
+
+h2, ul.links.inline {display:none} 
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+#nav li#wiki a,#nav li#wiki a:hover {
+  padding: 11px 60px 8px;
+}
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) {
+/* Styles */
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+/* Styles */
+}
+
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+/* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1224px) {
+/* Styles */
+}
+
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+/* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+#nav li#wiki a,#nav li#wiki a:hover {
+  padding: 11px 60px 8px;
+}
+}
 
 
 
