@@ -1133,6 +1133,20 @@ div.add-or-remove-shortcuts {
   line-height: 36px;
 }
 
+body#home #nav li a#icon-home-link {
+  background: #a9d9f3;
+  background: -moz-linear-gradient(top, #a9d9f3 0%, #f9f9fa 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a9d9f3), color-stop(100%,#f9f9fa));
+  background: -webkit-linear-gradient(top, #a9d9f3 0%,#f9f9fa 100%);
+  background: -o-linear-gradient(top, #a9d9f3 0%,#f9f9fa 100%);
+  background: -ms-linear-gradient(top, #a9d9f3 0%,#f9f9fa 100%);
+  background: linear-gradient(top, #a9d9f3 0%,#f9f9fa 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9d9f3', endColorstr='#f9f9fa',GradientType=0 );
+  border-radius: 5px 0 0 0;
+  -webkit-border-radius: 5px 0 0 0;
+  -moz-border-radius: 5px 0 0 0;
+}
+
 #footer {
   position: relative;
   bottom: 0;
@@ -1194,6 +1208,8 @@ div.add-or-remove-shortcuts {
 
 /* Homepage */
 
+body#home #content{padding:0 0 40px 0;height:1800px} 
+
 #billboard-homepage {
   width: 100%;
   background: #0b2141;
@@ -1204,7 +1220,7 @@ div.add-or-remove-shortcuts {
 .news-homepage, .commits-homepage, .discussions-homepage {
 /*  width: 500px;*/
   float: left;
-  margin: 0 20px;
+  margin: 0 20px 40px;
   height: 500px;
   float: left;
   width: 333px;
@@ -1219,6 +1235,10 @@ div.add-or-remove-shortcuts {
 
 .news-homepage {
   margin-left: 40px;
+}
+
+.commits-homepage {
+  margin-right: 0px;
 }
 
 .column-title {
@@ -1366,11 +1386,11 @@ a, img {
 }
 
 #nav li#wiki a {
-  padding: 11px 62px 8px;
+  padding: 11px 60px 8px;
 }
 
 #nav li#wiki a:hover {
-  padding: 11px 62px 8px;
+  padding: 11px 60px 8px;
   border-radius: 0;
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
@@ -1411,70 +1431,7 @@ a, img {
 
 h2, ul.links.inline {display:none} 
 
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-#nav li#wiki a,#nav li#wiki a:hover {
-  padding: 11px 60px 8px;
-}
-}
 
-/* Smartphones (landscape) ----------- */
-@media only screen 
-and (min-width : 321px) {
-/* Styles */
-}
-
-/* Smartphones (portrait) ----------- */
-@media only screen 
-and (max-width : 320px) {
-/* Styles */
-}
-
-/* iPads (portrait and landscape) ----------- */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) {
-/* Styles */
-}
-
-/* iPads (landscape) ----------- */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
-and (orientation : landscape) {
-/* Styles */
-}
-
-/* iPads (portrait) ----------- */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
-and (orientation : portrait) {
-/* Styles */
-}
-
-/* Desktops and laptops ----------- */
-@media only screen 
-and (min-width : 1224px) {
-/* Styles */
-}
-
-/* Large screens ----------- */
-@media only screen 
-and (min-width : 1824px) {
-/* Styles */
-}
-
-/* iPhone 4 ----------- */
-@media
-only screen and (-webkit-min-device-pixel-ratio : 1.5),
-only screen and (min-device-pixel-ratio : 1.5) {
-#nav li#wiki a,#nav li#wiki a:hover {
-  padding: 11px 60px 8px;
-}
-}
 
 
 

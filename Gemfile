@@ -49,3 +49,7 @@ gem "cf-autoconfig", "~> 0.2.1"
 ruby '1.9.3'
 
 
+#For feeds
+gem 'feedzirra'
+
+

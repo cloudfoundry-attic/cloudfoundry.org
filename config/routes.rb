@@ -1,6 +1,8 @@
 Cfcommunity::Application.routes.draw do
   
   ComfortableMexicanSofa::Routing.admin(:path => '/cms-admin')
+
+  match '/' => 'home#index'
   
   # Make sure this routeset is defined last
   ComfortableMexicanSofa::Routing.content(:path => '/', :sitemap => false)
