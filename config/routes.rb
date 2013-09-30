@@ -3,6 +3,8 @@ Cfcommunity::Application.routes.draw do
   ComfortableMexicanSofa::Routing.admin(:path => '/cms-admin')
 
   match '/' => 'home#index'
+  match '/individualcontribution.pdf' => redirect('/assets/individualcontribution.pdf')
+  match '/corpcontribution.pdf' => redirect('/assets/corpcontribution.pdf')
   
   # Make sure this routeset is defined last
   ComfortableMexicanSofa::Routing.content(:path => '/', :sitemap => false)
