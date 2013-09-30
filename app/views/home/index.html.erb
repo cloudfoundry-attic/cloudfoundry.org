@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cloud Foundry Community</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <link href='/assets/favicon.ico' rel='shortcut icon'>
+  <style type="text/css">#content{height:800px;}</style>
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-22181585-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+</head>
+
+<body id="home">
+<img id='bg' src="/assets/bg-plain-x.jpg">
+  <div id='header'>
+        <div id='header-bg'>
+      <div id='logo'>
+        <a href='/'><img src='/assets/logo_org.png'></a>
+      </div>
+    </div>  </div>
+
+  <div id="page">
+    <div id='navbar'>
+      <!--[if lt IE 9 ]>
+<style>
+  #content-home, #content, .news-homepage, .commits-homepage, .discussions-homepage {background:  #ebf0fa;}
+  .news-homepage, .commits-homepage, .discussions-homepage {border:1px solid #ccc}
+</style>
+<![endif]--> 
+     <ul id='nav'>
+       <li id='icon-home-li'><a id='icon-home-link' href='/'><img id='icon-home' src='/assets/icon-home.png'></a></li>
+        <li><a id='about' href='/about'>About</a></li>
+        <li><a href='http://docs.cloudfoundry.com' target='_blank'>Documentation</a></li>
+       <li><a href='https://www.cloudfoundry.com/getinvolved' target='_blank'>Get Involved</a></li>
+        <li><a href='http://blog.cloudfoundry.com' target='_blank'>Blog</a></li>
+        <li id="wiki"><a href='https://github.com/cloudfoundry-community/cf-docs-contrib/wiki' target='_blank'>Wiki</a></li>
+      </ul>    </div>
+
+    <div id="content">
+
+    <div id='billboard-homepage'>
+            <a href="http://www.flickr.com/photos/andypiper/sets/72157635502034818/" target="_blank" style="float:left;margin-right:50px">
+              <img src="http://blog.cloudfoundry.com/wp-content/static/cforg/img/banner-platformcf-770-eventphotos.jpg" style="width:770px">
+            </a>
+
+         <div style="background: #0b2141;width: 290px;float: left;height: 330px;padding: 25px 0;margin-bottom:40px">
+            <a class="twitter-timeline" href="https://twitter.com/cloudfoundry" data-widget-id="380826923938480129" data-chrome="nofooter noheader transparent noscrollbar"  data-theme="dark" width="290px" height="320px">Tweets by @cloudfoundry</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </div>  
+    </div><!--end billboard-homepage-->
+
+
+      <div class="news-homepage">
+        <div class="column-title">
+          <h3>Engineering Updates</h3>
+        </div>
+        <div class='view-content'>
+        <% if @blogentries %>
+          <% @blogentries.take(4).each do |i| %>
+            <p>
+              <span class="views-field-timestamp"><%= i.published.strftime("%B %d, %Y") %></span>
+              <br>
+              <a href = "<%= i.url %>" target="_blank"><%= i.title %></a>              
+            </p>
+          <% end %>
+        <% end %>
+
+          <div class="button-more">
+            <a href="http://blog.cloudfoundry.com/category/engineering/" target='_blank'>Read more</a>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="discussions-homepage">
+        <div class="column-title">
+          <h3>Latest Discussions</h3>
+        </div>
+        <div class='view-content'>
+        <% if @discussionentries %>
+          <% @discussionentries.take(4).each do |i| %>
+            <p>
+              <span class="views-field-timestamp"><%= i.published.strftime("%B %d, %Y") %></span>
+              <br>
+              <a href = "<%= i.url %>" target="_blank"><%= i.title %></a>              
+            </p>
+          <% end %>
+        <% end %>
+
+          <div class="button-more">
+            <a href="http://groups.google.com/a/cloudfoundry.org/groups/dir" target='_blank'>Read more</a>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="commits-homepage">
+        <div class="column-title">
+          <h3>Recent GitHub Commits</h3>
+        </div>
+        <div class='view-content'>
+        <% if @commitentries %>
+          <% @commitentries.take(4).each do |i| %>
+            <p>
+              <span class="views-field-timestamp"><%= i.published.strftime("%B %d, %Y") %></span>
+              <br>
+              <a href = "<%= i.url %>" target="_blank"><%= i.title %></a>              
+            </p>
+          <% end %>
+        <% end %>
+
+          <div class="button-more">
+            <a href="http://github.com/cloudfoundry" target='_blank'>Go to GitHub</a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="activity-homepage" style="margin-top:0">
+      <div class="column-title">
+      <h3>Activity</h3>
+      </div>
+      <div class="view-content">
+        <img src="http://blog.cloudfoundry.com/wp-content/static/cforg/img/ohloh/130917summary.png" style="margin-right: 60px;">
+        <img src="/assets/ohloh/130917commits.png">
+      <p class="source">Source: Ohloh</p>
+      </div>
+      </div>
+
+      <div class="community-homepage">
+      <div class="column-title">
+      <h3>Community</h3>
+      </div>
+      <div class="view-content">
+      <img src="/assets/ohloh/130917recent.png" style="margin-right: 60px;">
+      <img src="/assets/ohloh/130917contributors.png">
+      <p class="source">Source: Ohloh</p>
+      </div>
+      </div>
+
+  </div>
+   </div>
+
+  <div id="footer">
+        <ul class='links'>
+      <li><a href='/about'>About</a></li>
+      <li>•</li>
+          <li><a href='http://docs.cloudfoundry.com' target='_blank'>Documentation</a></li>
+      <li>•</li>
+      <li><a href='https://github.com/cloudfoundry' target='_blank'>Source Code</a></li>
+      <li>•</li>
+      <li><a href='http://groups.google.com/a/cloudfoundry.org/groups/dir' target='_blank'>Mailing Lists</a></li>
+      <li>•</li>
+          <li><a href='http://blog.cloudfoundry.com' target='_blank'>Blog</a></li>
+      <li>•</li>          
+      <li><a href='https://github.com/cloudfoundry-community/cf-docs-contrib/wiki' target='_blank'>Wiki</a></li>
+      <li>•</li>
+      <li><a href='/dojo'>The Dojo</a></li>
+    </ul>
+    <div id="copyright">
+      <p>
+      ©
+      <script>
+        var d = new Date();
+        document.write(d.getFullYear());
+      </script>
+      GoPivotal, Inc. All rights reserved.
+      </p>
+    </div> 
+  </div>
+</body>
+</html>
+      
