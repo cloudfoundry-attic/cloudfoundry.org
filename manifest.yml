@@ -1,0 +1,8 @@
+applications:
+- name: cforgvince
+  memory: 512M
+  instances: 1
+  host: cforgvince
+  domain: cfapps.io 
+  path: .
+  command: bin/startup.sh
