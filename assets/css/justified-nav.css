@@ -1,6 +1,6 @@
 body {
   padding-top: 20px;
-  background-image: src="/assets/images/bg-plain-x.jpg"
+  background-image: url(../images/bg-plain-x.jpg);
 }
 
 .footer {
