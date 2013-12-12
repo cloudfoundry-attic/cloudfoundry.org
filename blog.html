@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="frameworks/bootstrap-3.0.0/assets/ico/favicon.png">
+
+    <title>Cloud Foundry Community</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="frameworks/bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/justified-nav.css" rel="stylesheet">
+    <link href="assets/css/cf.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="../../assets/js/html5shiv.js"></script>
+        <script src="../../assets/js/respond.min.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="masthead">
+
+            <div class="text-center" style="background: url(assets/images/bg-crowd.png);background-position:center bottom;background-repeat:no-repeat">
+                <img src="assets/images/logo_org.png">
+            </div>
+            <h3></h3>
+            <ul class="nav nav-justified">
+                <li>
+                    <a href="index.html">
+                        <img src="assets/images/home_icon.png">
+                    </a>
+                </li>
+                <li>
+                    <a href="about.html">About</a>
+                </li>
+                <li>
+                    <a href="learn.html">Learn</a>
+                </li>
+                <li>
+                    <a href="documentation.html">Documentation</a>
+                </li>
+                <li>
+                    <a href="getinvolved.html">Get Involved</a>
+                </li>
+                <li class="active">
+                    <a href="#">Blog</a>
+                </li>
+                <li>
+                    <a href="https://github.com/cloudfoundry-community/cf-docs-contrib/wiki" target="_blank">Wiki</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Page content container -->
+        <div class="container">
+            <h1>Cloud Foundry Blog</h1>
+            <br>
+            <div class="row">
+                <div class="col-lg-9">
+                    <!-- Article 1 -->
+                    <article id="post-5907">
+                        <header>
+                            <h2>
+                                <a href="#" title="Permalink to Sending Email from Cloud Foundry Java Applications with SendGrid" rel="bookmark">Sending Email from Cloud Foundry Java Applications with SendGrid</a>
+                            </h2>
+
+                            <div>
+                                <span>Posted on</span>
+                                <a href="http://blog.cloudfoundry.com/2013/11/25/sending-email-from-cloud-foundry-java-applications-with-sendgrid/" title="4:00 pm" rel="bookmark">
+                                    <time class="entry-date" datetime="2013-11-25T16:00:25+00:00" pubdate>November 25, 2013</time>
+                                </a>
+                                <span>
+                                    <span>by</span>
+                                    <span>
+                                        <a href="http://blog.cloudfoundry.com/author/nbadiey/" title="View all posts by Nima Badiey" rel="author">Nima Badiey</a>
+                                    </span>
+                                </span>
+                            </div>
+                            <!-- .entry-meta -->
+                        </header>
+                        <!-- .entry-header -->
+                        <br>
+
+                        <div class="entry-content">
+                            <p>
+                                <em>The following is a guest blog post by Scott Motte (<a href="http://www.twitter.com/scottmotte">@scottmotte</a>), Developer Evangelist at
+                                    <a href="http://sendgrid.com">SendGrid</a>, a cloud based SMTP email delivery and management service.</em>
+                            </p>
+                            <p>A few weeks ago SendGrid released their
+                                <a href="https://github.com/sendgrid/sendgrid-java">sendgrid-java helper library</a>. The library goes a step further in sticking with Cloud Foundry&#8217;s &#8220;it just works&#8221; experience and making your life as a developer easier. Previously, you had to write a large amount of boilerplate code using
+                                <a href="https://javamail.java.net/nonav/docs/api/">JavaMail</a>. Now, you can send email with just a few lines of code.</p>
+                            <h3>How Does It Work?</h3>
+                            <p>At your Cloud Foundry Command Line Interface, add
+                                <a href="http://sendgrid.com">SendGrid</a> as a service and bind it your app.</p>
+                            <pre>cf create-service sendgrid 
+cf bind-service</pre>
+                            <p>Next, Install the
+                                <a href="https://github.com/scottmotte/vcapenv">vcapenv library</a>, and install the
+                                <a href="https://github.com/sendgrid/sendgrid-java#installation">sendgrid-java library</a>.</p>
+                            <p>Then add the following code to your project:</p>
+                            <pre>
+                                <code>
+import com.github.scottmotte.Vcapenv; 
+import com.github.sendgrid.SendGrid;
+
+Vcapenv vcapenv = new Vcapenv(); 
+String sendgrid_username = vcapenv.SENDGRID_USERNAME(); 
+String sendgrid_password = vcapenv.SENDGRID_PASSWORD(); 
+
+SendGrid sendgrid = new SendGrid(sendgrid_username, sendgrid_password); 
+
+sendgrid.addTo("example@example.com"); 
+sendgrid.setFrom("other@example.com"); 
+sendgrid.setSubject("Hello World"); 
+sendgrid.setText("My first email through SendGrid"); 
+
+sendgrid.send();</code>
+                            </pre>
+                            <p>That&#8217;s it. Now you can start sending emails from your Java application! Cloud Foundry developers can send 25,000 emails every month for free. Check out the
+                                <a href="documentation.html">Cloud Foundry documentation</a> page to get started.</p>
+                            <h3>Video Demo</h3>
+                            <p>For a working demo of Cloud Foundry + SendGrid, just follow the easy steps in this example
+                                <a href="http://vimeo.com/79817754">video</a>. It uses the sample
+                                <a href="https://github.com/scottmotte/spring-attack">spring-attack app</a>.</p>
+                            <p>
+                                <iframe src="//player.vimeo.com/video/79817754?title=0&#038;byline=0&#038;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            </p>
+                            <div class="trackable_sharing">
+                                <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fblog.cloudfoundry.com%2F2013%2F11%2F25%2Fsending-email-from-cloud-foundry-java-applications-with-sendgrid%2F" style="text-decoration: none; white-space: nowrap;" title="Facebook" target="_blank" onclick="that=this;_gaq.push(['_trackEvent','SocialSharing','Facebook','http://blog.cloudfoundry.com/2013/11/25/sending-email-from-cloud-foundry-java-applications-with-sendgrid/']); _trackableshare_window = window.open(this.href,'share','menubar=0,resizable=1,width=500,height=350'); _trackableshare_window.focus(); return false;">
+                                    <img align="absmiddle" src="assets/images/facebook.png" alt="Facebook" width="36" height="36">
+                                </a>
+                                <a href="http://twitter.com/share?url=http%3A%2F%2Fblog.cloudfoundry.com%2F2013%2F11%2F25%2Fsending-email-from-cloud-foundry-java-applications-with-sendgrid%2F&text=Sending+Email+from+Cloud+Foundry+Java+Applications+with+SendGrid" style="text-decoration: none; white-space: nowrap;" title="Twitter" target="_blank" onclick="that=this;_gaq.push(['_trackEvent','SocialSharing','Twitter','http://blog.cloudfoundry.com/2013/11/25/sending-email-from-cloud-foundry-java-applications-with-sendgrid/']); _trackableshare_window = window.open(this.href,'share','menubar=0,resizable=1,width=500,height=350'); _trackableshare_window.focus(); return false;">
+                                    <img align="absmiddle" src="assets/images/twitter.png" alt="Twitter" width="36" height="36">
+                                </a>
+                                <a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fblog.cloudfoundry.com%2F2013%2F11%2F25%2Fsending-email-from-cloud-foundry-java-applications-with-sendgrid%2F&title=http%3A%2F%2Fblog.cloudfoundry.com%2F2013%2F11%2F25%2Fsending-email-from-cloud-foundry-java-applications-with-sendgrid%2F&ro=false&summary=&source=" style="text-decoration: none; white-space: nowrap;" title="Linkedin" target="_blank" onclick="that=this;_gaq.push(['_trackEvent','SocialSharing','Linkedin','http://blog.cloudfoundry.com/2013/11/25/sending-email-from-cloud-foundry-java-applications-with-sendgrid/']); _trackableshare_window = window.open(this.href,'share','menubar=0,resizable=1,width=500,height=350'); _trackableshare_window.focus(); return false;">
+                                    <img align="absmiddle" src="assets/images/linkedin.png" alt="Linkedin" width="36" height="36">
+                                </a>
+                                <a href="http://digg.com/submit?partner=addthis&url=http%3A%2F%2Fblog.cloudfoundry.com%2F2013%2F11%2F25%2Fsending-email-from-cloud-foundry-java-applications-with-sendgrid%2F&title=Sending+Email+from+Cloud+Foundry+Java+Applications+with+SendGrid&bodytext=" style="text-decoration: none; white-space: nowrap;" title="Digg" target="_blank" onclick="that=this;_gaq.push(['_trackEvent','SocialSharing','Digg','http://blog.cloudfoundry.com/2013/11/25/sending-email-from-cloud-foundry-java-applications-with-sendgrid/']); _trackableshare_window = window.open(this.href,'share','menubar=0,resizable=1,width=750,height=450'); _trackableshare_window.focus(); return false;">
+                                    <img align="absmiddle" src="assets/images/digg.png" alt="Digg" width="36" height="36">
+                                </a>
+                                <a href="http://www.delicious.com/save?v=5&noui&jump=close&url=http%3A%2F%2Fblog.cloudfoundry.com%2F2013%2F11%2F25%2Fsending-email-from-cloud-foundry-java-applications-with-sendgrid%2F&title=Sending+Email+from+Cloud+Foundry+Java+Applications+with+SendGrid" style="text-decoration: none; white-space: nowrap;" title="Delicious" target="_blank" onclick="that=this;_gaq.push(['_trackEvent','SocialSharing','Delicious','http://blog.cloudfoundry.com/2013/11/25/sending-email-from-cloud-foundry-java-applications-with-sendgrid/']); _trackableshare_window = window.open(this.href,'share','menubar=0,resizable=1,width=550,height=350'); _trackableshare_window.focus(); return false;">
+                                    <img align="absmiddle" src="assets/images/delicious.png" alt="Delicious" width="36" height="36">
+                                </a>
+                                <a href="http://www.reddit.com/login?dest=%2Fsubmit%3Furl=http%3A%2F%2Fblog.cloudfoundry.com%2F2013%2F11%2F25%2Fsending-email-from-cloud-foundry-java-applications-with-sendgrid%2F&title=http%3A%2F%2Fblog.cloudfoundry.com%2F2013%2F11%2F25%2Fsending-email-from-cloud-foundry-java-applications-with-sendgrid%2F" style="text-decoration: none; white-space: nowrap;" title="Reddit" target="_blank" onclick="that=this;_gaq.push(['_trackEvent','SocialSharing','Reddit','http://blog.cloudfoundry.com/2013/11/25/sending-email-from-cloud-foundry-java-applications-with-sendgrid/']); _trackableshare_window = window.open(this.href,'share','menubar=0,resizable=1,width=700,height=500'); _trackableshare_window.focus(); return false;">
+                                    <img align="absmiddle" src="assets/images/reddit.png" alt="Reddit" width="36" height="36">
+                                </a>
+                                <a href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Fblog.cloudfoundry.com%2F2013%2F11%2F25%2Fsending-email-from-cloud-foundry-java-applications-with-sendgrid%2F&title=http%3A%2F%2Fblog.cloudfoundry.com%2F2013%2F11%2F25%2Fsending-email-from-cloud-foundry-java-applications-with-sendgrid%2F" style="text-decoration: none; white-space: nowrap;" title="Stumbleupon" target="_blank" onclick="that=this;_gaq.push(['_trackEvent','SocialSharing','Stumbleupon','http://blog.cloudfoundry.com/2013/11/25/sending-email-from-cloud-foundry-java-applications-with-sendgrid/']); _trackableshare_window = window.open(this.href,'share','menubar=0,resizable=1,width=750,height=450'); _trackableshare_window.focus(); return false;">
+                                    <img align="absmiddle" src="assets/images/stumbleupon.png" alt="Stumbleupon" width="36" height="36">
+                                </a>
+                                <a href="mailto:?subject=Check out http%3A%2F%2Fblog.cloudfoundry.com%2F2013%2F11%2F25%2Fsending-email-from-cloud-foundry-java-applications-with-sendgrid%2F" style="text-decoration: none; white-space: nowrap;" title="Email" onclick="that=this;_gaq.push(['_trackEvent','SocialSharing','Email','http://blog.cloudfoundry.com/2013/11/25/sending-email-from-cloud-foundry-java-applications-with-sendgrid/']); ">
+                                    <img align="absmiddle" src="assets/images/email.png" alt="Email" width="36" height="36">
+                                </a>
+                            </div>
+                        </div>
+                        <!-- .entry-content -->
+
+                        <footer class="entry-meta">
+                            <span>
+                                <span>Posted in</span>
+                                <a href="http://blog.cloudfoundry.com/category/cloudfoundry/" title="View all posts in CloudFoundry" rel="category tag">CloudFoundry</a>
+                            </span>
+                            <span>|</span>
+                            <span>
+                                <span>Tagged</span>
+                                <a href="http://blog.cloudfoundry.com/tag/cloudfoundry-2/" rel="tag">cloudfoundry</a>,
+                                <a href="http://blog.cloudfoundry.com/tag/email/" rel="tag">email</a>,
+                                <a href="http://blog.cloudfoundry.com/tag/java/" rel="tag">java</a>,
+                                <a href="http://blog.cloudfoundry.com/tag/javamail/" rel="tag">javamail</a>,
+                                <a href="http://blog.cloudfoundry.com/tag/sendgrid/" rel="tag">sendgrid</a>
+                            </span>
+
+                            <span>|</span>
+                            <span>
+                                <a href="http://blog.cloudfoundry.com/2013/11/25/sending-email-from-cloud-foundry-java-applications-with-sendgrid/#respond" title="Comment on Sending Email from Cloud Foundry Java Applications with SendGrid">
+                                    <span>Leave a reply</span>
+                                </a>
+                            </span>
+
+                        </footer>
+                        <!-- #entry-meta -->
+                    </article>
+                    <!-- #post-5907 -->
+                    <!-- Article 1 end -->
+                </div>
+
+                <!-- The right hand column that holds the Subscribe by Email, RSS Feed,
+                     Facebook, Twitter along with recent posts and Archives -->
+                <div class="col-lg-3">
+                    <script type="text/javascript">
+                        function mouseOver1() {
+                            document.getElementById("b1").src = "http://blog.cloudfoundry.com/wp-content/uploads/2013/04/ICO_Social_Mail_On.png"
+                        }
+
+                        function mouseOut1() {
+                            document.getElementById("b1").src = "http://blog.cloudfoundry.com/wp-content/uploads/2013/04/ICO_Social_Mail_Off.png"
+                        }
+
+                        function mouseOver2() {
+                            document.getElementById("b2").src = "http://blog.cloudfoundry.com/wp-content/uploads/2013/04/ICO_Social_Feeds_On.png"
+                        }
+
+                        function mouseOut2() {
+                            document.getElementById("b2").src = "http://blog.cloudfoundry.com/wp-content/uploads/2013/04/ICO_Social_Feeds_Off.png"
+                        }
+
+                        function mouseOver3() {
+                            document.getElementById("b3").src = "http://blog.cloudfoundry.com/wp-content/uploads/2013/04/ICO_Social_Facebook_On.png"
+                        }
+
+                        function mouseOut3() {
+                            document.getElementById("b3").src = "http://blog.cloudfoundry.com/wp-content/uploads/2013/04/ICO_Social_Facebook_Off.png"
+                        }
+
+                        function mouseOver4() {
+                            document.getElementById("b4").src = "http://blog.cloudfoundry.com/wp-content/uploads/2013/04/ICO_Social_Twitter_On.png"
+                        }
+
+                        function mouseOut4() {
+                            document.getElementById("b4").src = "http://blog.cloudfoundry.com/wp-content/uploads/2013/04/ICO_Social_Twitter_Off.png"
+                        }
+                    </script>
+
+                    <form class="form-inline" role="form" method="get" id="searchform" action="blog.html">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="s" id="s" placeholder="" style="width: 150px" />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" name="submit" id="searchsubmit" value="Search">Search</button>
+                        </div>
+                    </form>
+                    <br>
+
+                    <p style="margin-top:-10px;">
+                        <a onmouseover="mouseOver1()" onmouseout="mouseOut1()" href="http://feedburner.google.com/fb/a/mailverify?uri=CloudFoundry-Blog&amp;loc=en_US" title="" target="_blank">
+                            <img src="assets/images/ICO_Social_Mail_Off.png" id="b1">
+                        </a>
+                        &nbsp;
+                        <a href="http://feedburner.google.com/fb/a/mailverify?uri=CloudFoundry-Blog&amp;loc=en_US" title="" target="_blank">
+                            <sup style="font-size:14px;">Subscribe by Email</sup>
+                        </a>
+                    </p>
+                    <br>
+                    <p style="margin-top:-10px;">
+                        <a onmouseover="mouseOver2()" onmouseout="mouseOut2()" href="http://feeds.feedburner.com/CloudFoundry-Blog" title="" target="_blank">
+                            <img src="assets/images/ICO_Social_Feeds_Off.png" id="b2">
+                        </a>
+                        &nbsp;
+                        <a href="http://feeds.feedburner.com/CloudFoundry-Blog" title="" target="_blank">
+                            <sup style="font-size:14px;">RSS Feed</sup>
+                        </a>
+                    </p>
+                    <br>
+                    <p style="margin-top:-10px;">
+                        <a onmouseover="mouseOver3()" onmouseout="mouseOut3()" href="http://facebook.com/cloudfoundry" target="_blank">
+                            <img src="assets/images/ICO_Social_Facebook_Off.png" id="b3">
+                        </a>
+                        &nbsp;
+                        <a href="http://facebook.com/cloudfoundry" target="_blank">
+                            <sup style="font-size:14px;">Join Us on Facebook</sup>
+                        </a>
+                    </p>
+                    <br>
+                    <p style="margin-top:-10px;">
+                        <a onmouseover="mouseOver4()" onmouseout="mouseOut4()" href="http://twitter.com/#!cloudfoundry" target="_blank">
+                            <img src="assets/images/ICO_Social_Twitter_Off.png" id="b4">
+                        </a>
+                        &nbsp;
+                        <a href="http://twitter.com/#!cloudfoundry" target="_blank">
+                            <sup style="font-size:14px;">Follow Us on Twitter</sup>
+                        </a>
+                    </p>
+                    <h3>Recent Posts</h3>
+
+                    <h3>Archives</h3>
+                </div>
+            </div>
+        </div>
+        <!-- End of Page content container -->
+
+        <!-- Site footer -->
+        <br>
+        <div id="footer">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="about.html">About</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="documentation.html">Documentation</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="http://github.com/cloudfoundry">Source Code</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="http://groups.google.com/a/cloudfoundry.org/groups/dir">Mailing Lists</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="#">Blog</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="http://github.com/cloudfoundry-community/cf-docs-contrib/wiki">Wiki</a>
+                </div>
+            </div>
+
+            <div id="copyright">
+                <p>&copy;
+                    <script>
+                        var d = new Date();
+                        document.write(d.getFullYear());
+                    </script>
+                    IBM
+                </p>
+            </div>
+        </div>
+        <!-- /container -->
+
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+</body>
+
+</html>
