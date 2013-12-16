@@ -1,0 +1,478 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Droplet Execution Agent</title>
+
+    <link href="/stylesheets/master.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='/images/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('a#search').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 20px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2').css("padding","11px 10px 8px");
+          $('#search-on').show();
+          $('#search-off').hide();
+        });
+        $('.cancel-x').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 63px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2, #organization_bar .navbar .nav>li a#search').css("padding","16px 20px 15px");
+          $('#organization_bar .navbar .nav>li a#getinvolved').css("padding","11px 92px 8px");
+          $('#organization_bar .navbar .nav>li#docs-off .docs-list-list a').css("padding","0");
+          $('#search-on').hide();
+          $('#search-off').show();
+        });f
+        $(".togglebutton").click(function () {
+        var divname= this.value;
+          $("#"+divname).show("slow").siblings().hide("slow");
+        });
+      });
+    </script>
+
+    <!--[if lt IE 9]>
+    <style>
+        #content .container-full {background:  #ebf0fa;}
+        .call-to-contribute-box, .column-left, .column-middle, .column-right {background:#e3e8f2}
+        #footer {background:#000;}
+    </style>
+    <![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22181585-1']);
+      _gaq.push(['_setDomainName', 'cloudfoundry.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body class="docs docs_running docs_running_architecture docs_running_architecture_execution-agent">
+    <img id="bg" src="/images/bg-plain-x.jpg">
+    <div id='non_footer'>
+      <div id='header'>
+        <div class='container_wide'>
+          <ul class='actions'>
+            <li class='last'>
+              <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
+            </li>
+            <li>
+              <a class='register_link' href='http://login.run.pivotal.io/login'>My Account</a>            
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id='content'>
+        <div class='logo-main'>
+          <div class='logo'>
+            <a href='http://www.cloudfoundry.com'>
+            <img src='/images/logo-cloudfoundry.png'>
+            </a>
+            <a href='http://www.gopivotal.com' target="_blank">
+            <img id="pivotal-logo" src='/images/logo-pivotal.png'>
+            </a>
+          </div>
+          <div class='cta'>
+            <a href='https://console.run.pivotal.io'>
+            <img src='/images/signup_freetrial.png'>
+            </a>
+          </div>
+        </div><!-- End of logo-main-->
+        <div class='container-full'>
+          <div id='organization_bar'>
+            <div class='navbar'>
+              <ul class='nav'>
+                <li>
+                <a href='http://www.cloudfoundry.com/use' id='use'>Using Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/run' id='run'>Running Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/getinvolved' id='getinvolved'>Get Involved</a>
+                </li>
+                <li id='docs-off'>
+                  <a href='/' id='docs'>
+                    <div id='icon-docs'></div>
+                  </a>
+                  <div id='docs-list'>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/using/app-arch/'>Using Cloud Foundry</a>
+                      <br>
+                      <a href="/docs/using/app-arch/">Application Architecture Considerations</a>
+                      <br>
+                      <a href='/docs/using/deploying-apps/'>Deploying Apps</a>
+                      <br>
+                      <a href='/docs/using/managing-apps/'>Managing Apps</a>
+                      <br>
+                      <a href='/docs/using/services.html'>Using Services</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/using/">See all</a>
+                    </div><!-- End of 1st column docs-list-list-->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/running/'>Running Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/architecture/'>Architecture</a>
+                      <br>
+                      <a href='/docs/running/bosh/'>BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf/'>Deploying with BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf-with-chef/'>Deploying with Chef</a>
+                      <br>
+                      <a href='/docs/running/micro_cloud_foundry/'>Micro Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/managing-cf/index.html'>Managing Cloud Foundry</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/running/">See all</a>
+                    </div><!-- End of column 2 docs-list-list -->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/reference/'>Reference</a>
+                      <br>
+                      <a href='/docs/reference/cc-api.html'>Cloud Foundry REST API</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/dotcom/'>CloudFoundry.com</a>
+                      <br>
+                      <a href='/docs/dotcom/integration/'>Technical Integration</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/community/'>Community</a>
+                    </div><!-- End of column 3 docs-list-list -->
+                  </div><!-- End of docs-list -->
+                </li>
+                <li id='search-off'>
+                  <a id='search'>
+                    <div class='icon-search'></div>
+                  </a>
+                </li>
+                <li id='search-on'>
+                  <a id='search2'>
+                    <form action='http://www.cloudfoundry.com/search' class='search-form' method='get' onsubmit='return submitQuery()'>
+                      <input autocomplete='off' class='search-input' id='search-query' name='q' onfocus="this.placeholder = ''" placeholder='' type='search' value=''>
+                    </form>
+                    <div class="cancel-x"></div>
+                  </a>
+                </li>
+              </ul>
+            </div><!-- End of navbar -->
+          </div><!-- End of organization_bar -->
+          <div class='content_inner'>
+            <a class="forkme" href="http://github.com/cloudfoundry/cf-docs" target="_blank">
+              <img alt="Fork me on GitHub" src="/images/ribbon_forkme.png">
+            </a>
+            <form action='http://www.cloudfoundry.com/search' class='search-docs-form' method='get' onsubmit='return submitQuery()'>
+              <input autocomplete='off' class='search-docs-input' id='search-query' name='q' onfocus="this.placeholder = 'more:docs '" placeholder='' type='search-docs' value='more:docs '>
+            </form>
+            <br clear="left">
+            
+              <div class="breadcrumbs">
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li class=""><a href="/docs/running/">Running Cloud Foundry</a></li> <li class=""><a href="/docs/running/architecture/">Architecture</a></li> <li class="active"><span>Droplet Execution Agent</span></li>
+                </ul>
+              </div>
+              <br clear="left">
+
+			
+
+              <div class="quick-links"><ul>
+<li><a href="#directory-server">Directory Server</a></li>
+<li><a href="#health-checks">DEA Health Checks</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#dea-configuration">DEA Configuration</a></li>
+<li><a href="#run-standalone">Running the DEA Standalone</a></li>
+<li><a href="#run-standalone">Staging</a></li>
+</ul>
+</div>
+
+              <h1>Droplet Execution Agent</h1>
+
+            
+            <p>The key functions of a Droplet Execution Agent (DEA) are:</p>
+
+<ul>
+<li><p>Manage Warden containers &mdash; The DEA stages applications and runs applications in <a href="/docs/running/architecture/warden.html">Warden</a> containers.</p></li>
+<li><p>Stage applications &mdash; When a new application or a new version of an application is pushed to Cloud Foundry, the Cloud Controller selects a DEA from the pool of available DEAs to stage the application. The DEA uses the appropriate buildpack to stage the application &mdash; the result of this process is a droplet. </p></li>
+<li><p>Run droplets &mdash; A DEA manages the lifecycle of each application instance running in it, starting and stopping droplets upon request of the <a href="/docs/running/architecture/cloud-controller.html">Cloud Controller</a>. The DEA monitors the state of a started application instance, and periodically broadcasts application state messages over <a href="/docs/running/architecture/messaging-nats.html">NATS</a> for consumption by the <a href="/docs/running/architecture/health-manager.html">Health Manager</a>. </p></li>
+</ul>
+
+<h2><a id='directory-server'></a>Directory Server</h2>
+
+<p>When the DEA receives requests for directories and files, it redirects them to the Directory Server URL. The URL is signed by the DEA, and the Directory Server checks the validity of the URL with the DEA before serving it.  </p>
+
+<p>Configurable Directory Server behaviors are controlled by keys in the DEA&#39;s configuration file, <code>dea.yml</code>, described below in <a href="#dea-configuration">DEA Configuration</a>. </p>
+
+<p>The Directory Server is written in Go and can be found in the <code>go/</code> directory of the DEA source code repository. It is a replacement for the older directory server that was embedded in the DEA itself.</p>
+
+<h2><a id='health-checks'></a> DEA Health Checks</h2>
+
+<p>A DEA periodically checks the health of the applications running in it.</p>
+
+<p>If a URL is mapped to an application, the DEA attempts to connect to the port assigned to the application. If the application port is accepting connections, the DEA will consider that application state to be &ldquo;Running&rdquo;. If there is no URL mapped to the application, the DEA checks the system process table for the application&#39;s process PID; if the PID exists, the DEA will consider that application state to be &ldquo;Running&rdquo;. </p>
+
+<p>The DEA also checks for a <code>AppState</code> object for the application.</p>
+
+<h2><a id='usage'></a>Usage</h2>
+
+<p>You can run the dea executable at the command line by passing the path to the DEA configuration file:</p>
+
+<pre class="terminal">
+$ bin/dea config/dea.yml
+</pre>
+
+<h2><a id='dea-configuration'></a>DEA Configuration</h2>
+
+<p>DEA behavior is configured in <code>dea.yml</code>. </p>
+
+<p>The following is a partial list of the keys that are read from the YAML file:</p>
+
+<ul>
+<li><code>logging</code> &mdash; A <a href="http://github.com/cloudfoundry/steno#from-yaml-file">Steno configuration</a>.</li>
+<li><code>nats_uri</code> &mdash; A URI of the form <code>nats://host:port</code> that the DEA will use to connect to NATS.</li>
+<li><code>warden_socket</code> &mdash; The path to a unix domain socket that the DEA will use to communicate to a warden server.</li>
+</ul>
+
+<p>A sample <code>dea.yml</code> file follows:</p>
+
+<p><strong>Note:</strong>  See <a href="https://github.com/cloudfoundry/dea_ng/blob/master/lib/dea/config.rb">https://github.com/cloudfoundry/dea_ng/blob/master/lib/dea/config.rb</a> for optional configuration keys.</p>
+<pre class="highlight text">
+# See src/lib/dea/config.rb for optional config values.
+
+# Base directory for dea, application directories, dea temp files, etc. are all relative to this.
+base_dir: /tmp/dea_ng
+
+logging:
+  level: debug
+
+resources:
+  memory_mb: 2048
+  memory_overcommit_factor: 2
+  disk_mb: 2048
+  disk_overcommit_factor: 2
+
+nats_uri: nats://localhost:4222/
+
+pid_filename: /tmp/dea_ng.pid
+
+warden_socket: /tmp/warden.sock
+
+evacuation_delay_secs: 10
+
+index: 0
+
+staging:
+  enabled: true
+  platform_config:
+    cache: /var/vcap/data/stager/package_cache/ruby
+  environment:
+    PATH: /usr/local/ruby/bin
+    BUILDPACK_CACHE: /var/vcap/packages/buildpack_cache
+  memory_limit_mb: 1024
+  disk_limit_mb: 2048
+  max_staging_duration: 900 # 15 minutes
+
+dea_ruby: /usr/bin/ruby
+
+# For Go-based directory server
+directory_server:
+  v1_port: 4385
+  v2_port: 5678
+  file_api_port: 1234
+  streaming_timeout: 10
+  logging:
+    level: info
+
+stacks:
+  - lucid64
+
+# Hook scripts for droplet start/stop
+# hooks:
+#   before_start: path/to/script
+#   after_start: path/to/script
+#   before_stop: path/to/script
+#   after_stop: path/to/script
+## &lt;a id=&#39;run-standalone&#39;&gt;&lt;/a&gt;Running the DEA Standalone ##
+
+</pre>
+<p>When contributing to DEA it is useful to run it as a standalone component. This section has instructions for doing so on Vagrant 1.1x.</p>
+
+<p>Refer to the <a href="http://docs.vagrantup.com/v2/installation/index.html">Vagrant documentation</a> for instructions on installing Vagrant.</p>
+
+<p>Follow these steps to set up DEA to run locally on your computer:</p>
+
+<pre class="terminal">
+$ git clone http://github.com/cloudfoundry/dea_ng
+$ bundle install
+
+# check that your version of vagrant is 1.1 or greater
+$ vagrant --version
+
+# create your test VM
+$ rake test_vm
+</pre>
+
+<p>VM creation is likely to take a while.</p>
+
+<p>If the <code>rake test_vm</code> step fails and you see an error similar to &ldquo;undefined method &#39;configure&#39; for Vagrant&rdquo; or &ldquo;found character that cannot start any token while scanning for the next token&rdquo;, you are using a unsupported version of Vagrant. Install Vagrant version 1.1 or higher.</p>
+
+<pre class="terminal">
+# initialize the test VM
+$ vagrant up
+
+# shell into the VM
+$ vagrant ssh
+
+# start warden
+$ cd /warden/warden
+$ bundle install
+$ rvmsudo bundle exec rake warden:start[config/test_vm.yml] > /tmp/warden.log &
+
+# start the DEA's dependencies
+$ cd /vagrant
+$ bundle install
+$ git submodule update --init
+$ foreman start > /tmp/foreman.log &
+
+# run the dea tests
+$ bundle exec rspec
+</pre>
+
+<h2><a id='run-standalone'></a>Staging</h2>
+
+<p>See the <a href="/docs/running/architecture/how-applications-are-staged.html">How Applications Are Staged</a> page for a description of the application staging flow used by DEA.</p>
+
+<p>These are the stating messages that a DEA publishes on NATS: </p>
+
+<ul>
+<li><p><code>staging.advertise</code> &mdash; Stagers (now DEA&#39;s) broadcast their capacity/capability</p></li>
+<li><p><code>staging.locate</code> &mdash; Stagers respond to any message on this subject with a
+<code>staging.advertise</code> message (CC uses this to bootstrap)</p></li>
+<li><p><code>staging.&lt;uuid&gt;.start</code> &mdash; Stagers respond to requests on this subject to stage applicationss</p></li>
+<li><p><code>staging</code> &mdash; Stagers (in a queue group) respond to requests to stage an application
+(old protocol)</p></li>
+</ul>
+
+<h2><a id='logs'></a>Logs</h2>
+
+<p>The DEA&#39;s logging is handled by <a href="https://github.com/cloudfoundry/steno">Steno</a>.  The DEA can be configured to log to a file, a syslog server or both. If neither is provided, it will log to its stdout. The logging level specifies the verbosity of the logs (e.g. <code>warn</code>, <code>info</code>, <code>debug</code>).</p>
+
+          </div><!-- End of content_inner -->
+        </div><!-- End of container-full -->
+      </div><!-- End of content -->
+    </div><!-- End of non_footer -->
+    <div id='footer'>
+      <div id='container-footer'>
+        <div class='bg_social'>
+          <ul class='social'>
+            <li>
+            <a href='http://twitter.com/cloudfoundry' target='_blank'>
+            <img alt='Twitter' src='/images/twitter_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='https://plus.google.com/114245065906861739918/posts' target='_blank'>
+            <img alt='Google+' src='/images/g+_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://facebook.com/cloudfoundry' target='_blank'>
+            <img alt='Facebook' src='/images/facebook_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://youtube.com/cloudfoundry' target='_blank'>
+            <img alt='Youtube' src='/images/youtube_large.png'>
+            </a>
+            </li>
+          </ul>
+        </div><!-- End of bg_social -->
+        <ul class='links'>
+          <li>
+          <a href='http://www.cloudfoundry.com/about'>About</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://blog.cloudfoundry.com/'>Blog</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/partners'>Partners</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://docs.cloudfoundry.com'>Docs</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://status.cloudfoundry.com/'>Status</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/support'>Support</a>
+          </li>
+        </ul>
+        <div class='copyright'>
+          <div class='hr-horizontal-dark'></div>
+          <br>
+          <p>
+            &copy;
+            <script>
+              //<![CDATA[
+                var d = new Date();
+                document.write(d.getFullYear());
+              //]]>
+            </script>
+            GoPivotal, Inc. All rights reserved.
+            <a href='http://www.cloudfoundry.com/terms'>Terms</a>
+            <a href='http://www.gopivotal.com/privacy-policy' target='_blank'>Privacy</a>
+          </p>
+        </div><!-- End of copyright -->
+      </div><!-- End of container-footer -->
+    </div><!-- End of footer -->
+    <script type="text/javascript">
+      (function() {
+        var didInit = false;
+        function initMunchkin() {
+          if(didInit === false) {
+            didInit = true;
+            Munchkin.init('625-IUJ-009');
+          }
+        }
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+        s.onreadystatechange = function() {
+          if (this.readyState == 'complete' || this.readyState == 'loaded') {
+            initMunchkin();
+          }
+        };
+        s.onload = initMunchkin;
+        document.getElementsByTagName('head')[0].appendChild(s);
+      })();
+    </script>
+  </body>
+</html>

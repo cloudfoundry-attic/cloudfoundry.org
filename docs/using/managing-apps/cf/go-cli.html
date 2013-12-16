@@ -1,0 +1,497 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Getting Started with cf v6</title>
+
+    <link href="/stylesheets/master.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='/images/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('a#search').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 20px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2').css("padding","11px 10px 8px");
+          $('#search-on').show();
+          $('#search-off').hide();
+        });
+        $('.cancel-x').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 63px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2, #organization_bar .navbar .nav>li a#search').css("padding","16px 20px 15px");
+          $('#organization_bar .navbar .nav>li a#getinvolved').css("padding","11px 92px 8px");
+          $('#organization_bar .navbar .nav>li#docs-off .docs-list-list a').css("padding","0");
+          $('#search-on').hide();
+          $('#search-off').show();
+        });f
+        $(".togglebutton").click(function () {
+        var divname= this.value;
+          $("#"+divname).show("slow").siblings().hide("slow");
+        });
+      });
+    </script>
+
+    <!--[if lt IE 9]>
+    <style>
+        #content .container-full {background:  #ebf0fa;}
+        .call-to-contribute-box, .column-left, .column-middle, .column-right {background:#e3e8f2}
+        #footer {background:#000;}
+    </style>
+    <![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22181585-1']);
+      _gaq.push(['_setDomainName', 'cloudfoundry.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body class="docs docs_using docs_using_managing-apps docs_using_managing-apps_cf docs_using_managing-apps_cf_go-cli">
+    <img id="bg" src="/images/bg-plain-x.jpg">
+    <div id='non_footer'>
+      <div id='header'>
+        <div class='container_wide'>
+          <ul class='actions'>
+            <li class='last'>
+              <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
+            </li>
+            <li>
+              <a class='register_link' href='http://login.run.pivotal.io/login'>My Account</a>            
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id='content'>
+        <div class='logo-main'>
+          <div class='logo'>
+            <a href='http://www.cloudfoundry.com'>
+            <img src='/images/logo-cloudfoundry.png'>
+            </a>
+            <a href='http://www.gopivotal.com' target="_blank">
+            <img id="pivotal-logo" src='/images/logo-pivotal.png'>
+            </a>
+          </div>
+          <div class='cta'>
+            <a href='https://console.run.pivotal.io'>
+            <img src='/images/signup_freetrial.png'>
+            </a>
+          </div>
+        </div><!-- End of logo-main-->
+        <div class='container-full'>
+          <div id='organization_bar'>
+            <div class='navbar'>
+              <ul class='nav'>
+                <li>
+                <a href='http://www.cloudfoundry.com/use' id='use'>Using Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/run' id='run'>Running Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/getinvolved' id='getinvolved'>Get Involved</a>
+                </li>
+                <li id='docs-off'>
+                  <a href='/' id='docs'>
+                    <div id='icon-docs'></div>
+                  </a>
+                  <div id='docs-list'>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/using/app-arch/'>Using Cloud Foundry</a>
+                      <br>
+                      <a href="/docs/using/app-arch/">Application Architecture Considerations</a>
+                      <br>
+                      <a href='/docs/using/deploying-apps/'>Deploying Apps</a>
+                      <br>
+                      <a href='/docs/using/managing-apps/'>Managing Apps</a>
+                      <br>
+                      <a href='/docs/using/services.html'>Using Services</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/using/">See all</a>
+                    </div><!-- End of 1st column docs-list-list-->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/running/'>Running Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/architecture/'>Architecture</a>
+                      <br>
+                      <a href='/docs/running/bosh/'>BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf/'>Deploying with BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf-with-chef/'>Deploying with Chef</a>
+                      <br>
+                      <a href='/docs/running/micro_cloud_foundry/'>Micro Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/managing-cf/index.html'>Managing Cloud Foundry</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/running/">See all</a>
+                    </div><!-- End of column 2 docs-list-list -->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/reference/'>Reference</a>
+                      <br>
+                      <a href='/docs/reference/cc-api.html'>Cloud Foundry REST API</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/dotcom/'>CloudFoundry.com</a>
+                      <br>
+                      <a href='/docs/dotcom/integration/'>Technical Integration</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/community/'>Community</a>
+                    </div><!-- End of column 3 docs-list-list -->
+                  </div><!-- End of docs-list -->
+                </li>
+                <li id='search-off'>
+                  <a id='search'>
+                    <div class='icon-search'></div>
+                  </a>
+                </li>
+                <li id='search-on'>
+                  <a id='search2'>
+                    <form action='http://www.cloudfoundry.com/search' class='search-form' method='get' onsubmit='return submitQuery()'>
+                      <input autocomplete='off' class='search-input' id='search-query' name='q' onfocus="this.placeholder = ''" placeholder='' type='search' value=''>
+                    </form>
+                    <div class="cancel-x"></div>
+                  </a>
+                </li>
+              </ul>
+            </div><!-- End of navbar -->
+          </div><!-- End of organization_bar -->
+          <div class='content_inner'>
+            <a class="forkme" href="http://github.com/cloudfoundry/cf-docs" target="_blank">
+              <img alt="Fork me on GitHub" src="/images/ribbon_forkme.png">
+            </a>
+            <form action='http://www.cloudfoundry.com/search' class='search-docs-form' method='get' onsubmit='return submitQuery()'>
+              <input autocomplete='off' class='search-docs-input' id='search-query' name='q' onfocus="this.placeholder = 'more:docs '" placeholder='' type='search-docs' value='more:docs '>
+            </form>
+            <br clear="left">
+            
+              <div class="breadcrumbs">
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li class=""><a href="/docs/using/">Using Cloud Foundry</a></li> <li class=""><a href="/docs/using/managing-apps/">Managing Apps, Orgs and Spaces</a></li> <li class=""><a href="/docs/using/managing-apps/cf/">cf Command Line Interface</a></li> <li class="active"><span>Getting Started with cf v6</span></li>
+                </ul>
+              </div>
+              <br clear="left">
+
+			
+
+              <div class="quick-links"><ul>
+<li><a href="#beta">Beta Notice</a></li>
+<li><a href="#new">New and Improved Features</a></li>
+<li><a href="#login">login</a></li>
+<li><a href="#push">push</a></li>
+<li><a href="#user-provided">User-Provided Services</a>
+
+<ul>
+<li><a href="#user-cups">gcf create-user-provided-service, gcf cups</a></li>
+<li><a href="#user-uups">gcf update-user-provided-service`, gcf uups</a></li>
+</ul></li>
+<li><a href="#user-provided">Domains and Routes</a></li>
+<li><a href="#domains-routes">Management of Roles for Organizations and Spaces</a></li>
+<li><a href="#aliases">New Aliases</a></li>
+<li><a href="#help">Command Line Help</a></li>
+</ul>
+</div>
+
+              <h1>Getting Started with cf v6</h1>
+
+            
+            <h2><a id='beta'></a>Beta Notice</h2>
+
+<p>cf v6 beta is a complete rewrite of the Cloud Foundry command-line interface. v6 is written in Go, and is more performant that the previous, Ruby-based version.</p>
+
+<p>cf v6 is currently in beta testing. Limitations of the beta version are:</p>
+
+<ul>
+<li>Application manifests are not yet supported. Deployment options must be supplied on the command line, and will not be saved in a <code>manifest.yml</code> file.</li>
+<li>The display of staging and buildpack logs that results from using <code>gcf push</code> is still being optimized to work with Loggregator. Log message listings may be incomplete; the workaround is to run <code>gcf logs --recent</code> to display all staging log messages.</li>
+<li>For some commands, only the first 50 results are shown.</li>
+</ul>
+
+<p>During the beta period, the executable will be named gcf instead of cf. cf v6 commands begin with &ldquo;gcf&rdquo;. If you would prefer to completely switch to gcf now, you can use an alias to cf.</p>
+
+<p>cf v6 is intended to replace cf v5. During the v6 beta period, cf v5 and v6 can co-exist on the same machine; you invoke v6 commands with the <code>gcf</code> command prefix. Upon general availability of cf v6, cf v5  will be deprecated, and the gcf executable will be renamed cf. At that point, cf v6 commands will be updated to replace the use of the <code>gcf</code> command prefix with <code>cf</code>.</p>
+
+<p>cf v6 is available for download at <a href="https://github.com/cloudfoundry/cli/releases/tag/v6.0.0-beta">https://github.com/cloudfoundry/cli/releases/tag/v6.0.0-beta</a>. See <a href="https://github.com/cloudfoundry/cli/blob/master/INSTALL.md">https://github.com/cloudfoundry/cli/blob/master/INSTALL.md</a> for installation instructions.</p>
+
+<h2><a id='new'></a>New and Improved Features</h2>
+
+<h2><a id='login'></a>login</h2>
+
+<p>The <code>login</code> command in cf v6 has expanded functionality. In addition to supplying your username and password, you can  optionally specify (any or all of) the target API endpoint, organization, and space. cf will prompt for values you do not specify on the command line.</p>
+
+<p>Usage:</p>
+
+<pre class="terminal">
+gcf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE]
+</pre>
+
+<p>If you have only one organization and one space, they will be automatically targeted when you log in; you need not specify them.</p>
+
+<p>Upon successful login, cf v6 saves your API endpoint, organization, space values, and access token in a <code>config.json</code> file  in your <code>~/.cf</code> directory. If you change your target API endpoint, organization, or space, the <code>config.json</code> file will be updated accordingly.</p>
+
+<p>cf v6 will always use any flags passed in the cf login command first. In a script that logs you in and sets your target, use the non-interactive <code>gcf api</code>, <code>gcf auth</code>, and <code>gcf target</code> commands.</p>
+
+<h2><a id='push'></a>push</h2>
+
+<p><code>push</code> command options are changed: most are introduced with a shorter, one-character length flag, and two new options are added, as noted in the argument list below.</p>
+
+<p>Usage:</p>
+
+<pre class="terminal">
+gcf push APP [-b URL] [-c COMMAND] [-d DOMAIN] [-i NUM_INSTANCES] [-m MEMORY] [-n HOST] [-p PATH] [-s STACK] [--no-hostname] [--no-route] [--no-start]`
+</pre>
+
+<p>The only argument you must supply is <code>APP</code>. Optional arguments include:</p>
+
+<ul>
+<li><code>-b</code> &mdash; Custom buildpack URL, for example, <a href="https://github.com/heroku/heroku-buildpack-play.git">https://github.com/heroku/heroku-buildpack-play.git</a>.</li>
+<li><code>-c</code> &mdash; Start command for the application.</li>
+<li><code>-d</code> &mdash; Domain, for example, example.com.</li>
+<li><code>-i</code> &mdash; Number of instances of the application to run.</li>
+<li><code>-m</code> &mdash; Memory limit, for example, 256, 1G, 1024M, and so on.</li>
+<li><code>-n</code> &mdash; Hostname, for example, <code>my-subdomain</code>.</li>
+<li><code>-p</code> &mdash; Path to application directory or archive.</li>
+<li><code>-s</code> &mdash; Stack to use.</li>
+<li><code>--no-hostname</code> &mdash; Map the root domain to this application (NEW).</li>
+<li><code>--no-route</code> &mdash; Do not map a route to this application (NEW).</li>
+<li><code>--no-start</code> &mdash; Do not start the application after pushing.</li>
+</ul>
+
+<h2><a id='user-provided'></a> User-Provided Services</h2>
+
+<p>cf v6 has new commands for creating and updating user-provided services, described in the subsections below.</p>
+
+<p>Note that when you create or update a user-provided service, you can use the <code>-l SYSLOG_DRAIN_URL</code> option to send data formatted according to RFC 5424 to a third-party log management software as described in RFC 6587.</p>
+
+<p>Once created, user-provided services can be bound to an application with with <code>gcf bind-service</code>, unbound with <code>gcf unbind-service</code>, renamed with <code>gcf rename-service</code>, and deleted with <code>gcf delete-service</code>.</p>
+
+<h3><a id='user-cups'></a>gcf create-user-provided-service, gcf cups</h3>
+
+<p>Interactive Usage:</p>
+
+<pre class="terminal">
+gcf create-user-provided-service SERVICE_INSTANCE -p "HOST, PORT, DATABASE, USERNAME, PASSWORD" -l SYSLOG-DRAIN-URL
+</pre>
+
+<p>Non-interactive Usage:</p>
+
+<pre class="terminal">
+gcf create-user-provided-service SERVICE_INSTANCE -p '{"username":"USERNAME","password":"PASSWORD"}' -l SYSLOG-DRAIN-URL
+</pre>
+
+<h3><a id='user-uups'></a>gcf update-user-provided-service, gcf uups</h3>
+
+<p>You can use <code>gcf update-user-provided-service</code> to update one or more of the attributes for a user-provided service. Attributes that you do not supply will not be updated.</p>
+
+<p>Interactive Usage:</p>
+
+<pre class="terminal">
+gcf update-user-provided-service SERVICE_INSTANCE -p "HOST, PORT, DATABASE, USERNAME, PASSWORD" -l SYSLOG-DRAIN-URL
+</pre>
+
+<p>Non-interactive Usage:</p>
+
+<pre class="terminal">
+gcf update-user-provided-service SERVICE_INSTANCE -p '{"username":"USERNAME","password":"PASSWORD"}' -l SYSLOG-DRAIN-URL
+</pre>
+
+<h2><a id='user-provided'></a> Domains and Routes</h2>
+
+<p>The cf v6 commands for managing domains and routes are:</p>
+
+<ul>
+<li><code>gcf create-domain</code> &mdash;  Create a domain in an organization for later use.</li>
+<li><code>gcf share-domain</code> &mdash; Share a domain with all organizations.</li>
+<li><code>gcf map-domain</code> &mdash; Map a domain to a space.</li>
+<li><code>gcf unmap-domain</code> &mdash; Unmap a domain from a space.</li>
+<li><code>gcf delete-domain</code> &mdash; Delete a domain.</li>
+<li><code>gcf create-route</code> &mdash; Create a URL route in a space for later use.</li>
+<li><code>gcf map-route</code> &mdash; Add a URL route to an appLICATION (mapping a route also creates it).</li>
+<li><code>gcf unmap-route</code> &mdash; Remove a URL route from an application.</li>
+<li><code>gcf delete-route</code> &mdash; Delete a route.</li>
+</ul>
+
+<p>To use a domain in a route:</p>
+
+<ol>
+<li>Use <code>gcf create-domain</code> to create a domain in the desired organization, unless the domain already exists in (or has been shared with) the organization.</li>
+<li>Use <code>gcf map-domain</code> to map the domain to the desired space.</li>
+<li>Use <code>gcf map-route</code> to map the domain to the desired application. You can map the domain to other applications in the same space, as long as each resulting route in the space is unique. Routes will be unique if you use the <code>-n HOSTNAME</code>option to specify a unique hostname for each route that uses the same domain.</li>
+</ol>
+
+<h2><a id='domains-routes'></a> Management of Roles for Organizations and Spaces</h2>
+
+<p>cf v6 provides new commands for managing users and roles.</p>
+
+<ul>
+<li><code>gcf org-users</code> &mdash; List users in the organization by role.</li>
+<li><code>gcf set-org-role</code> &mdash; Assign an organization role to a user. The available roles are &ldquo;OrgManager&rdquo;, &ldquo;BillingManager&rdquo;, and &ldquo;OrgAuditor&rdquo;.</li>
+<li><code>gcf unset-org-role</code> &mdash; Remove an organization role from a user.</li>
+<li><code>gcf space-users</code> &mdash; List users in the space by role.</li>
+<li><code>gcf set-space-role</code> &mdash; Assign a space role to a user. The available roles are &ldquo;SpaceManager&rdquo;, &ldquo;SpaceDeveloper&rdquo;, and &ldquo;SpaceAuditor&rdquo;.</li>
+<li><code>gcf unset-space-role</code> &mdash; Remove a space role from a user.</li>
+</ul>
+
+<h2><a id='aliases'></a> New Aliases</h2>
+
+<p>cf v6 introduces single-letter aliases for commonly used commands.  For example, you can enter <code>gcf p</code> for <code>gcf push</code>, and <code>gcf t</code> for <code>gcf target</code>. You can see the alias for a command, if there is one, by running command line help, described below.</p>
+
+<h2><a id='help'></a> Command Line Help</h2>
+
+<p>Run <code>gcf help</code> to view a list all gcf commands and a brief description of each. To view detailed help for a command, add <code>-h</code> to the command line. For example:</p>
+
+<pre class="terminal">
+gcf push -h
+NAME:
+   push - Push a new app or sync changes to an existing app
+
+ALIAS:
+   p
+
+USAGE:
+   gcf push APP [-b URL] [-c COMMAND] [-d DOMAIN] [-i NUM_INSTANCES]
+               [-m MEMORY] [-n HOST] [-p PATH] [-s STACK]
+               [--no-hostname] [--no-route] [--no-start]
+
+OPTIONS:
+   -b ''        Custom buildpack URL (for example: https://github.com/heroku/heroku-buildpack-play.git)
+   -c ''        Startup command
+   -d ''        Domain (for example: example.com)
+   -i '1'       Number of instances
+   -m '128'     Memory limit (for example: 256, 1G, 1024M)
+   -n ''        Hostname (for example: my-subdomain)
+   -p ''        Path of app directory or zip file
+   -s ''        Stack to use
+   --no-hostname    Map the root domain to this app
+   --no-route       Do not map a route to this app
+   --no-start       Do not start an app after pushing
+</pre>
+
+<p>Note that:</p>
+
+<ul>
+<li>User input is capitalized, as in  <code>gcf push APP</code></li>
+<li>Optional user input is designated with a flag and brackets, as in <code>gcf create-route SPACE DOMAIN [-n HOSTNAME]</code>.</li>
+</ul>
+
+          </div><!-- End of content_inner -->
+        </div><!-- End of container-full -->
+      </div><!-- End of content -->
+    </div><!-- End of non_footer -->
+    <div id='footer'>
+      <div id='container-footer'>
+        <div class='bg_social'>
+          <ul class='social'>
+            <li>
+            <a href='http://twitter.com/cloudfoundry' target='_blank'>
+            <img alt='Twitter' src='/images/twitter_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='https://plus.google.com/114245065906861739918/posts' target='_blank'>
+            <img alt='Google+' src='/images/g+_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://facebook.com/cloudfoundry' target='_blank'>
+            <img alt='Facebook' src='/images/facebook_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://youtube.com/cloudfoundry' target='_blank'>
+            <img alt='Youtube' src='/images/youtube_large.png'>
+            </a>
+            </li>
+          </ul>
+        </div><!-- End of bg_social -->
+        <ul class='links'>
+          <li>
+          <a href='http://www.cloudfoundry.com/about'>About</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://blog.cloudfoundry.com/'>Blog</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/partners'>Partners</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://docs.cloudfoundry.com'>Docs</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://status.cloudfoundry.com/'>Status</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/support'>Support</a>
+          </li>
+        </ul>
+        <div class='copyright'>
+          <div class='hr-horizontal-dark'></div>
+          <br>
+          <p>
+            &copy;
+            <script>
+              //<![CDATA[
+                var d = new Date();
+                document.write(d.getFullYear());
+              //]]>
+            </script>
+            GoPivotal, Inc. All rights reserved.
+            <a href='http://www.cloudfoundry.com/terms'>Terms</a>
+            <a href='http://www.gopivotal.com/privacy-policy' target='_blank'>Privacy</a>
+          </p>
+        </div><!-- End of copyright -->
+      </div><!-- End of container-footer -->
+    </div><!-- End of footer -->
+    <script type="text/javascript">
+      (function() {
+        var didInit = false;
+        function initMunchkin() {
+          if(didInit === false) {
+            didInit = true;
+            Munchkin.init('625-IUJ-009');
+          }
+        }
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+        s.onreadystatechange = function() {
+          if (this.readyState == 'complete' || this.readyState == 'loaded') {
+            initMunchkin();
+          }
+        };
+        s.onload = initMunchkin;
+        document.getElementsByTagName('head')[0].appendChild(s);
+      })();
+    </script>
+  </body>
+</html>

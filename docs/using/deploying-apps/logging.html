@@ -1,0 +1,385 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Streaming Logs</title>
+
+    <link href="/stylesheets/master.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='/images/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('a#search').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 20px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2').css("padding","11px 10px 8px");
+          $('#search-on').show();
+          $('#search-off').hide();
+        });
+        $('.cancel-x').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 63px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2, #organization_bar .navbar .nav>li a#search').css("padding","16px 20px 15px");
+          $('#organization_bar .navbar .nav>li a#getinvolved').css("padding","11px 92px 8px");
+          $('#organization_bar .navbar .nav>li#docs-off .docs-list-list a').css("padding","0");
+          $('#search-on').hide();
+          $('#search-off').show();
+        });f
+        $(".togglebutton").click(function () {
+        var divname= this.value;
+          $("#"+divname).show("slow").siblings().hide("slow");
+        });
+      });
+    </script>
+
+    <!--[if lt IE 9]>
+    <style>
+        #content .container-full {background:  #ebf0fa;}
+        .call-to-contribute-box, .column-left, .column-middle, .column-right {background:#e3e8f2}
+        #footer {background:#000;}
+    </style>
+    <![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22181585-1']);
+      _gaq.push(['_setDomainName', 'cloudfoundry.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body class="docs docs_using docs_using_deploying-apps docs_using_deploying-apps_logging">
+    <img id="bg" src="/images/bg-plain-x.jpg">
+    <div id='non_footer'>
+      <div id='header'>
+        <div class='container_wide'>
+          <ul class='actions'>
+            <li class='last'>
+              <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
+            </li>
+            <li>
+              <a class='register_link' href='http://login.run.pivotal.io/login'>My Account</a>            
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id='content'>
+        <div class='logo-main'>
+          <div class='logo'>
+            <a href='http://www.cloudfoundry.com'>
+            <img src='/images/logo-cloudfoundry.png'>
+            </a>
+            <a href='http://www.gopivotal.com' target="_blank">
+            <img id="pivotal-logo" src='/images/logo-pivotal.png'>
+            </a>
+          </div>
+          <div class='cta'>
+            <a href='https://console.run.pivotal.io'>
+            <img src='/images/signup_freetrial.png'>
+            </a>
+          </div>
+        </div><!-- End of logo-main-->
+        <div class='container-full'>
+          <div id='organization_bar'>
+            <div class='navbar'>
+              <ul class='nav'>
+                <li>
+                <a href='http://www.cloudfoundry.com/use' id='use'>Using Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/run' id='run'>Running Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/getinvolved' id='getinvolved'>Get Involved</a>
+                </li>
+                <li id='docs-off'>
+                  <a href='/' id='docs'>
+                    <div id='icon-docs'></div>
+                  </a>
+                  <div id='docs-list'>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/using/app-arch/'>Using Cloud Foundry</a>
+                      <br>
+                      <a href="/docs/using/app-arch/">Application Architecture Considerations</a>
+                      <br>
+                      <a href='/docs/using/deploying-apps/'>Deploying Apps</a>
+                      <br>
+                      <a href='/docs/using/managing-apps/'>Managing Apps</a>
+                      <br>
+                      <a href='/docs/using/services.html'>Using Services</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/using/">See all</a>
+                    </div><!-- End of 1st column docs-list-list-->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/running/'>Running Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/architecture/'>Architecture</a>
+                      <br>
+                      <a href='/docs/running/bosh/'>BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf/'>Deploying with BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf-with-chef/'>Deploying with Chef</a>
+                      <br>
+                      <a href='/docs/running/micro_cloud_foundry/'>Micro Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/managing-cf/index.html'>Managing Cloud Foundry</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/running/">See all</a>
+                    </div><!-- End of column 2 docs-list-list -->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/reference/'>Reference</a>
+                      <br>
+                      <a href='/docs/reference/cc-api.html'>Cloud Foundry REST API</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/dotcom/'>CloudFoundry.com</a>
+                      <br>
+                      <a href='/docs/dotcom/integration/'>Technical Integration</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/community/'>Community</a>
+                    </div><!-- End of column 3 docs-list-list -->
+                  </div><!-- End of docs-list -->
+                </li>
+                <li id='search-off'>
+                  <a id='search'>
+                    <div class='icon-search'></div>
+                  </a>
+                </li>
+                <li id='search-on'>
+                  <a id='search2'>
+                    <form action='http://www.cloudfoundry.com/search' class='search-form' method='get' onsubmit='return submitQuery()'>
+                      <input autocomplete='off' class='search-input' id='search-query' name='q' onfocus="this.placeholder = ''" placeholder='' type='search' value=''>
+                    </form>
+                    <div class="cancel-x"></div>
+                  </a>
+                </li>
+              </ul>
+            </div><!-- End of navbar -->
+          </div><!-- End of organization_bar -->
+          <div class='content_inner'>
+            <a class="forkme" href="http://github.com/cloudfoundry/cf-docs" target="_blank">
+              <img alt="Fork me on GitHub" src="/images/ribbon_forkme.png">
+            </a>
+            <form action='http://www.cloudfoundry.com/search' class='search-docs-form' method='get' onsubmit='return submitQuery()'>
+              <input autocomplete='off' class='search-docs-input' id='search-query' name='q' onfocus="this.placeholder = 'more:docs '" placeholder='' type='search-docs' value='more:docs '>
+            </form>
+            <br clear="left">
+            
+              <div class="breadcrumbs">
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li class=""><a href="/docs/using/">Using Cloud Foundry</a></li> <li class=""><a href="/docs/using/deploying-apps/">Key Facts About Application Deployment</a></li> <li class="active"><span>Streaming Logs</span></li>
+                </ul>
+              </div>
+              <br clear="left">
+
+			
+
+              <div class="quick-links"></div>
+
+              <h1>Streaming Logs</h1>
+
+            
+            <p><em>This page assumes that you are using the <a href="http://blog.cloudfoundry.com/2013/11/09/announcing-cloud-foundry-cf-v6/">beta of the go cf CLI</a>, also known as gcf.</em></p>
+
+<h3>Features</h3>
+
+<p>The logging capability in Cloud Foundry allows you to:</p>
+
+<ol>
+<li>Tail application logs.</li>
+<li>Dump a recent set of application logs.</li>
+<li>Continually drain application logs to 3rd party log archive and analysis services using syslog.</li>
+</ol>
+
+<h4>Tailing application logs</h4>
+
+<pre class="terminal">
+gcf logs APP_NAME [--recent]
+</pre>
+
+<p>You can see a real time stream of your application STDOUT and STDERR with <code>gcf logs APPNAME</code>. For example:</p>
+
+<pre class="terminal">
+$ gcf logs myapp
+2013-12-03T20:52:36.64-0800 [App/0]   ERR 108.216.154.88, 10.10.66.252 - - [04/Dec/2013 04:52:36] "GET / HTTP/1.1" 200 1358 0.0020
+2013-12-03T20:52:36.66-0800 [App/0]   ERR 108.216.154.88, 10.10.66.252 - - [04/Dec/2013 04:52:36] "GET / HTTP/1.1" 200 1358 0.0288
+2013-12-03T20:52:36.66-0800 [RTR]     OUT env-test.cfapps.io - [04/12/2013:04:52:36 +0000] "GET / HTTP/1.1" 200 1358 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36" 10.10.66.252:48779 response_time:0.067069415 app_id:c66ecb53-5aff-4f7d-b7a4-b0143c4b6ade
+...
+</pre>
+
+<p>To exit, press Ctrl-C (^C).</p>
+
+<h4>Dumping recent application logs</h4>
+
+<p>If your application crashes it can be handy to get recent logs.
+To do that, add the &ndash;recent flag. For example:</p>
+
+<pre class="terminal">
+gcf logs APP_NAME --recent
+</pre>
+
+<h4>Draining application logs</h4>
+
+<p>The CF logging system support the syslog format as described in <a href="http://tools.ietf.org/html/rfc5424">RFC 5424</a> with octect encoding as described in <a href="http://tools.ietf.org/html/rfc6587">RFC 6587</a>   Optionally you can use syslog TLS support as described in <a href="http://tools.ietf.org/html/rfc5425">RFC 5425</a></p>
+
+<p>To drain your application&#39;s logs to a 3rd party syslog drain service, you will need to bind a syslog drain url to your application.</p>
+
+<p>You can do this by adding a 3rd party log service to your application or by adding a user provided service with a custom syslog drain url to your application via the command line.</p>
+
+<p>To create a user provided syslog service:</p>
+
+<pre class="terminal">
+gcf create-user-provided-service SERVICE_NAME -l SYSLOG-DRAIN-URL
+</pre>
+
+<p>The SYSLOG-DRAIN-URL should be in the format of &#39;scheme://host:port&#39; where allowed schemes are &#39;syslog&#39; or &#39;syslog-tls&#39; For example:</p>
+<pre class="highlight text">syslog scheme:     &#39;syslog://my.unencrypted.syslogservice.example.com:1234&#39;
+syslog tls scheme: &#39;syslog-tls://my.encrypted.syslogservice.example.com:5467&#39;
+</pre>
+<p>After you create your custom service you need to bind the applications to it.   For example:</p>
+
+<pre class="terminal">
+gcf bind-service APP_NAME SERVICE_NAME
+</pre>
+
+<p>You can repeat this for all applications you wish to drain to your syslog service.   Also you will have to restart your application(s) to pick up the new service.</p>
+
+<h5>Notes</h5>
+
+<p>Cloud Foundry gathers and stores logs in a best-effort manner and if the buffer of log lines is too large because clients are unable to keep up, the system will drop some log messages. Application logs should typically be available if clients such as a CLI tail or a syslog drain are able to keep up with the application log volume.
+The logging capability reports only on STDOUT and STDERR of your application and other relevant system messages. You may need to configure your application to write logs to STDOUT or STDERR instead of a custom log file. Sending application logs that are not part of STDOUT and STDERR is not supported.</p>
+
+<p>Logging output delivered with an internal timestamp.  This timestamp which is assigned when the logging service receives the log line.
+If your log line includes a timestamp, this timestamp is not processed by the logging system but is rather just passed as part of the opaque &#39;message data&#39;</p>
+
+<p>To prevent issues you should ensure your application is NOT buffering output to STDOUT or STDERR.</p>
+
+<p>For sinatra, make sure to have this in your configure block:</p>
+<pre class="highlight text">$stderr.sync = true
+$stdout.sync = true
+</pre>
+<p>If you use Log4J ConsoleAppender, there is no buffering. There is an <a href="http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/WriterAppender.html#immediateFlush">immediateFlush</a> option that defaults to true. If that is set to false, there might be some buffering.</p>
+
+<p>Logback&#39;s <a href="http://logback.qos.ch/manual/appenders.html#ConsoleAppender">ConsoleAppender</a> buffers by default (by using a OutputStreamWriter under the hood)</p>
+
+          </div><!-- End of content_inner -->
+        </div><!-- End of container-full -->
+      </div><!-- End of content -->
+    </div><!-- End of non_footer -->
+    <div id='footer'>
+      <div id='container-footer'>
+        <div class='bg_social'>
+          <ul class='social'>
+            <li>
+            <a href='http://twitter.com/cloudfoundry' target='_blank'>
+            <img alt='Twitter' src='/images/twitter_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='https://plus.google.com/114245065906861739918/posts' target='_blank'>
+            <img alt='Google+' src='/images/g+_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://facebook.com/cloudfoundry' target='_blank'>
+            <img alt='Facebook' src='/images/facebook_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://youtube.com/cloudfoundry' target='_blank'>
+            <img alt='Youtube' src='/images/youtube_large.png'>
+            </a>
+            </li>
+          </ul>
+        </div><!-- End of bg_social -->
+        <ul class='links'>
+          <li>
+          <a href='http://www.cloudfoundry.com/about'>About</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://blog.cloudfoundry.com/'>Blog</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/partners'>Partners</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://docs.cloudfoundry.com'>Docs</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://status.cloudfoundry.com/'>Status</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/support'>Support</a>
+          </li>
+        </ul>
+        <div class='copyright'>
+          <div class='hr-horizontal-dark'></div>
+          <br>
+          <p>
+            &copy;
+            <script>
+              //<![CDATA[
+                var d = new Date();
+                document.write(d.getFullYear());
+              //]]>
+            </script>
+            GoPivotal, Inc. All rights reserved.
+            <a href='http://www.cloudfoundry.com/terms'>Terms</a>
+            <a href='http://www.gopivotal.com/privacy-policy' target='_blank'>Privacy</a>
+          </p>
+        </div><!-- End of copyright -->
+      </div><!-- End of container-footer -->
+    </div><!-- End of footer -->
+    <script type="text/javascript">
+      (function() {
+        var didInit = false;
+        function initMunchkin() {
+          if(didInit === false) {
+            didInit = true;
+            Munchkin.init('625-IUJ-009');
+          }
+        }
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+        s.onreadystatechange = function() {
+          if (this.readyState == 'complete' || this.readyState == 'loaded') {
+            initMunchkin();
+          }
+        };
+        s.onload = initMunchkin;
+        document.getElementsByTagName('head')[0].appendChild(s);
+      })();
+    </script>
+  </body>
+</html>

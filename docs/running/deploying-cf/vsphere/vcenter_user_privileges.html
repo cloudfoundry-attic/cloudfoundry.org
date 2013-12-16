@@ -1,0 +1,966 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Privileges for a vCenter User</title>
+
+    <link href="/stylesheets/master.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='/images/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('a#search').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 20px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2').css("padding","11px 10px 8px");
+          $('#search-on').show();
+          $('#search-off').hide();
+        });
+        $('.cancel-x').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 63px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2, #organization_bar .navbar .nav>li a#search').css("padding","16px 20px 15px");
+          $('#organization_bar .navbar .nav>li a#getinvolved').css("padding","11px 92px 8px");
+          $('#organization_bar .navbar .nav>li#docs-off .docs-list-list a').css("padding","0");
+          $('#search-on').hide();
+          $('#search-off').show();
+        });f
+        $(".togglebutton").click(function () {
+        var divname= this.value;
+          $("#"+divname).show("slow").siblings().hide("slow");
+        });
+      });
+    </script>
+
+    <!--[if lt IE 9]>
+    <style>
+        #content .container-full {background:  #ebf0fa;}
+        .call-to-contribute-box, .column-left, .column-middle, .column-right {background:#e3e8f2}
+        #footer {background:#000;}
+    </style>
+    <![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22181585-1']);
+      _gaq.push(['_setDomainName', 'cloudfoundry.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body class="docs docs_running docs_running_deploying-cf docs_running_deploying-cf_vsphere docs_running_deploying-cf_vsphere_vcenter_user_privileges">
+    <img id="bg" src="/images/bg-plain-x.jpg">
+    <div id='non_footer'>
+      <div id='header'>
+        <div class='container_wide'>
+          <ul class='actions'>
+            <li class='last'>
+              <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
+            </li>
+            <li>
+              <a class='register_link' href='http://login.run.pivotal.io/login'>My Account</a>            
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id='content'>
+        <div class='logo-main'>
+          <div class='logo'>
+            <a href='http://www.cloudfoundry.com'>
+            <img src='/images/logo-cloudfoundry.png'>
+            </a>
+            <a href='http://www.gopivotal.com' target="_blank">
+            <img id="pivotal-logo" src='/images/logo-pivotal.png'>
+            </a>
+          </div>
+          <div class='cta'>
+            <a href='https://console.run.pivotal.io'>
+            <img src='/images/signup_freetrial.png'>
+            </a>
+          </div>
+        </div><!-- End of logo-main-->
+        <div class='container-full'>
+          <div id='organization_bar'>
+            <div class='navbar'>
+              <ul class='nav'>
+                <li>
+                <a href='http://www.cloudfoundry.com/use' id='use'>Using Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/run' id='run'>Running Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/getinvolved' id='getinvolved'>Get Involved</a>
+                </li>
+                <li id='docs-off'>
+                  <a href='/' id='docs'>
+                    <div id='icon-docs'></div>
+                  </a>
+                  <div id='docs-list'>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/using/app-arch/'>Using Cloud Foundry</a>
+                      <br>
+                      <a href="/docs/using/app-arch/">Application Architecture Considerations</a>
+                      <br>
+                      <a href='/docs/using/deploying-apps/'>Deploying Apps</a>
+                      <br>
+                      <a href='/docs/using/managing-apps/'>Managing Apps</a>
+                      <br>
+                      <a href='/docs/using/services.html'>Using Services</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/using/">See all</a>
+                    </div><!-- End of 1st column docs-list-list-->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/running/'>Running Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/architecture/'>Architecture</a>
+                      <br>
+                      <a href='/docs/running/bosh/'>BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf/'>Deploying with BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf-with-chef/'>Deploying with Chef</a>
+                      <br>
+                      <a href='/docs/running/micro_cloud_foundry/'>Micro Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/managing-cf/index.html'>Managing Cloud Foundry</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/running/">See all</a>
+                    </div><!-- End of column 2 docs-list-list -->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/reference/'>Reference</a>
+                      <br>
+                      <a href='/docs/reference/cc-api.html'>Cloud Foundry REST API</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/dotcom/'>CloudFoundry.com</a>
+                      <br>
+                      <a href='/docs/dotcom/integration/'>Technical Integration</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/community/'>Community</a>
+                    </div><!-- End of column 3 docs-list-list -->
+                  </div><!-- End of docs-list -->
+                </li>
+                <li id='search-off'>
+                  <a id='search'>
+                    <div class='icon-search'></div>
+                  </a>
+                </li>
+                <li id='search-on'>
+                  <a id='search2'>
+                    <form action='http://www.cloudfoundry.com/search' class='search-form' method='get' onsubmit='return submitQuery()'>
+                      <input autocomplete='off' class='search-input' id='search-query' name='q' onfocus="this.placeholder = ''" placeholder='' type='search' value=''>
+                    </form>
+                    <div class="cancel-x"></div>
+                  </a>
+                </li>
+              </ul>
+            </div><!-- End of navbar -->
+          </div><!-- End of organization_bar -->
+          <div class='content_inner'>
+            <a class="forkme" href="http://github.com/cloudfoundry/cf-docs" target="_blank">
+              <img alt="Fork me on GitHub" src="/images/ribbon_forkme.png">
+            </a>
+            <form action='http://www.cloudfoundry.com/search' class='search-docs-form' method='get' onsubmit='return submitQuery()'>
+              <input autocomplete='off' class='search-docs-input' id='search-query' name='q' onfocus="this.placeholder = 'more:docs '" placeholder='' type='search-docs' value='more:docs '>
+            </form>
+            <br clear="left">
+            
+              <div class="breadcrumbs">
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li class=""><a href="/docs/running/">Running Cloud Foundry</a></li> <li class=""><a href="/docs/running/deploying-cf/">Deploying Cloud Foundry with BOSH</a></li> <li class=""><a href="/docs/running/deploying-cf/vsphere/">Deploying Cloud Foundry on vSphere</a></li> <li class="active"><span>Privileges for a vCenter User</span></li>
+                </ul>
+              </div>
+              <br clear="left">
+
+			
+
+              <div class="quick-links"></div>
+
+              <h1>Privileges for a vCenter User</h1>
+
+            
+            <table><thead>
+<tr>
+<th>Object</th>
+<th>Permission</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Datastore</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>allocate space</td>
+</tr>
+<tr>
+<td></td>
+<td>browse datastore</td>
+</tr>
+<tr>
+<td></td>
+<td>low-level file operations</td>
+</tr>
+<tr>
+<td></td>
+<td>remove file</td>
+</tr>
+<tr>
+<td></td>
+<td>update virtual machine files</td>
+</tr>
+<tr>
+<td>Folder (ALL)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>create folder</td>
+</tr>
+<tr>
+<td></td>
+<td>delete folder</td>
+</tr>
+<tr>
+<td></td>
+<td>move folder</td>
+</tr>
+<tr>
+<td></td>
+<td>rename folder</td>
+</tr>
+<tr>
+<td>Global</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>cancel task</td>
+</tr>
+<tr>
+<td></td>
+<td>diagnostics</td>
+</tr>
+<tr>
+<td>Host / Configuration (All)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>advanced setting</td>
+</tr>
+<tr>
+<td></td>
+<td>authentication store</td>
+</tr>
+<tr>
+<td></td>
+<td>change date &amp; time settings</td>
+</tr>
+<tr>
+<td></td>
+<td>change PCIPassthru settings</td>
+</tr>
+<tr>
+<td></td>
+<td>change SNMP settings</td>
+</tr>
+<tr>
+<td></td>
+<td>connection</td>
+</tr>
+<tr>
+<td></td>
+<td>firmware</td>
+</tr>
+<tr>
+<td></td>
+<td>hyperthreading</td>
+</tr>
+<tr>
+<td></td>
+<td>maintenance</td>
+</tr>
+<tr>
+<td></td>
+<td>memory configuration</td>
+</tr>
+<tr>
+<td></td>
+<td>network configuration</td>
+</tr>
+<tr>
+<td></td>
+<td>power</td>
+</tr>
+<tr>
+<td></td>
+<td>query patch</td>
+</tr>
+<tr>
+<td></td>
+<td>security profile and firewall</td>
+</tr>
+<tr>
+<td></td>
+<td>storage partition configuration</td>
+</tr>
+<tr>
+<td></td>
+<td>system management</td>
+</tr>
+<tr>
+<td></td>
+<td>system resources</td>
+</tr>
+<tr>
+<td></td>
+<td>virtual machine auto-start configuration</td>
+</tr>
+<tr>
+<td>Host / Inventory (ALL)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>add host to cluster</td>
+</tr>
+<tr>
+<td></td>
+<td>add stand-alone host</td>
+</tr>
+<tr>
+<td></td>
+<td>create cluster</td>
+</tr>
+<tr>
+<td></td>
+<td>modify cluster</td>
+</tr>
+<tr>
+<td></td>
+<td>move cluster or stand-alone host</td>
+</tr>
+<tr>
+<td></td>
+<td>move host</td>
+</tr>
+<tr>
+<td></td>
+<td>remove cluster</td>
+</tr>
+<tr>
+<td></td>
+<td>remove host</td>
+</tr>
+<tr>
+<td></td>
+<td>rename cluster</td>
+</tr>
+<tr>
+<td>Host / Local Operations</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>create virtual machine</td>
+</tr>
+<tr>
+<td></td>
+<td>delete virtual machine</td>
+</tr>
+<tr>
+<td></td>
+<td>reconfigure vitrual machine</td>
+</tr>
+<tr>
+<td>Network</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>assign network</td>
+</tr>
+<tr>
+<td>Resource (ALL)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>apply recommendation</td>
+</tr>
+<tr>
+<td></td>
+<td>assign vApp to resource pool</td>
+</tr>
+<tr>
+<td></td>
+<td>assign vitrual machine to resource pool</td>
+</tr>
+<tr>
+<td></td>
+<td>create resource pool</td>
+</tr>
+<tr>
+<td></td>
+<td>migrate</td>
+</tr>
+<tr>
+<td></td>
+<td>modify resource pool</td>
+</tr>
+<tr>
+<td></td>
+<td>move resource pool</td>
+</tr>
+<tr>
+<td></td>
+<td>query vmotion</td>
+</tr>
+<tr>
+<td></td>
+<td>relocate</td>
+</tr>
+<tr>
+<td></td>
+<td>remove resource pool</td>
+</tr>
+<tr>
+<td></td>
+<td>rename resouce pool</td>
+</tr>
+<tr>
+<td>Scheduled Task (ALL)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>create tasks</td>
+</tr>
+<tr>
+<td></td>
+<td>modify tasks</td>
+</tr>
+<tr>
+<td></td>
+<td>remove tasks</td>
+</tr>
+<tr>
+<td></td>
+<td>run task</td>
+</tr>
+<tr>
+<td>Sessions</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>view and stop sessions</td>
+</tr>
+<tr>
+<td>Tasks (ALL)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>create tasks</td>
+</tr>
+<tr>
+<td></td>
+<td>update tasks</td>
+</tr>
+<tr>
+<td>vApp (ALL)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>add virtual machine</td>
+</tr>
+<tr>
+<td></td>
+<td>assign resource pool</td>
+</tr>
+<tr>
+<td></td>
+<td>assign vApp</td>
+</tr>
+<tr>
+<td></td>
+<td>clone</td>
+</tr>
+<tr>
+<td></td>
+<td>create</td>
+</tr>
+<tr>
+<td></td>
+<td>delete</td>
+</tr>
+<tr>
+<td></td>
+<td>export</td>
+</tr>
+<tr>
+<td></td>
+<td>import</td>
+</tr>
+<tr>
+<td></td>
+<td>move</td>
+</tr>
+<tr>
+<td></td>
+<td>power off</td>
+</tr>
+<tr>
+<td></td>
+<td>power on</td>
+</tr>
+<tr>
+<td></td>
+<td>rename</td>
+</tr>
+<tr>
+<td></td>
+<td>suspend</td>
+</tr>
+<tr>
+<td></td>
+<td>unregister</td>
+</tr>
+<tr>
+<td></td>
+<td>vApp application configuration</td>
+</tr>
+<tr>
+<td></td>
+<td>vApp instance configruation</td>
+</tr>
+<tr>
+<td></td>
+<td>vApp resouce configuration</td>
+</tr>
+<tr>
+<td></td>
+<td>view OVF environment</td>
+</tr>
+<tr>
+<td>Virtual Machine (ALL) / Configuration (All)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>add existing disk</td>
+</tr>
+<tr>
+<td></td>
+<td>add new disk</td>
+</tr>
+<tr>
+<td></td>
+<td>add or remove device</td>
+</tr>
+<tr>
+<td></td>
+<td>advanced</td>
+</tr>
+<tr>
+<td></td>
+<td>change CPU count</td>
+</tr>
+<tr>
+<td></td>
+<td>change resouce</td>
+</tr>
+<tr>
+<td></td>
+<td>disk change tracking</td>
+</tr>
+<tr>
+<td></td>
+<td>disk lease</td>
+</tr>
+<tr>
+<td></td>
+<td>extend virtul disk</td>
+</tr>
+<tr>
+<td></td>
+<td>host USB device</td>
+</tr>
+<tr>
+<td></td>
+<td>memory</td>
+</tr>
+<tr>
+<td></td>
+<td>modify device settings</td>
+</tr>
+<tr>
+<td></td>
+<td>query fault tolerance compatability</td>
+</tr>
+<tr>
+<td></td>
+<td>query unowned files</td>
+</tr>
+<tr>
+<td></td>
+<td>raw device</td>
+</tr>
+<tr>
+<td></td>
+<td>reload from path</td>
+</tr>
+<tr>
+<td></td>
+<td>remove disk</td>
+</tr>
+<tr>
+<td></td>
+<td>rename</td>
+</tr>
+<tr>
+<td></td>
+<td>reset guest information</td>
+</tr>
+<tr>
+<td></td>
+<td>settings</td>
+</tr>
+<tr>
+<td></td>
+<td>swap file placement</td>
+</tr>
+<tr>
+<td></td>
+<td>unlock virtual machine</td>
+</tr>
+<tr>
+<td></td>
+<td>upgrade virtual hardware</td>
+</tr>
+<tr>
+<td>Virtual Machine (ALL) / Interaction (ALL)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>acquire guest control ticket</td>
+</tr>
+<tr>
+<td></td>
+<td>answer question</td>
+</tr>
+<tr>
+<td></td>
+<td>backup operation on virtual machine</td>
+</tr>
+<tr>
+<td></td>
+<td>configure CD media</td>
+</tr>
+<tr>
+<td></td>
+<td>configure floppy media</td>
+</tr>
+<tr>
+<td></td>
+<td>console interaction</td>
+</tr>
+<tr>
+<td></td>
+<td>create screenshot</td>
+</tr>
+<tr>
+<td></td>
+<td>defragment all disks</td>
+</tr>
+<tr>
+<td></td>
+<td>device connection</td>
+</tr>
+<tr>
+<td></td>
+<td>disable fault tolerance</td>
+</tr>
+<tr>
+<td></td>
+<td>enable fault tolerance</td>
+</tr>
+<tr>
+<td></td>
+<td>power off</td>
+</tr>
+<tr>
+<td></td>
+<td>power on</td>
+</tr>
+<tr>
+<td></td>
+<td>record session on virtual machine</td>
+</tr>
+<tr>
+<td></td>
+<td>replay session on virtual machine</td>
+</tr>
+<tr>
+<td></td>
+<td>reset</td>
+</tr>
+<tr>
+<td></td>
+<td>suspend</td>
+</tr>
+<tr>
+<td></td>
+<td>test failover</td>
+</tr>
+<tr>
+<td></td>
+<td>test restart secondary VM</td>
+</tr>
+<tr>
+<td></td>
+<td>turn off fault tolerance</td>
+</tr>
+<tr>
+<td></td>
+<td>turn on fault tolerance</td>
+</tr>
+<tr>
+<td></td>
+<td>VMware Tools install</td>
+</tr>
+<tr>
+<td>Virtual Machine (ALL) / Inventory (ALL)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>create from existing</td>
+</tr>
+<tr>
+<td></td>
+<td>create new</td>
+</tr>
+<tr>
+<td></td>
+<td>move</td>
+</tr>
+<tr>
+<td></td>
+<td>register</td>
+</tr>
+<tr>
+<td></td>
+<td>remove</td>
+</tr>
+<tr>
+<td></td>
+<td>unregister</td>
+</tr>
+<tr>
+<td>Virtual Machine (ALL) / Provisioning (ALL)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>allow disk access</td>
+</tr>
+<tr>
+<td></td>
+<td>allow read-only disk access</td>
+</tr>
+<tr>
+<td></td>
+<td>allow virtual machine download</td>
+</tr>
+<tr>
+<td></td>
+<td>allow virtual machine files upload</td>
+</tr>
+<tr>
+<td></td>
+<td>clone template</td>
+</tr>
+<tr>
+<td></td>
+<td>clone virtual machine</td>
+</tr>
+<tr>
+<td></td>
+<td>create templace from virtual machine</td>
+</tr>
+<tr>
+<td></td>
+<td>customize</td>
+</tr>
+<tr>
+<td></td>
+<td>deploy template</td>
+</tr>
+<tr>
+<td></td>
+<td>mark as template</td>
+</tr>
+<tr>
+<td></td>
+<td>mark as virtual machine</td>
+</tr>
+<tr>
+<td></td>
+<td>modify customization specification</td>
+</tr>
+<tr>
+<td></td>
+<td>promote disks</td>
+</tr>
+<tr>
+<td></td>
+<td>read customization specifications</td>
+</tr>
+<tr>
+<td>Virtual Machine (ALL) / State (ALL)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>create snapshot</td>
+</tr>
+<tr>
+<td></td>
+<td>remove snapshot</td>
+</tr>
+<tr>
+<td></td>
+<td>rename snapshot</td>
+</tr>
+<tr>
+<td></td>
+<td>revert to snapshot</td>
+</tr>
+</tbody></table>
+
+          </div><!-- End of content_inner -->
+        </div><!-- End of container-full -->
+      </div><!-- End of content -->
+    </div><!-- End of non_footer -->
+    <div id='footer'>
+      <div id='container-footer'>
+        <div class='bg_social'>
+          <ul class='social'>
+            <li>
+            <a href='http://twitter.com/cloudfoundry' target='_blank'>
+            <img alt='Twitter' src='/images/twitter_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='https://plus.google.com/114245065906861739918/posts' target='_blank'>
+            <img alt='Google+' src='/images/g+_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://facebook.com/cloudfoundry' target='_blank'>
+            <img alt='Facebook' src='/images/facebook_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://youtube.com/cloudfoundry' target='_blank'>
+            <img alt='Youtube' src='/images/youtube_large.png'>
+            </a>
+            </li>
+          </ul>
+        </div><!-- End of bg_social -->
+        <ul class='links'>
+          <li>
+          <a href='http://www.cloudfoundry.com/about'>About</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://blog.cloudfoundry.com/'>Blog</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/partners'>Partners</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://docs.cloudfoundry.com'>Docs</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://status.cloudfoundry.com/'>Status</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/support'>Support</a>
+          </li>
+        </ul>
+        <div class='copyright'>
+          <div class='hr-horizontal-dark'></div>
+          <br>
+          <p>
+            &copy;
+            <script>
+              //<![CDATA[
+                var d = new Date();
+                document.write(d.getFullYear());
+              //]]>
+            </script>
+            GoPivotal, Inc. All rights reserved.
+            <a href='http://www.cloudfoundry.com/terms'>Terms</a>
+            <a href='http://www.gopivotal.com/privacy-policy' target='_blank'>Privacy</a>
+          </p>
+        </div><!-- End of copyright -->
+      </div><!-- End of container-footer -->
+    </div><!-- End of footer -->
+    <script type="text/javascript">
+      (function() {
+        var didInit = false;
+        function initMunchkin() {
+          if(didInit === false) {
+            didInit = true;
+            Munchkin.init('625-IUJ-009');
+          }
+        }
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+        s.onreadystatechange = function() {
+          if (this.readyState == 'complete' || this.readyState == 'loaded') {
+            initMunchkin();
+          }
+        };
+        s.onload = initMunchkin;
+        document.getElementsByTagName('head')[0].appendChild(s);
+      })();
+    </script>
+  </body>
+</html>

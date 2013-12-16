@@ -1,0 +1,424 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Configure SSL-Enabled Custom Domain</title>
+
+    <link href="/stylesheets/master.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='/images/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('a#search').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 20px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2').css("padding","11px 10px 8px");
+          $('#search-on').show();
+          $('#search-off').hide();
+        });
+        $('.cancel-x').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 63px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2, #organization_bar .navbar .nav>li a#search').css("padding","16px 20px 15px");
+          $('#organization_bar .navbar .nav>li a#getinvolved').css("padding","11px 92px 8px");
+          $('#organization_bar .navbar .nav>li#docs-off .docs-list-list a').css("padding","0");
+          $('#search-on').hide();
+          $('#search-off').show();
+        });f
+        $(".togglebutton").click(function () {
+        var divname= this.value;
+          $("#"+divname).show("slow").siblings().hide("slow");
+        });
+      });
+    </script>
+
+    <!--[if lt IE 9]>
+    <style>
+        #content .container-full {background:  #ebf0fa;}
+        .call-to-contribute-box, .column-left, .column-middle, .column-right {background:#e3e8f2}
+        #footer {background:#000;}
+    </style>
+    <![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22181585-1']);
+      _gaq.push(['_setDomainName', 'cloudfoundry.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body class="docs docs_using docs_using_managing-apps docs_using_managing-apps_custom-domains docs_using_managing-apps_custom-domains_cloudflare">
+    <img id="bg" src="/images/bg-plain-x.jpg">
+    <div id='non_footer'>
+      <div id='header'>
+        <div class='container_wide'>
+          <ul class='actions'>
+            <li class='last'>
+              <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
+            </li>
+            <li>
+              <a class='register_link' href='http://login.run.pivotal.io/login'>My Account</a>            
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id='content'>
+        <div class='logo-main'>
+          <div class='logo'>
+            <a href='http://www.cloudfoundry.com'>
+            <img src='/images/logo-cloudfoundry.png'>
+            </a>
+            <a href='http://www.gopivotal.com' target="_blank">
+            <img id="pivotal-logo" src='/images/logo-pivotal.png'>
+            </a>
+          </div>
+          <div class='cta'>
+            <a href='https://console.run.pivotal.io'>
+            <img src='/images/signup_freetrial.png'>
+            </a>
+          </div>
+        </div><!-- End of logo-main-->
+        <div class='container-full'>
+          <div id='organization_bar'>
+            <div class='navbar'>
+              <ul class='nav'>
+                <li>
+                <a href='http://www.cloudfoundry.com/use' id='use'>Using Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/run' id='run'>Running Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/getinvolved' id='getinvolved'>Get Involved</a>
+                </li>
+                <li id='docs-off'>
+                  <a href='/' id='docs'>
+                    <div id='icon-docs'></div>
+                  </a>
+                  <div id='docs-list'>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/using/app-arch/'>Using Cloud Foundry</a>
+                      <br>
+                      <a href="/docs/using/app-arch/">Application Architecture Considerations</a>
+                      <br>
+                      <a href='/docs/using/deploying-apps/'>Deploying Apps</a>
+                      <br>
+                      <a href='/docs/using/managing-apps/'>Managing Apps</a>
+                      <br>
+                      <a href='/docs/using/services.html'>Using Services</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/using/">See all</a>
+                    </div><!-- End of 1st column docs-list-list-->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/running/'>Running Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/architecture/'>Architecture</a>
+                      <br>
+                      <a href='/docs/running/bosh/'>BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf/'>Deploying with BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf-with-chef/'>Deploying with Chef</a>
+                      <br>
+                      <a href='/docs/running/micro_cloud_foundry/'>Micro Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/managing-cf/index.html'>Managing Cloud Foundry</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/running/">See all</a>
+                    </div><!-- End of column 2 docs-list-list -->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/reference/'>Reference</a>
+                      <br>
+                      <a href='/docs/reference/cc-api.html'>Cloud Foundry REST API</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/dotcom/'>CloudFoundry.com</a>
+                      <br>
+                      <a href='/docs/dotcom/integration/'>Technical Integration</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/community/'>Community</a>
+                    </div><!-- End of column 3 docs-list-list -->
+                  </div><!-- End of docs-list -->
+                </li>
+                <li id='search-off'>
+                  <a id='search'>
+                    <div class='icon-search'></div>
+                  </a>
+                </li>
+                <li id='search-on'>
+                  <a id='search2'>
+                    <form action='http://www.cloudfoundry.com/search' class='search-form' method='get' onsubmit='return submitQuery()'>
+                      <input autocomplete='off' class='search-input' id='search-query' name='q' onfocus="this.placeholder = ''" placeholder='' type='search' value=''>
+                    </form>
+                    <div class="cancel-x"></div>
+                  </a>
+                </li>
+              </ul>
+            </div><!-- End of navbar -->
+          </div><!-- End of organization_bar -->
+          <div class='content_inner'>
+            <a class="forkme" href="http://github.com/cloudfoundry/cf-docs" target="_blank">
+              <img alt="Fork me on GitHub" src="/images/ribbon_forkme.png">
+            </a>
+            <form action='http://www.cloudfoundry.com/search' class='search-docs-form' method='get' onsubmit='return submitQuery()'>
+              <input autocomplete='off' class='search-docs-input' id='search-query' name='q' onfocus="this.placeholder = 'more:docs '" placeholder='' type='search-docs' value='more:docs '>
+            </form>
+            <br clear="left">
+            
+              <div class="breadcrumbs">
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li class=""><a href="/docs/using/">Using Cloud Foundry</a></li> <li class=""><a href="/docs/using/managing-apps/">Managing Apps, Orgs and Spaces</a></li> <li class=""><a href="/docs/using/managing-apps/custom-domains/">About Domains, Subdomains and Routes</a></li> <li class="active"><span>Configure SSL-Enabled Custom Domain</span></li>
+                </ul>
+              </div>
+              <br clear="left">
+
+			
+
+              <div class="quick-links"><ul>
+<li><a href="#sign-up">Step 1 - Get CloudFlare Account</a></li>
+<li><a href="#add-site">Step 2 - Add Domain to CloudFlare</a></li>
+<li><a href="#scan">Step 3 - Wait for Scan to Complete</a></li>
+<li><a href="#configure">Step 4 - Configure DNS Records</a></li>
+<li><a href="#settings">Step 5 - Choose Settings</a></li>
+<li><a href="#ssl">Step 6 - Confirm SSL</a></li>
+<li><a href="#settings">Step 7 - Update Name Servers</a></li>
+<li><a href="#settings">Step 9 - Setup Complete</a></li>
+<li><a href="#review">Review CloudFlare Configuration Options</a></li>
+</ul>
+</div>
+
+              <h1>Configure SSL-Enabled Custom Domain</h1>
+
+            
+            <p>This page has has instructions for setting up an SSL-enabled custom domain using CloudFlare, a content distribution network. This is the Pivotal-recommended strategy for using SSL with a custom domain. In the resulting configuration, traffic to and from your application running on Cloud Foundry will be routed via CloudFlare.</p>
+
+<p>browser  &lt; &mdash; ssl &mdash; &gt;  CloudFlare proxy  &lt; &mdash; ssl &mdash; &gt;  Cloud Foundry</p>
+
+<p>To enable this, you will configure CloudFlare’s “Full SSL” option for the domain. You can use a CloudFlare-generated SSL certificate between the browser and the CloudFlare server, or if you prefer, configure CloudFlare to use a certificate you provide. A Cloud Foundry-generated SSL certificate will be used between the CloudFlare proxy and the application on Cloud Foundry.</p>
+
+<p>These instructions assume that your domain is already registered with a DNS registrar. To complete this procedure, you must be able to access the DNS registrar for the domain. Note that you do not need to change DNS registrars. The only change you will make with your registrar is to point the authoritative name servers to CloudFlare&#39;s name servers.</p>
+
+<p>It is recommended that you download the zone file for the domain from your DNS provider, for use in <a href="#configure">Step 5 - Configure DNS Records</a>.</p>
+
+<h2><a id='sign-up'></a>Step 1 - Get CloudFlare Account</h2>
+
+<p>Go to <a href="https://www.cloudflare.com/">https://www.cloudflare.com/</a>, and click <strong>Sign up</strong> in the upper right of the page. On the registration page, enter your email address, username, and password. Accept CloudFlare&#39;s terms of use, and click <strong>Create account now</strong>.</p>
+
+<p><img src="/images/cloudflare-register.png" /></p>
+
+<h2><a id='add-site'></a>Step 2 - Add Domain to CloudFlare</h2>
+
+<p>On the CloudFlare &ldquo;Add a website&rdquo; page, enter the name of your custom domain and click <strong>Add website</strong>. CloudFlare will query authoritative DNS servers for the DNS records registered for the domain.</p>
+
+<p><img src="/images/add-website.png" /></p>
+
+<h2><a id='scan'></a>Step 3 - Wait for Scan to Complete</h2>
+
+<p>When the scan is complete, a <strong>Domain records scanned</strong> callout appears. Click <strong>Continue Setup</strong>.</p>
+
+<p><img src="/images/scan-complete.png" /></p>
+
+<h2><a id='configure'></a>Step 4 - Configure DNS Records</h2>
+
+<p>The CloudFlare &ldquo;Configure Your DNS Records&rdquo; lists the records it obtained for the domain. In the row for your domain name &ndash; &ldquo;uberconnected.com&rdquo; in the example &mdash; the cloud icon in the &ldquo;Active&rdquo; column should be orange.</p>
+
+<p>To ensure your DNS records are correct and complete, Pivotal recommends you download the zone file for the domain from your DNS provider, and then upload it to CloudFlare &mdash; click the <strong>Upload a zone file</strong> link to do so.</p>
+
+<p>If you prefer, you can click <strong>Add</strong> to define additional records, if necessary.</p>
+
+<p>When done, click <strong>I&#39;ve added all missing records, continue</strong>.</p>
+
+<p><img src="/images/config-dns.png" /></p>
+
+<h2><a id='settings'></a>Step 5 - Choose Settings</h2>
+
+<p>On the &ldquo;Settings for &lt;YourDomain&gt;&rdquo; page:</p>
+
+<ul>
+<li> <strong>Choose a plan</strong> &mdash; Select &ldquo;Pro&rdquo; or &ldquo;Business&rdquo;. Do not choose the free plan; you can only configure SSL for a domain if you have a paid CloudFlare plan. If you choose &ldquo;Pro&rdquo;, CloudFlare will generate an SSL certificate for communications betwen browsers and the CloudFlare proxy. If you prefer to provide your own SSL certificate, choose &ldquo;Business&rdquo;.</li>
+<li> <strong>Performance</strong> &mdash; This configures a performance profile that sets the values of multiple performance-related options. You can choose any of the available options, and easily change it later. After completing this configuration process, follow the instructions in <a href="#review">Reviewing CloudFlare Configuration Options</a> to understand the performance (and also security) options, and tailor your configuration, as desired.
+
+<ul>
+<li><strong>CDN only (safest)</strong> &mdash; This is the default.</li>
+<li><strong>CDN + Basic Optimizations</strong></li>
+<li><strong>CDN + Full Optimizations</strong></li>
+</ul></li>
+<li><strong>Security</strong> &mdash; This setting controls CloudFlare&#39;s which visitors are shown a captcha/challenge page. The options are:
+
+<ul>
+<li><strong>I&#39;m under attack!</strong> &mdash; Should only be used when a site is having a DDoS attack. When this setting is configured, CloudFlare will present an interstitial page to each site visitor (for about five seconds) while validating that the request came from a human, rather than a web robot.</li>
+<li><strong>High</strong> &mdash; CloudFlare will challenge all visitors that have exhibited threatening behavior within the last 14 days.</li>
+<li><strong>Medium</strong></li>
+<li><strong>Low</strong> &mdash; CloudFlare will challenge only the most threatening visitors. CloudFlare recommends this as initial setting.</li>
+<li><strong>Essentially off</strong> &mdash; CloudFlare will act only against the most grievous offenders.</li>
+</ul></li>
+<li> <strong>Automatiac IPV6</strong> &mdash; The options are:
+
+<ul>
+<li><strong>Full IPv6 Gateway</strong> &mdash; Enables IPv6 on all subdomains that are CloudFlare-enabled (marked by an orange cloud in your DNS settings)</li>
+<li><strong>Safe IPv6 Gateway</strong> Will only create an IPv6-specific subdomain for your site (<a href="http://www.ipv6.yoursite.com">www.ipv6.yoursite.com</a>).</li>
+</ul></li>
+<li> <strong>SmartErrors</strong> &mdash; SmartErrors is a CloudFlare feature that prevents 404 errors from being presented when a site visitor requests a page that is not found. Instead, CloudFlare performs a site search based on the user&#39;s request, and presents a list of best-matching pages from the site.</li>
+</ul>
+
+<p>Click <strong>Continue</strong>.</p>
+
+<p><img src="/images/settings.png" /></p>
+
+<h2><a id='ssl'></a>Step 6 - Confirm SSL</h2>
+
+<p>On the &ldquo;Confirm SSL&rdquo; page, you can select:</p>
+
+<ul>
+<li><strong>Automatic SSL Configuration</strong> &mdash; If you select this option, CloudFlare will generate an SSL certificate. If you selected the &ldquo;Business&rdquo; plan in the previous step, you can upload your own certificate later.</li>
+<li><strong>Custom SSL Configuration</strong> &mdash; This option only appears if you selected a &ldquo;Business&rdquo; plan in the previous step. When you select this option, you can upload your own private key and certificate files.</li>
+<li><strong>Manual SSL Configuration</strong></li>
+</ul>
+
+<p><img src="/images/confirm-ssl.png" /></p>
+
+<h2><a id='settings'></a>Step 7 - Update Name Servers</h2>
+
+<p>The &ldquo;Update Name Servers&rdquo; page lists your current name servers, and the CloudFlare name servers with which to replace them.</p>
+
+<p>Log on to your domain name registrar and open that page for name server management. Replace the currently configured name servers with the CloudFlare name servers.</p>
+
+<p>Click <strong>I&#39;ve updated my nameservers, continue</strong> on the &ldquo;update your name servers page.&rdquo;</p>
+
+<h2><a id='settings'></a>Step 9 - Setup Complete</h2>
+
+<p>When you have provided all necessary information, the &ldquo;My Websites&rdquo; page appears, and states that you have completed the domain setup.</p>
+
+<p>Check your DNS registrar&#39;s site to verify that the name server changes made in the previous step are complete</p>
+
+<p><img src="/images/complete.png" /></p>
+
+<h2><a id='review'></a>Review CloudFlare Configuration Options</h2>
+
+<p>After your initial domain setup is complete, you may want to review CloudFlare configuration options. To do so, click the <strong>Websites</strong> link at the top of any CloudFlare.com page to view the &ldquo;My WebSites&rdquo; page.</p>
+
+<p>Click the gear icon in the row for your domain, and choose <strong>CloudFlare settings</strong> from the menu. The <strong>CloudFlare settings</strong> page has several tabs that describe CloudFlare configuration options. In particular, see the <strong>Security</strong> and <strong>Performance</strong> tabs to understand more about the options you configured, and alternative settings.</p>
+
+<p><img src="/images/my-websites.png" /></p>
+
+          </div><!-- End of content_inner -->
+        </div><!-- End of container-full -->
+      </div><!-- End of content -->
+    </div><!-- End of non_footer -->
+    <div id='footer'>
+      <div id='container-footer'>
+        <div class='bg_social'>
+          <ul class='social'>
+            <li>
+            <a href='http://twitter.com/cloudfoundry' target='_blank'>
+            <img alt='Twitter' src='/images/twitter_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='https://plus.google.com/114245065906861739918/posts' target='_blank'>
+            <img alt='Google+' src='/images/g+_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://facebook.com/cloudfoundry' target='_blank'>
+            <img alt='Facebook' src='/images/facebook_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://youtube.com/cloudfoundry' target='_blank'>
+            <img alt='Youtube' src='/images/youtube_large.png'>
+            </a>
+            </li>
+          </ul>
+        </div><!-- End of bg_social -->
+        <ul class='links'>
+          <li>
+          <a href='http://www.cloudfoundry.com/about'>About</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://blog.cloudfoundry.com/'>Blog</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/partners'>Partners</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://docs.cloudfoundry.com'>Docs</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://status.cloudfoundry.com/'>Status</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/support'>Support</a>
+          </li>
+        </ul>
+        <div class='copyright'>
+          <div class='hr-horizontal-dark'></div>
+          <br>
+          <p>
+            &copy;
+            <script>
+              //<![CDATA[
+                var d = new Date();
+                document.write(d.getFullYear());
+              //]]>
+            </script>
+            GoPivotal, Inc. All rights reserved.
+            <a href='http://www.cloudfoundry.com/terms'>Terms</a>
+            <a href='http://www.gopivotal.com/privacy-policy' target='_blank'>Privacy</a>
+          </p>
+        </div><!-- End of copyright -->
+      </div><!-- End of container-footer -->
+    </div><!-- End of footer -->
+    <script type="text/javascript">
+      (function() {
+        var didInit = false;
+        function initMunchkin() {
+          if(didInit === false) {
+            didInit = true;
+            Munchkin.init('625-IUJ-009');
+          }
+        }
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+        s.onreadystatechange = function() {
+          if (this.readyState == 'complete' || this.readyState == 'loaded') {
+            initMunchkin();
+          }
+        };
+        s.onload = initMunchkin;
+        document.getElementsByTagName('head')[0].appendChild(s);
+      })();
+    </script>
+  </body>
+</html>

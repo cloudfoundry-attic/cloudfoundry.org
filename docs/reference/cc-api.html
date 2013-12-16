@@ -1,0 +1,6570 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Cloud Foundry API</title>
+
+    <link href="/stylesheets/master.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='/images/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('a#search').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 20px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2').css("padding","11px 10px 8px");
+          $('#search-on').show();
+          $('#search-off').hide();
+        });
+        $('.cancel-x').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 63px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2, #organization_bar .navbar .nav>li a#search').css("padding","16px 20px 15px");
+          $('#organization_bar .navbar .nav>li a#getinvolved').css("padding","11px 92px 8px");
+          $('#organization_bar .navbar .nav>li#docs-off .docs-list-list a').css("padding","0");
+          $('#search-on').hide();
+          $('#search-off').show();
+        });f
+        $(".togglebutton").click(function () {
+        var divname= this.value;
+          $("#"+divname).show("slow").siblings().hide("slow");
+        });
+      });
+    </script>
+
+    <!--[if lt IE 9]>
+    <style>
+        #content .container-full {background:  #ebf0fa;}
+        .call-to-contribute-box, .column-left, .column-middle, .column-right {background:#e3e8f2}
+        #footer {background:#000;}
+    </style>
+    <![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22181585-1']);
+      _gaq.push(['_setDomainName', 'cloudfoundry.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body class="docs docs_reference docs_reference_cc-api">
+    <img id="bg" src="/images/bg-plain-x.jpg">
+    <div id='non_footer'>
+      <div id='header'>
+        <div class='container_wide'>
+          <ul class='actions'>
+            <li class='last'>
+              <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
+            </li>
+            <li>
+              <a class='register_link' href='http://login.run.pivotal.io/login'>My Account</a>            
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id='content'>
+        <div class='logo-main'>
+          <div class='logo'>
+            <a href='http://www.cloudfoundry.com'>
+            <img src='/images/logo-cloudfoundry.png'>
+            </a>
+            <a href='http://www.gopivotal.com' target="_blank">
+            <img id="pivotal-logo" src='/images/logo-pivotal.png'>
+            </a>
+          </div>
+          <div class='cta'>
+            <a href='https://console.run.pivotal.io'>
+            <img src='/images/signup_freetrial.png'>
+            </a>
+          </div>
+        </div><!-- End of logo-main-->
+        <div class='container-full'>
+          <div id='organization_bar'>
+            <div class='navbar'>
+              <ul class='nav'>
+                <li>
+                <a href='http://www.cloudfoundry.com/use' id='use'>Using Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/run' id='run'>Running Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/getinvolved' id='getinvolved'>Get Involved</a>
+                </li>
+                <li id='docs-off'>
+                  <a href='/' id='docs'>
+                    <div id='icon-docs'></div>
+                  </a>
+                  <div id='docs-list'>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/using/app-arch/'>Using Cloud Foundry</a>
+                      <br>
+                      <a href="/docs/using/app-arch/">Application Architecture Considerations</a>
+                      <br>
+                      <a href='/docs/using/deploying-apps/'>Deploying Apps</a>
+                      <br>
+                      <a href='/docs/using/managing-apps/'>Managing Apps</a>
+                      <br>
+                      <a href='/docs/using/services.html'>Using Services</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/using/">See all</a>
+                    </div><!-- End of 1st column docs-list-list-->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/running/'>Running Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/architecture/'>Architecture</a>
+                      <br>
+                      <a href='/docs/running/bosh/'>BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf/'>Deploying with BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf-with-chef/'>Deploying with Chef</a>
+                      <br>
+                      <a href='/docs/running/micro_cloud_foundry/'>Micro Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/managing-cf/index.html'>Managing Cloud Foundry</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/running/">See all</a>
+                    </div><!-- End of column 2 docs-list-list -->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/reference/'>Reference</a>
+                      <br>
+                      <a href='/docs/reference/cc-api.html'>Cloud Foundry REST API</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/dotcom/'>CloudFoundry.com</a>
+                      <br>
+                      <a href='/docs/dotcom/integration/'>Technical Integration</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/community/'>Community</a>
+                    </div><!-- End of column 3 docs-list-list -->
+                  </div><!-- End of docs-list -->
+                </li>
+                <li id='search-off'>
+                  <a id='search'>
+                    <div class='icon-search'></div>
+                  </a>
+                </li>
+                <li id='search-on'>
+                  <a id='search2'>
+                    <form action='http://www.cloudfoundry.com/search' class='search-form' method='get' onsubmit='return submitQuery()'>
+                      <input autocomplete='off' class='search-input' id='search-query' name='q' onfocus="this.placeholder = ''" placeholder='' type='search' value=''>
+                    </form>
+                    <div class="cancel-x"></div>
+                  </a>
+                </li>
+              </ul>
+            </div><!-- End of navbar -->
+          </div><!-- End of organization_bar -->
+          <div class='content_inner'>
+            <a class="forkme" href="http://github.com/cloudfoundry/cf-docs" target="_blank">
+              <img alt="Fork me on GitHub" src="/images/ribbon_forkme.png">
+            </a>
+            <form action='http://www.cloudfoundry.com/search' class='search-docs-form' method='get' onsubmit='return submitQuery()'>
+              <input autocomplete='off' class='search-docs-input' id='search-query' name='q' onfocus="this.placeholder = 'more:docs '" placeholder='' type='search-docs' value='more:docs '>
+            </form>
+            <br clear="left">
+            
+              <div class="breadcrumbs">
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li class=""><a href="/docs/reference/">Reference</a></li> <li class="active"><span>Cloud Foundry API</span></li>
+                </ul>
+              </div>
+              <br clear="left">
+
+			
+
+              <div class="quick-links"><ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#authentication">Authentication</a></li>
+<li><a href="#versioning">Versioning</a></li>
+<li><a href="#debugging">Debugging</a></li>
+<li><a href="#basic-operations">Basic Operations</a></li>
+<li><a href="#associations">Associations</a></li>
+<li><a href="#errors">Errors</a></li>
+<li><a href="#actions">Actions</a></li>
+<li><a href="#organizations">Organizations</a></li>
+<li><a href="#user">Users</a></li>
+<li><a href="#spaces">Spaces</a></li>
+<li><a href="#apps">Apps</a></li>
+<li><a href="#runtimes">Runtimes</a></li>
+<li><a href="#frameworks">Frameworks</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#serviceplans">Service Plans</a></li>
+<li><a href="#service-instances">Service Instances</a></li>
+<li><a href="#service-bindings">Service Bindings</a></li>
+<li><a href="#service-auth-tokens">Service Auth Tokens</a></li>
+</ul>
+</div>
+
+              <h1>Cloud Foundry API</h1>
+
+            
+            <p><em>This documents the v2 version of the API.</em></p>
+
+<h2><a id='overview'></a> Overview</h2>
+
+<p>The Cloud Foundry V2 family of APIs follow RESTful principles.
+The primary goal of the V2 API is to support the new entities in
+the Team Edition release, and to address the shortcomings of V1 in terms of features and consistency.</p>
+
+<p>The goals are as follows:</p>
+
+<ul>
+<li><p><strong>Consistency</strong> across all resource URLs, parameters, request/response
+bodies, and error responses.</p></li>
+<li><p><strong>Partial updates</strong> of a resource can be performed by providing a subset of the resources&#39; attributes.  This is in contrast to the V1 API which required a read-modify-write cycle to update an attribute.</p></li>
+<li><p><strong>Pagination</strong> support for each of the collections.</p></li>
+<li><p><strong>Filtering</strong> support for each of the collections.</p></li>
+</ul>
+
+<h2><a id='authentication'></a> Authentication</h2>
+
+<p>Authentication is performed by providing a UAA Token in the <em>Authorization</em> HTTP header.</p>
+
+<p><strong>TBD:</strong> insert snippet from Dale about the responses if the Token isn&#39;t provided, or if is invalid, expired, etc.</p>
+
+<h2><a id='versioning'></a> Versioning</h2>
+
+<p>The API version is specified in the URL, e.g. <code>POST /v2/foo_bars</code> to
+create a new FooBar using version 2 of the API.</p>
+
+<h2><a id='debugging'></a> Debugging</h2>
+
+<p>The V2 API endpoints may optionally return a GUID in the <code>X-VCAP-Request-ID</code>
+HTTP header.  The API endpoint will ideally log this GUID on all log lines and pass it to associated systems to assist with cross component log collation.</p>
+
+<h2><a id='basic-operations'></a> Basic Operations</h2>
+
+<p>Operations on resources follow standard REST conventions.  Requests and
+responses for resources are JSON-encoded.  Error responses are also JSON
+encoded.</p>
+
+<h3>Common Attributes in Response Bodies</h3>
+
+<p>Response bodies have 2 components, <code>metadata</code> and <code>entity</code> sections.</p>
+
+<p>The following attributes are contained in the <code>metadata</code> section:</p>
+
+<table><thead>
+<tr>
+<th align="left">Attribute</th>
+<th align="left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="left">guid</td>
+<td align="left">Stable id for the resource.</td>
+</tr>
+<tr>
+<td align="left">url</td>
+<td align="left">URL for the resource.</td>
+</tr>
+<tr>
+<td align="left">created_at</td>
+<td align="left">Date/Timestamp the resource was created, e.g. &ldquo;2012-01-01 13:42:00 -0700&rdquo;</td>
+</tr>
+<tr>
+<td align="left">updated_at</td>
+<td align="left">Date/Timestamp the resource was updated.  null if the resource has not been updated</td>
+</tr>
+</tbody></table>
+
+<h3>Creating Resources</h3>
+
+<p><code>POST /v2/foo_bars</code> creates a FooBar.</p>
+
+<p>The attributes for new FooBar are specified in a JSON-encoded request body.</p>
+
+<p>A successful <code>POST</code> results in HTTP 201 with the <code>Location</code>
+header set to the URL of the newly created resource.  The API endpoint should
+return the Etag HTTP header for later use by the client
+in support of opportunistic concurrency.</p>
+
+<p>The attributes for the FooBar are returned in a JSON-encoded response body.</p>
+
+<h3>Reading Resources</h3>
+
+<p><code>GET /v2/foo_bars/:guid</code> returns the attributes for a specific
+FooBar.</p>
+
+<p>A successful <code>GET</code> results in HTTP 200.  The API endpoint should set the
+Etag HTTP header for later use in opportunistic concurrency.</p>
+
+<p>The attributes for the FooBar are returned in a JSON-encoded response body.</p>
+
+<h3>Listing Resources</h3>
+
+<p><code>GET /v2/foo_bars</code> lists the FooBars.</p>
+
+<p>Successful <code>GET</code> requests return HTTP 200.</p>
+
+<p>The attributes for the FooBar are returned in a JSON-encoded response body.</p>
+
+<h4>Pagination</h4>
+
+<p>All <code>GET</code> requests to collections are implicitly paginated, i.e. <code>GET
+/v2/foo_bars</code> initiates a paginated request/response across all FooBars.</p>
+
+<h5>Pagination Response Attributes</h5>
+
+<p>A paginated response contains the following attributes:</p>
+
+<table><thead>
+<tr>
+<th align="left">Attribute</th>
+<th align="left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="left">total_results</td>
+<td align="left">Total number of results in the entire data set.</td>
+</tr>
+<tr>
+<td align="left">total_pages</td>
+<td align="left">Total number of pages in the entire dataset.</td>
+</tr>
+<tr>
+<td align="left">prev_url</td>
+<td align="left">URL used to fetch the previous set of results in the paginated response.  null on the first call.</td>
+</tr>
+<tr>
+<td align="left">next_url</td>
+<td align="left">URL used to fetch the next set of ressults in the paginated response.  null on the last call.</td>
+</tr>
+<tr>
+<td align="left">resources</td>
+<td align="left">Array of resources as returned by a GET on the resource id.</td>
+</tr>
+</tbody></table>
+
+<p>The resources are expanded by default because in that is what is desired in the
+common use cases.</p>
+
+<h5>Pagination Parameters</h5>
+
+<p>The following optional parameters may be specified in the initial GET, or
+included in the query string to <code>prev_url</code> or <code>next_url</code>.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td>Page from which to start iteration</td>
+</tr>
+<tr>
+<td>results-per-page</td>
+<td>Results to return per page</td>
+</tr>
+<tr>
+<td>urls-only</td>
+<td>If 1, only return a list of urls; do not expand metadata or resource attributes</td>
+</tr>
+</tbody></table>
+
+<p>If the client is going to iterate through the entire dataset, they are
+encouraged to follow <code>next_url</code> rather than iterating by setting
+page and results-per-page.</p>
+
+<p>Example:</p>
+
+<p>Request: <code>GET /v2/foo_bars?results-per-page=2</code></p>
+
+<p>Response:</p>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;total_results&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10029</span><span class="p">,</span><span class="w">
+  </span><span class="s2">&quot;prev_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">&quot;next_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/v2/an_opaque_url&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="s2">&quot;resources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;guid&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/v2/foo_bars/5&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="s2">&quot;created_at&quot;</span><span class="p">:</span><span class="s2">&quot;2012-01-01 13:42:00 -0700&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="s2">&quot;updated_at&quot;</span><span class="p">:</span><span class="s2">&quot;2012-01-05 08:31:00 -0700&quot;</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">&quot;entity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some name&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="s2">&quot;instances&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;guid&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+        </span><span class="s2">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/v2/foo_bars/7&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="s2">&quot;created_at&quot;</span><span class="p">:</span><span class="s2">&quot;2012-01-01 19:45:00 -0700&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="s2">&quot;updated_at&quot;</span><span class="p">:</span><span class="s2">&quot;2012-01-04 20:27:00 -0700&quot;</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">&quot;entity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some other name&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="s2">&quot;instances&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<h4>Search/Filtering</h4>
+
+<p>Searching and Filtering are peformed via the <code>q</code> query parameter.  The value of
+the <code>q</code> parameter is a key value pair containing the resource attribute name
+and the query value, e.g: <code>GET /v2/foo_bars?q=name:some*</code> would return
+both records shown in the pagination example above.</p>
+
+<p>String query values may contain a <code>*</code> which will be treated at a shell style
+glob.</p>
+
+<p>Query values may also contain <code>&gt;</code> or <code>&lt;</code>, e.g. <code>GET /v2/foo_bars?q=instances:&gt;2</code>.</p>
+
+<p>The API endpoint may return an error if the resulting query performs an
+unindexed search.</p>
+
+<h3>Deleting Resources</h3>
+
+<p><code>DELETE /v2/foo_bars/:guid</code> deletes a specific FooBar.</p>
+
+<p>The caller may specify the <code>If-Match</code> HTTP header to enable opportunistic
+concurrency.  This is not required.  If there is an opportunistic concurrency
+failure, the API endpoint should return HTTP 412.</p>
+
+<p>A successful <code>DELETE</code> operation results in a 204.</p>
+
+<h3>Updating Resources</h3>
+
+<p><code>PUT</code> differs from standard convention.  In order to avoid a read-modify-write
+cycle when updating a single attribute, <code>PUT</code> is handled as if the <code>PATCH</code> verb
+were used.  Specifically, if a resource with URL <code>/v2/foo_bars/99</code> has attributes</p>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;guid&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
+    </span><span class="s2">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/v2/foo_bars/99&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="s2">&quot;created_at&quot;</span><span class="p">:</span><span class="s2">&quot;2012-01-01 13:42:00 -0700&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="s2">&quot;updated_at&quot;</span><span class="p">:</span><span class="s2">&quot;2012-01-03 09:15:00 -0700&quot;</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">&quot;entity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some foobar&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="s2">&quot;instances&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="err">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>then a <code>PUT /v2/foo_bars/99</code> with a request body of <code>{&quot;instances&quot;:3}</code> results
+in a resource with the following attributes</p>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;guid&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
+    </span><span class="s2">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/v2/foo_bars/99&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="s2">&quot;created_at&quot;</span><span class="p">:</span><span class="s2">&quot;2012-01-01 13:42:00 -0700&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="s2">&quot;updated_at&quot;</span><span class="p">:</span><span class="s2">&quot;2012-01-05 08:31:00 -0700&quot;</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">&quot;entity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some foobar&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="s2">&quot;instances&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="err">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>A successful <code>PUT</code> results in HTTP 200.</p>
+
+<p>The caller may specify the <code>If-Match</code> HTTP header to enable opportunistic
+concurrency.  This is not required.  If there is an opportunistic concurrency
+failure, the API endpoint should return HTTP 412.</p>
+
+<p>The attributes for the updated FooBar are returned in a JSON-encoded response body.</p>
+
+<p>Note: version 3 of this API might require <code>PUT</code> to contain the full list of required
+attributes and such partial updates might only be supported via the HTTP
+<code>PATCH</code> verb.</p>
+
+<h2><a id='associations'></a> Associations</h2>
+
+<h3>N-to-One</h3>
+
+<h4>Reading N-to-One Associations</h4>
+
+<p>N-to-one relationships are indicated by an id and url attribute for the other
+resource.  For example, if a FooBar has a 1-to-1 relationship with a Baz,
+a <code>GET /v2/FooBar/:guid</code> will return the following attributes related to
+the associated Baz (other attributes omitted)</p>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;baz_guid&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">&quot;baz_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/v2/bazs/5&quot;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<h4>Setting N-to-One Associations</h4>
+
+<p>Setting an n-to-one association is done during the initial <code>POST</code> for the
+resource or during an update via <code>PUT</code>.  The caller only specifies the id,
+not the url.  For example, to update change the Baz associated with the FooBar
+in the example above, the caller could issue a
+<code>PUT /v2/FooBar/:guid</code> with a body of <code>{ &quot;baz_guid&quot;: 10 }</code>.  To disassociate
+the resources, set the id to <code>null</code>.</p>
+
+<h3>N-to-Many</h3>
+
+<h4>Reading N-to-Many Associations</h4>
+
+<p>N-to-many relationships may be
+N-to-Many relationships are indicated by a url attribute for the other
+collection of resources.  For example, if a FooBaz has multiple Bars, a
+<code>GET /v2/FooBaz/:id</code> will return the following attribute (other
+attributes omitted)</p>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;bars_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/v2/foo_baz/bars&quot;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>The URL will initiated a paginated response.</p>
+
+<h4>Setting N-to-Many Associations</h4>
+
+<p>Setting an n-to-many association is done during the initial <code>POST</code> for the
+resource, during an update via <code>PUT</code>.</p>
+
+<p>To create the association during a <code>POST</code> or to edit it with a <code>PUT</code>, supply a
+an array of ids.  For example, in the FooBaz has multiple Bars example
+above, a caller could issue a <code>POST /v2/foo_baz</code> with a body of <code>{ &quot;bar_guid&quot;: [1,
+5, 10]}</code> to make an initial association of the new FooBaz with Bars with ids 1,
+5 and 10 (other attributes omitted).  Similarly, a <code>PUT</code> will update the
+associations between the resources to only those provided in the list.</p>
+
+<p>Adding and removing elements from a large collection would be onerous if the
+entire list had to be provided every time.</p>
+
+<p>A <code>PUT /v2/foo_baz/1/bars/2</code> will add bar with id 2 to foobaz with id 1.</p>
+
+<p>A <code>DELETE /v2/foo_baz/1/bars/2</code> will remove bar with id 2 to from foobaz with
+id 1.</p>
+
+<p>Batching incremental updates may be supported in the future.
+To control how the list of ids are added to the collection, supply the
+following query parameter <code>collection-method=add</code>, <code>collection-method=replace</code>, or
+<code>collection-method=delete</code>.  If the collection-method is not supplied,
+it defaults to replace.  NOTE: this is a future design note.
+collection-method is not currently supported.</p>
+
+<h3>Inlining Relationships</h3>
+
+<p>There are common Cloud Foundry use cases that would require a relatively high
+number of API calls if the relation URLs have to be fetched when traversing a
+set of resources, e.g. when performing the calls necessary to satisfy a <code>cf
+apps</code> command line call.  In these cases, the caller intends to walk the entire
+tree of relationships.</p>
+
+<p>To inline relationships, the caller may specify a <code>inline-relations-depth</code> query
+parameter for a <code>GET</code> request.  A value of 0 results in the default behaviour of
+not inlining any of the relations and only URLs as described above are
+returned.  A value of N &gt; 0 results in the direct expansion of relations
+inline in the response, but URLs are provided for the next level of relations.</p>
+
+<p>For example, in the request below a FooBar has a to-many relationship to Bars
+and Bars has a to-one relationship with a Baz.  Setting the
+<code>inline-relations-depth=1</code> results in bars being expanded but not baz.</p>
+
+<p>Request: <code>GET /v2/FooBar/5?inline-relations-depth=1</code></p>
+
+<p>Response:</p>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;guid&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/v2/foo_bars/5&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="s2">&quot;created_at&quot;</span><span class="p">:</span><span class="s2">&quot;2012-01-01 13:42:00 -0700&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="s2">&quot;updated_at&quot;</span><span class="p">:</span><span class="s2">&quot;2012-01-05 08:31:00 -0700&quot;</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">&quot;entity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some foobar&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="s2">&quot;bars&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;guid&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/v2/bar/10&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;created_at&quot;</span><span class="p">:</span><span class="s2">&quot;2012-01-03 11:22:00 -0700&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;updated_at&quot;</span><span class="p">:</span><span class="s2">&quot;2012-01-07 09:03:00 -0700&quot;</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">&quot;entity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some bar&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;baz_guid&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;baz_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/v2/bazs/99&quot;</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>Specifying <code>inline-relations-depth</code> &gt; 1 should not result in an circular
+expansion of resources.  For example, if there is a bidirectional relationship
+between two resources, e.g. an Organization has many Users and a User is a
+member of many Organizations, then the response to <code>GET
+/v2/organizations/:id?inline-relations-depth=10</code>
+should not expand the Organizations a User belongs to.  Doing so would result
+in an expansion loop.  The User expansion should provide a <code>organizations_url</code>
+instead.</p>
+
+<h2><a id='errors'></a> Errors</h2>
+
+<p>Appropriate HTTP response codes are returned as part of the HTTP response
+header, i.e. 400 if the request body can not be parsed, 404 if an operation
+is requested on a resource that doesn&#39;t exist, etc.</p>
+
+<p>In addition to the HTTP response code, an error response is returned in the
+response body.  The error response is JSON-encoded with the following
+attributes:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>Unique numeric response code</td>
+</tr>
+<tr>
+<td>descriptions</td>
+<td>Human readable description of the error</td>
+</tr>
+</tbody></table>
+
+<h2><a id='actions'></a> Actions</h2>
+
+<p>Actions are modeled as an update to desired state in the system, i.e.
+to start a FooBar resource with id 5 and set the instance count
+to 10, the caller would <code>PUT /v2/foo_bar/5</code> with a request body of
+<code>{ &quot;state&quot;: &quot;STARTED&quot;, &quot;instances&quot;: 10 }</code>.</p>
+
+<h2><a id='organizations'></a> Organizations</h2>
+
+<h2>CC Specific API</h2>
+
+<p>NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.</p>
+
+<h3>LIST Organizations</h3>
+
+<p>Resource URL: <code>GET /v2/organizations</code></p>
+
+<p>Returns a paginated response of Organizations.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>Maximum number of results to return.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Offset from which to start iteration.</td>
+</tr>
+<tr>
+<td>urls-only</td>
+<td>If 1, only return a list of urls; do not expand metadata or resource attributes</td>
+</tr>
+<tr>
+<td>inline-relations-depth</td>
+<td>0 - don&#39;t inline any relations and return URLs.  Otherwise, inline to depth N.</td>
+</tr>
+<tr>
+<td>q</td>
+<td>Search/filter string of the form <code>&lt;attribute-name&gt;:&lt;value&gt;</code></td>
+</tr>
+</tbody></table>
+
+<p>The <code>q</code> query parameter may include the following <code>attribute-names</code>:
+* name
+* space<em>guid
+* user</em>guid
+* manager<em>guid
+* billing</em>manager<em>guid
+* auditor</em>guid</p>
+
+<p>See the API Overview for a more detailed description of these parameters.</p>
+
+<h4>Response Format:</h4>
+
+<p>The response is in the standard v2 paginated response format, i.e.:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_results</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>prev_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>next_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>resources</td>
+<td>[{:metadata =&gt; Hash,:entity =&gt; Hash,}]</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Organization is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>billing_enabled</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>quota<em>definition</em>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>quota<em>definition</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>spaces_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>domains_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>users_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>managers_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>billing<em>managers</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>auditors_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>CREATE Organization</h3>
+
+<p>Resource URL: <code>POST /v2/organizations</code></p>
+
+<p>Creates a Organization.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>billing_enabled</td>
+<td>optional</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>quota<em>definition</em>guid</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>domain_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>user_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>manager_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>billing<em>manager</em>guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>auditor_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Organization is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>billing_enabled</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>quota<em>definition</em>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>quota<em>definition</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>spaces_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>domains_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>users_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>managers_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>billing<em>managers</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>auditors_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>UPDATE Organization</h3>
+
+<p>Resource URL: <code>PUT /v2/organizations</code></p>
+
+<p>Updates a Organization.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>collection-method</td>
+<td>See below.</td>
+</tr>
+</tbody></table>
+
+<p><code>collection-method</code> may take on the following values:
+* <code>add</code> = merge any supplied ids with the relations that already exist.
+* <code>replace</code> = any supplied ids replace their corresponding relations.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>billing_enabled</td>
+<td>optional</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>quota<em>definition</em>guid</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>space_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>domain_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>user_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>manager_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>billing<em>manager</em>guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>auditor_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Organization is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>billing_enabled</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>quota<em>definition</em>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>quota<em>definition</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>spaces_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>domains_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>users_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>managers_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>billing<em>managers</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>auditors_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>READ Organization</h3>
+
+<p>Resource URL: <code>GET /v2/organizations/:guid</code></p>
+
+<p>Reads a Organization.</p>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Organization is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>billing_enabled</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>quota<em>definition</em>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>quota<em>definition</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>spaces_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>domains_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>users_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>managers_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>billing<em>managers</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>auditors_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>DELETE Organization</h3>
+
+<p>Resource URL: <code>DELETE /v2/organizations/:guid</code></p>
+
+<p>Deletes a Organization.</p>
+
+<h4>Response Format:</h4>
+
+<p>None</p>
+
+<h2><a id='user'></a> Users</h2>
+
+<h2>CC Specific API</h2>
+
+<p>NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.</p>
+
+<h3>LIST Users</h3>
+
+<p>Resource URL: <code>GET /v2/users</code></p>
+
+<p>Returns a paginated response of Users.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>Maximum number of results to return.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Offset from which to start iteration.</td>
+</tr>
+<tr>
+<td>urls-only</td>
+<td>If 1, only return a list of urls; do not expand metadata or resource attributes</td>
+</tr>
+<tr>
+<td>inline-relations-depth</td>
+<td>0 - don&#39;t inline any relations and return URLs.  Otherwise, inline to depth N.</td>
+</tr>
+<tr>
+<td>q</td>
+<td>Search/filter string of the form <code>&lt;attribute-name&gt;:&lt;value&gt;</code></td>
+</tr>
+</tbody></table>
+
+<p>The <code>q</code> query parameter may include the following <code>attribute-names</code>:
+* space<em>guid
+* organization</em>guid
+* managed<em>organization</em>guid
+* billing<em>managed</em>organization<em>guid
+* audited</em>organization<em>guid
+* managed</em>space<em>guid
+* audited</em>space_guid</p>
+
+<p>See the API Overview for a more detailed description of these parameters.</p>
+
+<h4>Response Format:</h4>
+
+<p>The response is in the standard v2 paginated response format, i.e.:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_results</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>prev_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>next_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>resources</td>
+<td>[{:metadata =&gt; Hash,:entity =&gt; Hash,}]</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for User is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>admin</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>default<em>space</em>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>default<em>space</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>spaces_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>organizations_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>managed<em>organizations</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>billing<em>managed</em>organizations_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>audited<em>organizations</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>managed<em>spaces</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>audited<em>spaces</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>CREATE User</h3>
+
+<p>Resource URL: <code>POST /v2/users</code></p>
+
+<p>Creates a User.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>admin</td>
+<td>optional</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>default<em>space</em>guid</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>space_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>organization_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>managed<em>organization</em>guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>billing<em>managed</em>organization_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>audited<em>organization</em>guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>managed<em>space</em>guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>audited<em>space</em>guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for User is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>admin</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>default<em>space</em>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>default<em>space</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>spaces_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>organizations_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>managed<em>organizations</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>billing<em>managed</em>organizations_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>audited<em>organizations</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>managed<em>spaces</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>audited<em>spaces</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>UPDATE User</h3>
+
+<p>Resource URL: <code>PUT /v2/users</code></p>
+
+<p>Updates a User.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>collection-method</td>
+<td>See below.</td>
+</tr>
+</tbody></table>
+
+<p><code>collection-method</code> may take on the following values:
+* <code>add</code> = merge any supplied ids with the relations that already exist.
+* <code>replace</code> = any supplied ids replace their corresponding relations.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>admin</td>
+<td>optional</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>default<em>space</em>guid</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>space_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>organization_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>managed<em>organization</em>guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>billing<em>managed</em>organization_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>audited<em>organization</em>guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>managed<em>space</em>guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>audited<em>space</em>guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for User is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>admin</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>default<em>space</em>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>default<em>space</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>spaces_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>organizations_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>managed<em>organizations</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>billing<em>managed</em>organizations_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>audited<em>organizations</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>managed<em>spaces</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>audited<em>spaces</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>READ User</h3>
+
+<p>Resource URL: <code>GET /v2/users/:guid</code></p>
+
+<p>Reads a User.</p>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for User is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>admin</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>default<em>space</em>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>default<em>space</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>spaces_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>organizations_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>managed<em>organizations</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>billing<em>managed</em>organizations_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>audited<em>organizations</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>managed<em>spaces</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>audited<em>spaces</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>DELETE User</h3>
+
+<p>Resource URL: <code>DELETE /v2/users/:guid</code></p>
+
+<p>Deletes a User.</p>
+
+<h4>Response Format:</h4>
+
+<p>None</p>
+
+<h2><a id='spaces'></a> Spaces</h2>
+
+<h2>CC Specific API</h2>
+
+<p>NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.</p>
+
+<h3>LIST Spaces</h3>
+
+<p>Resource URL: <code>GET /v2/spaces</code></p>
+
+<p>Returns a paginated response of Spaces.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>Maximum number of results to return.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Offset from which to start iteration.</td>
+</tr>
+<tr>
+<td>urls-only</td>
+<td>If 1, only return a list of urls; do not expand metadata or resource attributues</td>
+</tr>
+<tr>
+<td>inline-relations-depth</td>
+<td>0 - don&#39;t inline any relations and return URLs.  Otherwise, inline to depth N.</td>
+</tr>
+<tr>
+<td>q</td>
+<td>Search/filter string of the form <code>&lt;attribute-name&gt;:&lt;value&gt;</code></td>
+</tr>
+</tbody></table>
+
+<p>The <code>q</code> query parameter may include the following <code>attribute-names</code>:
+* name
+* organization<em>guid
+* developer</em>guid
+* app_guid</p>
+
+<p>See the API Overview for a more detailed description of these parameters.</p>
+
+<h4>Response Format:</h4>
+
+<p>The response is in the standard v2 paginated response format, i.e.:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_results</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>prev_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>next_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>resources</td>
+<td>[{:metadata =&gt; Hash,:entity =&gt; Hash,}]</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Space is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>organization_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>developers_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>managers_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>auditors_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>apps_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>domains_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>instances</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>CREATE Space</h3>
+
+<p>Resource URL: <code>POST /v2/spaces</code></p>
+
+<p>Creates a Space.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>organization_guid</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>developer_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>manager_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>auditor_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>app_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>domain_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>service<em>instance</em>guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Space is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>organization_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>developers_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>managers_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>auditors_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>apps_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>domains_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>instances</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>UPDATE Space</h3>
+
+<p>Resource URL: <code>PUT /v2/spaces</code></p>
+
+<p>Updates a Space.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>collection-method</td>
+<td>See below.</td>
+</tr>
+</tbody></table>
+
+<p><code>collection-method</code> may take on the following values:
+* <code>add</code> = merge any supplied ids with the relations that already exist.
+* <code>replace</code> = any supplied ids replace their corresponding relations.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>organization_guid</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>developer_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>manager_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>auditor_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>app_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>domain_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>service<em>instance</em>guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Space is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>organization_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>developers_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>managers_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>auditors_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>apps_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>domains_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>instances</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>READ Space</h3>
+
+<p>Resource URL: <code>GET /v2/spaces/:guid</code></p>
+
+<p>Reads a Space.</p>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Space is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>organization_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>organization_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>developers_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>managers_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>auditors_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>apps_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>domains_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>instances</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>DELETE Space</h3>
+
+<p>Resource URL: <code>DELETE /v2/spaces/:guid</code></p>
+
+<p>Deletes a Space.</p>
+
+<h4>Response Format:</h4>
+
+<p>None</p>
+
+<h2><a id='apps'></a> Apps</h2>
+
+<h2>CC Specific API</h2>
+
+<p>NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.</p>
+
+<h3>LIST Apps</h3>
+
+<p>Resource URL: <code>GET /v2/apps</code></p>
+
+<p>Returns a paginated response of Apps.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>Maximum number of results to return.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Offset from which to start iteration.</td>
+</tr>
+<tr>
+<td>urls-only</td>
+<td>If 1, only return a list of urls; do not expand metadata or resource attributues</td>
+</tr>
+<tr>
+<td>inline-relations-depth</td>
+<td>0 - don&#39;t inline any relations and return URLs.  Otherwise, inline to depth N.</td>
+</tr>
+<tr>
+<td>q</td>
+<td>Search/filter string of the form <code>&lt;attribute-name&gt;:&lt;value&gt;</code></td>
+</tr>
+</tbody></table>
+
+<p>The <code>q</code> query parameter may include the following <code>attribute-names</code>:
+* name
+* space<em>guid
+* organization</em>guid
+* framework<em>guid
+* runtime</em>guid</p>
+
+<p>See the API Overview for a more detailed description of these parameters.</p>
+
+<h4>Response Format:</h4>
+
+<p>The response is in the standard v2 paginated response format, i.e.:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_results</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>prev_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>next_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>resources</td>
+<td>[{:metadata =&gt; Hash,:entity =&gt; Hash,}]</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for App is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>production</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>environment_json</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>memory</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>instances</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>file_descriptors</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>disk_quota</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+</tr>
+<tr>
+<td>command</td>
+<td>String</td>
+</tr>
+<tr>
+<td>console</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>space_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>space_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>runtime_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>runtime_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>framework_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>framework_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>bindings</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>routes_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>CREATE App</h3>
+
+<p>Resource URL: <code>POST /v2/apps</code></p>
+
+<p>Creates a App.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>production</td>
+<td>optional</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>environment_json</td>
+<td>optional</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>memory</td>
+<td>optional</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>instances</td>
+<td>optional</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>file_descriptors</td>
+<td>optional</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>disk_quota</td>
+<td>optional</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>state</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>command</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>console</td>
+<td>optional</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>space_guid</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>runtime_guid</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>framework_guid</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>route_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for App is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>production</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>environment_json</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>memory</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>instances</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>file_descriptors</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>disk_quota</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+</tr>
+<tr>
+<td>command</td>
+<td>String</td>
+</tr>
+<tr>
+<td>console</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>space_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>space_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>runtime_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>runtime_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>framework_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>framework_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>bindings</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>routes_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>UPDATE App</h3>
+
+<p>Resource URL: <code>PUT /v2/apps</code></p>
+
+<p>Updates a App.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>collection-method</td>
+<td>See below.</td>
+</tr>
+</tbody></table>
+
+<p><code>collection-method</code> may take on the following values:
+* <code>add</code> = merge any supplied ids with the relations that already exist.
+* <code>replace</code> = any supplied ids replace their corresponding relations.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>production</td>
+<td>optional</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>environment_json</td>
+<td>optional</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>memory</td>
+<td>optional</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>instances</td>
+<td>optional</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>file_descriptors</td>
+<td>optional</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>disk_quota</td>
+<td>optional</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>state</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>command</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>console</td>
+<td>optional</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>space_guid</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>runtime_guid</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>framework_guid</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service<em>binding</em>guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+<tr>
+<td>route_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for App is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>production</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>environment_json</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>memory</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>instances</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>file_descriptors</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>disk_quota</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+</tr>
+<tr>
+<td>command</td>
+<td>String</td>
+</tr>
+<tr>
+<td>console</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>space_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>space_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>runtime_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>runtime_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>framework_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>framework_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>bindings</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>routes_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>READ App</h3>
+
+<p>Resource URL: <code>GET /v2/apps/:guid</code></p>
+
+<p>Reads a App.</p>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for App is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>production</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>environment_json</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>memory</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>instances</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>file_descriptors</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>disk_quota</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+</tr>
+<tr>
+<td>command</td>
+<td>String</td>
+</tr>
+<tr>
+<td>console</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>space_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>space_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>runtime_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>runtime_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>framework_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>framework_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>bindings</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>routes_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>DELETE App</h3>
+
+<p>Resource URL: <code>DELETE /v2/apps/:guid</code></p>
+
+<p>Deletes a App.</p>
+
+<h4>Response Format:</h4>
+
+<p>None</p>
+
+<h2><a id='runtimes'></a> Runtimes</h2>
+
+<h2>CC Specific API</h2>
+
+<p>NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.</p>
+
+<h3>LIST Runtimes</h3>
+
+<p>Resource URL: <code>GET /v2/runtimes</code></p>
+
+<p>Returns a paginated response of Runtimes.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>Maximum number of results to return.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Offset from which to start iteration.</td>
+</tr>
+<tr>
+<td>urls-only</td>
+<td>If 1, only return a list of urls; do not expand metadata or resource attributues</td>
+</tr>
+<tr>
+<td>inline-relations-depth</td>
+<td>0 - don&#39;t inline any relations and return URLs.  Otherwise, inline to depth N.</td>
+</tr>
+<tr>
+<td>q</td>
+<td>Search/filter string of the form <code>&lt;attribute-name&gt;:&lt;value&gt;</code></td>
+</tr>
+</tbody></table>
+
+<p>The <code>q</code> query parameter may include the following <code>attribute-names</code>:
+* name
+* app_guid</p>
+
+<p>See the API Overview for a more detailed description of these parameters.</p>
+
+<h4>Response Format:</h4>
+
+<p>The response is in the standard v2 paginated response format, i.e.:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_results</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>prev_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>next_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>resources</td>
+<td>[{:metadata =&gt; Hash,:entity =&gt; Hash,}]</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Runtime is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+</tr>
+<tr>
+<td>version</td>
+<td>String</td>
+</tr>
+<tr>
+<td>apps_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>CREATE Runtime</h3>
+
+<p>Resource URL: <code>POST /v2/runtimes</code></p>
+
+<p>Creates a Runtime.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>description</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>app_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Runtime is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+</tr>
+<tr>
+<td>version</td>
+<td>String</td>
+</tr>
+<tr>
+<td>apps_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>UPDATE Runtime</h3>
+
+<p>Resource URL: <code>PUT /v2/runtimes</code></p>
+
+<p>Updates a Runtime.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>collection-method</td>
+<td>See below.</td>
+</tr>
+</tbody></table>
+
+<p><code>collection-method</code> may take on the following values:
+* <code>add</code> = merge any supplied ids with the relations that already exist.
+* <code>replace</code> = any supplied ids replace their corresponding relations.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>description</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>app_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Runtime is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+</tr>
+<tr>
+<td>version</td>
+<td>String</td>
+</tr>
+<tr>
+<td>apps_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>READ Runtime</h3>
+
+<p>Resource URL: <code>GET /v2/runtimes/:guid</code></p>
+
+<p>Reads a Runtime.</p>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Runtime is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+</tr>
+<tr>
+<td>version</td>
+<td>String</td>
+</tr>
+<tr>
+<td>apps_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>DELETE Runtime</h3>
+
+<p>Resource URL: <code>DELETE /v2/runtimes/:guid</code></p>
+
+<p>Deletes a Runtime.</p>
+
+<h4>Response Format:</h4>
+
+<p>None</p>
+
+<h2><a id='frameworks'></a> Frameworks</h2>
+
+<h2>CC Specific API</h2>
+
+<p>NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.</p>
+
+<h3>LIST Frameworks</h3>
+
+<p>Resource URL: <code>GET /v2/frameworks</code></p>
+
+<p>Returns a paginated response of Frameworks.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>Maximum number of results to return.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Offset from which to start iteration.</td>
+</tr>
+<tr>
+<td>urls-only</td>
+<td>If 1, only return a list of urls; do not expand metadata or resource attributues</td>
+</tr>
+<tr>
+<td>inline-relations-depth</td>
+<td>0 - don&#39;t inline any relations and return URLs.  Otherwise, inline to depth N.</td>
+</tr>
+<tr>
+<td>q</td>
+<td>Search/filter string of the form <code>&lt;attribute-name&gt;:&lt;value&gt;</code></td>
+</tr>
+</tbody></table>
+
+<p>The <code>q</code> query parameter may include the following <code>attribute-names</code>:
+* name
+* app_guid</p>
+
+<p>See the API Overview for a more detailed description of these parameters.</p>
+
+<h4>Response Format:</h4>
+
+<p>The response is in the standard v2 paginated response format, i.e.:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_results</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>prev_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>next_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>resources</td>
+<td>[{:metadata =&gt; Hash,:entity =&gt; Hash,}]</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Framework is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+</tr>
+<tr>
+<td>apps_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>CREATE Framework</h3>
+
+<p>Resource URL: <code>POST /v2/frameworks</code></p>
+
+<p>Creates a Framework.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>description</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>app_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Framework is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+</tr>
+<tr>
+<td>apps_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>UPDATE Framework</h3>
+
+<p>Resource URL: <code>PUT /v2/frameworks</code></p>
+
+<p>Updates a Framework.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>collection-method</td>
+<td>See below.</td>
+</tr>
+</tbody></table>
+
+<p><code>collection-method</code> may take on the following values:
+* <code>add</code> = merge any supplied ids with the relations that already exist.
+* <code>replace</code> = any supplied ids replace their corresponding relations.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>description</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>app_guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Framework is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+</tr>
+<tr>
+<td>apps_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>READ Framework</h3>
+
+<p>Resource URL: <code>GET /v2/frameworks/:guid</code></p>
+
+<p>Reads a Framework.</p>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Framework is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+</tr>
+<tr>
+<td>apps_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>DELETE Framework</h3>
+
+<p>Resource URL: <code>DELETE /v2/frameworks/:guid</code></p>
+
+<p>Deletes a Framework.</p>
+
+<h4>Response Format:</h4>
+
+<p>None</p>
+
+<h2><a id='services'></a> Services</h2>
+
+<h2>CC Specific API</h2>
+
+<p>NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.</p>
+
+<h3>LIST Services</h3>
+
+<p>Resource URL: <code>GET /v2/services</code></p>
+
+<p>Returns a paginated response of Services.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>Maximum number of results to return.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Offset from which to start iteration.</td>
+</tr>
+<tr>
+<td>urls-only</td>
+<td>If 1, only return a list of urls; do not expand metadata or resource attributues</td>
+</tr>
+<tr>
+<td>inline-relations-depth</td>
+<td>0 - don&#39;t inline any relations and return URLs.  Otherwise, inline to depth N.</td>
+</tr>
+<tr>
+<td>q</td>
+<td>Search/filter string of the form <code>&lt;attribute-name&gt;:&lt;value&gt;</code></td>
+</tr>
+</tbody></table>
+
+<p>The <code>q</code> query parameter may include the following <code>attribute-names</code>:
+* service<em>plan</em>guid</p>
+
+<p>See the API Overview for a more detailed description of these parameters.</p>
+
+<h4>Response Format:</h4>
+
+<p>The response is in the standard v2 paginated response format, i.e.:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_results</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>prev_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>next_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>resources</td>
+<td>[{:metadata =&gt; Hash,:entity =&gt; Hash,}]</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Service is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>label</td>
+<td>String</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /URL_REGEX/</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+</tr>
+<tr>
+<td>version</td>
+<td>String</td>
+</tr>
+<tr>
+<td>info_url</td>
+<td>String /URL_REGEX/</td>
+</tr>
+<tr>
+<td>acls</td>
+<td>{&ldquo;users&rdquo; =&gt; [String],&ldquo;wildcards&rdquo; =&gt; [String],}</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>active</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>service<em>plans</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>CREATE Service</h3>
+
+<p>Resource URL: <code>POST /v2/services</code></p>
+
+<p>Creates a Service.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>label</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>required</td>
+<td>String /URL_REGEX/</td>
+</tr>
+<tr>
+<td>description</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>version</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>info_url</td>
+<td>optional</td>
+<td>String /URL_REGEX/</td>
+</tr>
+<tr>
+<td>acls</td>
+<td>optional</td>
+<td>{&ldquo;users&rdquo; =&gt; [String],&ldquo;wildcards&rdquo; =&gt; [String],}</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>optional</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>active</td>
+<td>optional</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>service<em>plan</em>guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Service is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>label</td>
+<td>String</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /URL_REGEX/</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+</tr>
+<tr>
+<td>version</td>
+<td>String</td>
+</tr>
+<tr>
+<td>info_url</td>
+<td>String /URL_REGEX/</td>
+</tr>
+<tr>
+<td>acls</td>
+<td>{&ldquo;users&rdquo; =&gt; [String],&ldquo;wildcards&rdquo; =&gt; [String],}</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>active</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>service<em>plans</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>UPDATE Service</h3>
+
+<p>Resource URL: <code>PUT /v2/services</code></p>
+
+<p>Updates a Service.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>collection-method</td>
+<td>See below.</td>
+</tr>
+</tbody></table>
+
+<p><code>collection-method</code> may take on the following values:
+* <code>add</code> = merge any supplied ids with the relations that already exist.
+* <code>replace</code> = any supplied ids replace their corresponding relations.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>label</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>optional</td>
+<td>String /URL_REGEX/</td>
+</tr>
+<tr>
+<td>description</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>version</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>info_url</td>
+<td>optional</td>
+<td>String /URL_REGEX/</td>
+</tr>
+<tr>
+<td>acls</td>
+<td>optional</td>
+<td>{&ldquo;users&rdquo; =&gt; [String],&ldquo;wildcards&rdquo; =&gt; [String],}</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>optional</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>active</td>
+<td>optional</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>service<em>plan</em>guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Service is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>label</td>
+<td>String</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /URL_REGEX/</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+</tr>
+<tr>
+<td>version</td>
+<td>String</td>
+</tr>
+<tr>
+<td>info_url</td>
+<td>String /URL_REGEX/</td>
+</tr>
+<tr>
+<td>acls</td>
+<td>{&ldquo;users&rdquo; =&gt; [String],&ldquo;wildcards&rdquo; =&gt; [String],}</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>active</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>service<em>plans</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>READ Service</h3>
+
+<p>Resource URL: <code>GET /v2/services/:guid</code></p>
+
+<p>Reads a Service.</p>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for Service is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>label</td>
+<td>String</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /URL_REGEX/</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+</tr>
+<tr>
+<td>version</td>
+<td>String</td>
+</tr>
+<tr>
+<td>info_url</td>
+<td>String /URL_REGEX/</td>
+</tr>
+<tr>
+<td>acls</td>
+<td>{&ldquo;users&rdquo; =&gt; [String],&ldquo;wildcards&rdquo; =&gt; [String],}</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>active</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>service<em>plans</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>DELETE Service</h3>
+
+<p>Resource URL: <code>DELETE /v2/services/:guid</code></p>
+
+<p>Deletes a Service.</p>
+
+<h4>Response Format:</h4>
+
+<p>None</p>
+
+<h2><a id='serviceplans'></a> Service Plans</h2>
+
+<h2>CC Specific API</h2>
+
+<p>NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.</p>
+
+<h3>LIST ServicePlans</h3>
+
+<p>Resource URL: <code>GET /v2/service_plans</code></p>
+
+<p>Returns a paginated response of ServicePlans.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>Maximum number of results to return.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Offset from which to start iteration.</td>
+</tr>
+<tr>
+<td>urls-only</td>
+<td>If 1, only return a list of urls; do not expand metadata or resource attributues</td>
+</tr>
+<tr>
+<td>inline-relations-depth</td>
+<td>0 - don&#39;t inline any relations and return URLs.  Otherwise, inline to depth N.</td>
+</tr>
+<tr>
+<td>q</td>
+<td>Search/filter string of the form <code>&lt;attribute-name&gt;:&lt;value&gt;</code></td>
+</tr>
+</tbody></table>
+
+<p>The <code>q</code> query parameter may include the following <code>attribute-names</code>:
+* service<em>guid
+* service</em>instance_guid</p>
+
+<p>See the API Overview for a more detailed description of these parameters.</p>
+
+<h4>Response Format:</h4>
+
+<p>The response is in the standard v2 paginated response format, i.e.:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_results</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>prev_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>next_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>resources</td>
+<td>[{:metadata =&gt; Hash,:entity =&gt; Hash,}]</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for ServicePlan is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>free</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>instances</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>CREATE ServicePlan</h3>
+
+<p>Resource URL: <code>POST /v2/service_plans</code></p>
+
+<p>Creates a ServicePlan.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>free</td>
+<td>required</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>description</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service_guid</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service<em>instance</em>guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for ServicePlan is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>free</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>instances</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>UPDATE ServicePlan</h3>
+
+<p>Resource URL: <code>PUT /v2/service_plans</code></p>
+
+<p>Updates a ServicePlan.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>collection-method</td>
+<td>See below.</td>
+</tr>
+</tbody></table>
+
+<p><code>collection-method</code> may take on the following values:
+* <code>add</code> = merge any supplied ids with the relations that already exist.
+* <code>replace</code> = any supplied ids replace their corresponding relations.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>free</td>
+<td>optional</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>description</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service_guid</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service<em>instance</em>guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for ServicePlan is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>free</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>instances</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>READ ServicePlan</h3>
+
+<p>Resource URL: <code>GET /v2/service_plans/:guid</code></p>
+
+<p>Reads a ServicePlan.</p>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for ServicePlan is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>free</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>instances</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>DELETE ServicePlan</h3>
+
+<p>Resource URL: <code>DELETE /v2/service_plans/:guid</code></p>
+
+<p>Deletes a ServicePlan.</p>
+
+<h4>Response Format:</h4>
+
+<p>None</p>
+
+<h2><a id='service-instances'></a> Service Instances</h2>
+
+<h2>CC Specific API</h2>
+
+<p>NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.</p>
+
+<h3>LIST ServiceInstances</h3>
+
+<p>Resource URL: <code>GET /v2/service_instances</code></p>
+
+<p>Returns a paginated response of ServiceInstances.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>Maximum number of results to return.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Offset from which to start iteration.</td>
+</tr>
+<tr>
+<td>urls-only</td>
+<td>If 1, only return a list of urls; do not expand metadata or resource attributues</td>
+</tr>
+<tr>
+<td>inline-relations-depth</td>
+<td>0 - don&#39;t inline any relations and return URLs.  Otherwise, inline to depth N.</td>
+</tr>
+<tr>
+<td>q</td>
+<td>Search/filter string of the form <code>&lt;attribute-name&gt;:&lt;value&gt;</code></td>
+</tr>
+</tbody></table>
+
+<p>The <code>q</code> query parameter may include the following <code>attribute-names</code>:
+* name
+* space<em>guid
+* service</em>plan<em>guid
+* service</em>binding_guid</p>
+
+<p>See the API Overview for a more detailed description of these parameters.</p>
+
+<h4>Response Format:</h4>
+
+<p>The response is in the standard v2 paginated response format, i.e.:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_results</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>prev_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>next_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>resources</td>
+<td>[{:metadata =&gt; Hash,:entity =&gt; Hash,}]</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for ServiceInstance is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>space_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>space_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>plan</em>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service<em>plan</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>bindings</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>CREATE ServiceInstance</h3>
+
+<p>Resource URL: <code>POST /v2/service_instances</code></p>
+
+<p>Creates a ServiceInstance.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>space_guid</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service<em>plan</em>guid</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service<em>binding</em>guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for ServiceInstance is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>space_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>space_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>plan</em>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service<em>plan</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>bindings</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>UPDATE ServiceInstance</h3>
+
+<p>Resource URL: <code>PUT /v2/service_instances</code></p>
+
+<p>Updates a ServiceInstance.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>collection-method</td>
+<td>See below.</td>
+</tr>
+</tbody></table>
+
+<p><code>collection-method</code> may take on the following values:
+* <code>add</code> = merge any supplied ids with the relations that already exist.
+* <code>replace</code> = any supplied ids replace their corresponding relations.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>space_guid</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service<em>plan</em>guid</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service<em>binding</em>guids</td>
+<td>optional</td>
+<td>[String]</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for ServiceInstance is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>space_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>space_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>plan</em>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service<em>plan</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>bindings</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>READ ServiceInstance</h3>
+
+<p>Resource URL: <code>GET /v2/service_instances/:guid</code></p>
+
+<p>Reads a ServiceInstance.</p>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for ServiceInstance is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>space_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>space_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>plan</em>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service<em>plan</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>bindings</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>DELETE ServiceInstance</h3>
+
+<p>Resource URL: <code>DELETE /v2/service_instances/:guid</code></p>
+
+<p>Deletes a ServiceInstance.</p>
+
+<h4>Response Format:</h4>
+
+<p>None</p>
+
+<h2><a id='service-bindings'></a> Service Bindings</h2>
+
+<h2>CC Specific API</h2>
+
+<p>NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.</p>
+
+<h3>LIST ServiceBindings</h3>
+
+<p>Resource URL: <code>GET /v2/service_bindings</code></p>
+
+<p>Returns a paginated response of ServiceBindings.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>Maximum number of results to return.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Offset from which to start iteration.</td>
+</tr>
+<tr>
+<td>urls-only</td>
+<td>If 1, only return a list of urls; do not expand metadata or resource attributues</td>
+</tr>
+<tr>
+<td>inline-relations-depth</td>
+<td>0 - don&#39;t inline any relations and return URLs.  Otherwise, inline to depth N.</td>
+</tr>
+<tr>
+<td>q</td>
+<td>Search/filter string of the form <code>&lt;attribute-name&gt;:&lt;value&gt;</code></td>
+</tr>
+</tbody></table>
+
+<p>The <code>q</code> query parameter may include the following <code>attribute-names</code>:
+* app<em>guid
+* service</em>instance_guid</p>
+
+<p>See the API Overview for a more detailed description of these parameters.</p>
+
+<h4>Response Format:</h4>
+
+<p>The response is in the standard v2 paginated response format, i.e.:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_results</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>prev_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>next_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>resources</td>
+<td>[{:metadata =&gt; Hash,:entity =&gt; Hash,}]</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for ServiceBinding is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>app_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>app_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>instance</em>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service<em>instance</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>CREATE ServiceBinding</h3>
+
+<p>Resource URL: <code>POST /v2/service_bindings</code></p>
+
+<p>Creates a ServiceBinding.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>app_guid</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service<em>instance</em>guid</td>
+<td>required</td>
+<td>String</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for ServiceBinding is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>app_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>app_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>instance</em>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service<em>instance</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>UPDATE ServiceBinding</h3>
+
+<p>Resource URL: <code>PUT /v2/service_bindings</code></p>
+
+<p>Updates a ServiceBinding.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>collection-method</td>
+<td>See below.</td>
+</tr>
+</tbody></table>
+
+<p><code>collection-method</code> may take on the following values:
+* <code>add</code> = merge any supplied ids with the relations that already exist.
+* <code>replace</code> = any supplied ids replace their corresponding relations.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>app_guid</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service<em>instance</em>guid</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for ServiceBinding is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>app_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>app_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>instance</em>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service<em>instance</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>READ ServiceBinding</h3>
+
+<p>Resource URL: <code>GET /v2/service_bindings/:guid</code></p>
+
+<p>Reads a ServiceBinding.</p>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for ServiceBinding is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>app_guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>app_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>service<em>instance</em>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>service<em>instance</em>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+</tbody></table>
+
+<h3>DELETE ServiceBinding</h3>
+
+<p>Resource URL: <code>DELETE /v2/service_bindings/:guid</code></p>
+
+<p>Deletes a ServiceBinding.</p>
+
+<h4>Response Format:</h4>
+
+<p>None</p>
+
+<h2><a id='service-auth-tokens'></a> Service Auth Tokens</h2>
+
+<h2>CC Specific API</h2>
+
+<p>NOTE: Like the migrations and the models this is being fleshed out and should be reviewed for hierarchy and relationships only.</p>
+
+<h3>LIST ServiceAuthTokens</h3>
+
+<p>Resource URL: <code>GET /v2/service_auth_tokens</code></p>
+
+<p>Returns a paginated response of ServiceAuthTokens.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>Maximum number of results to return.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Offset from which to start iteration.</td>
+</tr>
+<tr>
+<td>urls-only</td>
+<td>If 1, only return a list of urls; do not expand metadata or resource attributues</td>
+</tr>
+<tr>
+<td>inline-relations-depth</td>
+<td>0 - don&#39;t inline any relations and return URLs.  Otherwise, inline to depth N.</td>
+</tr>
+<tr>
+<td>q</td>
+<td>Search/filter string of the form <code>&lt;attribute-name&gt;:&lt;value&gt;</code></td>
+</tr>
+</tbody></table>
+
+<p>The <code>q</code> query parameter may include the following <code>attribute-names</code>:
+*</p>
+
+<p>See the API Overview for a more detailed description of these parameters.</p>
+
+<h4>Response Format:</h4>
+
+<p>The response is in the standard v2 paginated response format, i.e.:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_results</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>prev_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>next_url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>resources</td>
+<td>[{:metadata =&gt; Hash,:entity =&gt; Hash,}]</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for ServiceAuthToken is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>label</td>
+<td>String</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>String</td>
+</tr>
+</tbody></table>
+
+<h3>CREATE ServiceAuthToken</h3>
+
+<p>Resource URL: <code>POST /v2/service_auth_tokens</code></p>
+
+<p>Creates a ServiceAuthToken.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>label</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>required</td>
+<td>String</td>
+</tr>
+<tr>
+<td>token</td>
+<td>required</td>
+<td>String</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for ServiceAuthToken is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>label</td>
+<td>String</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>String</td>
+</tr>
+</tbody></table>
+
+<h3>UPDATE ServiceAuthToken</h3>
+
+<p>Resource URL: <code>PUT /v2/service_auth_tokens</code></p>
+
+<p>Updates a ServiceAuthToken.</p>
+
+<h4>Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>collection-method</td>
+<td>See below.</td>
+</tr>
+</tbody></table>
+
+<p><code>collection-method</code> may take on the following values:
+* <code>add</code> = merge any supplied ids with the relations that already exist.
+* <code>replace</code> = any supplied ids replace their corresponding relations.</p>
+
+<h4>Request Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>label</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+<tr>
+<td>token</td>
+<td>optional</td>
+<td>String</td>
+</tr>
+</tbody></table>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for ServiceAuthToken is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>label</td>
+<td>String</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>String</td>
+</tr>
+</tbody></table>
+
+<h3>READ ServiceAuthToken</h3>
+
+<p>Resource URL: <code>GET /v2/service_auth_tokens/:guid</code></p>
+
+<p>Reads a ServiceAuthToken.</p>
+
+<h4>Response Format:</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metadata</td>
+<td>Hash</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>Hash</td>
+</tr>
+</tbody></table>
+
+<p>The schema for <code>:metadata</code> follows the v2 standard:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>guid</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String /HTTPS<em>URL</em>REGEX/</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Date</td>
+</tr>
+</tbody></table>
+
+<p>The schema for the <code>:entity</code> hash for ServiceAuthToken is:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>label</td>
+<td>String</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>String</td>
+</tr>
+</tbody></table>
+
+<h3>DELETE ServiceAuthToken</h3>
+
+<p>Resource URL: <code>DELETE /v2/service_auth_tokens/:guid</code></p>
+
+<p>Deletes a ServiceAuthToken.</p>
+
+<h4>Response Format:</h4>
+
+<p>None</p>
+
+          </div><!-- End of content_inner -->
+        </div><!-- End of container-full -->
+      </div><!-- End of content -->
+    </div><!-- End of non_footer -->
+    <div id='footer'>
+      <div id='container-footer'>
+        <div class='bg_social'>
+          <ul class='social'>
+            <li>
+            <a href='http://twitter.com/cloudfoundry' target='_blank'>
+            <img alt='Twitter' src='/images/twitter_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='https://plus.google.com/114245065906861739918/posts' target='_blank'>
+            <img alt='Google+' src='/images/g+_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://facebook.com/cloudfoundry' target='_blank'>
+            <img alt='Facebook' src='/images/facebook_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://youtube.com/cloudfoundry' target='_blank'>
+            <img alt='Youtube' src='/images/youtube_large.png'>
+            </a>
+            </li>
+          </ul>
+        </div><!-- End of bg_social -->
+        <ul class='links'>
+          <li>
+          <a href='http://www.cloudfoundry.com/about'>About</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://blog.cloudfoundry.com/'>Blog</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/partners'>Partners</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://docs.cloudfoundry.com'>Docs</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://status.cloudfoundry.com/'>Status</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/support'>Support</a>
+          </li>
+        </ul>
+        <div class='copyright'>
+          <div class='hr-horizontal-dark'></div>
+          <br>
+          <p>
+            &copy;
+            <script>
+              //<![CDATA[
+                var d = new Date();
+                document.write(d.getFullYear());
+              //]]>
+            </script>
+            GoPivotal, Inc. All rights reserved.
+            <a href='http://www.cloudfoundry.com/terms'>Terms</a>
+            <a href='http://www.gopivotal.com/privacy-policy' target='_blank'>Privacy</a>
+          </p>
+        </div><!-- End of copyright -->
+      </div><!-- End of container-footer -->
+    </div><!-- End of footer -->
+    <script type="text/javascript">
+      (function() {
+        var didInit = false;
+        function initMunchkin() {
+          if(didInit === false) {
+            didInit = true;
+            Munchkin.init('625-IUJ-009');
+          }
+        }
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+        s.onreadystatechange = function() {
+          if (this.readyState == 'complete' || this.readyState == 'loaded') {
+            initMunchkin();
+          }
+        };
+        s.onload = initMunchkin;
+        document.getElementsByTagName('head')[0].appendChild(s);
+      })();
+    </script>
+  </body>
+</html>

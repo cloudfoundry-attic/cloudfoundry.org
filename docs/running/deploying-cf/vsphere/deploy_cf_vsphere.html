@@ -1,0 +1,508 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Deploying Cloud Foundry with BOSH</title>
+
+    <link href="/stylesheets/master.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='/images/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('a#search').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 20px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2').css("padding","11px 10px 8px");
+          $('#search-on').show();
+          $('#search-off').hide();
+        });
+        $('.cancel-x').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 63px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2, #organization_bar .navbar .nav>li a#search').css("padding","16px 20px 15px");
+          $('#organization_bar .navbar .nav>li a#getinvolved').css("padding","11px 92px 8px");
+          $('#organization_bar .navbar .nav>li#docs-off .docs-list-list a').css("padding","0");
+          $('#search-on').hide();
+          $('#search-off').show();
+        });f
+        $(".togglebutton").click(function () {
+        var divname= this.value;
+          $("#"+divname).show("slow").siblings().hide("slow");
+        });
+      });
+    </script>
+
+    <!--[if lt IE 9]>
+    <style>
+        #content .container-full {background:  #ebf0fa;}
+        .call-to-contribute-box, .column-left, .column-middle, .column-right {background:#e3e8f2}
+        #footer {background:#000;}
+    </style>
+    <![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22181585-1']);
+      _gaq.push(['_setDomainName', 'cloudfoundry.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body class="docs docs_running docs_running_deploying-cf docs_running_deploying-cf_vsphere docs_running_deploying-cf_vsphere_deploy_cf_vsphere">
+    <img id="bg" src="/images/bg-plain-x.jpg">
+    <div id='non_footer'>
+      <div id='header'>
+        <div class='container_wide'>
+          <ul class='actions'>
+            <li class='last'>
+              <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
+            </li>
+            <li>
+              <a class='register_link' href='http://login.run.pivotal.io/login'>My Account</a>            
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id='content'>
+        <div class='logo-main'>
+          <div class='logo'>
+            <a href='http://www.cloudfoundry.com'>
+            <img src='/images/logo-cloudfoundry.png'>
+            </a>
+            <a href='http://www.gopivotal.com' target="_blank">
+            <img id="pivotal-logo" src='/images/logo-pivotal.png'>
+            </a>
+          </div>
+          <div class='cta'>
+            <a href='https://console.run.pivotal.io'>
+            <img src='/images/signup_freetrial.png'>
+            </a>
+          </div>
+        </div><!-- End of logo-main-->
+        <div class='container-full'>
+          <div id='organization_bar'>
+            <div class='navbar'>
+              <ul class='nav'>
+                <li>
+                <a href='http://www.cloudfoundry.com/use' id='use'>Using Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/run' id='run'>Running Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/getinvolved' id='getinvolved'>Get Involved</a>
+                </li>
+                <li id='docs-off'>
+                  <a href='/' id='docs'>
+                    <div id='icon-docs'></div>
+                  </a>
+                  <div id='docs-list'>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/using/app-arch/'>Using Cloud Foundry</a>
+                      <br>
+                      <a href="/docs/using/app-arch/">Application Architecture Considerations</a>
+                      <br>
+                      <a href='/docs/using/deploying-apps/'>Deploying Apps</a>
+                      <br>
+                      <a href='/docs/using/managing-apps/'>Managing Apps</a>
+                      <br>
+                      <a href='/docs/using/services.html'>Using Services</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/using/">See all</a>
+                    </div><!-- End of 1st column docs-list-list-->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/running/'>Running Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/architecture/'>Architecture</a>
+                      <br>
+                      <a href='/docs/running/bosh/'>BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf/'>Deploying with BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf-with-chef/'>Deploying with Chef</a>
+                      <br>
+                      <a href='/docs/running/micro_cloud_foundry/'>Micro Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/managing-cf/index.html'>Managing Cloud Foundry</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/running/">See all</a>
+                    </div><!-- End of column 2 docs-list-list -->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/reference/'>Reference</a>
+                      <br>
+                      <a href='/docs/reference/cc-api.html'>Cloud Foundry REST API</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/dotcom/'>CloudFoundry.com</a>
+                      <br>
+                      <a href='/docs/dotcom/integration/'>Technical Integration</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/community/'>Community</a>
+                    </div><!-- End of column 3 docs-list-list -->
+                  </div><!-- End of docs-list -->
+                </li>
+                <li id='search-off'>
+                  <a id='search'>
+                    <div class='icon-search'></div>
+                  </a>
+                </li>
+                <li id='search-on'>
+                  <a id='search2'>
+                    <form action='http://www.cloudfoundry.com/search' class='search-form' method='get' onsubmit='return submitQuery()'>
+                      <input autocomplete='off' class='search-input' id='search-query' name='q' onfocus="this.placeholder = ''" placeholder='' type='search' value=''>
+                    </form>
+                    <div class="cancel-x"></div>
+                  </a>
+                </li>
+              </ul>
+            </div><!-- End of navbar -->
+          </div><!-- End of organization_bar -->
+          <div class='content_inner'>
+            <a class="forkme" href="http://github.com/cloudfoundry/cf-docs" target="_blank">
+              <img alt="Fork me on GitHub" src="/images/ribbon_forkme.png">
+            </a>
+            <form action='http://www.cloudfoundry.com/search' class='search-docs-form' method='get' onsubmit='return submitQuery()'>
+              <input autocomplete='off' class='search-docs-input' id='search-query' name='q' onfocus="this.placeholder = 'more:docs '" placeholder='' type='search-docs' value='more:docs '>
+            </form>
+            <br clear="left">
+            
+              <div class="breadcrumbs">
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li class=""><a href="/docs/running/">Running Cloud Foundry</a></li> <li class=""><a href="/docs/running/deploying-cf/">Deploying Cloud Foundry with BOSH</a></li> <li class=""><a href="/docs/running/deploying-cf/vsphere/">Deploying Cloud Foundry on vSphere</a></li> <li class="active"><span>Deploying Cloud Foundry with BOSH</span></li>
+                </ul>
+              </div>
+              <br clear="left">
+
+			
+
+              <div class="quick-links"><ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#target">Target New BOSH Director</a></li>
+<li><a href="#upload-stemcell">Upload a Stemcell</a></li>
+<li><a href="#get-release">Get a Cloud Release</a></li>
+<li><a href="#create-manifest">Create a Cloud Deployment Manifest</a></li>
+<li><a href="#deploy">Deploy Cloud Foundry</a></li>
+<li><a href="#verfy">Verify the Deployment</a></li>
+</ul>
+</div>
+
+              <h1>Deploying Cloud Foundry with BOSH</h1>
+
+            
+            <p>This guide describes the process for deploying Cloud Foundry to a vSphere environment using BOSH.</p>
+
+<h2><a id="prerequisites"></a>Prerequisites</h2>
+
+<ul>
+<li>BOSH should be deployed. See the steps in the <a href="/docs/running/deploying-cf/vsphere/deploying_bosh_with_micro_bosh.html">previous section</a>.</li>
+</ul>
+
+<h2><a id="target"></a>Target New BOSH Director</h2>
+
+<p>Target the Director of the deployed BOSH using <code>bosh target</code> and the IP address of the Director.</p>
+
+<pre class='terminal'>
+$ bosh target 172.20.134.52
+$ bosh status
+Updating director data... done
+
+Director
+  Name      your-director
+  URL       http://172.20.134.52:25555
+  Version   0.7 (release:fb1aebb0 bosh:20f2ca20)
+  User      admin
+  UUID      2250612f-f0e4-41b3-b1b2-3d730e9011a7
+  CPI       vsphere
+  dns       disabled
+
+Deployment
+  not set
+</pre>
+
+<h2><a id="upload-stemcell"></a>Upload a Stemcell</h2>
+
+<p>The Director needs a stemcell in order to deploy Cloud Foundry. Use the existing public stemcell in your <code>~/stemcells</code> directory. Do not use the Micro BOSH stemcell.</p>
+
+<pre class="terminal">
+$ bosh upload stemcell ~/stemcells/bosh-stemcell-latest-vsphere-esxi-ubuntu.tgz
+Verifying stemcell...
+File exists and readable                                     OK
+Using cached manifest...
+Stemcell properties                                          OK
+
+Stemcell info
+-------------
+Name:    bosh-vsphere-esxi-ubuntu
+Version: 1029
+
+Checking if stemcell already exists...
+No
+
+Uploading stemcell...
+bosh-vsphere-esxi-ubuntu: 100% |ooooooooooooooooooooooooooooooooooooooo| 277.1MB  78.8MB/s      Time: 00:00:03
+
+Director task 1
+
+Update stemcell
+extracting stemcell archive (00:00:06)
+verifying stemcell manifest (00:00:00)
+checking if this stemcell already exists (00:00:00)
+uploading stemcell bosh-vsphere-esxi-ubuntu/1029 to the cloud (00:01:08)
+save stemcell: bosh-vsphere-esxi-ubuntu/1029 (sc-a85ab3dc-8d3d-4228-83d0-5be2436a1886) (00:00:00)
+Done                    5/5 00:01:14
+Task 1 done
+Started     2012-09-26 10:14:26 UTC
+Finished    2012-09-26 10:15:40 UTC
+Duration    00:01:14
+
+Stemcell uploaded and created
+</pre>
+
+<h2><a id="get-release"></a>Get a Cloud Release</h2>
+
+<p>For this exercise, we&#39;ll use a release from the public repository:</p>
+
+<pre class="terminal">
+$ git clone git@github.com:cloudfoundry/cf-release.git
+$ cd cf-release
+$ bosh upload release releases/appcloud-129.yml # use the highest number available - inspecting the files in this directory
+</pre>
+
+<p>You&#39;ll see a flurry of output as BOSH configures and uploads release components.</p>
+
+<!---  Gabi and Matt stopped here until Monday :) -->
+
+<h2><a id="create-manifest"></a>Create a Cloud Deployment Manifest</h2>
+
+<p>For the purpose of this tutorial, we&#39;ll use a sample <a href="https://github.com/cloudfoundry/oss-docs/blob/master/bosh/samples/cloudfoundry.yml">deployment manifest</a>.</p>
+
+<p>Keep in mind that a manifest of this size requires significant virtual hardware resources to run. According to the manifest file, you ideally need 72 vCPUs, 200GB of RAM, and 1 TB of storage. The more IOPS you can throw at the deployment, the better.</p>
+
+<p>Use the BOSH CLI to set your current deployment. This example assumes your deployment manifest file is in <code>~/deployments</code>.</p>
+
+<pre class="terminal">
+$ bosh deployment ~/deployments/cloudfoundry.yml
+Deployment set to '/home/user/deployments/cloudfoundry.yml'
+</pre>
+
+<h2><a id="deploy"></a>Deploy Cloud Foundry</h2>
+
+<p>Now deploy Cloud Foundry using <code>bosh deploy</code>. This example shows only part of the expected output:</p>
+
+<pre class="terminal">
+$ bosh deploy
+    Getting deployment properties from director...
+    Unable to get properties list from director, trying without it...
+    Compiling deployment manifest...
+    Cannot get current deployment information from director, possibly a new deployment
+    Please review all changes carefully
+      Deploying <filename>.yml' to dev124'(type 'yes' to continue): yes
+    Director task 31
+    Preparing deployment
+        binding deployment (00:00:00)
+        binding releases (00:00:00)
+        binding existing deployment (00:00:00)
+        binding resource pools (00:00:00)
+    binding stemcells (00:00:00)
+    binding templates (00:00:00)
+    binding unallocated VMs (00:00:01)
+    binding instance networks (00:00:00)
+    Done                    8/8 00:00:01        Preparing package compilation
+    finding packages to compile (00:00:00)
+    Done                    1/1 00:00:00
+</pre>
+
+<h2><a id="verfy"></a>Verify the Deployment</h2>
+
+<p>Execute the <code>bosh vms</code> command to see all the vas deployed.</p>
+
+<p>Output of this command will similar to the listing below. Make sure the &ldquo;State&rdquo; of all the jobs is &ldquo;running&rdquo;.</p>
+
+<pre class="terminal">
+$ bosh vms
+Deployment `cloudfoundry'
+
+Director task 30
+
+
+Task 30 done
+
++-----------------------------+---------+----------------+---------------+
+| Job/index                   | State   | Resource Pool  | IPs           |
++-----------------------------+---------+----------------+---------------+
+| acm/0                       | running | infrastructure | 192.168.9.38  |
+| acmdb/0                     | running | infrastructure | 192.168.9.37  |
+| backup_manager/0            | running | infrastructure | 192.168.9.120 |
+| ccdb_postgres/0             | running | infrastructure | 192.168.9.32  |
+| cloud_controller/0          | running | infrastructure | 192.168.9.213 |
+| cloud_controller/1          | running | infrastructure | 192.168.9.214 |
+| collector/0                 | running | infrastructure | 192.168.9.210 |
+| dashboard/0                 | running | infrastructure | 192.168.9.211 |
+| dea/0                       | running | deas           | 192.168.9.186 |
+| dea/1                       | running | deas           | 192.168.9.187 |
+| dea/2                       | running | deas           | 192.168.9.188 |
+| dea/3                       | running | deas           | 192.168.9.189 |
+| debian_nfs_server/0         | running | infrastructure | 192.168.9.30  |
+| hbase_master/0              | running | infrastructure | 192.168.9.44  |
+| hbase_slave/0               | running | infrastructure | 192.168.9.41  |
+| hbase_slave/1               | running | infrastructure | 192.168.9.42  |
+| hbase_slave/2               | running | infrastructure | 192.168.9.43  |
+| health_manager/0            | running | infrastructure | 192.168.9.163 |
+| login/0                     | running | infrastructure | 192.168.9.162 |
+| mongodb_gateway/0           | running | infrastructure | 192.168.9.222 |
+| mongodb_node/0              | running | infrastructure | 192.168.9.60  |
+| mongodb_node/1              | running | infrastructure | 192.168.9.61  |
+| mysql_gateway/0             | running | infrastructure | 192.168.9.221 |
+| mysql_node/0                | running | infrastructure | 192.168.9.51  |
+| mysql_node/1                | running | infrastructure | 192.168.9.52  |
+| nats/0                      | running | infrastructure | 192.168.9.31  |
+| opentsdb/0                  | running | infrastructure | 192.168.9.34  |
+| postgresql_gateway/0        | running | infrastructure | 192.168.9.192 |
+| postgresql_node/0           | running | infrastructure | 192.168.9.90  |
+| postgresql_node/1           | running | infrastructure | 192.168.9.91  |
+| rabbit_gateway/0            | running | infrastructure | 192.168.9.191 |
+| rabbit_node/0               | running | infrastructure | 192.168.9.80  |
+| rabbit_node/1               | running | infrastructure | 192.168.9.81  |
+| redis_gateway/0             | running | infrastructure | 192.168.9.190 |
+| redis_node/0                | running | infrastructure | 192.168.9.70  |
+| redis_node/1                | running | infrastructure | 192.168.9.71  |
+| router/0                    | running | infrastructure | 192.168.9.101 |
+| router/1                    | running | infrastructure | 192.168.9.102 |
+| serialization_data_server/0 | running | infrastructure | 192.168.9.123 |
+| service_utilities/0         | running | infrastructure | 192.168.9.121 |
+| services_nfs/0              | running | infrastructure | 192.168.9.50  |
+| services_redis/0            | running | infrastructure | 192.168.9.72  |
+| stager/0                    | running | infrastructure | 192.168.9.215 |
+| stager/1                    | running | infrastructure | 192.168.9.216 |
+| syslog_aggregator/0         | running | infrastructure | 192.168.9.33  |
+| uaa/0                       | running | infrastructure | 192.168.9.212 |
+| uaadb/0                     | running | infrastructure | 192.168.9.35  |
+| vblob_gateway/0             | running | infrastructure | 192.168.9.193 |
+| vblob_node/0                | running | infrastructure | 192.168.9.110 |
+| vcap_redis/0                | running | infrastructure | 192.168.9.36  |
++-----------------------------+---------+----------------+---------------+
+VMs total: 50
+</pre>
+
+<p>The Cloud Foundry deployment should now be ready to use. You can now follow the instructions in the <a href="/docs/using/">Using</a> section of these docs to install the <a href="/docs/using/managing-apps/cf/">cf</a> command-line tool and push an application.</p>
+
+          </div><!-- End of content_inner -->
+        </div><!-- End of container-full -->
+      </div><!-- End of content -->
+    </div><!-- End of non_footer -->
+    <div id='footer'>
+      <div id='container-footer'>
+        <div class='bg_social'>
+          <ul class='social'>
+            <li>
+            <a href='http://twitter.com/cloudfoundry' target='_blank'>
+            <img alt='Twitter' src='/images/twitter_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='https://plus.google.com/114245065906861739918/posts' target='_blank'>
+            <img alt='Google+' src='/images/g+_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://facebook.com/cloudfoundry' target='_blank'>
+            <img alt='Facebook' src='/images/facebook_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://youtube.com/cloudfoundry' target='_blank'>
+            <img alt='Youtube' src='/images/youtube_large.png'>
+            </a>
+            </li>
+          </ul>
+        </div><!-- End of bg_social -->
+        <ul class='links'>
+          <li>
+          <a href='http://www.cloudfoundry.com/about'>About</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://blog.cloudfoundry.com/'>Blog</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/partners'>Partners</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://docs.cloudfoundry.com'>Docs</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://status.cloudfoundry.com/'>Status</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/support'>Support</a>
+          </li>
+        </ul>
+        <div class='copyright'>
+          <div class='hr-horizontal-dark'></div>
+          <br>
+          <p>
+            &copy;
+            <script>
+              //<![CDATA[
+                var d = new Date();
+                document.write(d.getFullYear());
+              //]]>
+            </script>
+            GoPivotal, Inc. All rights reserved.
+            <a href='http://www.cloudfoundry.com/terms'>Terms</a>
+            <a href='http://www.gopivotal.com/privacy-policy' target='_blank'>Privacy</a>
+          </p>
+        </div><!-- End of copyright -->
+      </div><!-- End of container-footer -->
+    </div><!-- End of footer -->
+    <script type="text/javascript">
+      (function() {
+        var didInit = false;
+        function initMunchkin() {
+          if(didInit === false) {
+            didInit = true;
+            Munchkin.init('625-IUJ-009');
+          }
+        }
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+        s.onreadystatechange = function() {
+          if (this.readyState == 'complete' || this.readyState == 'loaded') {
+            initMunchkin();
+          }
+        };
+        s.onload = initMunchkin;
+        document.getElementsByTagName('head')[0].appendChild(s);
+      })();
+    </script>
+  </body>
+</html>

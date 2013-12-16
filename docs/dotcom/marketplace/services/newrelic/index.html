@@ -1,0 +1,458 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>New Relic</title>
+
+    <link href="/stylesheets/master.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='/images/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('a#search').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 20px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2').css("padding","11px 10px 8px");
+          $('#search-on').show();
+          $('#search-off').hide();
+        });
+        $('.cancel-x').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 63px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2, #organization_bar .navbar .nav>li a#search').css("padding","16px 20px 15px");
+          $('#organization_bar .navbar .nav>li a#getinvolved').css("padding","11px 92px 8px");
+          $('#organization_bar .navbar .nav>li#docs-off .docs-list-list a').css("padding","0");
+          $('#search-on').hide();
+          $('#search-off').show();
+        });f
+        $(".togglebutton").click(function () {
+        var divname= this.value;
+          $("#"+divname).show("slow").siblings().hide("slow");
+        });
+      });
+    </script>
+
+    <!--[if lt IE 9]>
+    <style>
+        #content .container-full {background:  #ebf0fa;}
+        .call-to-contribute-box, .column-left, .column-middle, .column-right {background:#e3e8f2}
+        #footer {background:#000;}
+    </style>
+    <![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22181585-1']);
+      _gaq.push(['_setDomainName', 'cloudfoundry.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body class="docs docs_dotcom docs_dotcom_marketplace docs_dotcom_marketplace_services docs_dotcom_marketplace_services_newrelic docs_dotcom_marketplace_services_newrelic_index">
+    <img id="bg" src="/images/bg-plain-x.jpg">
+    <div id='non_footer'>
+      <div id='header'>
+        <div class='container_wide'>
+          <ul class='actions'>
+            <li class='last'>
+              <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
+            </li>
+            <li>
+              <a class='register_link' href='http://login.run.pivotal.io/login'>My Account</a>            
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id='content'>
+        <div class='logo-main'>
+          <div class='logo'>
+            <a href='http://www.cloudfoundry.com'>
+            <img src='/images/logo-cloudfoundry.png'>
+            </a>
+            <a href='http://www.gopivotal.com' target="_blank">
+            <img id="pivotal-logo" src='/images/logo-pivotal.png'>
+            </a>
+          </div>
+          <div class='cta'>
+            <a href='https://console.run.pivotal.io'>
+            <img src='/images/signup_freetrial.png'>
+            </a>
+          </div>
+        </div><!-- End of logo-main-->
+        <div class='container-full'>
+          <div id='organization_bar'>
+            <div class='navbar'>
+              <ul class='nav'>
+                <li>
+                <a href='http://www.cloudfoundry.com/use' id='use'>Using Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/run' id='run'>Running Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/getinvolved' id='getinvolved'>Get Involved</a>
+                </li>
+                <li id='docs-off'>
+                  <a href='/' id='docs'>
+                    <div id='icon-docs'></div>
+                  </a>
+                  <div id='docs-list'>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/using/app-arch/'>Using Cloud Foundry</a>
+                      <br>
+                      <a href="/docs/using/app-arch/">Application Architecture Considerations</a>
+                      <br>
+                      <a href='/docs/using/deploying-apps/'>Deploying Apps</a>
+                      <br>
+                      <a href='/docs/using/managing-apps/'>Managing Apps</a>
+                      <br>
+                      <a href='/docs/using/services.html'>Using Services</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/using/">See all</a>
+                    </div><!-- End of 1st column docs-list-list-->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/running/'>Running Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/architecture/'>Architecture</a>
+                      <br>
+                      <a href='/docs/running/bosh/'>BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf/'>Deploying with BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf-with-chef/'>Deploying with Chef</a>
+                      <br>
+                      <a href='/docs/running/micro_cloud_foundry/'>Micro Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/managing-cf/index.html'>Managing Cloud Foundry</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/running/">See all</a>
+                    </div><!-- End of column 2 docs-list-list -->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/reference/'>Reference</a>
+                      <br>
+                      <a href='/docs/reference/cc-api.html'>Cloud Foundry REST API</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/dotcom/'>CloudFoundry.com</a>
+                      <br>
+                      <a href='/docs/dotcom/integration/'>Technical Integration</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/community/'>Community</a>
+                    </div><!-- End of column 3 docs-list-list -->
+                  </div><!-- End of docs-list -->
+                </li>
+                <li id='search-off'>
+                  <a id='search'>
+                    <div class='icon-search'></div>
+                  </a>
+                </li>
+                <li id='search-on'>
+                  <a id='search2'>
+                    <form action='http://www.cloudfoundry.com/search' class='search-form' method='get' onsubmit='return submitQuery()'>
+                      <input autocomplete='off' class='search-input' id='search-query' name='q' onfocus="this.placeholder = ''" placeholder='' type='search' value=''>
+                    </form>
+                    <div class="cancel-x"></div>
+                  </a>
+                </li>
+              </ul>
+            </div><!-- End of navbar -->
+          </div><!-- End of organization_bar -->
+          <div class='content_inner'>
+            <a class="forkme" href="http://github.com/cloudfoundry/cf-docs" target="_blank">
+              <img alt="Fork me on GitHub" src="/images/ribbon_forkme.png">
+            </a>
+            <form action='http://www.cloudfoundry.com/search' class='search-docs-form' method='get' onsubmit='return submitQuery()'>
+              <input autocomplete='off' class='search-docs-input' id='search-query' name='q' onfocus="this.placeholder = 'more:docs '" placeholder='' type='search-docs' value='more:docs '>
+            </form>
+            <br clear="left">
+            
+              <div class="breadcrumbs">
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li class=""><a href="/docs/dotcom/">Pivotal CF Hosted</a></li> <li class=""><a href="/docs/dotcom/marketplace/">Marketplace</a></li> <li class=""><a href="/docs/dotcom/marketplace/services/">Services</a></li> <li class="active"><span>New Relic</span></li>
+                </ul>
+              </div>
+              <br clear="left">
+
+			
+
+              <div class="quick-links"><ul>
+<li><a href="#managing">Managing Services</a>
+
+<ul>
+<li><a href="#create">Creating a Service Instance</a></li>
+<li><a href="#bind">Binding Your Service Instance</a></li>
+<li><a href="#sso">Single Sign On</a></li>
+</ul></li>
+<li><a href="#sample-app">Sample Applications</a>
+
+<ul>
+<li><a href="#sample-rails">Rails</a></li>
+<li><a href="#sample-java">Java</a></li>
+</ul></li>
+<li><a href="#using">Using New Relic with your Application</a>
+
+<ul>
+<li><a href="#ruby">Ruby / Rails</a></li>
+<li><a href="#java">Java</a></li>
+</ul></li>
+<li><a href="#vcap-services">VCAP_SERVICES</a></li>
+<li><a href="#support">Support</a></li>
+</ul>
+</div>
+
+              <h1>New Relic</h1>
+
+            
+            <h2><a id='managing'></a>Managing Services</h2>
+
+<p><a href="/docs/using/services/managing-services.html">Managing services from the command line</a></p>
+
+<h3><a id='create'></a>Creating a Service Instance</h3>
+
+<p>An instance of this service can be provisioned via the CLI with the following command:</p>
+
+<pre class="terminal">
+$ cf create-service newrelic
+</pre>
+
+<h3><a id='bind'></a>Binding Your Service Instance</h3>
+
+<p>Bind the service instance to your app with the following command:</p>
+
+<pre class="terminal">
+$ cf bind-service
+</pre>
+
+<h3><a id='sso'></a>Single Sign On</h3>
+
+<p>To log into your New Relic Account via SSO you only need to log into the <a href="http://console.run.pivotal.io">run.pivotal.io Web Console</a>. Find your New Relic service instance on the Space page in which you created it. Clicking the Manage button will log you into the New Relic account for your instance via SSO.</p>
+
+<hr>
+
+<h2><a id='sample-app'></a>Sample Applications</h2>
+
+<h3><a id='sample-rails'></a>Rails</h3>
+
+<p><a href="https://github.com/cloudfoundry-samples/rails_sample_app/tree/newrelic">This sample Rails app</a> already has the New Relic agent included in <code>Gemfile</code>, as well as our modified configuration file in <code>config/newrelic.yml</code>. We&#39;ve even configured <code>manifest.yml</code> to create and bind to a New Relic service instance on push. All you need to do is clone and push!</p>
+
+<pre class="terminal">
+$ git clone -b newrelic git@github.com:cloudfoundry-samples/rails_sample_app.git
+$ cd rails_sample_app
+$ cf push
+</pre>
+
+<h3><a id='sample-java'></a>Java</h3>
+
+<p><a href="https://github.com/cloudfoundry-samples/spring-music/tree/newrelic">This sample Java app</a> takes advantage of the Java buildpack&#39;s zero-touch New Relic support.  The included <code>manifest.yml</code> contains configuration to automatically create and bind a new instance of the New Relic service to your application.  All you need to do is clone, build, and push!</p>
+
+<pre class="terminal">
+$ git clone -b newrelic https://github.com:cloudfoundry-samples/spring-music.git
+$ cd spring-music
+$ ./gradlew assemble
+$ cf push
+</pre>
+
+<hr>
+
+<h2><a id='using'></a>Using New Relic with your Application</h2>
+
+<p>In order for metrics for your application to be reported to New Relic, the following three requirements must be satisfied:</p>
+
+<ul>
+<li>A New Relic agent bundled with your application</li>
+<li>A configuration file the agent requires</li>
+<li>An account-specific license key configured in the configuration file</li>
+</ul>
+
+<p>All three of these things can be found by logging into your New Relic account as described above, but we want to make it even easier than that. See our language-specific solutions below.</p>
+
+<h3><a id='ruby'></a>Ruby / Rails</h3>
+
+<ol>
+<li><p>Add the New Relic agent gem to your Gemfile.</p>
+<pre class="highlight xml">gem &#39;newrelic_rpm&#39;
+</pre>
+<p>Rebuild the bundle if you want to test locally, but this isn&#39;t required because Cloud Foundry will bundle the gem when you push your app.
+<pre class="terminal">
+$ bundle install
+</pre></p></li>
+<li><p>Add a New Relic configuration file to your project. This file needs to be configured with your license key and application name, but we&#39;ve modified New Relic&#39;s config file for Ruby to automatically read your application name and license key from environment variables which are set when the app is pushed. <a href="/docs/dotcom/marketplace/services/newrelic/newrelic-ruby.yml">Download our modified newrelic.yml here</a> and save it to <code>config/newrelic.yml</code>.</p>
+
+<pre class="terminal">
+$ wget -O config/newrelic.yml http://docs.cloudfoundry.com/docs/dotcom/marketplace/services/newrelic/newrelic-ruby.yml
+</pre></li>
+<li><p>All you have left to do is push your app! If you don&#39;t already have a New Relic service instance in your space, choose to create one when prompted. If you already have a New Relic service instance in your space, choose to bind to an existing service when prompted.</p>
+
+<pre class="terminal">
+$ cf push
+</pre></li>
+<li><p>Now generate some usage on your app and log into New Relic via SSO <a href="#sso">as described above</a>; you should see data coming through!</p></li>
+</ol>
+
+<h3><a id='java'></a>Java</h3>
+
+<ol>
+<li>Build your app.</li>
+<li>Push your app to Cloud Foundry. If you don&#39;t already have a New Relic service instance in your space, choose to create one when prompted. If you already have a New Relic service instance in your space, choose to bind to an existing service when prompted.
+<pre class="terminal">
+$ cf push
+</pre></li>
+<li>Now generate some usage on your app and log into New Relic via SSO <a href="#sso">as described above</a>; you should see data coming through!</li>
+</ol>
+
+<hr>
+
+<h2><a id='vcap-services'></a>VCAP_SERVICES</h2>
+
+<p>When you bind your New Relic service instance with your application, Cloud Foundry makes a request to New Relic for the license key for your account. When you restart your application, we write this key to the <code>VCAP_SERVICES</code> environment variable.</p>
+
+<p>Format of <code>VCAP_SERVICES</code> environment variable:</p>
+<pre class="highlight xml">{
+    &quot;newrelic-n/a&quot;:[
+        {
+            &quot;name&quot;:&quot;newrelic-14e9d&quot;,
+            &quot;label&quot;:&quot;newrelic-n/a&quot;,
+            &quot;plan&quot;:&quot;standard&quot;,
+            &quot;credentials&quot;:
+                {
+                    &quot;licenseKey&quot;:&quot;2865f6f3nsig8f813af7989fccb24a699cb22a4beb&quot;
+                }
+        }
+    ]
+}
+</pre>
+<p>For more information, see <a href="/docs/using/deploying-apps/environment-variable.html">VCAP_SERVICES Environment Variable</a>.</p>
+
+<hr>
+
+<h2><a id='support'></a>Support</h2>
+
+<p><a href="/docs/dotcom/marketplace/contacting-service-providers-for-support.html">Contacting Service Providers for Support</a></p>
+
+<ul>
+<li><a href="https://support.newrelic.com/">https://support.newrelic.com/</a></li>
+<li><a href="mailto:support@newrelic.com">support@newrelic.com</a></li>
+</ul>
+
+<p>Documentation: <a href="https://newrelic.com/docs">https://newrelic.com/docs</a></p>
+
+          </div><!-- End of content_inner -->
+        </div><!-- End of container-full -->
+      </div><!-- End of content -->
+    </div><!-- End of non_footer -->
+    <div id='footer'>
+      <div id='container-footer'>
+        <div class='bg_social'>
+          <ul class='social'>
+            <li>
+            <a href='http://twitter.com/cloudfoundry' target='_blank'>
+            <img alt='Twitter' src='/images/twitter_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='https://plus.google.com/114245065906861739918/posts' target='_blank'>
+            <img alt='Google+' src='/images/g+_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://facebook.com/cloudfoundry' target='_blank'>
+            <img alt='Facebook' src='/images/facebook_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://youtube.com/cloudfoundry' target='_blank'>
+            <img alt='Youtube' src='/images/youtube_large.png'>
+            </a>
+            </li>
+          </ul>
+        </div><!-- End of bg_social -->
+        <ul class='links'>
+          <li>
+          <a href='http://www.cloudfoundry.com/about'>About</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://blog.cloudfoundry.com/'>Blog</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/partners'>Partners</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://docs.cloudfoundry.com'>Docs</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://status.cloudfoundry.com/'>Status</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/support'>Support</a>
+          </li>
+        </ul>
+        <div class='copyright'>
+          <div class='hr-horizontal-dark'></div>
+          <br>
+          <p>
+            &copy;
+            <script>
+              //<![CDATA[
+                var d = new Date();
+                document.write(d.getFullYear());
+              //]]>
+            </script>
+            GoPivotal, Inc. All rights reserved.
+            <a href='http://www.cloudfoundry.com/terms'>Terms</a>
+            <a href='http://www.gopivotal.com/privacy-policy' target='_blank'>Privacy</a>
+          </p>
+        </div><!-- End of copyright -->
+      </div><!-- End of container-footer -->
+    </div><!-- End of footer -->
+    <script type="text/javascript">
+      (function() {
+        var didInit = false;
+        function initMunchkin() {
+          if(didInit === false) {
+            didInit = true;
+            Munchkin.init('625-IUJ-009');
+          }
+        }
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+        s.onreadystatechange = function() {
+          if (this.readyState == 'complete' || this.readyState == 'loaded') {
+            initMunchkin();
+          }
+        };
+        s.onload = initMunchkin;
+        document.getElementsByTagName('head')[0].appendChild(s);
+      })();
+    </script>
+  </body>
+</html>

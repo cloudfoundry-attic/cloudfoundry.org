@@ -1,0 +1,491 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Deploying Cloud Foundry with Chef</title>
+
+    <link href="/stylesheets/master.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='/images/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('a#search').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 20px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2').css("padding","11px 10px 8px");
+          $('#search-on').show();
+          $('#search-off').hide();
+        });
+        $('.cancel-x').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 63px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2, #organization_bar .navbar .nav>li a#search').css("padding","16px 20px 15px");
+          $('#organization_bar .navbar .nav>li a#getinvolved').css("padding","11px 92px 8px");
+          $('#organization_bar .navbar .nav>li#docs-off .docs-list-list a').css("padding","0");
+          $('#search-on').hide();
+          $('#search-off').show();
+        });f
+        $(".togglebutton").click(function () {
+        var divname= this.value;
+          $("#"+divname).show("slow").siblings().hide("slow");
+        });
+      });
+    </script>
+
+    <!--[if lt IE 9]>
+    <style>
+        #content .container-full {background:  #ebf0fa;}
+        .call-to-contribute-box, .column-left, .column-middle, .column-right {background:#e3e8f2}
+        #footer {background:#000;}
+    </style>
+    <![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22181585-1']);
+      _gaq.push(['_setDomainName', 'cloudfoundry.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body class="docs docs_running docs_running_deploying-cf-with-chef docs_running_deploying-cf-with-chef_index">
+    <img id="bg" src="/images/bg-plain-x.jpg">
+    <div id='non_footer'>
+      <div id='header'>
+        <div class='container_wide'>
+          <ul class='actions'>
+            <li class='last'>
+              <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
+            </li>
+            <li>
+              <a class='register_link' href='http://login.run.pivotal.io/login'>My Account</a>            
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id='content'>
+        <div class='logo-main'>
+          <div class='logo'>
+            <a href='http://www.cloudfoundry.com'>
+            <img src='/images/logo-cloudfoundry.png'>
+            </a>
+            <a href='http://www.gopivotal.com' target="_blank">
+            <img id="pivotal-logo" src='/images/logo-pivotal.png'>
+            </a>
+          </div>
+          <div class='cta'>
+            <a href='https://console.run.pivotal.io'>
+            <img src='/images/signup_freetrial.png'>
+            </a>
+          </div>
+        </div><!-- End of logo-main-->
+        <div class='container-full'>
+          <div id='organization_bar'>
+            <div class='navbar'>
+              <ul class='nav'>
+                <li>
+                <a href='http://www.cloudfoundry.com/use' id='use'>Using Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/run' id='run'>Running Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/getinvolved' id='getinvolved'>Get Involved</a>
+                </li>
+                <li id='docs-off'>
+                  <a href='/' id='docs'>
+                    <div id='icon-docs'></div>
+                  </a>
+                  <div id='docs-list'>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/using/app-arch/'>Using Cloud Foundry</a>
+                      <br>
+                      <a href="/docs/using/app-arch/">Application Architecture Considerations</a>
+                      <br>
+                      <a href='/docs/using/deploying-apps/'>Deploying Apps</a>
+                      <br>
+                      <a href='/docs/using/managing-apps/'>Managing Apps</a>
+                      <br>
+                      <a href='/docs/using/services.html'>Using Services</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/using/">See all</a>
+                    </div><!-- End of 1st column docs-list-list-->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/running/'>Running Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/architecture/'>Architecture</a>
+                      <br>
+                      <a href='/docs/running/bosh/'>BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf/'>Deploying with BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf-with-chef/'>Deploying with Chef</a>
+                      <br>
+                      <a href='/docs/running/micro_cloud_foundry/'>Micro Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/managing-cf/index.html'>Managing Cloud Foundry</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/running/">See all</a>
+                    </div><!-- End of column 2 docs-list-list -->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/reference/'>Reference</a>
+                      <br>
+                      <a href='/docs/reference/cc-api.html'>Cloud Foundry REST API</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/dotcom/'>CloudFoundry.com</a>
+                      <br>
+                      <a href='/docs/dotcom/integration/'>Technical Integration</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/community/'>Community</a>
+                    </div><!-- End of column 3 docs-list-list -->
+                  </div><!-- End of docs-list -->
+                </li>
+                <li id='search-off'>
+                  <a id='search'>
+                    <div class='icon-search'></div>
+                  </a>
+                </li>
+                <li id='search-on'>
+                  <a id='search2'>
+                    <form action='http://www.cloudfoundry.com/search' class='search-form' method='get' onsubmit='return submitQuery()'>
+                      <input autocomplete='off' class='search-input' id='search-query' name='q' onfocus="this.placeholder = ''" placeholder='' type='search' value=''>
+                    </form>
+                    <div class="cancel-x"></div>
+                  </a>
+                </li>
+              </ul>
+            </div><!-- End of navbar -->
+          </div><!-- End of organization_bar -->
+          <div class='content_inner'>
+            <a class="forkme" href="http://github.com/cloudfoundry/cf-docs" target="_blank">
+              <img alt="Fork me on GitHub" src="/images/ribbon_forkme.png">
+            </a>
+            <form action='http://www.cloudfoundry.com/search' class='search-docs-form' method='get' onsubmit='return submitQuery()'>
+              <input autocomplete='off' class='search-docs-input' id='search-query' name='q' onfocus="this.placeholder = 'more:docs '" placeholder='' type='search-docs' value='more:docs '>
+            </form>
+            <br clear="left">
+            
+              <div class="breadcrumbs">
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li class=""><a href="/docs/running/">Running Cloud Foundry</a></li> <li class="active"><span>Deploying Cloud Foundry with Chef</span></li>
+                </ul>
+              </div>
+              <br clear="left">
+
+			
+
+              <div class="quick-links"></div>
+
+              <h1>Deploying Cloud Foundry with Chef</h1>
+
+            
+            <p>This means of deploying Cloud Foundry is an ongoing effort maintained by the Cloud Foundry community to set up a production ready PaaS. Alternatively, operations professionals are encouraged to use <a href="/docs/running/bosh/">BOSH</a> as Pivotal&#39;s supported way of providing and consuming publicly available releases.</p>
+
+<h3>Requirements</h3>
+
+<p>All the cookbooks work best with Chef client connected to a Chef server; they also work with chef-solo but may require more configuration.</p>
+
+<p>The cookbooks have been tested with Chef 10.14.4; they should also work with more recent versions in the 10.x series.</p>
+
+<h3>Cookbooks</h3>
+
+<h4>Generic components</h4>
+
+<table class="table table-hover table-striped table-bordered table-condensed">
+  <thead>
+    <th>Component name</th>
+    <th>Cookbook</th>
+    <th>Status</th>
+    <th>Source</th>
+    <th>Notes</th>
+    <th width="100px">TravisCI</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>cloud_controller</td>
+      <td><a href="http://ckbk.it/cloudfoundry-cloud_controller" target="_blank">cloudfoundry-cloud_controller</a></td>
+      <td>Released</td>
+      <td><a href="https://github.com/zephirworks/cloudfoundry-cloud_controller-cookbook" target="_blank">GitHub</a></td>
+      <td>Supports only cloud_controller v1 at this time; cloud_controller v2 coming soon.</td>
+      <td><a href="https://travis-ci.org/zephirworks/cloudfoundry-cloud_controller-cookbook"><img alt="Build Status" src="https://travis-ci.org/zephirworks/cloudfoundry-cloud_controller-cookbook.png?branch=master"></a></td>
+    </tr>
+    <tr>
+      <td>health_manager</td>
+      <td><a href="http://ckbk.it/cloudfoundry-health_manager" target="_blank">cloudfoundry-health_manager</a></td>
+      <td>Released</td>
+      <td><a href="https://github.com/zephirworks/cloudfoundry-health_manager-cookbook" target="_blank">GitHub</a></td>
+      <td>Supports only health_manager &ldquo;next&rdquo;.</td>
+      <td><a href="https://travis-ci.org/zephirworks/cloudfoundry-health_manager-cookbook"><img alt="Build Status" src="https://travis-ci.org/zephirworks/cloudfoundry-health_manager-cookbook.png?branch=master"></a></td>
+    </tr>
+    <tr>
+      <td>DEA</td>
+      <td><a href="http://ckbk.it/cloudfoundry-dea" target="_blank">cloudfoundry-dea</a></td>
+      <td>Released</td>
+      <td><a href="https://github.com/zephirworks/cloudfoundry-dea-cookbook" target="_blank">GitHub</a></td>
+      <td>Supports only the legacy DEA. Support for DEA ng coming soon.</td>
+      <td><a href="https://travis-ci.org/zephirworks/cloudfoundry-dea-cookbook"><img alt="Build Status" src="https://travis-ci.org/zephirworks/cloudfoundry-dea-cookbook.png?branch=master"></a></td>
+    </tr>
+    <tr>
+      <td rowspan="2">router</td>
+      <td><a href="http://ckbk.it/cloudfoundry-nginx" target="_blank">cloudfoundry-nginx</a></td>
+      <td>Released</td>
+      <td><a href="https://github.com/zephirworks/cloudfoundry-nginx-cookbook" target="_blank">GitHub</a></td>
+      <td>Installs nginx 1.2.x for use by the router.</td>
+      <td><a href="https://travis-ci.org/zephirworks/cloudfoundry-nginx-cookbook"><img alt="Build Status" src="https://travis-ci.org/zephirworks/cloudfoundry-nginx-cookbook.png?branch=master"></a></td>
+    </tr>
+    <tr>
+      <td><a href="http://ckbk.it/cloudfoundry-router" target="_blank">cloudfoundry-router</a></td>
+      <td>Released</td>
+      <td><a href="https://github.com/zephirworks/cloudfoundry-router-cookbook" target="_blank">GitHub</a></td>
+      <td></td>
+      <td><a href="https://travis-ci.org/zephirworks/cloudfoundry-router-cookbook"><img alt="Build Status" src="https://travis-ci.org/zephirworks/cloudfoundry-router-cookbook.png?branch=master"></a></td>
+    </tr>
+    <tr>
+      <td>stager</td>
+      <td><a href="http://ckbk.it/cloudfoundry-stager" target="_blank">cloudfoundry-stager</a></td>
+      <td>Released</td>
+      <td><a href="https://github.com/zephirworks/cloudfoundry-stager-cookbook" target="_blank">GitHub</a></td>
+      <td></td>
+      <td><a href="https://travis-ci.org/zephirworks/cloudfoundry-stager-cookbook"><img alt="Build Status" src="https://travis-ci.org/zephirworks/cloudfoundry-stager-cookbook.png?branch=master"></a></td>
+    </tr>
+  </thead>
+</table>
+
+<h4>Runtimes</h4>
+
+<table class="table table-hover table-striped table-bordered table-condensed">
+  <thead>
+    <th>Runtime name</th>
+    <th>Cookbook</th>
+    <th>State</th>
+    <th>Source</th>
+    <th>Notes</th>
+    <th width="100px">TravisCI</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ruby</td>
+      <td><a href="http://ckbk.it/cloudfoundry-ruby-runtime" target="_blank">cloudfoundry-ruby-runtime</a></td>
+      <td>Released</td>
+      <td><a href="https://github.com/zephirworks/cloudfoundry-ruby-runtime-cookbook" target="_blank">GitHub</a></td>
+      <td>Supports MRI Ruby 1.8.7, 1.9.2 and 1.9.3.</td>
+      <td><a href="https://travis-ci.org/zephirworks/cloudfoundry-ruby-runtime-cookbook"><img alt="Build Status" src="https://travis-ci.org/zephirworks/cloudfoundry-ruby-runtime-cookbook.png?branch=master"></a></td>
+    </tr>
+    <tr>
+      <td>NodeJS</td>
+      <td></td>
+      <td>In progress</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>Services</h4>
+
+<table class="table table-hover table-striped table-bordered table-condensed">
+  <thead>
+    <th>Service name</th>
+    <th>Cookbook</th>
+    <th>State</th>
+    <th>Source</th>
+    <th>Notes</th>
+    <th width="100px">TravisCI</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Filesystem</td>
+      <td><a href="http://ckbk.it/cloudfoundry-filesystem-service" target="_blank">cloudfoundry-filesystem-service</a></td>
+      <td>Released</td>
+      <td><a href="https://github.com/zephirworks/cloudfoundry-filesystem-service-cookbook" target="_blank">GitHub</a></td>
+      <td>Supports only the &ldquo;legacy&rdquo; service.</td>
+      <td><a href="https://travis-ci.org/zephirworks/cloudfoundry-filesystem-service-cookbook"><img alt="Build Status" src="https://travis-ci.org/zephirworks/cloudfoundry-filesystem-service-cookbook.png?branch=master"></a></td>
+    </tr>
+    <tr>
+      <td>MongoDB</td>
+      <td><a href="http://ckbk.it/cloudfoundry-mongodb-service" target="_blank">cloudfoundry-mongodb-service</a></td>
+      <td>Released</td>
+      <td><a href="https://github.com/zephirworks/cloudfoundry-mongodb-service-cookbook" target="_blank">GitHub</a></td>
+      <td>Supports only the &ldquo;legacy&rdquo; service.</td>
+      <td><a href="https://travis-ci.org/zephirworks/cloudfoundry-mongodb-service-cookbook"><img alt="Build Status" src="https://travis-ci.org/zephirworks/cloudfoundry-mongodb-service-cookbook.png?branch=master"></a></td>
+    </tr>
+    <tr>
+      <td>RabbitMQ</td>
+      <td><a href="http://ckbk.it/cloudfoundry-rabbitmq-service" target="_blank">cloudfoundry-rabbitmq-service</a></td>
+      <td>Released</td>
+      <td><a href="https://github.com/zephirworks/cloudfoundry-rabbitmq-service-cookbook" target="_blank">GitHub</a></td>
+      <td>Supports only the &ldquo;legacy&rdquo; service.</td>
+      <td><a href="https://travis-ci.org/zephirworks/cloudfoundry-rabbitmq-service-cookbook"><img alt="Build Status" src="https://travis-ci.org/zephirworks/cloudfoundry-rabbitmq-service-cookbook.png?branch=master"></a></td>
+    </tr>
+    <tr>
+      <td>Service broker</td>
+      <td><a href="http://ckbk.it/cloudfoundry-service_broker" target="_blank">cloudfoundry-service_broker</a></td>
+      <td>Released</td>
+      <td><a href="https://github.com/zephirworks/cloudfoundry-service_broker-cookbook" target="_blank">GitHub</a></td>
+      <td>Supports only the &ldquo;legacy&rdquo; service.</td>
+      <td><a href="https://travis-ci.org/zephirworks/cloudfoundry-service_broker-cookbook"><img alt="Build Status" src="https://travis-ci.org/zephirworks/cloudfoundry-service_broker-cookbook.png?branch=master"></a></td>
+    </tr>
+    <tr>
+      <td>MySQL</td>
+      <td></td>
+      <td>In progress</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>Framework cookbooks</h4>
+
+<p>These cookbooks are required because the other cookbooks depend on them, but
+they usually have no serviceable parts:</p>
+
+<table class="table table-hover table-striped table-bordered table-condensed">
+  <thead>
+    <th>Cookbook</th>
+    <th>Status</th>
+    <th>Source</th>
+    <th>Notes</th>
+    <th width="100px">TravisCI</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="http://ckbk.it/cloudfoundry" target="_blank">cloudfoundry</a></td>
+      <td>Released</td>
+      <td><a href="https://github.com/zephirworks/cloudfoundry-cookbook" target="_blank">GitHub</a></td>
+      <td>Mandatory dependency for all other cookbooks.</td>
+      <td><a href="https://travis-ci.org/zephirworks/cloudfoundry-cookbook"><img alt="Build Status" src="https://travis-ci.org/zephirworks/cloudfoundry-cookbook.png?branch=master"></a></td>
+    </tr>
+    <tr>
+      <td><a href="http://ckbk.it/cloudfoundry_service" target="_blank">cloudfoundry_service</a></td>
+      <td>Released</td>
+      <td><a href="https://github.com/zephirworks/cloudfoundry_service-cookbook" target="_blank">GitHub</a></td>
+      <td>Mandatory dependency for all service cookbooks.</td>
+      <td><a href="https://travis-ci.org/zephirworks/cloudfoundry_service-cookbook"><img alt="Build Status" src="https://travis-ci.org/zephirworks/cloudfoundry_service-cookbook.png?branch=master"></a></td>
+    </tr>
+  </tbody>
+</table>
+
+          </div><!-- End of content_inner -->
+        </div><!-- End of container-full -->
+      </div><!-- End of content -->
+    </div><!-- End of non_footer -->
+    <div id='footer'>
+      <div id='container-footer'>
+        <div class='bg_social'>
+          <ul class='social'>
+            <li>
+            <a href='http://twitter.com/cloudfoundry' target='_blank'>
+            <img alt='Twitter' src='/images/twitter_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='https://plus.google.com/114245065906861739918/posts' target='_blank'>
+            <img alt='Google+' src='/images/g+_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://facebook.com/cloudfoundry' target='_blank'>
+            <img alt='Facebook' src='/images/facebook_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://youtube.com/cloudfoundry' target='_blank'>
+            <img alt='Youtube' src='/images/youtube_large.png'>
+            </a>
+            </li>
+          </ul>
+        </div><!-- End of bg_social -->
+        <ul class='links'>
+          <li>
+          <a href='http://www.cloudfoundry.com/about'>About</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://blog.cloudfoundry.com/'>Blog</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/partners'>Partners</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://docs.cloudfoundry.com'>Docs</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://status.cloudfoundry.com/'>Status</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/support'>Support</a>
+          </li>
+        </ul>
+        <div class='copyright'>
+          <div class='hr-horizontal-dark'></div>
+          <br>
+          <p>
+            &copy;
+            <script>
+              //<![CDATA[
+                var d = new Date();
+                document.write(d.getFullYear());
+              //]]>
+            </script>
+            GoPivotal, Inc. All rights reserved.
+            <a href='http://www.cloudfoundry.com/terms'>Terms</a>
+            <a href='http://www.gopivotal.com/privacy-policy' target='_blank'>Privacy</a>
+          </p>
+        </div><!-- End of copyright -->
+      </div><!-- End of container-footer -->
+    </div><!-- End of footer -->
+    <script type="text/javascript">
+      (function() {
+        var didInit = false;
+        function initMunchkin() {
+          if(didInit === false) {
+            didInit = true;
+            Munchkin.init('625-IUJ-009');
+          }
+        }
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+        s.onreadystatechange = function() {
+          if (this.readyState == 'complete' || this.readyState == 'loaded') {
+            initMunchkin();
+          }
+        };
+        s.onload = initMunchkin;
+        document.getElementsByTagName('head')[0].appendChild(s);
+      })();
+    </script>
+  </body>
+</html>

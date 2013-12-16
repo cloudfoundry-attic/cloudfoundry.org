@@ -1,0 +1,576 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Deploying Micro BOSH</title>
+
+    <link href="/stylesheets/master.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='/images/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('a#search').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 20px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2').css("padding","11px 10px 8px");
+          $('#search-on').show();
+          $('#search-off').hide();
+        });
+        $('.cancel-x').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 63px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2, #organization_bar .navbar .nav>li a#search').css("padding","16px 20px 15px");
+          $('#organization_bar .navbar .nav>li a#getinvolved').css("padding","11px 92px 8px");
+          $('#organization_bar .navbar .nav>li#docs-off .docs-list-list a').css("padding","0");
+          $('#search-on').hide();
+          $('#search-off').show();
+        });f
+        $(".togglebutton").click(function () {
+        var divname= this.value;
+          $("#"+divname).show("slow").siblings().hide("slow");
+        });
+      });
+    </script>
+
+    <!--[if lt IE 9]>
+    <style>
+        #content .container-full {background:  #ebf0fa;}
+        .call-to-contribute-box, .column-left, .column-middle, .column-right {background:#e3e8f2}
+        #footer {background:#000;}
+    </style>
+    <![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22181585-1']);
+      _gaq.push(['_setDomainName', 'cloudfoundry.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body class="docs docs_running docs_running_deploying-cf docs_running_deploying-cf_vsphere docs_running_deploying-cf_vsphere_deploying_micro_bosh">
+    <img id="bg" src="/images/bg-plain-x.jpg">
+    <div id='non_footer'>
+      <div id='header'>
+        <div class='container_wide'>
+          <ul class='actions'>
+            <li class='last'>
+              <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
+            </li>
+            <li>
+              <a class='register_link' href='http://login.run.pivotal.io/login'>My Account</a>            
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id='content'>
+        <div class='logo-main'>
+          <div class='logo'>
+            <a href='http://www.cloudfoundry.com'>
+            <img src='/images/logo-cloudfoundry.png'>
+            </a>
+            <a href='http://www.gopivotal.com' target="_blank">
+            <img id="pivotal-logo" src='/images/logo-pivotal.png'>
+            </a>
+          </div>
+          <div class='cta'>
+            <a href='https://console.run.pivotal.io'>
+            <img src='/images/signup_freetrial.png'>
+            </a>
+          </div>
+        </div><!-- End of logo-main-->
+        <div class='container-full'>
+          <div id='organization_bar'>
+            <div class='navbar'>
+              <ul class='nav'>
+                <li>
+                <a href='http://www.cloudfoundry.com/use' id='use'>Using Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/run' id='run'>Running Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/getinvolved' id='getinvolved'>Get Involved</a>
+                </li>
+                <li id='docs-off'>
+                  <a href='/' id='docs'>
+                    <div id='icon-docs'></div>
+                  </a>
+                  <div id='docs-list'>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/using/app-arch/'>Using Cloud Foundry</a>
+                      <br>
+                      <a href="/docs/using/app-arch/">Application Architecture Considerations</a>
+                      <br>
+                      <a href='/docs/using/deploying-apps/'>Deploying Apps</a>
+                      <br>
+                      <a href='/docs/using/managing-apps/'>Managing Apps</a>
+                      <br>
+                      <a href='/docs/using/services.html'>Using Services</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/using/">See all</a>
+                    </div><!-- End of 1st column docs-list-list-->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/running/'>Running Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/architecture/'>Architecture</a>
+                      <br>
+                      <a href='/docs/running/bosh/'>BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf/'>Deploying with BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf-with-chef/'>Deploying with Chef</a>
+                      <br>
+                      <a href='/docs/running/micro_cloud_foundry/'>Micro Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/managing-cf/index.html'>Managing Cloud Foundry</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/running/">See all</a>
+                    </div><!-- End of column 2 docs-list-list -->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/reference/'>Reference</a>
+                      <br>
+                      <a href='/docs/reference/cc-api.html'>Cloud Foundry REST API</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/dotcom/'>CloudFoundry.com</a>
+                      <br>
+                      <a href='/docs/dotcom/integration/'>Technical Integration</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/community/'>Community</a>
+                    </div><!-- End of column 3 docs-list-list -->
+                  </div><!-- End of docs-list -->
+                </li>
+                <li id='search-off'>
+                  <a id='search'>
+                    <div class='icon-search'></div>
+                  </a>
+                </li>
+                <li id='search-on'>
+                  <a id='search2'>
+                    <form action='http://www.cloudfoundry.com/search' class='search-form' method='get' onsubmit='return submitQuery()'>
+                      <input autocomplete='off' class='search-input' id='search-query' name='q' onfocus="this.placeholder = ''" placeholder='' type='search' value=''>
+                    </form>
+                    <div class="cancel-x"></div>
+                  </a>
+                </li>
+              </ul>
+            </div><!-- End of navbar -->
+          </div><!-- End of organization_bar -->
+          <div class='content_inner'>
+            <a class="forkme" href="http://github.com/cloudfoundry/cf-docs" target="_blank">
+              <img alt="Fork me on GitHub" src="/images/ribbon_forkme.png">
+            </a>
+            <form action='http://www.cloudfoundry.com/search' class='search-docs-form' method='get' onsubmit='return submitQuery()'>
+              <input autocomplete='off' class='search-docs-input' id='search-query' name='q' onfocus="this.placeholder = 'more:docs '" placeholder='' type='search-docs' value='more:docs '>
+            </form>
+            <br clear="left">
+            
+              <div class="breadcrumbs">
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li class=""><a href="/docs/running/">Running Cloud Foundry</a></li> <li class=""><a href="/docs/running/deploying-cf/">Deploying Cloud Foundry with BOSH</a></li> <li class=""><a href="/docs/running/deploying-cf/vsphere/">Deploying Cloud Foundry on vSphere</a></li> <li class="active"><span>Deploying Micro BOSH</span></li>
+                </ul>
+              </div>
+              <br clear="left">
+
+			
+
+              <div class="quick-links"><ul>
+<li><a href="#bootstrap">BOSH Bootstrap</a>
+
+<ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#config">Configuration</a></li>
+<li><a href="#config-vcenter">vCenter Configuration</a></li>
+</ul></li>
+<li><a href="#deploy">Deployment</a>
+
+<ul>
+<li><a href="#delete">Deleting a Micro BOSH Deployment</a></li>
+<li><a href="#verify">Checking Status of a Micro BOSH Deploy</a></li>
+<li><a href="#listing">Listing Deployments</a></li>
+<li><a href="#apply-spec">Applying a Specification</a></li>
+<li><a href="#send-message">Sending Messages to the Micro BOSH Agent</a></li>
+</ul></li>
+</ul>
+</div>
+
+              <h1>Deploying Micro BOSH</h1>
+
+            
+            <p>Installation of BOSH is done using micro BOSH, which is a single VM that includes all of the BOSH components. If you want to play around with BOSH, or create a simple development setup, you can install micro BOSH using the BOSH Deployer. If you would like to use BOSH in production to manage a distributed system, you also use the BOSH Deployer, install micro BOSH, and then use it as a means to deploy the final distributed system on multiple VMs.</p>
+
+<p>A good way to think about this two step process is to consider that BOSH is a distributed system in itself. Since BOSH&#39;s core purpose is to deploy and manage distributed systems, it makes sense that we would use it to deploy itself. On the BOSH team, we gleefully refer to this as <a href="http://en.wikipedia.org/wiki/Inception">Inception</a>.</p>
+
+<h2><a id="bootstrap"></a>BOSH Bootstrap</h2>
+
+<h3><a id="prerequisites"></a>Prerequisites</h3>
+
+<p>We recommend that you run the BOSH bootstrap from Ubuntu since it is the distribution used by the BOSH team, and has been thoroughly tested.</p>
+
+<ul>
+<li>Install some core packages on Ubuntu that the BOSH deployer depends on.</li>
+</ul>
+
+<pre class="terminal">
+$ sudo apt-get -y install libsqlite3-dev genisoimage
+</pre>
+
+<ul>
+<li><p>Install Ruby and RubyGems. Refer to the <a href="/docs/common/install_ruby.html">Installing Ruby</a> page for help with Ruby installation. </p></li>
+<li><p>Install the BOSH Deployer Ruby gem.</p></li>
+</ul>
+
+<pre class="terminal">
+$ gem install bosh_cli --pre 
+$ gem install bosh_cli_plugin_micro --pre
+</pre>
+
+<p>Once you have installed the deployer, you will see some extra commands appear after typing <code>bosh</code> on your command line.</p>
+
+<p><em>Note</em>: The <code>bosh micro</code> commands should be run within a micro BOSH deployment directory.</p>
+
+<pre class="terminal">
+$ bosh help micro
+  aws bootstrap micro
+      rm deployments dir, creates a deployments/micro/micro_bosh.yml and deploys the microbosh
+
+  micro
+      show micro bosh sub-commands
+
+  micro agent <args>
+      Send agent messages
+
+      Message Types:
+
+      start - Start all jobs on MicroBOSH
+
+      stop - Stop all jobs on MicroBOSH
+
+      ping - Check to see if the agent is responding
+
+      drain TYPE SPEC - Tell the agent to begin draining
+        TYPE - One of 'shutdown', 'update' or 'status'.
+        SPEC - The drain spec to use.
+
+      state [full] - Get the state of a system
+        full - Get additional information about system vitals
+
+      list_disk - List disk CIDs mounted on the system
+
+      migrate_disk OLD NEW - Migrate a disk
+        OLD - The CID of the source disk.
+        NEW - The CID of the destination disk.
+
+      mount_disk CID - Mount a disk on the system
+        CID - The cloud ID of the disk to mount.
+
+      unmount_disk CID - Unmount a disk from the system
+        CID - The cloud ID of the disk to unmount.
+
+  micro apply <spec>
+      Apply spec
+
+  micro delete
+      Delete micro BOSH instance (including persistent disk)
+
+  micro deploy [<stemcell>] [--update] [--update-if-exists]
+      Deploy a micro BOSH instance to the currently selected deployment
+      --update                              update existing instance
+      --update-if-exists                    create new or update existing instance
+
+  micro deployment [<name>]
+      Choose micro deployment to work with, or display current deployment
+
+  micro deployments
+      Show the list of deployments
+
+  micro status
+      Display micro BOSH deployment status  
+</pre>
+
+<h3><a id="config"></a>Configuration</h3>
+
+<p>For a minimal vSphere configuration example, see <a href="https://github.com/cloudfoundry/bosh/blob/master/bosh_cli_plugin_micro/spec/assets/test-bootstrap-config.yml">here</a>. Note that <code>disk_path</code> is <code>BOSH_Deployer</code> rather than <code>BOSH_Disks</code>. A datastore folder other than <code>BOSH_Disks</code> is required if your vCenter hosts other Directors. The <code>disk_path</code> folder needs to be created manually. Also, your configuration should live inside a <code>deployments</code> directory and follow the convention of having a <code>$name</code> subdir containing <code>micro_bosh.yml</code>, where <code>$name</code> is your deployment name.</p>
+
+<p>For example:</p>
+
+<pre class="terminal">
+$ find deployments -name micro_bosh.yml
+deployments/vcs01/micro_bosh.yml
+deployments/dev32/micro_bosh.yml
+deployments/dev33/micro_bosh.yml
+</pre>
+
+<p>Deployment state is persisted to <code>&lt;current directory&gt;/bosh-deployments.yml</code>.</p>
+
+<h3><a id="config-vcenter"></a>vCenter Configuration</h3>
+
+<p>The vCenter configuration section looks like the following:</p>
+<pre class="highlight yaml">  <span class="s">cloud</span><span class="p">:</span>
+    <span class="s">plugin</span><span class="p">:</span> <span class="s">vsphere</span>
+    <span class="s">properties</span><span class="p">:</span>
+      <span class="s">agent</span><span class="p">:</span>
+        <span class="s">ntp</span><span class="p">:</span>
+          <span class="p">-</span> <span class="s">&lt;ntp_host_1&gt;</span>
+          <span class="p">-</span> <span class="s">&lt;ntp_host_2&gt;</span>
+       <span class="s">vcenters</span><span class="p">:</span>
+         <span class="p">-</span> <span class="s">host</span><span class="p">:</span> <span class="s">&lt;vcenter_ip&gt;</span>
+           <span class="s">user</span><span class="p">:</span> <span class="s">&lt;vcenter_userid&gt;</span>
+           <span class="s">password</span><span class="p">:</span> <span class="s">&lt;vcenter_password&gt;</span>
+           <span class="s">datacenters</span><span class="p">:</span>
+             <span class="p">-</span> <span class="s">name</span><span class="p">:</span> <span class="s">&lt;datacenter_name&gt;</span>
+               <span class="s">vm_folder</span><span class="p">:</span> <span class="s">&lt;vm_folder_name&gt;</span>
+               <span class="s">template_folder</span><span class="p">:</span> <span class="s">&lt;template_folder_name&gt;</span>
+               <span class="s">disk_path</span><span class="p">:</span> <span class="s">&lt;subdir_to_store_disks&gt;</span>
+               <span class="s">datastore_pattern</span><span class="p">:</span> <span class="s">&lt;data_store_pattern&gt;</span>
+               <span class="s">persistent_datastore_pattern</span><span class="p">:</span> <span class="s">&lt;persistent_datastore_pattern&gt;</span>
+               <span class="s">allow_mixed_datastores</span><span class="p">:</span> <span class="s">&lt;true_if_persistent_datastores_and_datastore_patterns_are_the_same&gt;</span>
+               <span class="s">clusters</span><span class="p">:</span>
+               <span class="p">-</span> <span class="s">&lt;cluster_name&gt;</span><span class="p">:</span>
+                   <span class="s">resource_pool</span><span class="p">:</span> <span class="s">&lt;resource_pool_name&gt;</span>
+</pre>
+<p>If you want to create a role for the BOSH user in vCenter, the privileges are defined <a href="/docs/running/deploying-cf/vsphere/vcenter_user_privileges.html">here</a>.</p>
+
+<p>Before you can run micro BOSH deployer, you have to do the following within vCenter:</p>
+
+<ol>
+<li>Create the vm_folder</li>
+<li>Create the template_folder</li>
+<li>Create the disk_path in the appropriate datastores</li>
+<li>Create the resource_pool</li>
+</ol>
+
+<p>Resource pool is optional. Without a resource pool the cluster property looks like:</p>
+<pre class="highlight yaml">               <span class="s">persistent_datastore_pattern</span><span class="p">:</span> <span class="s">&lt;datastore_pattern&gt;</span>
+               <span class="s">allow_mixed_datastores</span><span class="p">:</span> <span class="s">&lt;true_if_persistent_datastores_and_datastore_patterns_are_the_same&gt;</span>
+               <span class="s">clusters</span><span class="p">:</span>
+               <span class="p">-</span> <span class="s">&lt;cluster_name&gt;</span>
+</pre>
+<p>The datastore pattern above could just be the name of a datastore or some regular expression matching the datastore name.</p>
+
+<p>If you have a datastore called &ldquo;vc<em>data</em>store_1&rdquo; and you would like to use this datastore for both persistent and non persistent disks, your config would look like:</p>
+<pre class="highlight yaml">               <span class="s">datastore_pattern</span><span class="p">:</span> <span class="s">vc_data_store_1</span>
+               <span class="s">persistent_datastore_pattern</span><span class="p">:</span>  <span class="s">vc_data_store_1</span>
+               <span class="s">allow_mixed_datastores</span><span class="p">:</span> <span class="s">true</span>
+</pre>
+<p>If you have 2 datastores called &ldquo;vc<em>data</em>store<em>1&rdquo;, &ldquo;vc</em>data<em>store</em>2&rdquo; and you would like to use both datastore for both persistent and non persistent disks, your config would look like:</p>
+<pre class="highlight yaml">               <span class="s">datastore_pattern</span><span class="p">:</span> <span class="s">vc_data_store_?</span>
+               <span class="s">persistent_datastore_pattern</span><span class="p">:</span>  <span class="s">vc_data_store_?</span>
+               <span class="s">allow_mixed_datastores</span><span class="p">:</span> <span class="s">true</span>
+</pre>
+<p>If you have 2 datastores called &ldquo;vnx:1&rdquo; and &ldquo;vnx:2&rdquo;, and you would like to separate your persistent and non persistent disks, your config would look like:</p>
+<pre class="highlight yaml">               <span class="s">datastore_pattern</span><span class="p">:</span> <span class="s">vnx:1</span>
+               <span class="s">persistent_datastore_pattern</span><span class="p">:</span> <span class="s">vnx:2</span>
+               <span class="s">allow_mixed_datastores</span><span class="p">:</span> <span class="s">false</span>
+</pre>
+<h2><a id="deploy"></a>Deployment</h2>
+
+<p>Download a BOSH Stemcell:</p>
+
+<pre class="terminal">
+$ bosh public stemcells
++---------------------------------------------+
+| Name                                        |
++---------------------------------------------+
+| bosh-stemcell-1365-aws-xen-ubuntu.tgz       |
+| light-bosh-stemcell-1365-aws-xen-ubuntu.tgz |
+| bosh-stemcell-1365-openstack-kvm-ubuntu.tgz |
+| bosh-stemcell-1365-vsphere-esxi-ubuntu.tgz  |
+| bosh-stemcell-1365-vsphere-esxi-centos.tgz  |
++---------------------------------------------+
+To download use `bosh download public stemcell <stemcell_name>'. For full url use --full.
+
+$ bosh download public stemcell bosh-stemcell-XXXX-vsphere-esxi-ubuntu.tgz
+</pre>
+
+<p>Set the micro BOSH Deployment using:</p>
+
+<pre class="terminal">
+$ cd /var/vcap/deployments
+$ bosh micro deployment dev33
+Deployment set to '/var/vcap/deployments/dev33/micro_bosh.yml'
+</pre>
+
+<p>Deploy a new micro BOSH instance:</p>
+
+<pre class="terminal">
+$ bosh micro deploy bosh-stemcell-XXXX-vsphere-esxi-ubuntu.tgz
+</pre>
+
+<p>Update an existing micro BOSH instance. The existing persistent disk will be attached to the new VM:</p>
+
+<pre class="terminal">
+$ bosh micro deploy bosh-stemcell-XXXX-vsphere-esxi-ubuntu.tgz --update
+</pre>
+
+<h3><a id="delete"></a>Deleting a Micro BOSH Deployment</h3>
+
+<p>The <code>delete</code> command will delete the VM, Stemcell, and persistent disk:</p>
+
+<pre class="terminal">
+$ bosh micro delete
+</pre>
+
+<h3><a id="verify"></a>Checking Status of a Micro BOSH Deploy</h3>
+
+<p>The <code>status</code> command will show the persisted state for a given micro BOSH instance.</p>
+
+<pre class="terminal">
+$ bosh micro status
+Stemcell CID   sc-1744775e-869d-4f72-ace0-6303385ef25a
+Stemcell name  bosh-stemcell-1341-vsphere-esxi-ubuntu
+VM CID         vm-ef943451-b46d-437f-b5a5-debbe6a305b3
+Disk CID       disk-5aefc4b4-1a22-4fb5-bd33-1c3cdb5da16f
+Micro BOSH CID bm-fa74d53a-1032-4c40-a262-9c8a437ee6e6
+Deployment     /home/user/cloudfoundry/bosh/deployments/micro_bosh/micro_bosh.yml
+Target         https://192.168.9.20:25555 #IP Address of the Director
+</pre>
+
+<h3><a id="listing"></a>Listing Deployments</h3>
+
+<p>The <code>deployments</code> command prints a table view of <code>bosh-deployments.yml</code>:</p>
+
+<pre class="terminal">
+$ bosh micro deployments
+</pre>
+
+<p>The files in your current directory need to be saved if you later want to be able to update your micro BOSH instance. They are all text files, so you can commit them to a git repository to make sure they are safe in case your bootstrap VM goes away.</p>
+
+<h3><a id="apply-spec"></a>Applying a Specification</h3>
+
+<p>The micro-bosh-stemcell includes an embedded <code>apply_spec.yml</code>. This command can be used to apply a different spec to an existing instance. The <code>apply_spec.yml</code> properties are merged with your Deployment&#39;s <code>network.ip</code> and <code>cloud.properties.vcenters</code> properties.</p>
+
+<pre class="terminal">
+$ bosh micro apply apply_spec.yml
+</pre>
+
+<h3><a id="send-message"></a>Sending Messages to the Micro BOSH Agent</h3>
+
+<p>The <code>bosh</code> CLI can send messages over HTTP to the agent using the <code>agent</code> command.</p>
+
+<pre class="terminal">
+$ bosh micro agent ping
+"pong"
+</pre>
+
+          </div><!-- End of content_inner -->
+        </div><!-- End of container-full -->
+      </div><!-- End of content -->
+    </div><!-- End of non_footer -->
+    <div id='footer'>
+      <div id='container-footer'>
+        <div class='bg_social'>
+          <ul class='social'>
+            <li>
+            <a href='http://twitter.com/cloudfoundry' target='_blank'>
+            <img alt='Twitter' src='/images/twitter_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='https://plus.google.com/114245065906861739918/posts' target='_blank'>
+            <img alt='Google+' src='/images/g+_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://facebook.com/cloudfoundry' target='_blank'>
+            <img alt='Facebook' src='/images/facebook_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://youtube.com/cloudfoundry' target='_blank'>
+            <img alt='Youtube' src='/images/youtube_large.png'>
+            </a>
+            </li>
+          </ul>
+        </div><!-- End of bg_social -->
+        <ul class='links'>
+          <li>
+          <a href='http://www.cloudfoundry.com/about'>About</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://blog.cloudfoundry.com/'>Blog</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/partners'>Partners</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://docs.cloudfoundry.com'>Docs</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://status.cloudfoundry.com/'>Status</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/support'>Support</a>
+          </li>
+        </ul>
+        <div class='copyright'>
+          <div class='hr-horizontal-dark'></div>
+          <br>
+          <p>
+            &copy;
+            <script>
+              //<![CDATA[
+                var d = new Date();
+                document.write(d.getFullYear());
+              //]]>
+            </script>
+            GoPivotal, Inc. All rights reserved.
+            <a href='http://www.cloudfoundry.com/terms'>Terms</a>
+            <a href='http://www.gopivotal.com/privacy-policy' target='_blank'>Privacy</a>
+          </p>
+        </div><!-- End of copyright -->
+      </div><!-- End of container-footer -->
+    </div><!-- End of footer -->
+    <script type="text/javascript">
+      (function() {
+        var didInit = false;
+        function initMunchkin() {
+          if(didInit === false) {
+            didInit = true;
+            Munchkin.init('625-IUJ-009');
+          }
+        }
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+        s.onreadystatechange = function() {
+          if (this.readyState == 'complete' || this.readyState == 'loaded') {
+            initMunchkin();
+          }
+        };
+        s.onload = initMunchkin;
+        document.getElementsByTagName('head')[0].appendChild(s);
+      })();
+    </script>
+  </body>
+</html>

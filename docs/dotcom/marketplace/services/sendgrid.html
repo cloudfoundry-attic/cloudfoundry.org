@@ -1,0 +1,525 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>SendGrid</title>
+
+    <link href="/stylesheets/master.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='/images/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('a#search').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 20px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2').css("padding","11px 10px 8px");
+          $('#search-on').show();
+          $('#search-off').hide();
+        });
+        $('.cancel-x').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 63px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2, #organization_bar .navbar .nav>li a#search').css("padding","16px 20px 15px");
+          $('#organization_bar .navbar .nav>li a#getinvolved').css("padding","11px 92px 8px");
+          $('#organization_bar .navbar .nav>li#docs-off .docs-list-list a').css("padding","0");
+          $('#search-on').hide();
+          $('#search-off').show();
+        });f
+        $(".togglebutton").click(function () {
+        var divname= this.value;
+          $("#"+divname).show("slow").siblings().hide("slow");
+        });
+      });
+    </script>
+
+    <!--[if lt IE 9]>
+    <style>
+        #content .container-full {background:  #ebf0fa;}
+        .call-to-contribute-box, .column-left, .column-middle, .column-right {background:#e3e8f2}
+        #footer {background:#000;}
+    </style>
+    <![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22181585-1']);
+      _gaq.push(['_setDomainName', 'cloudfoundry.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body class="docs docs_dotcom docs_dotcom_marketplace docs_dotcom_marketplace_services docs_dotcom_marketplace_services_sendgrid">
+    <img id="bg" src="/images/bg-plain-x.jpg">
+    <div id='non_footer'>
+      <div id='header'>
+        <div class='container_wide'>
+          <ul class='actions'>
+            <li class='last'>
+              <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
+            </li>
+            <li>
+              <a class='register_link' href='http://login.run.pivotal.io/login'>My Account</a>            
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id='content'>
+        <div class='logo-main'>
+          <div class='logo'>
+            <a href='http://www.cloudfoundry.com'>
+            <img src='/images/logo-cloudfoundry.png'>
+            </a>
+            <a href='http://www.gopivotal.com' target="_blank">
+            <img id="pivotal-logo" src='/images/logo-pivotal.png'>
+            </a>
+          </div>
+          <div class='cta'>
+            <a href='https://console.run.pivotal.io'>
+            <img src='/images/signup_freetrial.png'>
+            </a>
+          </div>
+        </div><!-- End of logo-main-->
+        <div class='container-full'>
+          <div id='organization_bar'>
+            <div class='navbar'>
+              <ul class='nav'>
+                <li>
+                <a href='http://www.cloudfoundry.com/use' id='use'>Using Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/run' id='run'>Running Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/getinvolved' id='getinvolved'>Get Involved</a>
+                </li>
+                <li id='docs-off'>
+                  <a href='/' id='docs'>
+                    <div id='icon-docs'></div>
+                  </a>
+                  <div id='docs-list'>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/using/app-arch/'>Using Cloud Foundry</a>
+                      <br>
+                      <a href="/docs/using/app-arch/">Application Architecture Considerations</a>
+                      <br>
+                      <a href='/docs/using/deploying-apps/'>Deploying Apps</a>
+                      <br>
+                      <a href='/docs/using/managing-apps/'>Managing Apps</a>
+                      <br>
+                      <a href='/docs/using/services.html'>Using Services</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/using/">See all</a>
+                    </div><!-- End of 1st column docs-list-list-->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/running/'>Running Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/architecture/'>Architecture</a>
+                      <br>
+                      <a href='/docs/running/bosh/'>BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf/'>Deploying with BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf-with-chef/'>Deploying with Chef</a>
+                      <br>
+                      <a href='/docs/running/micro_cloud_foundry/'>Micro Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/managing-cf/index.html'>Managing Cloud Foundry</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/running/">See all</a>
+                    </div><!-- End of column 2 docs-list-list -->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/reference/'>Reference</a>
+                      <br>
+                      <a href='/docs/reference/cc-api.html'>Cloud Foundry REST API</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/dotcom/'>CloudFoundry.com</a>
+                      <br>
+                      <a href='/docs/dotcom/integration/'>Technical Integration</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/community/'>Community</a>
+                    </div><!-- End of column 3 docs-list-list -->
+                  </div><!-- End of docs-list -->
+                </li>
+                <li id='search-off'>
+                  <a id='search'>
+                    <div class='icon-search'></div>
+                  </a>
+                </li>
+                <li id='search-on'>
+                  <a id='search2'>
+                    <form action='http://www.cloudfoundry.com/search' class='search-form' method='get' onsubmit='return submitQuery()'>
+                      <input autocomplete='off' class='search-input' id='search-query' name='q' onfocus="this.placeholder = ''" placeholder='' type='search' value=''>
+                    </form>
+                    <div class="cancel-x"></div>
+                  </a>
+                </li>
+              </ul>
+            </div><!-- End of navbar -->
+          </div><!-- End of organization_bar -->
+          <div class='content_inner'>
+            <a class="forkme" href="http://github.com/cloudfoundry/cf-docs" target="_blank">
+              <img alt="Fork me on GitHub" src="/images/ribbon_forkme.png">
+            </a>
+            <form action='http://www.cloudfoundry.com/search' class='search-docs-form' method='get' onsubmit='return submitQuery()'>
+              <input autocomplete='off' class='search-docs-input' id='search-query' name='q' onfocus="this.placeholder = 'more:docs '" placeholder='' type='search-docs' value='more:docs '>
+            </form>
+            <br clear="left">
+            
+              <div class="breadcrumbs">
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li class=""><a href="/docs/dotcom/">Pivotal CF Hosted</a></li> <li class=""><a href="/docs/dotcom/marketplace/">Marketplace</a></li> <li class=""><a href="/docs/dotcom/marketplace/services/">Services</a></li> <li class="active"><span>SendGrid</span></li>
+                </ul>
+              </div>
+              <br clear="left">
+
+			
+
+              <div class="quick-links"><ul>
+<li><a href="#managing">Managing Services</a></li>
+<li><a href="#using">Using SendGrid within your Application</a></li>
+<li><a href="#sample-app">Sample Applications</a></li>
+<li><a href="#dashboard">Dashboard</a></li>
+<li><a href="#support">Support</a></li>
+<li><a href="#additional-resources">Additional Resources</a></li>
+</ul>
+</div>
+
+              <h1>SendGrid</h1>
+
+            
+            <p><a href="http://sendgrid.com">SendGrid&#39;s</a>  cloud-based email infrastructure relieves businesses of the cost and complexity of maintaining custom email systems. SendGrid provides reliable delivery, scalability and real-time analytics along with flexible APIs that make custom integration a breeze.</p>
+
+<p>Pivotal CF hosted customers can start receiving 25,000 free emails using SendGrid each month. This will give you access to advanced reporting and analytics and all APIs (Web, SMTP, Event, Parse, Sub-User). If you have a run.pivotal.io account, simply <a href="http://console.run.pivotal.io/">login</a> and go to the SendGrid plan page in the Marketplace to get started with your 25,000 free monthly emails for use with your app. Sign up <a href="http://console.run.pivotal.io/register">here</a> if you do not have an account.</p>
+
+<h2><a id='managing'></a>Managing Services</h2>
+
+<p>To create and bind a new SendGrid service, see <a href="/docs/using/services/managing-services.html">Managing Services from the Command Line</a>.</p>
+
+<h3>Creating A SendGrid Service</h3>
+
+<p>SendGrid can be provisioned with the following command:</p>
+
+<pre class="terminal">
+$ cf create-service sendgrid [service-name] [plan-level]
+</pre>
+
+<p>The service name can be anything you want and the plan level is one of these options: free, bronze, silver, gold, platinum.</p>
+
+<h3>Binding Your SendGrid Service</h3>
+
+<p>Bind your SendGrid service to your app, using the following command:</p>
+
+<pre class="terminal">
+$ cf bind-service [service-name] [app-name]
+</pre>
+
+<p>The service name should match the one you provisioned above and the app name should be an existing Cloud Foundry app.</p>
+
+<p>Once SendGrid has been added a username and password will be available. These are the credentials you use to access the newly provisioned SendGrid service instance.</p>
+
+<h2><a id='using'></a>Using SendGrid within your Application</h2>
+
+<p>Once a SendGrid service instance has been bound to your application, the <a href="/docs/using/deploying-apps/environment-variable.html">VCAP_SERVICES Environment Variable</a> will be automatically updated to include your credentials. The section of <code>VCAP_SERVICES</code> that pertains to SendGrid will look like this:</p>
+<pre class="highlight text">{
+  sendgrid-n/a: [
+    {
+      name: &quot;mysendgrid&quot;,
+      label: &quot;sendgrid-n/a&quot;,
+      plan: &quot;free&quot;,
+      credentials: {
+        hostname: &quot;smtp.sendgrid.net&quot;,
+        username: &quot;QvsXMbJ3rK&quot;,
+        password: &quot;HCHMOYluTv&quot;
+      }
+    }
+  ]
+}
+</pre>
+<p>The getting started guide has more background on <a href="/docs/dotcom/adding-a-service.html#using">using service instances with your application</a>.</p>
+
+<h2><a id='sample-app'></a>Sample Applications</h2>
+
+<p>With the SendGrid service provisioned and credentials added to the <code>VCAP_SERVICES</code> environment variable, you can now use SendGrid within your applications. You can either use SMTP with your SendGrid credentials or one of the many <a href="http://sendgrid.com/docs/Integrate/libraries.html">SendGrid libraries</a>.</p>
+
+<h3>Java</h3>
+
+<p>The recommended way to use SendGrid with Java is to use the <a href="https://github.com/sendgrid/sendgrid-java">sendgrid-java</a> library. The following example uses <a href="https://github.com/sendgrid/sendgrid-java">sendgrid-java</a>. Simply, replace your username and password with the username and password in your <code>VCAP_SERVICES</code> environment variable.</p>
+<pre class="highlight java"><span class="kn">import</span> <span class="nn">com.github.sendgrid.SendGrid</span><span class="o">;</span>
+<span class="n">SendGrid</span> <span class="n">sendgrid</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SendGrid</span><span class="o">(</span><span class="s">&quot;sendgrid_username&quot;</span><span class="o">,</span> <span class="s">&quot;sendgrid_password&quot;</span><span class="o">);</span>
+
+<span class="n">sendgrid</span><span class="o">.</span><span class="na">addTo</span><span class="o">(</span><span class="s">&quot;example@example.com&quot;</span><span class="o">);</span>
+<span class="n">sendgrid</span><span class="o">.</span><span class="na">setFrom</span><span class="o">(</span><span class="s">&quot;other@example.com&quot;</span><span class="o">);</span>
+<span class="n">sendgrid</span><span class="o">.</span><span class="na">setSubject</span><span class="o">(</span><span class="s">&quot;Hello World&quot;</span><span class="o">);</span>
+<span class="n">sendgrid</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">&quot;My first email through SendGrid&quot;</span><span class="o">);</span>
+
+<span class="n">sendgrid</span><span class="o">.</span><span class="na">send</span><span class="o">();</span>
+</pre>
+<p>Optionally, combine with <a href="https://github.com/scottmotte/vcapenv">vcapenv</a> to avoid entering in the username and password directly. Vcapenv will do the work to automatically pull your credentials from SendGrid.</p>
+<pre class="highlight java"><span class="kn">import</span> <span class="nn">com.github.scottmotte.Vcapenv</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.github.sendgrid.SendGrid</span><span class="o">;</span>
+
+<span class="n">Vcapenv</span> <span class="n">vcapenv</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vcapenv</span><span class="o">();</span>
+<span class="n">String</span> <span class="n">sendgrid_username</span> <span class="o">=</span> <span class="n">vcapenv</span><span class="o">.</span><span class="na">SENDGRID_USERNAME</span><span class="o">();</span>
+<span class="n">String</span> <span class="n">sendgrid_password</span> <span class="o">=</span> <span class="n">vcapenv</span><span class="o">.</span><span class="na">SENDGRID_PASSWORD</span><span class="o">();</span>
+
+<span class="n">SendGrid</span> <span class="n">sendgrid</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SendGrid</span><span class="o">(</span><span class="n">sendgrid_username</span><span class="o">,</span> <span class="n">sendgrid_password</span><span class="o">);</span>
+
+<span class="n">sendgrid</span><span class="o">.</span><span class="na">addTo</span><span class="o">(</span><span class="s">&quot;example@example.com&quot;</span><span class="o">);</span>
+<span class="n">sendgrid</span><span class="o">.</span><span class="na">setFrom</span><span class="o">(</span><span class="s">&quot;other@example.com&quot;</span><span class="o">);</span>
+<span class="n">sendgrid</span><span class="o">.</span><span class="na">setSubject</span><span class="o">(</span><span class="s">&quot;Hello World&quot;</span><span class="o">);</span>
+<span class="n">sendgrid</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">&quot;My first email through SendGrid&quot;</span><span class="o">);</span>
+
+<span class="n">sendgrid</span><span class="o">.</span><span class="na">send</span><span class="o">();</span>
+</pre>
+<p>See the example app <a href="https://github.com/scottmotte/spring-attack">Spring-Attack</a> for a complete working example.</p>
+
+<h4>Alternative approach with JavaMail</h4>
+
+<p>If you prefer to use Java&#39;s built in libraries to send emails you can do the following using <a href="https://java.net/projects/javamail/pages/Home">JavaMail</a>.</p>
+<pre class="highlight java">    <span class="kn">import</span> <span class="nn">javax.mail.*</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">javax.mail.internet.*</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">javax.mail.Authenticator</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">javax.mail.PasswordAuthentication</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">java.util.Properties</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleMail</span> <span class="o">{</span>
+
+        <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">SMTP_HOST_NAME</span> <span class="o">=</span> <span class="err">“</span><span class="n">smtp</span><span class="o">.</span><span class="na">sendgrid</span><span class="o">.</span><span class="na">net</span><span class="err">”</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">SMTP_AUTH_USER</span> <span class="o">=</span> <span class="err">“</span><span class="o">&lt;</span><span class="n">sendgrid_username</span><span class="o">&gt;</span><span class="err">”</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">SMTP_AUTH_PWD</span>  <span class="o">=</span> <span class="err">“</span><span class="o">&lt;</span><span class="n">sendgrid_password</span><span class="o">&gt;</span><span class="err">”</span><span class="o">;</span>
+
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="n">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
+           <span class="k">new</span> <span class="n">SimpleMail</span><span class="o">().</span><span class="na">test</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="kt">void</span> <span class="n">test</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
+            <span class="n">Properties</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Properties</span><span class="o">();</span>
+            <span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="err">“</span><span class="n">mail</span><span class="o">.</span><span class="na">transport</span><span class="o">.</span><span class="na">protocol</span><span class="err">”</span><span class="o">,</span> <span class="err">“</span><span class="n">smtp</span><span class="err">”</span><span class="o">);</span>
+            <span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="err">“</span><span class="n">mail</span><span class="o">.</span><span class="na">smtp</span><span class="o">.</span><span class="na">host</span><span class="err">”</span><span class="o">,</span> <span class="n">SMTP_HOST_NAME</span><span class="o">);</span>
+            <span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="err">“</span><span class="n">mail</span><span class="o">.</span><span class="na">smtp</span><span class="o">.</span><span class="na">port</span><span class="err">”</span><span class="o">,</span> <span class="mi">587</span><span class="o">);</span>
+            <span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="err">“</span><span class="n">mail</span><span class="o">.</span><span class="na">smtp</span><span class="o">.</span><span class="na">auth</span><span class="err">”</span><span class="o">,</span> <span class="err">“</span><span class="kc">true</span><span class="err">”</span><span class="o">);</span>
+
+            <span class="n">Authenticator</span> <span class="n">auth</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SMTPAuthenticator</span><span class="o">();</span>
+            <span class="n">Session</span> <span class="n">mailSession</span> <span class="o">=</span> <span class="n">Session</span><span class="o">.</span><span class="na">getDefaultInstance</span><span class="o">(</span><span class="n">props</span><span class="o">,</span> <span class="n">auth</span><span class="o">);</span>
+            <span class="c1">// uncomment for debugging infos to stdout</span>
+            <span class="c1">// mailSession.setDebug(true);</span>
+            <span class="n">Transport</span> <span class="n">transport</span> <span class="o">=</span> <span class="n">mailSession</span><span class="o">.</span><span class="na">getTransport</span><span class="o">();</span>
+
+            <span class="n">MimeMessage</span> <span class="n">message</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MimeMessage</span><span class="o">(</span><span class="n">mailSession</span><span class="o">);</span>
+
+            <span class="n">Multipart</span> <span class="n">multipart</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MimeMultipart</span><span class="o">(</span><span class="err">“</span><span class="n">alternative</span><span class="err">”</span><span class="o">);</span>
+
+            <span class="n">BodyPart</span> <span class="n">part1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MimeBodyPart</span><span class="o">();</span>
+            <span class="n">part1</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="err">“</span><span class="n">This</span> <span class="n">is</span> <span class="n">multipart</span> <span class="n">mail</span> <span class="n">and</span> <span class="n">u</span> <span class="n">read</span> <span class="n">part1</span><span class="err">……”</span><span class="o">);</span>
+
+            <span class="n">BodyPart</span> <span class="n">part2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MimeBodyPart</span><span class="o">();</span>
+            <span class="n">part2</span><span class="o">.</span><span class="na">setContent</span><span class="o">(</span><span class="err">”</span><span class="o">&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">This</span> <span class="n">is</span> <span class="n">multipart</span> <span class="n">mail</span> <span class="n">and</span> <span class="n">u</span> <span class="n">read</span> <span class="n">part2</span><span class="err">……</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;</span><span class="err">”</span><span class="o">,</span> <span class="err">“</span><span class="n">text</span><span class="o">/</span><span class="n">html</span><span class="err">”</span><span class="o">);</span>
+
+            <span class="n">multipart</span><span class="o">.</span><span class="na">addBodyPart</span><span class="o">(</span><span class="n">part1</span><span class="o">);</span>
+            <span class="n">multipart</span><span class="o">.</span><span class="na">addBodyPart</span><span class="o">(</span><span class="n">part2</span><span class="o">);</span>
+
+            <span class="n">message</span><span class="o">.</span><span class="na">setContent</span><span class="o">(</span><span class="n">multipart</span><span class="o">);</span>
+            <span class="n">message</span><span class="o">.</span><span class="na">setFrom</span><span class="o">(</span><span class="k">new</span> <span class="n">InternetAddress</span><span class="o">(</span><span class="err">“</span><span class="n">me</span><span class="nd">@myhost</span><span class="o">.</span><span class="na">com</span><span class="err">”</span><span class="o">));</span>
+            <span class="n">message</span><span class="o">.</span><span class="na">setSubject</span><span class="o">(</span><span class="err">“</span><span class="n">This</span> <span class="n">is</span> <span class="n">the</span> <span class="n">subject</span><span class="err">”</span><span class="o">);</span>
+            <span class="n">message</span><span class="o">.</span><span class="na">addRecipient</span><span class="o">(</span><span class="n">Message</span><span class="o">.</span><span class="na">RecipientType</span><span class="o">.</span><span class="na">TO</span><span class="o">,</span>
+                 <span class="k">new</span> <span class="n">InternetAddress</span><span class="o">(</span><span class="err">“</span><span class="n">someone</span><span class="nd">@somewhere</span><span class="o">.</span><span class="na">com</span><span class="err">”</span><span class="o">));</span>
+
+            <span class="n">transport</span><span class="o">.</span><span class="na">connect</span><span class="o">();</span>
+            <span class="n">transport</span><span class="o">.</span><span class="na">sendMessage</span><span class="o">(</span><span class="n">message</span><span class="o">,</span>
+                <span class="n">message</span><span class="o">.</span><span class="na">getRecipients</span><span class="o">(</span><span class="n">Message</span><span class="o">.</span><span class="na">RecipientType</span><span class="o">.</span><span class="na">TO</span><span class="o">));</span>
+            <span class="n">transport</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="kd">private</span> <span class="kd">class</span> <span class="nc">SMTPAuthenticator</span> <span class="kd">extends</span> <span class="n">javax</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">Authenticator</span> <span class="o">{</span>
+            <span class="kd">public</span> <span class="n">PasswordAuthentication</span> <span class="n">getPasswordAuthentication</span><span class="o">()</span> <span class="o">{</span>
+               <span class="n">String</span> <span class="n">username</span> <span class="o">=</span> <span class="n">SMTP_AUTH_USER</span><span class="o">;</span>
+               <span class="n">String</span> <span class="n">password</span> <span class="o">=</span> <span class="n">SMTP_AUTH_PWD</span><span class="o">;</span>
+               <span class="k">return</span> <span class="k">new</span> <span class="n">PasswordAuthentication</span><span class="o">(</span><span class="n">username</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</pre>
+<p>A sample application for using Spring Framework and SendGrid on Cloud Foundry can be found <a href="https://github.com/cloudfoundry-samples/spring-sendgrid">here</a>.</p>
+
+<h3>Ruby on Rails</h3>
+
+<p>You can quickly get started with SendGrid using Ruby on Rails ActionMailer.</p>
+
+<p>First, get SendGrid credentials from <code>VCAP_SERVICES</code> environment variable</p>
+<pre class="highlight ruby">    <span class="n">credentials</span> <span class="o">=</span> <span class="n">host</span> <span class="o">=</span> <span class="n">username</span> <span class="o">=</span> <span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">if</span> <span class="o">!</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;VCAP_SERVICES&#39;</span><span class="o">]</span><span class="nf">.blank?</span>
+      <span class="no">JSON</span><span class="nf">.parse</span><span class="p">(</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;VCAP_SERVICES&#39;</span><span class="o">]</span><span class="p">)</span><span class="nf">.each</span> <span class="k">do</span> <span class="o">|</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="o">|</span>
+        <span class="k">if</span> <span class="o">!</span><span class="n">k</span><span class="nf">.scan</span><span class="p">(</span><span class="s2">&quot;sendgrid&quot;</span><span class="p">)</span><span class="nf">.blank?</span>
+          <span class="n">credentials</span> <span class="o">=</span> <span class="n">v</span><span class="nf">.first.select</span> <span class="p">{</span><span class="o">|</span><span class="n">k1</span><span class="p">,</span><span class="n">v1</span><span class="o">|</span> <span class="n">k1</span> <span class="o">==</span> <span class="s2">&quot;credentials&quot;</span><span class="p">}</span><span class="o">[</span><span class="s2">&quot;credentials&quot;</span><span class="o">]</span>
+          <span class="n">host</span> <span class="o">=</span> <span class="n">credentials</span><span class="o">[</span><span class="s2">&quot;hostname&quot;</span><span class="o">]</span>
+          <span class="n">username</span> <span class="o">=</span> <span class="n">credentials</span><span class="o">[</span><span class="s2">&quot;username&quot;</span><span class="o">]</span>
+          <span class="n">password</span> <span class="o">=</span> <span class="n">credentials</span><span class="o">[</span><span class="s2">&quot;password&quot;</span><span class="o">]</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+</pre>
+<p>You will also need to edit the ActionMailer settings in <code>config/environment.rb</code>:</p>
+<pre class="highlight ruby">    <span class="no">ActionMailer</span><span class="o">::</span><span class="no">Base</span><span class="nf">.smtp_settings</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="ss">:address</span> <span class="o">=&gt;</span> <span class="s1">&#39;&lt;smtp_host&gt;&#39;</span><span class="p">,</span>
+      <span class="ss">:port</span> <span class="o">=&gt;</span> <span class="s1">&#39;587&#39;</span><span class="p">,</span>
+      <span class="ss">:authentication</span> <span class="o">=&gt;</span> <span class="ss">:plain</span><span class="p">,</span>
+      <span class="ss">:user_name</span> <span class="o">=&gt;</span> <span class="s1">&#39;&lt;sendgrid_username&gt;&#39;</span><span class="p">,</span>
+      <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="s1">&#39;&lt;sendgrid_password&gt;&#39;</span><span class="p">,</span>
+      <span class="ss">:domain</span> <span class="o">=&gt;</span> <span class="s1">&#39;yourdomain.com&#39;</span><span class="p">,</span>
+      <span class="ss">:enable_starttls_auto</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+    <span class="p">}</span>
+</pre>
+<p>A sample application for using Ruby on Rails and SendGrid on Cloud Foundry can be found <a href="https://github.com/cloudfoundry-samples/sendgrid-cloudfoundry-rails">here</a>.</p>
+
+<h2><a id='dashboard'></a>Dashboard</h2>
+
+<p>SendGrid offers statistics for a number of different metrics to report on what is happening with your messages.</p>
+
+<p><img alt="Dashboard" src="http://static.sendgrid.com.s3.amazonaws.com/images/delivery_metrics.png" /></p>
+
+<p>To access your SendGrid dashboard, simply click the &#39;Manage&#39; button next to the SendGrid service on your app space console.</p>
+
+<h2><a id='support'></a>Support</h2>
+
+<p>One of SendGrid&#39;s best features is its responsive customer service. You can contact SendGrid 24/7 by phone, web, and live chat:</p>
+
+<ul>
+<li><a href="http://support.sendgrid.com/">http://support.sendgrid.com/</a></li>
+<li>Toll Free: +1 (877) 969-8647</li>
+<li><a href="mailto:support@sendgrid.com">support@sendgrid.com</a></li>
+</ul>
+
+<p>To properly reference your SendGrid account within CloudFoundry, see the information about <a href="/docs/dotcom/marketplace/contacting-service-providers-for-support.html">contacting service providers for support</a>.</p>
+
+<p>If you have product feedback, or issues unrelated to your account, you can add it to <a href="http://support.sendgrid.com/home">http://support.sendgrid.com/home</a>.</p>
+
+<h2><a id='additional-resources'></a>Additional Resources</h2>
+
+<p>Additional resources are available at:</p>
+
+<ul>
+<li><a href="http://sendgrid.com/docs/Integrate/index.html">Integrate With SendGrid</a></li>
+<li><a href="http://sendgrid.com/docs/Code_Examples/index.html">Code Examples</a></li>
+</ul>
+
+          </div><!-- End of content_inner -->
+        </div><!-- End of container-full -->
+      </div><!-- End of content -->
+    </div><!-- End of non_footer -->
+    <div id='footer'>
+      <div id='container-footer'>
+        <div class='bg_social'>
+          <ul class='social'>
+            <li>
+            <a href='http://twitter.com/cloudfoundry' target='_blank'>
+            <img alt='Twitter' src='/images/twitter_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='https://plus.google.com/114245065906861739918/posts' target='_blank'>
+            <img alt='Google+' src='/images/g+_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://facebook.com/cloudfoundry' target='_blank'>
+            <img alt='Facebook' src='/images/facebook_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://youtube.com/cloudfoundry' target='_blank'>
+            <img alt='Youtube' src='/images/youtube_large.png'>
+            </a>
+            </li>
+          </ul>
+        </div><!-- End of bg_social -->
+        <ul class='links'>
+          <li>
+          <a href='http://www.cloudfoundry.com/about'>About</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://blog.cloudfoundry.com/'>Blog</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/partners'>Partners</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://docs.cloudfoundry.com'>Docs</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://status.cloudfoundry.com/'>Status</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/support'>Support</a>
+          </li>
+        </ul>
+        <div class='copyright'>
+          <div class='hr-horizontal-dark'></div>
+          <br>
+          <p>
+            &copy;
+            <script>
+              //<![CDATA[
+                var d = new Date();
+                document.write(d.getFullYear());
+              //]]>
+            </script>
+            GoPivotal, Inc. All rights reserved.
+            <a href='http://www.cloudfoundry.com/terms'>Terms</a>
+            <a href='http://www.gopivotal.com/privacy-policy' target='_blank'>Privacy</a>
+          </p>
+        </div><!-- End of copyright -->
+      </div><!-- End of container-footer -->
+    </div><!-- End of footer -->
+    <script type="text/javascript">
+      (function() {
+        var didInit = false;
+        function initMunchkin() {
+          if(didInit === false) {
+            didInit = true;
+            Munchkin.init('625-IUJ-009');
+          }
+        }
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+        s.onreadystatechange = function() {
+          if (this.readyState == 'complete' || this.readyState == 'loaded') {
+            initMunchkin();
+          }
+        };
+        s.onload = initMunchkin;
+        document.getElementsByTagName('head')[0].appendChild(s);
+      })();
+    </script>
+  </body>
+</html>

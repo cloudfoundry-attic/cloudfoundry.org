@@ -1,0 +1,528 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>IronMQ</title>
+
+    <link href="/stylesheets/master.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='/images/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('a#search').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 20px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2').css("padding","11px 10px 8px");
+          $('#search-on').show();
+          $('#search-off').hide();
+        });
+        $('.cancel-x').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 63px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2, #organization_bar .navbar .nav>li a#search').css("padding","16px 20px 15px");
+          $('#organization_bar .navbar .nav>li a#getinvolved').css("padding","11px 92px 8px");
+          $('#organization_bar .navbar .nav>li#docs-off .docs-list-list a').css("padding","0");
+          $('#search-on').hide();
+          $('#search-off').show();
+        });f
+        $(".togglebutton").click(function () {
+        var divname= this.value;
+          $("#"+divname).show("slow").siblings().hide("slow");
+        });
+      });
+    </script>
+
+    <!--[if lt IE 9]>
+    <style>
+        #content .container-full {background:  #ebf0fa;}
+        .call-to-contribute-box, .column-left, .column-middle, .column-right {background:#e3e8f2}
+        #footer {background:#000;}
+    </style>
+    <![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22181585-1']);
+      _gaq.push(['_setDomainName', 'cloudfoundry.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body class="docs docs_dotcom docs_dotcom_marketplace docs_dotcom_marketplace_services docs_dotcom_marketplace_services_ironmq">
+    <img id="bg" src="/images/bg-plain-x.jpg">
+    <div id='non_footer'>
+      <div id='header'>
+        <div class='container_wide'>
+          <ul class='actions'>
+            <li class='last'>
+              <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
+            </li>
+            <li>
+              <a class='register_link' href='http://login.run.pivotal.io/login'>My Account</a>            
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id='content'>
+        <div class='logo-main'>
+          <div class='logo'>
+            <a href='http://www.cloudfoundry.com'>
+            <img src='/images/logo-cloudfoundry.png'>
+            </a>
+            <a href='http://www.gopivotal.com' target="_blank">
+            <img id="pivotal-logo" src='/images/logo-pivotal.png'>
+            </a>
+          </div>
+          <div class='cta'>
+            <a href='https://console.run.pivotal.io'>
+            <img src='/images/signup_freetrial.png'>
+            </a>
+          </div>
+        </div><!-- End of logo-main-->
+        <div class='container-full'>
+          <div id='organization_bar'>
+            <div class='navbar'>
+              <ul class='nav'>
+                <li>
+                <a href='http://www.cloudfoundry.com/use' id='use'>Using Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/run' id='run'>Running Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/getinvolved' id='getinvolved'>Get Involved</a>
+                </li>
+                <li id='docs-off'>
+                  <a href='/' id='docs'>
+                    <div id='icon-docs'></div>
+                  </a>
+                  <div id='docs-list'>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/using/app-arch/'>Using Cloud Foundry</a>
+                      <br>
+                      <a href="/docs/using/app-arch/">Application Architecture Considerations</a>
+                      <br>
+                      <a href='/docs/using/deploying-apps/'>Deploying Apps</a>
+                      <br>
+                      <a href='/docs/using/managing-apps/'>Managing Apps</a>
+                      <br>
+                      <a href='/docs/using/services.html'>Using Services</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/using/">See all</a>
+                    </div><!-- End of 1st column docs-list-list-->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/running/'>Running Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/architecture/'>Architecture</a>
+                      <br>
+                      <a href='/docs/running/bosh/'>BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf/'>Deploying with BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf-with-chef/'>Deploying with Chef</a>
+                      <br>
+                      <a href='/docs/running/micro_cloud_foundry/'>Micro Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/managing-cf/index.html'>Managing Cloud Foundry</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/running/">See all</a>
+                    </div><!-- End of column 2 docs-list-list -->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/reference/'>Reference</a>
+                      <br>
+                      <a href='/docs/reference/cc-api.html'>Cloud Foundry REST API</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/dotcom/'>CloudFoundry.com</a>
+                      <br>
+                      <a href='/docs/dotcom/integration/'>Technical Integration</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/community/'>Community</a>
+                    </div><!-- End of column 3 docs-list-list -->
+                  </div><!-- End of docs-list -->
+                </li>
+                <li id='search-off'>
+                  <a id='search'>
+                    <div class='icon-search'></div>
+                  </a>
+                </li>
+                <li id='search-on'>
+                  <a id='search2'>
+                    <form action='http://www.cloudfoundry.com/search' class='search-form' method='get' onsubmit='return submitQuery()'>
+                      <input autocomplete='off' class='search-input' id='search-query' name='q' onfocus="this.placeholder = ''" placeholder='' type='search' value=''>
+                    </form>
+                    <div class="cancel-x"></div>
+                  </a>
+                </li>
+              </ul>
+            </div><!-- End of navbar -->
+          </div><!-- End of organization_bar -->
+          <div class='content_inner'>
+            <a class="forkme" href="http://github.com/cloudfoundry/cf-docs" target="_blank">
+              <img alt="Fork me on GitHub" src="/images/ribbon_forkme.png">
+            </a>
+            <form action='http://www.cloudfoundry.com/search' class='search-docs-form' method='get' onsubmit='return submitQuery()'>
+              <input autocomplete='off' class='search-docs-input' id='search-query' name='q' onfocus="this.placeholder = 'more:docs '" placeholder='' type='search-docs' value='more:docs '>
+            </form>
+            <br clear="left">
+            
+              <div class="breadcrumbs">
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li class=""><a href="/docs/dotcom/">Pivotal CF Hosted</a></li> <li class=""><a href="/docs/dotcom/marketplace/">Marketplace</a></li> <li class=""><a href="/docs/dotcom/marketplace/services/">Services</a></li> <li class="active"><span>IronMQ</span></li>
+                </ul>
+              </div>
+              <br clear="left">
+
+			
+
+              <div class="quick-links"><ul>
+<li><a href="#managing">Managing Services</a></li>
+<li><a href="#using">Using Service Instances with your Application</a></li>
+<li><a href="#sample-app">Integrations</a></li>
+</ul>
+</div>
+
+              <h1>IronMQ</h1>
+
+            
+            <p>IronMQ is a reliable message queue service that lets you connect systems and build distributed apps that scale effortlessly and eliminate any single points of failure.</p>
+
+<h2><a id='managing'></a>Managing Services</h2>
+
+<p><a href="/docs/using/services/managing-services.html">Managing services from the command line</a></p>
+
+<h3>Creating a Service Instance</h3>
+
+<p>An instance of this service can be provisioned via the CLI with the following command:</p>
+
+<pre class="terminal">
+  $ cf create-service ironmq
+</pre>
+
+<h3>Binding Your Service Instance</h3>
+
+<p>Bind the service instance to your app with the following command:</p>
+
+<pre class="terminal">
+  $ cf bind-service 
+</pre>
+
+<h2><a id='using'></a>Using Service Instances with your Application</h2>
+
+<ul>
+<li>Include this section only if your service is bindable. What is the format of the credentials stored in the VCAP_SERVICES environment variable? *</li>
+</ul>
+
+<p>See <a href="/docs/dotcom/adding-a-service.html#using">Using Service Instances with your Application</a> and <a href="/docs/using/deploying-apps/environment-variable.html">VCAP_SERVICES Environment Variable</a>.</p>
+
+<p>Format of credentials in <code>VCAP_SERVICES</code> environment variable.</p>
+<pre class="highlight xml">{
+  service-foo-n/a: [
+  {
+  name: &quot;service-foo-75efc&quot;,
+  label: &quot;service-foo-n/a&quot;,
+  plan: &quot;example-plan&quot;,
+  credentials: {
+  uri: dbtype://username:password@hostname:port/name
+  hostname: &quot;foo.example.com&quot;
+  port: &quot;1234&quot;
+  name: &quot;asdfjasdf&quot;
+  username: &quot;QvsXMbJ2rK&quot;,
+  password: &quot;HCDVOYluTv&quot;
+}
+}
+]
+}
+</pre>
+<h2>Language Support</h2>
+
+<p>IronMQ has clients for <a href="http://dev.iron.io/mq/libraries/">a lot of languages</a>, and you can always use <a href="http://dev.iron.io/mq/reference/api/">the REST API</a> (or write your own!).</p>
+
+<h2>Ruby</h2>
+
+<p>We’re going to need to install the Ruby gem, for development purposes:</p>
+
+<pre class="terminal">
+$ gem install iron_mq
+</pre>
+
+<p>If you’re building for a Rails application or anything that uses Bundler, add the following to your Gemfile:</p>
+<pre class="highlight text">gem &#39;iron_mq&#39;
+</pre>
+<p>Now you have a simple helper that allows you to interact with your queues:</p>
+<pre class="highlight ruby"><span class="c1"># Create an IronMQ::Client object</span>
+<span class="vi">@ironmq</span> <span class="o">=</span> <span class="no">IronMQ</span><span class="o">::</span><span class="no">Client</span><span class="nf">.new</span><span class="p">()</span>
+
+<span class="c1"># Get a queue (if it doesn&#39;t exist, it will be created when you first post a message)</span>
+<span class="vi">@queue</span> <span class="o">=</span> <span class="vi">@ironmq</span><span class="nf">.queue</span><span class="p">(</span><span class="s2">&quot;my_queue&quot;</span><span class="p">)</span>
+
+<span class="c1"># Post a message</span>
+<span class="vi">@queue</span><span class="nf">.post</span><span class="p">(</span><span class="s2">&quot;hello world!&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get a message</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="vi">@queue</span><span class="nf">.get</span><span class="p">()</span>
+<span class="nb">p</span> <span class="n">msg</span>
+
+<span class="c1"># Delete a message (you must delete a message when you&#39;re done with it or it will go back on the queue after a timeout)</span>
+<span class="n">msg</span><span class="nf">.delete</span> <span class="c1"># or @queue.delete(msg.id)</span>
+</pre>
+<h2>Java</h2>
+
+<p>We’re going to need to install <a href="https://github.com/iron-io/iron_mq_java/downloads">the jar file</a> for the official IronMQ Java library. If you’re using Maven, you can also add the <code>http://iron-io.github.com/maven/repository</code> repository as a dependency.</p>
+
+<p>Once you have the jar file added as a dependency, you have a simple wrapper that allows you to interact with your queues:</p>
+<pre class="highlight java">
+<span class="c1">// Get your Iron.io credentials from the environment</span>
+<span class="n">Map</span> <span class="n">env</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">();</span>
+
+<span class="c1">// Create a Client object</span>
+<span class="n">Client</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Client</span><span class="o">(</span><span class="n">env</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;IRON_MQ_PROJECT_ID&quot;</span><span class="o">),</span> <span class="n">env</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;IRON_MQ_TOKEN&quot;</span><span class="o">),</span> <span class="n">Cloud</span><span class="o">.</span><span class="na">IronAWSUSEast</span><span class="o">);</span>
+
+<span class="c1">// Get a queue (if it doesn&#39;t exist, it will be created when you first post a message)</span>
+<span class="n">Queue</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">queue</span><span class="o">(</span><span class="s">&quot;my_queue&quot;</span><span class="o">);</span>
+
+<span class="c1">// Post a message</span>
+<span class="n">queue</span><span class="o">.</span><span class="na">Push</span><span class="o">(</span><span class="s">&quot;hello world!&quot;</span><span class="o">);</span>
+
+<span class="c1">// Get a message</span>
+<span class="n">Message</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">msg</span><span class="o">.</span><span class="na">getBody</span><span class="o">());</span>
+
+<span class="c1">// Delete a message (you must delete a message when you&#39;re done with it or it will go back on the queue after a timeout)</span>
+<span class="n">queue</span><span class="o">.</span><span class="na">deleteMessage</span><span class="o">(</span><span class="n">msg</span><span class="o">);</span>
+</pre>
+<h2>Python</h2>
+
+<p>We’re going to have to install the <a href="https://github.com/iron-io/iron_mq_python">Python client library</a> for IronMQ. You can do this using <code>pip install iron_mq</code> or <code>easy_install iron_mq</code>.</p>
+
+<p>Once the package is installed, you have a simple wrapper that allows you to interact with your queues:</p>
+<pre class="highlight python"><span class="c"># Create an IronMQ client object</span>
+<span class="n">mq</span> <span class="o">=</span> <span class="n">IronMQ</span><span class="p">()</span>
+
+<span class="c"># Get a queue (if it doesn&#39;t exist, it will be created when you first post a message)</span>
+<span class="n">queue</span> <span class="o">=</span> <span class="n">mq</span><span class="o">.</span><span class="n">queue</span><span class="p">(</span><span class="s">&quot;my_queue&quot;</span><span class="p">)</span>
+
+<span class="c"># Post a message</span>
+<span class="n">queue</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;hello world!&quot;</span><span class="p">)</span>
+
+<span class="c"># Get a message</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">msg</span>
+
+<span class="c"># Delete a message (you must delete a message when you&#39;re done with it or it will go back on the queue after a timeout)</span>
+<span class="n">queue</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">msg</span><span class="p">[</span><span class="s">&quot;messages&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s">&quot;id&quot;</span><span class="p">])</span>
+</pre>
+<h2>Clojure</h2>
+
+<p>We’re going to need to add the <a href="https://github.com/iron-io/iron_mq_clojure">IronMQ Clojure client</a> to your project.clj:</p>
+
+<p>[iron<em>mq</em>clojure &ldquo;1.0.3&rdquo;]</p>
+
+<p>Use these to create a client that allows you to interact with your queues:</p>
+<pre class="highlight clojure"><span class="p">(</span><span class="nf">require</span><span class="w"> </span><span class="o">&#39;</span><span class="p">[</span><span class="n">iron-mq-clojure.client</span><span class="w"> </span><span class="no">:as</span><span class="w"> </span><span class="n">mq</span><span class="p">])</span><span class="w">
+
+</span><span class="p">(</span><span class="k">def</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="p">(</span><span class="nf">mq/create-client</span><span class="w"> </span><span class="p">(</span><span class="nf">System/getenv</span><span class="w"> </span><span class="s">&quot;IRON_MQ_TOKEN&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nf">System/getenv</span><span class="w"> </span><span class="s">&quot;IRON_MQ_PROJECT_ID&quot;</span><span class="p">)))</span><span class="w">
+
+</span><span class="c1">; Post a message
+</span><span class="p">(</span><span class="nf">mq/post-message</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="s">&quot;my_queue&quot;</span><span class="w"> </span><span class="s">&quot;Hello world!&quot;</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">; Get a message
+</span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">[</span><span class="n">msg</span><span class="w"> </span><span class="p">(</span><span class="nf">mq/get-message</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="s">&quot;my_queue&quot;</span><span class="p">)]</span><span class="w">
+</span><span class="p">(</span><span class="nb">println</span><span class="w"> </span><span class="p">(</span><span class="nb">get</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="s">&quot;body&quot;</span><span class="p">))</span><span class="w">
+
+</span><span class="c1">; Delete a message (you must delete a message when you&#39;re done with it or it will go back on the queue after a timeout)
+</span><span class="p">(</span><span class="nf">mq/delete-message</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="s">&quot;my_queue&quot;</span><span class="w"> </span><span class="n">msg</span><span class="p">))</span><span class="w">
+</span></pre>
+<h2>Node.js</h2>
+
+<p>We’re going to need to the <a href="https://github.com/iron-io/iron_mq_node">IronMQ Node.js client</a> to interact with our queues. You can get it using <code>npm install iron_mq</code> or by downloading the source from Github (though you’ll need <a href="https://github.com/iron-io/iron_core_node">iron<em>core</em>node</a>, too).</p>
+
+<p>Once that’s done, you can require it to get a simple wrapper for the API:</p>
+<pre class="highlight ruby"><span class="n">var</span> <span class="n">iron_mq</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;iron_mq&quot;</span><span class="p">);</span>
+
+<span class="n">var</span> <span class="n">client</span> <span class="o">=</span> <span class="kp">new</span> <span class="n">iron_mq</span><span class="o">.</span><span class="no">Client</span><span class="p">({</span><span class="s2">&quot;queue_name&quot;</span><span class="p">:</span> <span class="s2">&quot;my_queue&quot;</span><span class="p">});</span>
+
+<span class="sr">//</span> <span class="no">Post</span> <span class="n">a</span> <span class="n">message</span>
+<span class="n">client</span><span class="nf">.post</span><span class="p">(</span><span class="s2">&quot;test message&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">console</span><span class="nf">.log</span><span class="p">(</span><span class="n">body</span><span class="p">);</span>
+<span class="n">console</span><span class="nf">.log</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="sr">//</span> <span class="no">Get</span> <span class="n">a</span> <span class="n">message</span>
+<span class="n">client</span><span class="nf">.get</span><span class="p">({},</span> <span class="n">function</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">console</span><span class="nf">.log</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+<span class="n">console</span><span class="nf">.log</span><span class="p">(</span><span class="n">body</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">error</span> <span class="o">==</span> <span class="n">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="sr">//</span> <span class="no">Delete</span> <span class="n">a</span> <span class="n">message</span>
+<span class="n">client</span><span class="nf">.del</span><span class="p">(</span><span class="n">body</span><span class="o">[</span><span class="s2">&quot;id&quot;</span><span class="o">]</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">console</span><span class="nf">.log</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+<span class="n">console</span><span class="nf">.log</span><span class="p">(</span><span class="n">body</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="p">}</span>
+<span class="p">});</span>
+</pre>
+<h2>Next Steps</h2>
+
+<p>To get into more advanced uses of IronMQ, you may want to check out the <a href="http://dev.iron.io/mq/reference/api/">API docs</a></p>
+
+<h2>Support</h2>
+
+<p>You’re also welcome to stop by the <a href="http://get.iron.io/chat">Iron.io support chat room</a> and chat with Iron.io staff about issues. You can also find more resources at the <a href="http://dev.iron.io">Iron.io Dev Center</a>.</p>
+
+<h2><a id='sample-app'></a>Integrations</h2>
+
+<ul>
+  <li><a href="/mq/integrations/delayed_job" >Delayed Job for Rails</a></li>
+  <li><a href="http://www.sumoheavy.com/message-queues-in-magento/" target="_blank" >Zend Framework</a></li>
+  <li><a href="/mq/integrations/celery/" >Celery for Python</a></li>
+  <li><a href="http://www.yiiframework.com/extension/yiiron/" target="_blank" >Yii Framework</a></li>
+  <li><a href="http://bundles.laravel.com/bundle/ironmq" target="_blank" >Laravel Framework</a></li>
+  <li><a href="http://drupal.org/project/ironio" target="_blank" >Drupal</a>
+    <li><a href="http://tech.pro/tutorial/1196/blacksmith-ironmq-client-library-fun-with-queues" target="_blank" >.NET Framework</a></li>
+  </ul>
+
+<p>## <a id='dashboard'></a>Dashboard (HUD) ##</p>
+
+<p>You can view and analyze all your queues from the HUD&hellip;</p>
+
+<p><img alt="ironworkers on the hud" src="http://www.iron.io/assets/screenshots/home-scrnshot-mq-1.png" /></p>
+
+<p>## View analytics and gain insight about your queues</p>
+
+<p><img alt="ironmq analytics" src="http://www.iron.io/assets/screenshots/home-scrnshot-mq-2.png" /></p>
+
+<p>## Share your projects with other people</p>
+
+<p>Each of your projects can be shared with coworkers and friends. It&#39;s easy and just takes a few seconds. They&#39;ll get an invite to signup for Iron.io for free and have automatic access to the project once completed.
+  <img alt="Sharing your Iron Worker Project" src="http://dev.iron.io/mq/libraries/" /></p>
+
+<p>## <a id='support'></a>Support ##</p>
+
+<ul>
+<li><a href="http:www.dev.iron.io">Dev Center</a></li>
+<li><a href="http://get.iron.io/chat">Live Public Support</a></li>
+<li><a href="https://github.com/iron-io">Iron.io on GitHub</a></li>
+<li><a href="http://dev.iron.io/faq">Frequently Asked Questions</a></li>
+<li><a href="https://github.com/iron-io/issues/issues">Report an Issue</a></li>
+</ul>
+
+          </div><!-- End of content_inner -->
+        </div><!-- End of container-full -->
+      </div><!-- End of content -->
+    </div><!-- End of non_footer -->
+    <div id='footer'>
+      <div id='container-footer'>
+        <div class='bg_social'>
+          <ul class='social'>
+            <li>
+            <a href='http://twitter.com/cloudfoundry' target='_blank'>
+            <img alt='Twitter' src='/images/twitter_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='https://plus.google.com/114245065906861739918/posts' target='_blank'>
+            <img alt='Google+' src='/images/g+_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://facebook.com/cloudfoundry' target='_blank'>
+            <img alt='Facebook' src='/images/facebook_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://youtube.com/cloudfoundry' target='_blank'>
+            <img alt='Youtube' src='/images/youtube_large.png'>
+            </a>
+            </li>
+          </ul>
+        </div><!-- End of bg_social -->
+        <ul class='links'>
+          <li>
+          <a href='http://www.cloudfoundry.com/about'>About</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://blog.cloudfoundry.com/'>Blog</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/partners'>Partners</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://docs.cloudfoundry.com'>Docs</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://status.cloudfoundry.com/'>Status</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/support'>Support</a>
+          </li>
+        </ul>
+        <div class='copyright'>
+          <div class='hr-horizontal-dark'></div>
+          <br>
+          <p>
+            &copy;
+            <script>
+              //<![CDATA[
+                var d = new Date();
+                document.write(d.getFullYear());
+              //]]>
+            </script>
+            GoPivotal, Inc. All rights reserved.
+            <a href='http://www.cloudfoundry.com/terms'>Terms</a>
+            <a href='http://www.gopivotal.com/privacy-policy' target='_blank'>Privacy</a>
+          </p>
+        </div><!-- End of copyright -->
+      </div><!-- End of container-footer -->
+    </div><!-- End of footer -->
+    <script type="text/javascript">
+      (function() {
+        var didInit = false;
+        function initMunchkin() {
+          if(didInit === false) {
+            didInit = true;
+            Munchkin.init('625-IUJ-009');
+          }
+        }
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+        s.onreadystatechange = function() {
+          if (this.readyState == 'complete' || this.readyState == 'loaded') {
+            initMunchkin();
+          }
+        };
+        s.onload = initMunchkin;
+        document.getElementsByTagName('head')[0].appendChild(s);
+      })();
+    </script>
+  </body>
+</html>

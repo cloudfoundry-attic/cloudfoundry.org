@@ -1,0 +1,703 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>User Account and Authentication (UAA) Server</title>
+
+    <link href="/stylesheets/master.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='/images/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('a#search').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 20px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2').css("padding","11px 10px 8px");
+          $('#search-on').show();
+          $('#search-off').hide();
+        });
+        $('.cancel-x').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 63px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2, #organization_bar .navbar .nav>li a#search').css("padding","16px 20px 15px");
+          $('#organization_bar .navbar .nav>li a#getinvolved').css("padding","11px 92px 8px");
+          $('#organization_bar .navbar .nav>li#docs-off .docs-list-list a').css("padding","0");
+          $('#search-on').hide();
+          $('#search-off').show();
+        });f
+        $(".togglebutton").click(function () {
+        var divname= this.value;
+          $("#"+divname).show("slow").siblings().hide("slow");
+        });
+      });
+    </script>
+
+    <!--[if lt IE 9]>
+    <style>
+        #content .container-full {background:  #ebf0fa;}
+        .call-to-contribute-box, .column-left, .column-middle, .column-right {background:#e3e8f2}
+        #footer {background:#000;}
+    </style>
+    <![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22181585-1']);
+      _gaq.push(['_setDomainName', 'cloudfoundry.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body class="docs docs_running docs_running_architecture docs_running_architecture_uaa">
+    <img id="bg" src="/images/bg-plain-x.jpg">
+    <div id='non_footer'>
+      <div id='header'>
+        <div class='container_wide'>
+          <ul class='actions'>
+            <li class='last'>
+              <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
+            </li>
+            <li>
+              <a class='register_link' href='http://login.run.pivotal.io/login'>My Account</a>            
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id='content'>
+        <div class='logo-main'>
+          <div class='logo'>
+            <a href='http://www.cloudfoundry.com'>
+            <img src='/images/logo-cloudfoundry.png'>
+            </a>
+            <a href='http://www.gopivotal.com' target="_blank">
+            <img id="pivotal-logo" src='/images/logo-pivotal.png'>
+            </a>
+          </div>
+          <div class='cta'>
+            <a href='https://console.run.pivotal.io'>
+            <img src='/images/signup_freetrial.png'>
+            </a>
+          </div>
+        </div><!-- End of logo-main-->
+        <div class='container-full'>
+          <div id='organization_bar'>
+            <div class='navbar'>
+              <ul class='nav'>
+                <li>
+                <a href='http://www.cloudfoundry.com/use' id='use'>Using Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/run' id='run'>Running Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/getinvolved' id='getinvolved'>Get Involved</a>
+                </li>
+                <li id='docs-off'>
+                  <a href='/' id='docs'>
+                    <div id='icon-docs'></div>
+                  </a>
+                  <div id='docs-list'>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/using/app-arch/'>Using Cloud Foundry</a>
+                      <br>
+                      <a href="/docs/using/app-arch/">Application Architecture Considerations</a>
+                      <br>
+                      <a href='/docs/using/deploying-apps/'>Deploying Apps</a>
+                      <br>
+                      <a href='/docs/using/managing-apps/'>Managing Apps</a>
+                      <br>
+                      <a href='/docs/using/services.html'>Using Services</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/using/">See all</a>
+                    </div><!-- End of 1st column docs-list-list-->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/running/'>Running Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/architecture/'>Architecture</a>
+                      <br>
+                      <a href='/docs/running/bosh/'>BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf/'>Deploying with BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf-with-chef/'>Deploying with Chef</a>
+                      <br>
+                      <a href='/docs/running/micro_cloud_foundry/'>Micro Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/managing-cf/index.html'>Managing Cloud Foundry</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/running/">See all</a>
+                    </div><!-- End of column 2 docs-list-list -->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/reference/'>Reference</a>
+                      <br>
+                      <a href='/docs/reference/cc-api.html'>Cloud Foundry REST API</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/dotcom/'>CloudFoundry.com</a>
+                      <br>
+                      <a href='/docs/dotcom/integration/'>Technical Integration</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/community/'>Community</a>
+                    </div><!-- End of column 3 docs-list-list -->
+                  </div><!-- End of docs-list -->
+                </li>
+                <li id='search-off'>
+                  <a id='search'>
+                    <div class='icon-search'></div>
+                  </a>
+                </li>
+                <li id='search-on'>
+                  <a id='search2'>
+                    <form action='http://www.cloudfoundry.com/search' class='search-form' method='get' onsubmit='return submitQuery()'>
+                      <input autocomplete='off' class='search-input' id='search-query' name='q' onfocus="this.placeholder = ''" placeholder='' type='search' value=''>
+                    </form>
+                    <div class="cancel-x"></div>
+                  </a>
+                </li>
+              </ul>
+            </div><!-- End of navbar -->
+          </div><!-- End of organization_bar -->
+          <div class='content_inner'>
+            <a class="forkme" href="http://github.com/cloudfoundry/cf-docs" target="_blank">
+              <img alt="Fork me on GitHub" src="/images/ribbon_forkme.png">
+            </a>
+            <form action='http://www.cloudfoundry.com/search' class='search-docs-form' method='get' onsubmit='return submitQuery()'>
+              <input autocomplete='off' class='search-docs-input' id='search-query' name='q' onfocus="this.placeholder = 'more:docs '" placeholder='' type='search-docs' value='more:docs '>
+            </form>
+            <br clear="left">
+            
+              <div class="breadcrumbs">
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li class=""><a href="/docs/running/">Running Cloud Foundry</a></li> <li class=""><a href="/docs/running/architecture/">Architecture</a></li> <li class="active"><span>User Account and Authentication (UAA) Server</span></li>
+                </ul>
+              </div>
+              <br clear="left">
+
+			
+
+              <div class="quick-links"><ul>
+<li><a href="#quickstart">Quick Start</a>
+
+<ul>
+<li><a href="#deploy">Deploy to Cloud Foundry</a></li>
+<li><a href="#demo-local">Local Command Line Usage</a></li>
+<li><a href="#demo-hosted">Remote Command Line Usage</a></li>
+</ul></li>
+<li><a href="#integration">Integration tests</a>
+
+<ul>
+<li><a href="#integration-tests">Integration Tests</a></li>
+<li><a href="#custom-configuration">Custom YAML Configuration</a></li>
+<li><a href="#maven">Using Maven with Cloud Foundry or VCAP</a></li>
+</ul></li>
+<li><a href="#maven-test">Test with PostgreSQL or MySQL</a></li>
+<li><a href="#projects">UAA Projects</a></li>
+<li><a href="#uaa-server">UAA Server</a>
+
+<ul>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#user-account-data">User Account Data</a></li>
+</ul></li>
+<li><a href="#samples">Sample Applications</a>
+
+<ul>
+<li><a href="#api-application">API Application</a></li>
+<li><a href="#app-application">App Application</a></li>
+<li><a href="#login-application">Login Application</a></li>
+</ul></li>
+</ul>
+</div>
+
+              <h1>User Account and Authentication (UAA) Server</h1>
+
+            
+            <p>The UAA is the identity management service for Cloud Foundry.  Its primary role is as an OAuth2 provider, issuing tokens for client applications to use when they act on behalf of Cloud Foundry users.  It can also authenticate users with their Cloud Foundry credentials, and can act as an SSO service using those credentials (or others). It has endpoints for managing user accounts and for registering OAuth2 clients, as well as various other management functions.</p>
+
+<h2><a id='quickstart'></a>Quick Start</h2>
+
+<p>Fetch and install the UAA from Git:</p>
+
+<pre class="terminal">
+$ git clone git://github.com/cloudfoundry/uaa.git
+$ cd uaa
+$ mvn install
+</pre>
+
+<p>Each module has a <code>mvn tomcat:run</code> target to run individually. Alternatively, you could import them as projects into STS (use 2.8.0 or better if you can). The apps all work together and run on the same port (8080) with endpoints <code>/uaa</code>, <code>/app</code> and <code>/api</code>.</p>
+
+<p>You will need Maven 3.0.4 or newer.</p>
+
+<h3><a id='deploy'></a>Deploy to Cloud Foundry</h3>
+
+<p>You can also build the app and push it to Cloud Foundry:</p>
+
+<pre class="terminal">
+$ mvn package install
+$ cf push myuaa --path uaa/target
+</pre>
+
+<p>(If you do that, choose a unique application id, not <code>myuaa</code>.)</p>
+
+<h3><a id='demo-local'></a>Local Command Line Usage</h3>
+
+<p>First run the UAA server as described above:</p>
+
+<pre class="terminal">
+$ cd uaa
+$ mvn tomcat:run
+</pre>
+
+<p>Then start another terminal and from the project base directory, ask the login endpoint to tell you about the system:</p>
+
+<pre class="terminal">
+$ curl -H "Accept: application/json" localhost:8080/uaa/login
+{
+  "timestamp":"2012-03-28T18:25:49+0100",
+  "commit_id":"111274e",
+  "prompts":{"username":["text","Email"],
+    "password":["password","Password"]
+  }
+}
+</pre>
+
+<p>Then you can try logging in with the UAA Ruby gem. Make sure you have Ruby 1.9, then:</p>
+
+<pre class="terminal">
+$ gem install cf-uaac
+$ uaac target http://localhost:8080/uaa
+$ uaac token get marissa koala
+</pre>
+
+<p>(If you do not specify username and password you will be prompted to supply them.)</p>
+
+<p>This authenticates and obtains an access token from the server using the OAuth2 implicit grant, similar to the approach intended for a client like <code>cf</code>. The token is stored in <code>~/.uaac.yml</code>; open that file to obtain access token for your <code>cf</code> target (or use <code>--verbose</code> on the login command line above to see it in the command shell.</p>
+
+<p>Then you can login as a resource server and retrieve the token details:</p>
+
+<pre class="terminal">
+$ uaac target http://localhost:8080/uaa
+$ uaac token decode [token-value-from-above]
+</pre>
+    
+
+<p>You should see your username and the client id of the original token grant on stdout:</p>
+<pre class="highlight text">exp: 1355348409
+user_name: marissa
+scope: cloud_controller.read openid password.write scim.userids tokens.read tokens.write
+email: marissa@test.org
+aud: scim tokens openid cloud_controller password
+jti: ea2fac72-3f51-4c8f-a7a6-5ffc117af542
+user_id: ba14fea0-9d87-4f0c-b59e-32aaa8eb1434
+client_id: cf
+</pre>
+<h3><a id='demo-hosted'></a>Remote Command Line Usage</h3>
+
+<p>The command line example in the previous section should work against a UAA running on the hosted Pivotal CF instance, although  token encloding is unnecessary as you will not have the client secret. </p>
+
+<p>In this case, there is no need to run a local uaa server, so simply ask the external login endpoint to tell you about the system:</p>
+
+<pre class="terminal">
+$ curl -H "Accept: application/json" uaa.run.pivotal.io/login
+{
+  "prompts":{"username":["text","Email"],
+    "password":["password","Password"]
+  }
+}
+</pre>
+
+<p>You can then try logging in with the UAA Ruby gem.  Make sure you have Ruby 1.9, then:</p>
+
+<pre class="terminal">
+$ gem install cf-uaac
+$ uaac target uaa.run.pivotal.io
+$ uaac token get [yourusername] [yourpassword]
+</pre>
+
+<p>(If you do not specify username and password you will be prompted to supply them.)</p>
+
+<p>This authenticates and obtains an access token from the server using the OAuth2 implicit grant, the same as used by a client like <code>cf</code>. </p>
+
+<h2><a id='integration'></a>Integration tests</h2>
+
+<p>With all apps deployed into a running server on port 8080 the tests will include integration tests (a check is done before each test that the app is running).  You can deploy them in your IDE or using the command line with <code>mvn tomcat:run</code> and then run the tests as normal.</p>
+
+<p>For individual modules, or for the whole project, you can also run integration tests and the server from the command line in one go with:</p>
+
+<pre class="terminal">
+$ mvn test -P integration
+</pre>
+
+<p>(This might require an initial <code>mvn install</code> from the parent directory to get the WARs in your local repo first.)</p>
+
+<p>To make the tests work in various environments you can modify the configuration of the server and the tests (e.g. the admin client) using a variety of mechanisms. The simplest is to provide additional Maven profiles on the command line:</p>
+
+<pre class="terminal">
+$ (cd uaa; mvn test -P vcap)
+</pre>
+    
+
+<p>This will run the integration tests against a UAA server running in a local vcap, so for example the service URL is set to <code>uaa.vcap.me</code> (by default).  There are several Maven profiles to play with, and they can be used to run the server, or the tests or both:</p>
+
+<ul>
+<li><p><code>local</code>: runs the server on the ROOT context <code>http://localhost:8080/</code></p></li>
+<li><p><code>vcap</code>: also runs the server on the ROOT context and points the tests at <code>uaa.vcap.me</code>.</p></li>
+<li><p><code>devuaa</code>: points the tests at <code>http://devuaa.cloudfoundry.com</code> (an instance of UAA deployed on cloudfoundry) <em>NB this information is currently outdated</em></p></li>
+</ul>
+
+<p>All these profiles set the <code>CLOUD_FOUNDRY_CONFIG_PATH</code> to pick up a <code>uaa.yml</code> and (if appropriate) set the context root for running the server (see below for more detail on that).  </p>
+
+<h3><a id='integration-tests'></a>Integration Tests</h3>
+
+<p>There is a  simple cucumber feature spec (<code>--tag @uaa</code>) to verify that the UAA server is there.  There is also a rake task to launch the integration tests from the <code>uaa</code> submodule in <code>vcap</code>.  Typical usage for a local (<code>uaa.vcap.me</code>) instance:</p>
+
+<pre class="terminal">
+$ cd vcap/tests
+$ rake bvt:run_uaa
+</pre>
+
+<p>You can change the most common important settings with environment variables (see below), or with a custom <code>uaa.yml</code>. </p>
+
+<p><em>Note:</em> <code>MAVEN_OPTS</code> cannot be used to set JVM system properties for the tests, but it can be used to set memory limits for the process etc.</p>
+
+<h3><a id='custom-configuration'></a>Custom YAML Configuration</h3>
+
+<p>To modify the runtime parameters you can provide a <code>uaa.yml</code>, like this example:</p>
+
+<pre class="terminal">
+$ cat > /tmp/uaa.yml
+uaa:
+  host: uaa.appcloud21.dev.mozycloud
+  test:
+    username: dev@cloudfoundry.org # defaults to vcap_tester@vmware.com
+    password: changeme
+    email: dev@cloudfoundry.org
+</pre>
+
+<p>then from <code>vcap-tests</code>:</p>
+
+<pre class="terminal">
+$ CLOUD_FOUNDRY_CONFIG_PATH=/tmp rake bvt:run_uaa
+</pre>
+    
+
+<p>or from <code>uaa/uaa</code>:</p>
+
+<pre class="terminal">
+$ CLOUD_FOUNDRY_CONFIG_PATH=/tmp mvn test
+</pre>
+    
+
+<p>The integration tests look for a YAML file in the following locations (later entries override earlier ones), and the webapp does the same when it starts up so you can use the same config file for both: </p>
+<pre class="highlight yaml"><span class="s">classpath:uaa.yml</span>
+<span class="s">file:${CLOUD_FOUNDRY_CONFIG_PATH}/uaa.yml</span>
+<span class="s">file:${UAA_CONFIG_FILE}</span>
+<span class="s">${UAA_CONFIG_URL}</span>
+</pre>
+<h3><a id='maven'></a>Using Maven with Cloud Foundry or VCAP</h3>
+
+<p>To test against a vcap instance use the Maven profile <code>vcap</code> (it switches off some of the tests that create random client and user accounts):</p>
+
+<pre class="terminal">
+$ (cd uaa; mvn test -P vcap)
+</pre>
+
+<p>To change the target server it should suffice to set <code>VCAP_BVT_TARGET</code> (the tests prefix it with <code>uaa.</code> to form the server url):</p>
+
+<pre class="terminal">
+$ VCAP_BVT_TARGET=appcloud21.dev.mozycloud mvn test -P vcap
+</pre>
+
+<p>You can also override some of the other most important default settings using environment variables.  The defaults as usual come from <code>uaa.yml</code> but tests will search first in an environment variable:</p>
+
+<ul>
+<li><p><code>UAA_ADMIN_CLIENT_ID</code> the client id for bootstrapping client registrations needed for the rest of the tests.</p></li>
+<li><p><code>UAA_ADMIN_CLIENT_SECRET</code> the client secret for bootstrapping client registrations</p></li>
+</ul>
+
+<p>All other settings from <code>uaa.yml</code> can be overridden individually as system properties.  Running in an IDE this is easy just using whatever features allow you to modify the JVM in test runs, but using Maven you have to use the <code>argLine</code> property to get settings passed onto the test JVM:</p>
+
+<pre class="terminal">
+$ mvn -DargLine=-Duaa.test.username=foo test
+</pre>
+
+<p>will create an account with <code>userName=foo</code> for testing (instead of using the default setting from <code>uaa.yml</code>).</p>
+
+<p>If you prefer environment variables to system properties you can use a custom <code>uaa.yml</code> with placeholders for your environment variables, e.g.:</p>
+<pre class="highlight yaml"><span class="s">uaa</span><span class="p">:</span>
+  <span class="s">test</span><span class="p">:</span>
+    <span class="s">username</span><span class="p">:</span> <span class="s">${UAA_TEST_USERNAME:marissa}</span>
+</pre>
+<p>will look for an environment variable (or system property) <code>UAA_TEST_USERNAME</code> before defaulting to <code>marissa</code>.  This is the trick used to expose <code>UAA_ADMIN_CLIENT_SECRET</code> etc. in the standard configuration.</p>
+
+<h3><a id='maven-test'></a>Test with PostgreSQL or MySQL</h3>
+
+<p>The default UAA unit tests (<code>mvn test</code>) use hsqldb.</p>
+
+<p>To run the unit tests using PostgreSQL:</p>
+
+<pre class="terminal">
+$ SPRING_PROFILES_ACTIVE=test,postgresql CLOUD_FOUNDRY_CONFIG_PATH=src/test/resources/test/profiles/postgresql mvn test
+</pre>
+
+<p>To run the unit tests using MySQL:</p>
+
+<pre class="terminal">
+$ SPRING_PROFILES_ACTIVE=test,mysql CLOUD_FOUNDRY_CONFIG_PATH=src/test/resources/test/profiles/mysql mvn test
+</pre>
+
+<p>The database configuration for the common and scim modules is located at <code>common/src/test/resources/(mysql|postgresql).properties</code> and <code>scim/src/test/resources/(mysql|postgresql).properties</code>.</p>
+
+<h2><a id='projects'></a>UAA Projects</h2>
+
+<p>There are actually several projects here, the main <code>uaa</code> server application and some samples:</p>
+
+<ul>
+<li><p><code>common</code> is a module containing a JAR with all the business logic.  It is used in
+the webapps below.</p></li>
+<li><p><code>uaa</code> is the actual UAA server.  <code>uaa</code> provides an authentication service plus authorized delegation for back-end services and apps (by issuing OAuth2 access tokens).</p></li>
+<li><p><code>gem</code> is a ruby gem (<code>cf-uaa-client</code>) for interacting with the UAA server</p></li>
+<li><p><code>api</code> (sample) is an OAuth2 resource service which returns a mock list of deployed apps. <code>api</code> is a service that provides resources that other applications may wish to access on behalf of the resource owner (the end user)</p></li>
+<li><p><code>app</code> (sample) is a user application that uses both of the above. <code>app</code> is a webapp that needs single sign on and access to the <code>api</code> service on behalf of users.</p></li>
+<li><p><code>login</code> (sample) is an application that performs authentication for the UAA acting as a back end service. <code>login</code> is where Cloud Foundry administrators set up their authentication sources, e.g. LDAP/AD, SAML, OpenID (Google etc.) or social. The <code>run.pivotal.io</code> platform uses a different implementation of the <a href="https://github.com/cloudfoundry/login-server">login server</a>.</p></li>
+</ul>
+
+<h2><a id='uaa-server'></a>UAA Server</h2>
+
+<p>The authentication service is <code>uaa</code>. It is a plain Spring MVC webapp. Deploy as normal in Tomcat or your container of choice, or execute <code>mvn tomcat:run</code> to run it directly from <code>uaa</code> directory in the source tree (make sure the common jar is installed first using <code>mvn install</code> from the common subdirectory or from the top level directory). When running with maven it listens on port 8080.</p>
+
+<p>The UAA Server supports the APIs defined in the UAA-APIs document. To summarise:</p>
+
+<ol>
+<li><p>The OAuth2 <code>/authorize</code> and <code>/token</code> endpoints</p></li>
+<li><p>A <code>/login_info</code> endpoint to allow querying for required login prompts</p></li>
+<li><p>A <code>/check_token</code> endpoint, to allow resource servers to obtain information about an access token submitted by an OAuth2 client.</p></li>
+<li><p>SCIM user provisioning endpoint</p></li>
+<li><p>OpenID connect endpoints to support authentication <code>/userinfo</code> and <code>/check_id</code> (todo). Implemented roughly enough to get it working (so <code>/app</code> authenticates here), but not to meet the spec.</p></li>
+</ol>
+
+<p>Authentication can be performed by command line clients by submitting credentials directly to the <code>/authorize</code> endpoint (as described in UAA-API doc).  There is an <code>ImplicitAccessTokenProvider</code> in Spring Security OAuth that can do the heavy lifting if your client is Java.</p>
+
+<p>By default <code>uaa</code> will launch with a context root <code>/uaa</code>. There is a Maven profile <code>local</code> to launch with context root <code>/</code>, and another called <code>vcap</code> to launch at <code>/</code> with a PostgreSQL backend.</p>
+
+<h3><a id='configuration'></a>Configuration</h3>
+
+<p>There is a <code>uaa.yml</code> file in the application which provides defaults to the placeholders in the Spring XML.  Wherever you see <code>${placeholder.name}</code> in the XML there is an opportunity to override it either by providing a System property (<code>-D</code> to JVM) with the same name, or a custom <code>uaa.yml</code> (as described above).</p>
+
+<p>All passwords and client secrets in the config files are plain text, but they will be inserted into the UAA database encrypted with BCrypt.</p>
+
+<h3><a id='user-account-data'></a>User Account Data</h3>
+
+<p>The default is to use an in-memory RDBMS user store that is pre-populated with a single test users: <code>marissa</code> has password <code>koala</code>.</p>
+
+<p>To use Postgresql for user data, activate one of the Spring profiles <code>hsqldb</code> or <code>postgresql</code>.</p>
+
+<p>The active profiles can be configured in <code>uaa.yml</code> using</p>
+<pre class="highlight yaml"><span class="s">spring_profiles</span><span class="p">:</span> <span class="s">postgresql</span>
+</pre>
+<p>or by passing the <code>spring.profiles.active</code> parameter to the JVM. For, example to run with an embedded HSQL database:</p>
+
+<pre class="terminal>
+$ mvn -Dspring.profiles.active=hsqldb tomcat:run
+</pre>
+
+<p>Or to use PostgreSQL instead of HSQL:</p>
+
+<pre class="terminal>
+$ mvn -Dspring.profiles.active=postgresql tomcat:run
+</pre>
+
+<p>To bootstrap a microcloud type environment you need an admin client. For this there is a database initializer component that inserts an admin client.  If the default profile is active (i.e. not <code>postgresql</code>) there is also a <code>cf</code> client so that the gem login works out of the box. You can override the default settings and add additional clients in <code>uaa.yml</code>:</p>
+<pre class="highlight yaml"><span class="s">oauth</span><span class="p">:</span>
+  <span class="s">clients</span><span class="p">:</span>
+    <span class="s">admin</span><span class="p">:</span>    
+      <span class="s">authorized-grant-types</span><span class="p">:</span> <span class="s">client_credentials</span>
+      <span class="s">scope</span><span class="p">:</span> <span class="s">read,write,password</span>
+      <span class="s">authorities</span><span class="p">:</span> <span class="s">ROLE_CLIENT,ROLE_ADIN</span>
+      <span class="s">id</span><span class="p">:</span> <span class="s">admin</span>
+      <span class="s">secret</span><span class="p">:</span> <span class="s">adminclientsecret</span>
+      <span class="s">resource-ids</span><span class="p">:</span> <span class="s">clients</span>
+</pre>
+<p>The admin client can be used to create additional clients (but not to do anything much else).  A client with read/write access to the <code>scim</code> resource will be needed to create user accounts.  The integration tests take care of this automatically, inserting client and user accounts as necessary to make the tests work.</p>
+
+<h2><a id='samples'></a>Sample Applications</h2>
+
+<h3><a id='api-application'></a>API Application</h3>
+
+<p>An example resource server.  It hosts a service which returns a list of mock applications under <code>/apps</code>.</p>
+
+<p>Run it using <code>mvn tomcat:run</code> from the <code>api</code> directory (once all other tomcat processes have been shutdown). This will deploy the app to a Tomcat manager on port 8080.</p>
+
+<h3><a id='app-application'></a>App Application</h3>
+
+<p>This is a user interface app (primarily aimed at browsers) that uses OpenId Connect for authentication (i.e. SSO) and OAuth2 for access grants.  It authenticates with the Auth service, and then accesses resources in the API service.  Run it with <code>mvn tomcat:run</code> from the <code>app</code> directory (once all other tomcat processes have been shutdown).</p>
+
+<p>The application can operate in multiple different profiles according to the location (and presence) of the UAA server and the Login application.  By default it will look for a UAA on <code>localhost:8080/uaa</code>, but you can change this by setting an environment variable (or System property) called <code>UAA_PROFILE</code>.  In the application source code (<code>src/main/resources</code>) you will find multiple properties files pre-configured with different likely locations for those servers.  They are all in the form <code>application-&lt;UAA_PROFILE&gt;.properties</code> and the naming convention adopted is that the <code>UAA_PROFILE</code> is <code>local</code> for the localhost deployment, <code>vcap</code> for a <code>vcap.me</code> deployment, <code>staging</code> for a staging deployment.  The profile names are double barrelled (e.g. <code>local-vcap</code> when the login server is in a different location than the UAA server).</p>
+
+<h4>Use Cases</h4>
+
+<ol>
+<li><p>See all apps</p>
+<pre class="highlight text">GET /app/apps
+</pre>
+<p>Browser is redirected through a series of authentication and access grant steps (which could be slimmed down to implicit steps not requiring user at some point), and then the photos are shown.</p></li>
+<li><p>See the currently logged in user details, a bag of attributes grabbed from the open id provider</p>
+<pre class="highlight text">GET /app
+</pre></li>
+</ol>
+
+<h3><a id='login-application'></a>Login Application</h3>
+
+<p>A user interface for authentication.  The UAA can also authenticate user accounts, but only if it manages them itself, and it only provides a basic UI.  The Login app can be branded and customized for non-native authentication and for more complicate UI flows, like user registration and password reset.</p>
+
+<p>The login application is actually itself an OAuth2 endpoint provider, but delegates those features to the UAA server.  Configuration for the login application therefore consists of locating the UAA through its OAuth2 endpoint URLs, and registering the login application itself as a client of the UAA.  There is a <code>login.yml</code> for the UAA locations, e.g. for a local <code>vcap</code> instance:</p>
+<pre class="highlight yaml"><span class="s">uaa</span><span class="p">:</span>
+  <span class="s">url</span><span class="p">:</span> <span class="s">http://uaa.vcap.me</span>
+  <span class="s">token</span><span class="p">:</span>
+    <span class="s">url</span><span class="p">:</span> <span class="s">http://uaa.vcap.me/oauth/token</span>
+  <span class="s">login</span><span class="p">:</span>
+    <span class="s">url</span><span class="p">:</span> <span class="s">http://uaa.vcap.me/login.do</span>
+</pre>
+<p>and there is an environment variable (or Java System property), <code>LOGIN_SECRET</code> for the client secret that the app uses when it authenticates itself with the UAA.  The Login app is registered by default in the UAA only if there are no active Spring profiles (so not at all in <code>vcap</code>).  In the UAA you can find the registration in the <code>oauth-clients.xml</code> config file.  Here&#39;s a summary:</p>
+<pre class="highlight yaml"><span class="s">id</span><span class="p">:</span> <span class="s">login</span>
+<span class="s">secret</span><span class="p">:</span> <span class="s">loginsecret</span>
+<span class="s">authorized-grant-types</span><span class="p">:</span> <span class="s">client_credentials</span>
+<span class="s">authorities</span><span class="p">:</span> <span class="s">ROLE_LOGIN</span>
+<span class="s">resource-ids</span><span class="p">:</span> <span class="s">oauth</span>
+</pre>
+<h4>Use Cases</h4>
+
+<ol>
+<li><p>Authenticate</p>
+<pre class="highlight text">GET /login
+</pre>
+<p>The sample app presents a form login interface for the backend UAA, and also an OpenID widget so the user can authenticate using Google etc. credentials.</p></li>
+<li><p>Approve OAuth2 token grant</p>
+<pre class="highlight text">GET /oauth/authorize?client_id=app&amp;response_type=code...
+</pre>
+<p>Standard OAuth2 Authorization Endpoint. Client credentials and all other features are handled by the UAA in the back end, and the login application is used to render the UI (see <code>access_confirmation.jsp</code>).</p></li>
+<li><p>Obtain access token</p>
+<pre class="highlight text">POST /oauth/token
+</pre>
+<p>Standard OAuth2 Authorization Endpoint passed through to the UAA.</p></li>
+</ol>
+
+          </div><!-- End of content_inner -->
+        </div><!-- End of container-full -->
+      </div><!-- End of content -->
+    </div><!-- End of non_footer -->
+    <div id='footer'>
+      <div id='container-footer'>
+        <div class='bg_social'>
+          <ul class='social'>
+            <li>
+            <a href='http://twitter.com/cloudfoundry' target='_blank'>
+            <img alt='Twitter' src='/images/twitter_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='https://plus.google.com/114245065906861739918/posts' target='_blank'>
+            <img alt='Google+' src='/images/g+_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://facebook.com/cloudfoundry' target='_blank'>
+            <img alt='Facebook' src='/images/facebook_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://youtube.com/cloudfoundry' target='_blank'>
+            <img alt='Youtube' src='/images/youtube_large.png'>
+            </a>
+            </li>
+          </ul>
+        </div><!-- End of bg_social -->
+        <ul class='links'>
+          <li>
+          <a href='http://www.cloudfoundry.com/about'>About</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://blog.cloudfoundry.com/'>Blog</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/partners'>Partners</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://docs.cloudfoundry.com'>Docs</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://status.cloudfoundry.com/'>Status</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/support'>Support</a>
+          </li>
+        </ul>
+        <div class='copyright'>
+          <div class='hr-horizontal-dark'></div>
+          <br>
+          <p>
+            &copy;
+            <script>
+              //<![CDATA[
+                var d = new Date();
+                document.write(d.getFullYear());
+              //]]>
+            </script>
+            GoPivotal, Inc. All rights reserved.
+            <a href='http://www.cloudfoundry.com/terms'>Terms</a>
+            <a href='http://www.gopivotal.com/privacy-policy' target='_blank'>Privacy</a>
+          </p>
+        </div><!-- End of copyright -->
+      </div><!-- End of container-footer -->
+    </div><!-- End of footer -->
+    <script type="text/javascript">
+      (function() {
+        var didInit = false;
+        function initMunchkin() {
+          if(didInit === false) {
+            didInit = true;
+            Munchkin.init('625-IUJ-009');
+          }
+        }
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+        s.onreadystatechange = function() {
+          if (this.readyState == 'complete' || this.readyState == 'loaded') {
+            initMunchkin();
+          }
+        };
+        s.onload = initMunchkin;
+        document.getElementsByTagName('head')[0].appendChild(s);
+      })();
+    </script>
+  </body>
+</html>

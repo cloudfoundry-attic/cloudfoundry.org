@@ -1,0 +1,538 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Memcached Cloud</title>
+
+    <link href="/stylesheets/master.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='/images/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('a#search').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 20px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2').css("padding","11px 10px 8px");
+          $('#search-on').show();
+          $('#search-off').hide();
+        });
+        $('.cancel-x').click(function () {
+          $('#organization_bar .navbar .nav>li a').css("padding","11px 63px 8px");
+          $('#organization_bar .navbar .nav>li a#docs').css("padding","14px 20px");
+          $('#organization_bar .navbar .nav>li a#search2, #organization_bar .navbar .nav>li a#search').css("padding","16px 20px 15px");
+          $('#organization_bar .navbar .nav>li a#getinvolved').css("padding","11px 92px 8px");
+          $('#organization_bar .navbar .nav>li#docs-off .docs-list-list a').css("padding","0");
+          $('#search-on').hide();
+          $('#search-off').show();
+        });f
+        $(".togglebutton").click(function () {
+        var divname= this.value;
+          $("#"+divname).show("slow").siblings().hide("slow");
+        });
+      });
+    </script>
+
+    <!--[if lt IE 9]>
+    <style>
+        #content .container-full {background:  #ebf0fa;}
+        .call-to-contribute-box, .column-left, .column-middle, .column-right {background:#e3e8f2}
+        #footer {background:#000;}
+    </style>
+    <![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-22181585-1']);
+      _gaq.push(['_setDomainName', 'cloudfoundry.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body class="docs docs_dotcom docs_dotcom_marketplace docs_dotcom_marketplace_services docs_dotcom_marketplace_services_memcachedcloud">
+    <img id="bg" src="/images/bg-plain-x.jpg">
+    <div id='non_footer'>
+      <div id='header'>
+        <div class='container_wide'>
+          <ul class='actions'>
+            <li class='last'>
+              <a href="http://www.cloudfoundry.com/contact">Contact Us</a>
+            </li>
+            <li>
+              <a class='register_link' href='http://login.run.pivotal.io/login'>My Account</a>            
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id='content'>
+        <div class='logo-main'>
+          <div class='logo'>
+            <a href='http://www.cloudfoundry.com'>
+            <img src='/images/logo-cloudfoundry.png'>
+            </a>
+            <a href='http://www.gopivotal.com' target="_blank">
+            <img id="pivotal-logo" src='/images/logo-pivotal.png'>
+            </a>
+          </div>
+          <div class='cta'>
+            <a href='https://console.run.pivotal.io'>
+            <img src='/images/signup_freetrial.png'>
+            </a>
+          </div>
+        </div><!-- End of logo-main-->
+        <div class='container-full'>
+          <div id='organization_bar'>
+            <div class='navbar'>
+              <ul class='nav'>
+                <li>
+                <a href='http://www.cloudfoundry.com/use' id='use'>Using Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/run' id='run'>Running Cloud Foundry</a>
+                </li>
+                <li>
+                <a href='http://www.cloudfoundry.com/getinvolved' id='getinvolved'>Get Involved</a>
+                </li>
+                <li id='docs-off'>
+                  <a href='/' id='docs'>
+                    <div id='icon-docs'></div>
+                  </a>
+                  <div id='docs-list'>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/using/app-arch/'>Using Cloud Foundry</a>
+                      <br>
+                      <a href="/docs/using/app-arch/">Application Architecture Considerations</a>
+                      <br>
+                      <a href='/docs/using/deploying-apps/'>Deploying Apps</a>
+                      <br>
+                      <a href='/docs/using/managing-apps/'>Managing Apps</a>
+                      <br>
+                      <a href='/docs/using/services.html'>Using Services</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/using/">See all</a>
+                    </div><!-- End of 1st column docs-list-list-->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/running/'>Running Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/architecture/'>Architecture</a>
+                      <br>
+                      <a href='/docs/running/bosh/'>BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf/'>Deploying with BOSH</a>
+                      <br>
+                      <a href='/docs/running/deploying-cf-with-chef/'>Deploying with Chef</a>
+                      <br>
+                      <a href='/docs/running/micro_cloud_foundry/'>Micro Cloud Foundry</a>
+                      <br>
+                      <a href='/docs/running/managing-cf/index.html'>Managing Cloud Foundry</a>
+                      <br>
+                      <a class="docs-list-see-all" href="/docs/running/">See all</a>
+                    </div><!-- End of column 2 docs-list-list -->
+                    <div class="hr-vertical"></div>
+                    <div class="docs-list-list">
+                      <a class="docs-list-th" href='/docs/reference/'>Reference</a>
+                      <br>
+                      <a href='/docs/reference/cc-api.html'>Cloud Foundry REST API</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/dotcom/'>CloudFoundry.com</a>
+                      <br>
+                      <a href='/docs/dotcom/integration/'>Technical Integration</a>
+                      <br>
+                      <a class="docs-list-th" href='/docs/community/'>Community</a>
+                    </div><!-- End of column 3 docs-list-list -->
+                  </div><!-- End of docs-list -->
+                </li>
+                <li id='search-off'>
+                  <a id='search'>
+                    <div class='icon-search'></div>
+                  </a>
+                </li>
+                <li id='search-on'>
+                  <a id='search2'>
+                    <form action='http://www.cloudfoundry.com/search' class='search-form' method='get' onsubmit='return submitQuery()'>
+                      <input autocomplete='off' class='search-input' id='search-query' name='q' onfocus="this.placeholder = ''" placeholder='' type='search' value=''>
+                    </form>
+                    <div class="cancel-x"></div>
+                  </a>
+                </li>
+              </ul>
+            </div><!-- End of navbar -->
+          </div><!-- End of organization_bar -->
+          <div class='content_inner'>
+            <a class="forkme" href="http://github.com/cloudfoundry/cf-docs" target="_blank">
+              <img alt="Fork me on GitHub" src="/images/ribbon_forkme.png">
+            </a>
+            <form action='http://www.cloudfoundry.com/search' class='search-docs-form' method='get' onsubmit='return submitQuery()'>
+              <input autocomplete='off' class='search-docs-input' id='search-query' name='q' onfocus="this.placeholder = 'more:docs '" placeholder='' type='search-docs' value='more:docs '>
+            </form>
+            <br clear="left">
+            
+              <div class="breadcrumbs">
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li class=""><a href="/docs/dotcom/">Pivotal CF Hosted</a></li> <li class=""><a href="/docs/dotcom/marketplace/">Marketplace</a></li> <li class=""><a href="/docs/dotcom/marketplace/services/">Services</a></li> <li class="active"><span>Memcached Cloud</span></li>
+                </ul>
+              </div>
+              <br clear="left">
+
+			
+
+              <div class="quick-links"></div>
+
+              <h1>Memcached Cloud</h1>
+
+            
+            <p><a href="http://garantiadata.com/memcached">Memcached Cloud</a> is a fully-managed service for running your Memcached in a reliable and fail-safe manner. Your dataset is constantly replicated, so if a node fails, an auto-switchover mechanism guarantees data is served without interruption. Memcached Cloud provides various data persistence options as well as remote backups for disaster recovery purposes. You can quickly and easily get your apps up and running with Memcached Cloud through its add-on for Cloud Foundry, just tell us how much memory you need and get started instantly with your first Memcached bucket.</p>
+
+<p>A Memcached bucket is created in seconds and from that moment on, all operations are fully-automated. The service completely frees developers from dealing with nodes, clusters, server lists, scaling and failure recovery, while guaranteeing absolutely no data loss.</p>
+
+<h2>Creating A Memcached Cloud Service</h2>
+
+<p>Create a Memcached Cloud service with the following command:</p>
+<pre class="highlight text">    cf create-service memcachedcloud &lt;plan name&gt;
+</pre>
+<p>where <code>&lt;plan name&gt;</code> is the desired plan&#39;s name.</p>
+
+<h2>Binding Your Memcached Cloud Service</h2>
+
+<p>Bind your Memcached Cloud service to your app, using the following command:</p>
+<pre class="highlight text">cf bind-service &lt;memcachedcloud_service_name&gt; &lt;app name&gt;
+</pre>
+<p>Once your Memcached Cloud service is bound to your app, the service credentials will be stored in the <code>VCAP_SERVICES</code> env. variable in the following format:</p>
+<pre class="highlight text">{
+  memcachedcloud-n/a: [
+    {
+      name: &quot;memcachedcloud-1234a&quot;,
+      label: &quot;memcachedcloud-n/a&quot;,
+      plan: &quot;20mb&quot;,
+      credentials: {
+        servers: &quot;pub-memcache-5678.us-east-1-1.1.ec2.garantiadata.com:5678&quot;,
+        username: &quot;memcachedcloud-1234a&quot;,
+        password: &quot;your_memcahced_password&quot;
+      }
+    }
+  ]
+}
+</pre>
+<ul>
+<li><a href="#ruby">Ruby</a></li>
+<li><a href="#rails">Rails</a></li>
+<li><a href="#sinatra">Sinatra</a></li>
+<li><a href="#unicorn">Unicron</a></li>
+<li><a href="#java">Java</a></li>
+<li><a href="#python">Python</a></li>
+<li><a href="#django">Django</a></li>
+<li><a href="#php">PHP</a></li>
+</ul>
+
+<h2><a id="ruby"></a>Using Memcached with Ruby</h2>
+
+<p><a href="https://github.com/mperham/dalli">Dalli</a> is a high performance pure Ruby client for accessing memcached servers, which uses the binary protocol.</p>
+
+<p>For usage with Rails 3.x, update the Gemfile:</p>
+<pre class="highlight text">gem &#39;dalli&#39;  
+</pre>
+<p>And then install the gem via Bundler:</p>
+<pre class="highlight text">bundle install
+</pre>
+<p>Parse your credentials as follows:</p>
+<pre class="highlight text">memcachedcloud_service = JSON.parse(ENV[&#39;VCAP_SERVICES&#39;])[&quot;memcachedcloud-n/a&quot;]
+credentials = memcachedcloud_service.first[&quot;credentials&quot;]
+</pre>
+<p>Lastly, in your <code>config/environments/production.rb</code>:</p>
+<pre class="highlight text">    config.cache_store = :dalli_store, credentials.servers, { :username =&gt; credentials.username, :password =&gt; credentials.password }
+</pre>
+<h3><a id="sinatra"></a>Configuring Memcached on Sinatra</h3>
+
+<p>Add this code snippet to your configure block:</p>
+<pre class="highlight text">configure do
+    . . .
+    require &#39;dalli&#39;
+    memcachedcloud_service = JSON.parse(ENV[&#39;VCAP_SERVICES&#39;])[&quot;memcachedcloud-n/a&quot;]
+    credentials = memcachedcloud_service.first[&quot;credentials&quot;]
+    $cache = Dalli::Client.new(credentials.servers.split(&#39;,&#39;), :username =&gt; credentials.username, :password =&gt; credentials.password)
+    . . .
+end
+</pre>
+<h3><a id="unicorn"></a>Using Memcached on Unicorn</h3>
+
+<p>No special setup is required when using Memcached Cloud with a Unicorn server.
+Users running Rails apps on Unicorn should follow the instructions in the <a href="#rails">Configuring Memcached from Rails</a> section and users running Sinatra apps on Unicorn should follow the instructions in the <a href="#sinatra">Configuring Memcached on Sinatra</a> section.</p>
+
+<h3>Testing from Ruby</h3>
+<pre class="highlight text">$cache.set(&quot;foo&quot;, &quot;bar&quot;)
+# =&gt; true
+$cache.get(&quot;foo&quot;)
+# =&gt; &quot;bar&quot;
+</pre>
+<h2><a id="java"></a>Using Memcached with Java</h2>
+
+<p><a href="https://code.google.com/p/spymemcached/">spymemcached</a> is a simple, asynchronous, single-threaded memcached client written in java. You can download the latest build from: <a href="https://code.google.com/p/spymemcached/downloads/list">https://code.google.com/p/spymemcached/downloads/list</a>.
+For using the maven repository, start by specifying the repository:</p>
+<pre class="highlight text">&lt;repositories&gt;
+    &lt;repository&gt;
+      &lt;id&gt;spy&lt;/id&gt;
+      &lt;name&gt;Spy Repository&lt;/name&gt;
+      &lt;layout&gt;default&lt;/layout&gt;
+      &lt;url&gt;http://files.couchbase.com/maven2/&lt;/url&gt;
+      &lt;snapshots&gt;
+        &lt;enabled&gt;false&lt;/enabled&gt;
+      &lt;/snapshots&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;
+</pre>
+<p>And specify the actual artifact as follows: </p>
+<pre class="highlight text">&lt;dependency&gt;
+  &lt;groupId&gt;spy&lt;/groupId&gt;
+  &lt;artifactId&gt;spymemcached&lt;/artifactId&gt;
+  &lt;version&gt;2.8.9&lt;/version&gt;
+  &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+</pre>
+<p>Configure connection to your Memcached Cloud service using the <code>VCAP_SERVICES</code> environment variable and the following code snippet:</p>
+<pre class="highlight text">try {
+    String vcap_services = System.getenv(&quot;VCAP_SERVICES&quot;);
+    if (vcap_services != null &amp;&amp; vcap_services.length() &gt; 0) {
+        // parsing memcachedcloud credentials
+        JsonRootNode root = new JdomParser().parse(vcap_services);
+        JsonNode &quot;memcachedcloudNode = root.getNode(&quot;memcachedcloud-n/a&quot;);
+        JsonNode credentials = &quot;memcachedcloudNode.getNode(0).getNode(&quot;credentials&quot;);
+
+        // building the memcached client
+        AuthDescriptor ad = new AuthDescriptor(new String[] { &quot;PLAIN&quot; },
+                new PlainCallbackHandler(credentials.getStringValue(&quot;username&quot;), credentials.getStringValue(&quot;password&quot;)));
+
+        MemcachedClient mc = new MemcachedClient(
+                  new ConnectionFactoryBuilder()
+                      .setProtocol(ConnectionFactoryBuilder.Protocol.BINARY)
+                      .setAuthDescriptor(ad).build(),
+                  AddrUtil.getAddresses(credentials.getStringValue(&quot;servers&quot;)));
+
+    }           
+} catch (InvalidSyntaxException ex) {
+    // vcap_services could not be parsed.
+} catch (IOException ex) {
+    // the memcached client could not be initialized. 
+} 
+</pre>
+<h3>Testing from Java</h3>
+<pre class="highlight text">mc.set(&quot;foo&quot;, 0, &quot;bar&quot;);
+Object value = mc.get(&quot;foo&quot;);
+</pre>
+<h2><a id="python"></a>Using Memcached with Python</h2>
+
+<p><a href="https://github.com/jaysonsantos/python-binary-memcached">bmemcached</a> is a pure, thread safe, python module to access memcached via it&#39;s binary protocol.</p>
+
+<p>Use pip to install it:</p>
+<pre class="highlight text">pip install python-binary-memcached
+</pre>
+<p>Configure connection to your Memcached Cloud service using <code>VCAP_SERVICES</code> environment variable and the following code snippet:</p>
+<pre class="highlight text">import os
+import urlparse
+import bmemcached
+import json
+
+memcachedcloud_service = json.loads(os.environ[&#39;VCAP_SERVICES&#39;])[&#39;&quot;memcachedcloud-n/a&#39;][0]
+credentials = memcached_service[&#39;credentials&#39;]
+mc = bmemcached.Client(credentials[&#39;servers&#39;].split(&#39;,&#39;), credentials[&#39;username&#39;], credentials[&#39;password&#39;])
+</pre>
+<h3>Testing from Python</h3>
+<pre class="highlight text">mc.set(&#39;foo&#39;, &#39;bar&#39;)
+print client.get(&#39;foo&#39;)
+</pre>
+<h3><a id="django"></a>Using Memcached with Django</h3>
+
+<p>Memcached can be used as a django cache backend, with <a href="https://github.com/jaysonsantos/django-bmemcached">django-bmemcached</a>. </p>
+
+<p>To do so, install django-bmemcached:</p>
+<pre class="highlight text">pip install django-bmemcached
+</pre>
+<p>Next, configure your <code>CACHES</code> in the <code>settings.py</code> file:</p>
+<pre class="highlight text">import os
+import urlparse
+import json
+
+memcachedcloud_service = json.loads(os.environ[&#39;VCAP_SERVICES&#39;])[&#39;memcachedcloud-n/a&#39;][0]
+credentials = memcachedcloud_service[&#39;credentials&#39;]
+CACHES = {
+    &#39;default&#39;: {
+    &#39;BACKEND&#39;: &#39;django_bmemcached.memcached.BMemcached&#39;,
+    &#39;LOCATION&#39;: credentials[&#39;servers&#39;].split(&#39;,&#39;),
+    &#39;OPTIONS&#39;: {
+                &#39;username&#39; credentials[&#39;username&#39;],
+                &#39;password&#39;: credentials[&#39;password&#39;]
+
+    }
+  }
+}
+</pre>
+<h3>Testing from Django</h3>
+<pre class="highlight text">from django.core.cache import cache
+cache.set(&quot;foo&quot;, &quot;bar&quot;)
+print cache.get(&quot;foo&quot;)
+</pre>
+<h2><a id="php"></a>Using Memcached with PHP</h2>
+
+<p><a href="https://github.com/ronnywang/PHPMemcacheSASL">PHPMemcacheSASL</a> is a simple PHP class with SASL support.</p>
+
+<p>Include the class in your project, and configure a connection to your Memcached Cloud service using <code>VCAP_SERVICES</code> environment variable with the following code snippet:</p>
+<pre class="highlight text">&lt;?php
+include(&#39;MemcacheSASL.php&#39;);
+
+$vcap_services = getenv(&quot;VCAP_SERVICES&quot;);
+$&quot;memcachedcloud_service = json_decode($vcap_services, true)[&quot;&quot;memcachedcloud-n/a&quot;][0]
+$credentials = $&quot;memcachedcloud_service[&quot;credentials&quot;]
+
+$mc = new MemcacheSASL;
+list($host, $port) = explode(&#39;:&#39;, $credentials[&#39;servers&#39;]);
+$mc-&gt;addServer($host, $port);
+$mc-&gt;setSaslAuthData($credentials[&#39;username], $credentials[&#39;password&#39;]);
+</pre>
+<h3>Testing from PHP</h3>
+<pre class="highlight text">$mc-&gt;add(&quot;foo&quot;, &quot;bar&quot;);
+echo $mc-&gt;get(&quot;foo&quot;);
+</pre>
+<h2>Dashboard</h2>
+
+<p>Our dashboard presents all performance and usage metrics of your Memcached Cloud service on a single screen, as shown below:</p>
+
+<p><img alt="Dashboard" src="https://s3.amazonaws.com/memcached-cloud-docs/CFdashboard.png" /></p>
+
+<p>To access your Memcached Cloud dashboard, simply click the &#39;Manage&#39; button next to the Memcached Cloud service on your app space console.</p>
+
+<p>You can then find your dashboard under the <code>MY DATABASES</code> menu.</p>
+
+<h2>Managing Services</h2>
+
+<p>You can continue <a href="http://docs.cloudfoundry.com/docs/using/services/managing-services.html">managing your services from the command line</a>.</p>
+
+<h2>Support</h2>
+
+<p>Any Memcached Cloud support issues or product feedbacks are welcome via email at <a href="mailto:support@garantiadata.com">support@garantiadata.com</a>.
+Please make sure you are familiar with the CloudFoundry method of <a href="http://docs.cloudfoundry.com/docs/dotcom/services-marketplace/contacting-service-providers-for-support.html">contacting service providers for support</a>.</p>
+
+<h2>Additional resources</h2>
+
+<ul>
+<li><a href="http://garantiadata.com/memcached/developers">Developers Resources</a></li>
+<li><a href="https://code.google.com/p/memcached/wiki/NewStart">Memcached Wiki</a></li>
+</ul>
+
+          </div><!-- End of content_inner -->
+        </div><!-- End of container-full -->
+      </div><!-- End of content -->
+    </div><!-- End of non_footer -->
+    <div id='footer'>
+      <div id='container-footer'>
+        <div class='bg_social'>
+          <ul class='social'>
+            <li>
+            <a href='http://twitter.com/cloudfoundry' target='_blank'>
+            <img alt='Twitter' src='/images/twitter_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='https://plus.google.com/114245065906861739918/posts' target='_blank'>
+            <img alt='Google+' src='/images/g+_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://facebook.com/cloudfoundry' target='_blank'>
+            <img alt='Facebook' src='/images/facebook_large.png'>
+            </a>
+            </li>
+            <li>
+            <a href='http://youtube.com/cloudfoundry' target='_blank'>
+            <img alt='Youtube' src='/images/youtube_large.png'>
+            </a>
+            </li>
+          </ul>
+        </div><!-- End of bg_social -->
+        <ul class='links'>
+          <li>
+          <a href='http://www.cloudfoundry.com/about'>About</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://blog.cloudfoundry.com/'>Blog</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/partners'>Partners</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://docs.cloudfoundry.com'>Docs</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/faq'>FAQ</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/getinvolved'>Get Involved</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://status.cloudfoundry.com/'>Status</a>
+          </li>
+          <li class='disc'>•</li>
+          <li>
+          <a href='http://www.cloudfoundry.com/support'>Support</a>
+          </li>
+        </ul>
+        <div class='copyright'>
+          <div class='hr-horizontal-dark'></div>
+          <br>
+          <p>
+            &copy;
+            <script>
+              //<![CDATA[
+                var d = new Date();
+                document.write(d.getFullYear());
+              //]]>
+            </script>
+            GoPivotal, Inc. All rights reserved.
+            <a href='http://www.cloudfoundry.com/terms'>Terms</a>
+            <a href='http://www.gopivotal.com/privacy-policy' target='_blank'>Privacy</a>
+          </p>
+        </div><!-- End of copyright -->
+      </div><!-- End of container-footer -->
+    </div><!-- End of footer -->
+    <script type="text/javascript">
+      (function() {
+        var didInit = false;
+        function initMunchkin() {
+          if(didInit === false) {
+            didInit = true;
+            Munchkin.init('625-IUJ-009');
+          }
+        }
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+        s.onreadystatechange = function() {
+          if (this.readyState == 'complete' || this.readyState == 'loaded') {
+            initMunchkin();
+          }
+        };
+        s.onload = initMunchkin;
+        document.getElementsByTagName('head')[0].appendChild(s);
+      })();
+    </script>
+  </body>
+</html>
