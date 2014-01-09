@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<opml version="1.1">
+	<head>
+		<title>Planet Cloud Foundry</title>
+		<dateModified>Thu, 09 Jan 2014 21:16:44 +0000</dateModified>
+		<ownerName>Vince Brunssen</ownerName>
+		<ownerEmail>brunssen@us.ibm.com</ownerEmail>
+	</head>
+	
+	<body>
+		<outline type="rss" text="Cloud Foundry Blog" xmlUrl="http://feeds.feedburner.com/CloudFoundry-Blog" title="Cloud Foundry Blog" />
+	</body>
+</opml>
