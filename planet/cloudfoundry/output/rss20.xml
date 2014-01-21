@@ -8,6 +8,783 @@
 	<description>Planet Cloud Foundry - http://cforgvince.api.io/</description>
 
 <item>
+	<title>ActiveBlog:  Insights on Code, the Cloud and More: Deploying your own Private Docker Registry</title>
+	<guid>http://www.activestate.com/blog/3859 at http://www.activestate.com</guid>
+	<link>http://www.activestate.com/blog/2014/01/deploying-your-own-private-docker-registry</link>
+	<description>&lt;p&gt;&lt;img alt=&quot;ship with containers&quot; src=&quot;http://www.activestate.com/sites/default/files/images/blog/ship-with-containers.jpg&quot; /&gt;
+&lt;/p&gt;&lt;p&gt;This blog post shows how you can deploy your own private Docker Registry behind your firewall with SSL encryption and HTTP authentication. A &lt;a href=&quot;https://github.com/dotcloud/docker-registry&quot;&gt;Docker Registry&lt;/a&gt; is a service which you can push Docker images to for storage and sharing. We will be installing the registry on Ubuntu, but it should work on any operating system that supports &lt;a href=&quot;http://upstart.ubuntu.com/&quot;&gt;upstart&lt;/a&gt;. SSL encryption and HTTP basic authentication will be managed by Nginx, which will be a proxy server in front of the Docker Registry. Upstart will manage the gunicorn processes that will run the registry. We will also be using a LRU cache to reduce roundtrips to the storage backend. For this cache we will use Redis.&lt;/p&gt;
+&lt;h2 id=&quot;why-do-you-need-a-docker-registry&quot;&gt;Why do you need a Docker Registry?&lt;/h2&gt;
+&lt;p&gt;When you create new Docker images for use in your environment - whether that'd be a &lt;a href=&quot;http://redis.io/&quot;&gt;Redis server&lt;/a&gt;, a &lt;a href=&quot;https://github.com/dotcloud/hipache&quot;&gt;Hipache daemon&lt;/a&gt;, or an &lt;a href=&quot;https://github.com/dannvix/Logbot&quot;&gt;IRC logbot&lt;/a&gt; - you're going to want to store the images somewhere safe. Maybe you're working on a project where you also want to &lt;a href=&quot;http://www.activestate.com/blog/2014/01/using-docker-run-ruby-rspec-ci-jenkins&quot;&gt;create a Docker image with Jenkins&lt;/a&gt; or &lt;a href=&quot;http://buildbot.net/&quot;&gt;Buildbot&lt;/a&gt; on each commit, bag and tag (read: docker commit &amp;amp;&amp;amp; docker tag) the image, and then push that to the registry. But what if your code is proprietary, and you don't want to push that image to the public registry? Docker Inc. has already thought of that for you, and has created the &lt;a href=&quot;https://github.com/dotcloud/docker-registry&quot;&gt;docker-registry&lt;/a&gt; project. This project will allow you to push your own images to your own in-house registry. Woo!&lt;/p&gt;
+&lt;p&gt;If you want to kick the proverbial tires, you can test the docker registry:&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;$ docker pull samalba/docker-registry
+$ docker run -d -p 5000:5000 samalba/docker-registry
+$ # let's pull a sample image (or make one ourselves)
+$ docker pull busybox
+$ docker tag busybox localhost:5000/busybox
+$ docker push localhost:5000/busybox
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This is great to get started working with the registry for testing, but this will be using plain HTTP. Anyone can push to your server as long as they have endpoint access, which is not good. Let's get started with setting up our own private registry for internal use.&lt;/p&gt;
+&lt;h2 id=&quot;planning-our-deployment&quot;&gt;Planning our Deployment&lt;/h2&gt;
+&lt;p&gt;Before we spawn an Ubuntu server to start deploying the registry, let's consider some things...&lt;/p&gt;
+&lt;h3 id=&quot;what-storage-backend&quot;&gt;What Storage Backend?&lt;/h3&gt;
+&lt;p&gt;What storage backend do we want to use? Here's a &lt;a href=&quot;https://github.com/dotcloud/docker-registry/tree/master/lib/storage&quot;&gt;short list of the supported backends&lt;/a&gt; for the registry:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;local: use the local filesystem&lt;/li&gt;
+&lt;li&gt;s3: store inside an Amazon S3 bucket&lt;/li&gt;
+&lt;li&gt;swift: store inside a Openstack Swift container&lt;/li&gt;
+&lt;li&gt;glance: use Openstack's Glance project&lt;/li&gt;
+&lt;li&gt;elliptics: use the Elliptics key-value store&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Sidenote: I created the backend for Openstack Swift. If you find any bugs with it, please feel free to file a bug on the registry's github page.&lt;/p&gt;
+&lt;h3 id=&quot;hosted-or-in-house-server&quot;&gt;Hosted or In-House Server?&lt;/h3&gt;
+&lt;p&gt;Where do we want to host our docker registry? Do we want to use our own Openstack cluster, Amazon Web Services, Rackspace, or our own bare metal servers? Any option will work for us!&lt;/p&gt;
+&lt;p&gt;One thing to consider when using cloud-hosted infrastructure is the advantage of using an external volume for your data. This gives you control over managing your own backups, which is a huge win for us.&lt;/p&gt;
+&lt;h3 id=&quot;what-operating-system&quot;&gt;What Operating System?&lt;/h3&gt;
+&lt;p&gt;Since the docker registry is a python project, it's ridiculously simple to port over to other operating systems. You can quite easily write up a &lt;a href=&quot;https://wiki.archlinux.org/index.php/systemd#Writing_custom_.service_files&quot;&gt;systemd config file&lt;/a&gt;, or launch it as a &lt;a href=&quot;http://en.wikipedia.org/wiki/Windows_service&quot;&gt;Windows Service&lt;/a&gt;. Because we will be installing it on Ubuntu, we will be using &lt;a href=&quot;http://upstart.ubuntu.com/&quot;&gt;upstart&lt;/a&gt; to manage our gunicorn processes.&lt;/p&gt;
+&lt;p&gt;I will be demonstrating the deployment process using the local storage backend, where all of our assets will be held on our own hardware. We have an internal Openstack cluster over here in our Vancouver office (we love Openstack!), so we will use that for our hosting solution. docker-internal.example.com will be the fully qualified domain name, and we will be using &lt;a href=&quot;http://cloud-images.ubuntu.com/releases/12.04.3/release/&quot;&gt;Ubuntu's 12.04.3 cloud image&lt;/a&gt; as the server.&lt;/p&gt;
+&lt;p&gt;All right. Let's get down to deploying!&lt;/p&gt;
+&lt;h2 id=&quot;boot-the-server&quot;&gt;Boot the Server&lt;/h2&gt;
+&lt;p&gt;First, let's boot up a server. Since I'll be using our internal Openstack cluster, I'll just use &lt;a href=&quot;https://github.com/openstack/python-novaclient&quot;&gt;the nova client&lt;/a&gt; to boot up my server. If you're following this post line by line, here are the credentials you'll need to set up:&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;$ cat ~/.bashrc
+[...]
+export OS_AUTH_URL=http://******/v2.0
+export OS_TENANT_ID=******
+export OS_TENANT_NAME=&amp;quot;******&amp;quot;
+export OS_USERNAME=******
+export OS_PASSWORD=&amp;quot;******&amp;quot;
+[...]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Once you set that up, test by running:&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;$ sudo pip install python-novaclient
+$ nova list
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Before we boot the server, let's upload the Ubuntu cloud image, as well as your own SSH key...&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;$ nova keypair-add --pub-key ~/.ssh/id_rsa.pub bacongobbler
+$ sudo pip install python-glanceclient
+$ glance image-create --name ubuntu-12.04.3-server-cloudimg-amd64 --disk-format qcow2 --container-format bare --location &lt;a href=&quot;http://cloud-images.ubuntu.com/releases/12.04.3/release/ubuntu-12.04-server-cloudimg-amd64-disk1.img&quot; title=&quot;http://cloud-images.ubuntu.com/releases/12.04.3/release/ubuntu-12.04-server-cloudimg-amd64-disk1.img&quot;&gt;http://cloud-images.ubuntu.com/releases/12.04.3/release/ubuntu-12.04-ser...&lt;/a&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And create a security group that allows external access to port 80 and 443...&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;$ nova secgroup-create web-server &amp;quot;security group for standard web servers&amp;quot;
+$ nova secgroup-add-rule web-server tcp 80 80 0.0.0.0/0
+$ nova secgroup-add-rule web-server tcp 443 443 0.0.0.0/0
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;now we will create the volume, which will be 512GB in size. We will be using this to store our docker images:&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;$ nova volume-create 512 --display-name docker-internal
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Finally, we can boot the server!&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;$ nova boot docker-internal --image ubuntu-12.04.3-server-cloudimg-amd64 --flavor m1.medium --security-groups web-server --key-name bacongobbler
+$ # do some grepping for the volume ID
+$ VOLUME_ID=$(nova volume-list | grep docker-internal | awk '{print $2}')
+$ nova volume-attach docker-internal $VOLUME_ID /dev/vdb
+$ nova floating-ip-list
++----------------+--------------------------------------+---------------+------+
+| Ip             | Instance Id                          | Fixed Ip      | Pool |
++----------------+--------------------------------------+---------------+------+
+| 192.168.68.222 | 79caf450-7b23-46bd-839a-abec7408a2c0 | 192.168.32.26 | nova |
+| 192.168.68.224 | a10cb949-09b6-4533-9733-860a5f8fdff4 | 192.168.32.19 | nova |
+| 192.168.68.225 | None                                 | None          | nova |
+| 192.168.68.236 | None                                 | None          | nova |
+| 192.168.68.237 | dc835a69-2894-4278-aebe-4f9ca6363724 | 192.168.32.12 | nova |
+| 192.168.68.238 | 4a8835b6-a318-44b5-897d-2320977cfe01 | 192.168.32.20 | nova |
+| 192.168.68.239 | afde96f2-9bac-441a-a0c7-589ace2ac6b9 | 192.168.32.15 | nova |
+| 192.168.68.246 | 00ceedf4-8d85-4ea5-8f42-78a1ab521a62 | 192.168.32.13 | nova |
+| 192.168.68.250 | c1ef2314-6067-464d-85ec-de2a26a80f3e | 192.168.32.4  | nova |
+| 10.3.4.1       | 192dadcc-e786-4366-8091-2e9a364a65cf | 192.168.32.17 | nova |
++----------------+--------------------------------------+---------------+------+
+$ nova add-floating-ip docker-internal 192.168.68.236
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Wait a couple seconds, and set up your domain registrar to map the subdomain docker-internal to this IP address. After that, run:&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;$ ssh &lt;span class=&quot;spamspan&quot;&gt;&lt;span class=&quot;u&quot;&gt;ubuntu&lt;/span&gt; [at] &lt;span class=&quot;d&quot;&gt;docker-internal [dot] example [dot] com&lt;/span&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Hooray!&lt;/p&gt;
+&lt;h2 id=&quot;deploy-and-configure-the-registry&quot;&gt;Deploy and configure the registry&lt;/h2&gt;
+&lt;p&gt;Now that we have our server, let's install some packages to get started.&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;ubuntu@docker-internal:~$ # lets update/upgrade/restart before we start 
+ubuntu@docker-internal:~$ sudo apt-get update
+ubuntu@docker-internal:~$ sudo apt-get upgrade
+ubuntu@docker-internal:~$ sudo reboot now
+$ ssh &lt;span class=&quot;spamspan&quot;&gt;&lt;span class=&quot;u&quot;&gt;ubuntu&lt;/span&gt; [at] &lt;span class=&quot;d&quot;&gt;docker-internal [dot] example [dot] com&lt;/span&gt;&lt;/span&gt;
+ubuntu@docker-internal:~$ # switch to root
+ubuntu@docker-internal:~$ sudo su
+root@docker-internal:~# # we need the chunkin module for nginx
+root@docker-internal:~# apt-get install git nginx-extras
+root@docker-internal:~# # gives us the htpasswd command
+root@docker-internal:~# apt-get install apache2-utils
+root@docker-internal:~# # install dependencies
+root@docker-internal:~# apt-get install build-essential libevent-dev libssl-dev liblzma-dev python-dev python-pip
+root@docker-internal:~# # install redis to use as our LRU cache
+root@docker-internal:~# apt-get install redis-server
+root@docker-internal:~# apt-get clean
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now that we have that out of the way, let's install the docker registry:&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;root@docker-internal:~# git clone &lt;a href=&quot;https://github.com/dotcloud/docker-registry.git&quot; title=&quot;https://github.com/dotcloud/docker-registry.git&quot;&gt;https://github.com/dotcloud/docker-registry.git&lt;/a&gt; /opt/docker-registry
+root@docker-internal:~# cd /opt/docker-registry
+root@docker-internal:~# # checkout the latest stable version of the registry 
+root@docker-internal:~# git checkout 0.6.3
+root@docker-internal:~# # create log dirs
+root@docker-internal:~# mkdir -p /var/log/docker-registry
+root@docker-internal:~# # install pip packages
+root@docker-internal:~# pip install -r requirements.txt
+root@docker-internal:~# cp config/config_sample.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;If you've done this all correctly, we should now be able to test the registry will run with:&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;root@docker-internal:~# ./wsgi.py
+2014-01-13 23:38:38,470 INFO:  * Running on &lt;a href=&quot;http://0.0.0.0:5000/&quot; title=&quot;http://0.0.0.0:5000/&quot;&gt;http://0.0.0.0:5000/&lt;/a&gt;
+2014-01-13 23:38:38,470 INFO:  * Restarting with reloader
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;If you see this, you're doing great! Now, we just need to set up a couple more things. Remember that volume we mapped to this server earlier? Let's set that up now:&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;root@docker-internal:~# mkdir -p /data/registry
+root@docker-internal:~# mkfs.ext4 /dev/vdb
+root@docker-internal:~# mount /dev/vdb /data/registry
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And now, let's edit our configuration file for the docker registry. You can use &lt;a href=&quot;http://uuidgenerator.net/&quot; title=&quot;http://uuidgenerator.net/&quot;&gt;http://uuidgenerator.net/&lt;/a&gt; to generate a secret key:&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;root@docker-internal:~# cat &amp;lt;&amp;lt; EOF &amp;gt; /opt/docker-registry/config/config.yml
+# The 'common' part is automatically included (and possibly overriden by
+# all other flavors)
+common:
+    # Set a random string here
+    secret_key: REPLACEME
+    standalone: true
+ # This is the default configuration when no flavor is specified
+dev:
+    storage: local
+    storage_path: /tmp/registry
+    loglevel: debug
+# To specify another flavor, set the environment variable SETTINGS_FLAVOR
+# $ export SETTINGS_FLAVOR=prod
+prod:
+    storage: local
+    storage_path: /data/registry
+    loglevel: info
+    # Enabling LRU cache for small files. This speeds up read/write on
+    # small files when using a remote storage backend (like S3).
+    cache:
+        host: localhost
+        port: 6379
+    cache_lru:
+        host: localhost
+        port: 6379
+EOF
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Once this is done, set up an upstart job for the registry:&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;root@docker-internal:~# cat &amp;lt;&amp;lt; EOF &amp;gt; /etc/init/docker-registry.conf
+description &amp;quot;Docker Registry&amp;quot;
+version &amp;quot;0.6.3&amp;quot;
+author &amp;quot;Docker, Inc.&amp;quot;
+
+start on runlevel [2345]
+stop on runlevel [016]
+
+respawn
+respawn limit 10 5
+
+# set environment variables
+env REGISTRY_HOME=/opt/docker-registry
+env SETTINGS_FLAVOR=prod
+
+script
+cd $REGISTRY_HOME
+exec gunicorn -k gevent --max-requests 100 --graceful-timeout 3600 -t 3600 -b 0.0.0.0:5000 -w 8 --access-logfile /var/log/docker-registry/access.log --error-logfile /var/log/docker-registry/server.log wsgi:application
+end script
+EOF
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And then start it with:&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;root@docker-internal:~# start docker-registry
+docker-registry start/running, process 10872
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Verify that it's running by checking:&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;root@docker-internal:~# cat /var/log/docker-registry/server.log
+2014-01-14 00:33:44 [15051] [INFO] Starting gunicorn 18.0
+2014-01-14 00:33:44 [15051] [INFO] Listening at: &lt;a href=&quot;http://0.0.0.0:5000&quot; title=&quot;http://0.0.0.0:5000&quot;&gt;http://0.0.0.0:5000&lt;/a&gt; (15051)
+2014-01-14 00:33:44 [15051] [INFO] Using worker: gevent
+2014-01-14 00:33:44 [15056] [INFO] Booting worker with pid: 15056
+2014-01-14 00:33:44 [15057] [INFO] Booting worker with pid: 15057
+2014-01-14 00:33:44 [15062] [INFO] Booting worker with pid: 15062
+2014-01-14 00:33:45 [15067] [INFO] Booting worker with pid: 15067
+2014-01-14 00:33:45 [15068] [INFO] Booting worker with pid: 15068
+2014-01-14 00:33:45 [15069] [INFO] Booting worker with pid: 15069
+2014-01-14 00:33:45 [15070] [INFO] Booting worker with pid: 15070
+2014-01-14 00:33:45 [15071] [INFO] Booting worker with pid: 15071
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now for nginx:&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;root@docker-internal:~# rm /etc/nginx/sites-enabled/default
+root@docker-internal:~# cat &amp;lt;&amp;lt; EOF &amp;gt; /etc/nginx/sites-enabled/docker-registry
+upstream docker-registry {
+  server localhost:5000;
+}
+
+server {
+  listen 443;
+  server_name docker-internal.example.com;
+
+  ssl on;
+  ssl_certificate /etc/ssl/certs/docker-registry.crt;
+  ssl_certificate_key /etc/ssl/private/docker-registry.key;
+
+  proxy_set_header Host             $http_host;   # required for docker client's sake
+  proxy_set_header X-Real-IP        $remote_addr; # pass on real client's IP
+  proxy_set_header Authorization    &amp;quot;&amp;quot;; # see &lt;a href=&quot;https://github.com/dotcloud/docker-registry/issues/170&quot; title=&quot;https://github.com/dotcloud/docker-registry/issues/170&quot;&gt;https://github.com/dotcloud/docker-registry/issues/170&lt;/a&gt;
+
+  client_max_body_size 0; # disable any limits to avoid HTTP 413 for large image uploads
+   
+  # required to avoid HTTP 411: see Issue #1486 (&lt;a href=&quot;https://github.com/dotcloud/docker/issues/1486&quot; title=&quot;https://github.com/dotcloud/docker/issues/1486&quot;&gt;https://github.com/dotcloud/docker/issues/1486&lt;/a&gt;)
+  chunkin on;
+  error_page 411 = @my_411_error;
+  location @my_411_error {
+    chunkin_resume;
+  }
+
+  location / {
+    auth_basic              &amp;quot;Restricted&amp;quot;;
+    auth_basic_user_file    docker-registry.htpasswd;
+
+    proxy_pass &lt;a href=&quot;http://docker-registry;&quot; title=&quot;http://docker-registry;&quot;&gt;http://docker-registry;&lt;/a&gt;
+    proxy_set_header Host $host;
+    proxy_read_timeout 900;
+  }
+
+  location /_ping {
+    auth_basic off;
+    proxy_pass &lt;a href=&quot;http://docker-registry;&quot; title=&quot;http://docker-registry;&quot;&gt;http://docker-registry;&lt;/a&gt;
+  }
+
+  location /v1/_ping {
+    auth_basic off;
+    proxy_pass &lt;a href=&quot;http://docker-registry;&quot; title=&quot;http://docker-registry;&quot;&gt;http://docker-registry;&lt;/a&gt;
+  }
+}
+EOF
+root@docker-internal:~# service nginx restart
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And the associated htpasswd file (ensuring to replace USERNAME and PASSWORD):&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;root@docker-internal:~# htpasswd -bc /etc/nginx/docker-registry.htpasswd USERNAME PASSWORD
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Let's install an SSL key onto the server. In this example, I am assuming that someone has handed you an SSL key that has been signed and verified by a certificate authority. This SSL key could be for either 'docker-internal.example.com' or '*.example.com':&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;root@docker-internal:~# mv server.key /etc/ssl/private/docker-registry.key
+root@docker-internal:~# mv server.crt /etc/ssl/certs/docker-registry.crt
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;If you don't have the cash to fork out for a new SSL key, or you are just testing out this process before deploying, you can install a self-signed SSL key by following the instructions from &lt;a href=&quot;http://www.akadia.com/services/ssh_test_certificate.html&quot;&gt;Akadia&lt;/a&gt;:&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;root@docker-internal:~# openssl genrsa -des3 -out server.key 1024
+root@docker-internal:~# openssl req -new -key server.key -out server.csr
+root@docker-internal:~# cp server.key server.key.org
+root@docker-internal:~# openssl rsa -in server.key.org -out server.key
+root@docker-internal:~# openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Please note that using self-signed certificates is currently waiting on &lt;a href=&quot;https://github.com/dotcloud/docker/pull/2687&quot;&gt;pull request #2687&lt;/a&gt;. You will have to sit tight until it is merged into master, or you can try building Docker from source.&lt;/p&gt;
+&lt;h2 id=&quot;verification&quot;&gt;Verification&lt;/h2&gt;
+&lt;p&gt;Finally, let's test this:&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;root@docker-internal:~# exit
+ubuntu@docker-internal:~$ exit
+$ curl -u bacongobbler:******* &lt;a href=&quot;https://docker-internal.example.com&quot; title=&quot;https://docker-internal.example.com&quot;&gt;https://docker-internal.example.com&lt;/a&gt;
+&amp;quot;docker-registry server (prod)&amp;quot;
+$ docker login &lt;a href=&quot;https://docker-internal.example.com&quot; title=&quot;https://docker-internal.example.com&quot;&gt;https://docker-internal.example.com&lt;/a&gt;
+Login against server at &lt;a href=&quot;https://docker-internal.example.com/v1/&quot; title=&quot;https://docker-internal.example.com/v1/&quot;&gt;https://docker-internal.example.com/v1/&lt;/a&gt;
+Username (): bacongobbler
+Login Succeeded
+$ docker pull busybox
+Pulling repository busybox
+e9aa60c60128: Download complete 
+$ docker tag busybox docker-internal.example.com/busybox
+$ docker push docker-internal.example.com/busybox
+The push refers to a repository [docker-internal.example.com/busybox] (len: 1)
+Sending image list
+Pushing repository docker-internal.example.com/busybox (1 tags)
+Pushing tags for rev [e9aa60c60128] on {https://docker-internal.example.com/v1/repositories/busybox/tags/latest}
+e9aa60c60128: Image already pushed, skipping
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And we're done! One docker registry, deployed on Openstack and ready to go.&lt;/p&gt;
+&lt;h2 id=&quot;whats-next&quot;&gt;What's Next?&lt;/h2&gt;
+&lt;p&gt;So, after deploying the registry, what are some things that we can do to improve or enhance this project? I can think of a couple:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;set up email notifications on registry exceptions&lt;/li&gt;
+&lt;li&gt;ship the logs off to &lt;a href=&quot;http://logstash.net/&quot;&gt;logstash&lt;/a&gt; or some other log aggregation tool&lt;/li&gt;
+&lt;li&gt;deploy the registry on CentOS or RHEL&lt;/li&gt;
+&lt;li&gt;do some benchmarking to see how well the registry scales&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What other suggestions can you think of? Leave a comment below!&lt;/p&gt;
+&lt;p&gt;Here at ActiveState, we're proud to say that we are actively using the Docker project in &lt;a href=&quot;http://www.activestate.com/stackato&quot;&gt;Stackato v3&lt;/a&gt;. If you missed Phil's amazing post on everything that's in Stackato v3, please take a look at &lt;a href=&quot;http://www.activestate.com/blog/2013/11/technical-look-stackato-v30-beta&quot;&gt;his post&lt;/a&gt;, as well as the section about &lt;a href=&quot;http://www.activestate.com/blog/2013/11/technical-look-stackato-v30-beta#docker&quot;&gt;where Docker fits in with Stackato&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Image courtesy of &lt;a href=&quot;http://www.flickr.com/photos/glynlowe/&quot;&gt;Glyn Lowe Photoworks&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</description>
+	<pubDate>Tue, 21 Jan 2014 05:00:00 +0000</pubDate>
+</item>
+<item>
+	<title>ActiveBlog:  Insights on Code, the Cloud and More: Cloud Foundry Orgs and Spaces in Stackato 3.0</title>
+	<guid>http://www.activestate.com/blog/3858 at http://www.activestate.com</guid>
+	<link>http://www.activestate.com/blog/2014/01/cloud-foundry-orgs-and-spaces-stackato-30</link>
+	<description>&lt;img title=&quot;Orgs and Spaces&quot; alt=&quot;Orgs and Spaces&quot; src=&quot;http://www.activestate.com/sites/default/files/blog_import_images/orgs-spaces-people-240px.png&quot; class=&quot;as_feature_img as_left&quot; /&gt;
+
+&lt;p&gt;An &quot;organization&quot; can be a number of things. In the
+corporate world it can mean a company, an association, a subsidiary, a
+deparment, a team, or really any functional grouping of people. A
+multi-national corporation will have a very different notion of how to
+group its employees than a ten-person startup. We want Stackato to
+work for as many of these groupings as possible.&lt;/p&gt;
+  
+&lt;p&gt;&lt;a href=&quot;http://www.activestate.com/stackato&quot; target=&quot;_blank&quot;&gt;Stackato 3.0&lt;/a&gt; uses the new &lt;a href=&quot;http://docs.cloudfoundry.com/docs/using/managing-apps/orgs-and-spaces.html&quot; target=&quot;_blank&quot;&gt;Organizations and Spaces&lt;/a&gt; permission model developed
+in Cloud Foundry v2, adding tremendous flexibility and fine-grained
+control over who gets to do what on a PaaS.&lt;/p&gt;
+
+&lt;p&gt;It's also one of the biggest conceptual differences between Stackato 2.10 and 3.0. To get up and running quickly on a new Stackato system,
+it's helpful to know how this new permission and ownership framework
+will affect how you work.&lt;/p&gt;
+
+&lt;p&gt;I'll cover the major differences between the old and new models, then
+describe &lt;em&gt;one&lt;/em&gt; way you could set up the platform for use in a
+typical organizational structure.&lt;/p&gt;
+
+&lt;h2&gt;Users don't have quotas, Orgs do&lt;/h2&gt;
+
+&lt;p&gt;Stackato 2.10 had Users and Groups, both of which had quotas. Your
+user account would give you a certain amount of memory and a certain
+number of applications and service instances. Groups were similar, but
+the quotas were shared between all members of the groups. You could
+deploy applications and service instances under your own account, or
+any group you were a member of.&lt;/p&gt;
+
+&lt;img title=&quot;Organizations have Quota Definitions&quot; alt=&quot;Organizations have Quota Definitions&quot; src=&quot;http://www.activestate.com/sites/default/files/blog_import_images/org-with-quota-defs-400px.png&quot; class=&quot;as_feature_img as_left&quot; /&gt;
+
+&lt;p&gt;With Stackato 3.0, users don't have quotas directly associated with
+their account. They are members of an Organization (org), which in turn
+is assigned a quota definition. The quota definitions are named sets of
+memory and service instance quotas (no more app quotas). Everyone in the
+org shares these quotas.&lt;/p&gt;
+
+&lt;h2&gt;Apps and service instances belong to Spaces&lt;/h2&gt;
+
+&lt;p&gt;Apps and service instances used to be owned by users or groups.
+Access to applications and service credentials was restricted to the
+user or group which deployed them. This has changed with the
+introduction of spaces.&lt;/p&gt;
+
+&lt;img title=&quot;Spaces own Apps and Service Instances&quot; alt=&quot;Spaces own Apps and Service Instances&quot; src=&quot;http://www.activestate.com/sites/default/files/blog_import_images/spaces-with-apps-services-450px.png&quot; class=&quot;as_feature_img as_left&quot; /&gt;
+
+&lt;p&gt;Spaces are sub-groups of orgs, and org members can be given access (as a
+Developer, Manager, or Auditor) to one or more of its spaces.
+Any member of the space can view apps in the web management console, but only members with the &quot;Developer&quot; role can
+deploy apps and provision service instances to the space.&lt;/p&gt;
+
+&lt;h2&gt;Domains: Owned by Orgs, Assigned to Spaces&lt;/h2&gt;
+
+&lt;p&gt;The new regime for domains and hostnames caught me by surprise when I
+first started looking into Cloud Foundry v2. Formerly, the system had a
+base domain and all applications pushed to it would get a virtual
+hostname on that default domain.&lt;/p&gt;
+
+&lt;p&gt;For example, if I pushed an app called &quot;supercms&quot; to an API endpoint of
+&quot;api.stacka.to&quot;, I'd end up with the URL &quot;supercms.stacka.to&quot;. It was
+great because it was simple, but it did mean that my virtual hostname
+had to be globally unique. If anyone else had pushed an app called
+&quot;supercms&quot; first, I'd have to choose a different application name (or at
+least map a unique URL to that app when deploying).&lt;/p&gt;
+
+&lt;p&gt;On the bright side, I could (as a regular end user) map my own domain
+name to the application (if the &quot;Allow non-local URLs&quot; option was
+enabled) and create a CNAME DNS record to point to the system.&lt;/p&gt;
+
+&lt;p&gt;With the new system, domains are controlled at the Admin and Org
+level, and users cannot map arbitrary URLs to their applications. Org
+managers configure domains for each org, and space managers map those
+domains to their spaces. Apps can only have URLs made up of a &quot;route&quot;
+(basically a virtual hostname - the app name, or another arbitrary
+string) and one or more of the domains mapped to the space.&lt;/p&gt;
+
+&lt;img title=&quot;Orgs own Domains&quot; alt=&quot;Orgs own Domains&quot; src=&quot;http://www.activestate.com/sites/default/files/blog_import_images/org-space-route-domain-450px.png&quot; class=&quot;as_feature_img as_left&quot; /&gt;
+
+&lt;p&gt;Upshot: Admins and org managers have ultimate control of the domains
+that the system will route. Developers and managers can specify the
+route portion of the URL, combined with one or more of the
+space's mapped domains.&lt;/p&gt;
+
+&lt;h2&gt;Setting up Orgs, Spaces, and Domains&lt;/h2&gt;
+
+&lt;p&gt;The Stackato VM starts you off with just one org, created when
+you first log in to the web console. The fully qualified system hostname
+becomes the domain for this initial org.&lt;/p&gt;
+
+&lt;p&gt;For a real production system, you'll need to set things up to allow for
+a little more flexibility. If you're setting up a system for a company
+with a number of distinct departments or subsidiaries, you'll probably
+want to create a number of orgs, with domains for each.&lt;/p&gt;
+
+&lt;p&gt;Before we do that though, we should probably modify the quota
+definitions (Settings &gt; Quota Definitions) to match our system and
+projected usage. The default &quot;paid&quot; quota definition allots 200GB of
+memory and 500 service instances.&lt;/p&gt;
+
+&lt;!-- orgs-spaces-quota-def.png --&gt;
+
+&lt;a rel=&quot;shadowbox[screenshots]&quot; href=&quot;http://www.activestate.com/sites/default/files/blog_import_images/org-space-quota-def.png&quot;&gt;
+     &lt;img title=&quot;Quota Definitions&quot; alt=&quot;Quota Definitions&quot; src=&quot;http://www.activestate.com/sites/default/files/blog_import_images/org-space-quota-def.png&quot; class=&quot;as_feature_img as_left&quot; /&gt;
+&lt;/a&gt;
+
+&lt;h3&gt;Avoiding overlapping domains&lt;/h3&gt;
+
+&lt;p&gt;Next up are the orgs and their domains. Let's say our API endpoint is
+&quot;api.stacka.to&quot;. We want each org to have it's own subdomain
+(e.g. &quot;webops.stacka.to&quot;, &quot;pydev.stacka.to&quot;, &quot;systems.stacka.to&quot;, etc.).
+Before we create these domains, we need to &lt;em&gt;remove&lt;/em&gt; the &quot;*.stacka.to&quot;
+domain that was created when we first launched the web interface (under
+Admin &gt; Domains). We can't have overlapping domains; Stackato disallows
+this to prevent URL collisions between orgs and apps.&lt;/p&gt;
+
+&lt;!-- orgs-spaces-add-org.png --&gt;
+
+&lt;a rel=&quot;shadowbox[screenshots]&quot; href=&quot;http://www.activestate.com/sites/default/files/blog_import_images/orgs-spaces-add-org.png&quot;&gt;
+     &lt;img title=&quot;Adding an Organization&quot; alt=&quot;Adding an Organization&quot; src=&quot;http://www.activestate.com/sites/default/files/blog_import_images/orgs-spaces-add-org.png&quot; class=&quot;as_feature_img as_left&quot; /&gt;
+&lt;/a&gt;
+
+&lt;h3&gt;Adding the domain for an org&lt;/h3&gt;
+
+&lt;p&gt;On creating a new org, you'll be prompted to create at least one
+space. However, first we're going to add a domain to our org by clicking
+the &quot;+&quot; on the Domains sidebar.&lt;/p&gt;
+
+&lt;!-- orgs-spaces-new-domain.png --&gt;
+
+&lt;a rel=&quot;shadowbox[screenshots]&quot; href=&quot;http://www.activestate.com/sites/default/files/blog_import_images/orgs-spaces-new-domain.png&quot;&gt;
+     &lt;img title=&quot;Adding a Domain&quot; alt=&quot;Adding a Domain&quot; src=&quot;http://www.activestate.com/sites/default/files/blog_import_images/orgs-spaces-new-domain.png&quot; class=&quot;as_feature_img as_left&quot; /&gt;
+&lt;/a&gt;
+
+&lt;p&gt;I've selected &quot;Wildcard&quot; which means any route (e.g. app name) can be
+added to this domain automatically to make the full URL. You can use
+this interface to specify full, non-wildcard URLs for specific apps.&lt;/p&gt;
+
+&lt;p&gt;So now, instead of having a &quot;*.stacka.to&quot; domain for all orgs on the
+system, the &quot;webops&quot; org has it's own separate domain.&lt;/p&gt;
+
+&lt;h3&gt;Setting up Spaces&lt;/h3&gt;
+
+&lt;p&gt;With a domain in place, we should set up at least one space using the &quot;+
+Add Space&quot; button.&lt;/p&gt;
+
+&lt;p&gt;There's a Cloud Foundry convention to use spaces called &quot;dev&quot;, &quot;test&quot;, and
+&quot;prod&quot; but the choice is yours. The names should signify some logical
+grouping of apps that suits the team's workflow.&lt;/p&gt;
+
+&lt;!-- orgs-spaces-new-space.png --&gt;
+
+&lt;a rel=&quot;shadowbox[screenshots]&quot; href=&quot;http://www.activestate.com/sites/default/files/blog_import_images/orgs-spaces-new-space.png&quot;&gt;
+     &lt;img title=&quot;New Space&quot; alt=&quot;New Space&quot; src=&quot;http://www.activestate.com/sites/default/files/blog_import_images/orgs-spaces-new-space.png&quot; class=&quot;as_feature_img as_right&quot; /&gt;
+&lt;/a&gt;
+
+&lt;p&gt;We can now do the same for all of the other orgs we want to add to the
+system, then add users to each org, assigning the Manager role to at
+least one of them, which in turn can handle more fine grained
+configuration specific to the org. These managers can:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;add registered users to the org&lt;/li&gt;
+&lt;li&gt;add spaces&lt;/li&gt;
+&lt;li&gt;add org members to spaces&lt;/li&gt;
+&lt;li&gt;add more domains (including &quot;external&quot; URLs)&lt;/li&gt;
+&lt;li&gt;edit or remove any of the above&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Single-User Orgs&lt;/h2&gt;
+
+&lt;p&gt;Notice anything regular end users can't do with the new system? I can
+think of two:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;map external URLs to their applications&lt;/li&gt;
+&lt;li&gt;have personal usage quotas&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If I'm running a &lt;em&gt;public&lt;/em&gt; PaaS using Stackato, where &quot;regular end users&quot;
+are paying me directly to host their applications, I need a way to allow
+them to do these things or my hosting platform will suck.&lt;/p&gt;
+
+&lt;p&gt;There's a good way to do this: make each user the Manager of single-user
+org. Users get their own quota (you can even make different tiered quota
+definitions just for these) and can map whatever domains they have to
+applications hosted on the system. &lt;/p&gt;
+
+&lt;p&gt;There's an option in the Stackato data import tool to set up orgs like
+this automatically if you're moving from Stackato 2.10.&lt;/p&gt;</description>
+	<pubDate>Mon, 20 Jan 2014 19:37:56 +0000</pubDate>
+</item>
+<item>
+	<title>ActiveBlog:  Insights on Code, the Cloud and More: PaaS: Service Orchestration Vs Container Orchestration</title>
+	<guid>http://www.activestate.com/blog/3857 at http://www.activestate.com</guid>
+	<link>http://www.activestate.com/blog/2014/01/paas-service-orchestration-vs-container-orchestration</link>
+	<description>&lt;p&gt;&lt;img alt=&quot;&quot; src=&quot;http://www.activestate.com/sites/default/files/images/blog/red_lockers_240x160.jpg&quot; /&gt;
+In Krishnan Subramanian's post &quot;&lt;a href=&quot;http://www.informationweek.com/cloud/platform-as-a-service/paas-is-dead-long-live-paas/d/d-id/1113444&quot;&gt;PaaS Is Dead. Long Live PaaS&lt;/a&gt;&quot;, he makes a distinction between the old and new worlds of PaaS, citing two distinct &quot;flavors of PaaS&quot;. The first being service orchestration and second being container orchestration.&lt;/p&gt;
+
+&lt;h2 id=&quot;serviceorchestration&quot;&gt;Service Orchestration&lt;/h2&gt;
+
+&lt;p&gt;Krishnan cites services like Google App Engine, Heroku, and Engine Yard for &quot;service orchestration&quot;. These are all essentially public PaaS solutions. They provide a black-box solution in the public cloud, which are primarily focused on individuals, startups and small teams. They are not focused on enterprise IT.&lt;/p&gt;
+
+&lt;p&gt;Being public PaaS solutions, there is a limit to what they can offer and the level of integration they can provide into an enterprise's IT infrastructure. For this and other reasons, they are not the type of platform that an enterprise would choose to standardize on company-wide.&lt;/p&gt;
+
+&lt;p&gt;Compliance is one such limitation of these public solutions and something that we often see as a driver towards private PaaS. Small teams, wanting to prototype quickly and innovate at the rate their enterprise parents demand of them, are looking to public PaaS solutions to get something up and running quickly. It is often a good short-term solution to bypass the red-tape and hierarchy that adds months to building a prototype, when it might only take days to actually prove a hypothesis. Unfortunately, once the hypothesis is proven, the ship has sailed. Using these public services beyond prototype will have the legal department flapping their wings and shouting &quot;Compliance! Compliance! Compliance!&quot;&lt;/p&gt;
+
+&lt;p&gt;Using a service in the cloud to run your applications can be thought of as out-sourcing. Out-sourcing is commonplace amongst large organizations, primarily for cost reduction. However, there is another cost to out-sourcing: lack of control. It is ok to give up a little control here and there, as long as you retain overall control and have the ability to take action when things start going badly.&lt;/p&gt;
+
+&lt;p&gt;There is a tipping point at which too much outsourcing leads to a loss of control. Yes, some companies outsource their entire IT organization, but I would argue they are not serious about IT. Yes, Netflix outsources its entire infrastructure layer to a public service, but they proactively put &lt;a href=&quot;http://techblog.netflix.com/2013/06/isthmus-resiliency-against-elb-outages.html&quot;&gt;additional levels of resilience&lt;/a&gt; into their usage of the service. Ultimately though, they are at the whim of their service provider.&lt;/p&gt;
+
+&lt;h2 id=&quot;containerorchestration&quot;&gt;Container Orchestration&lt;/h2&gt;
+
+&lt;p&gt;As we move from public PaaS to private PaaS, we are starting to open up what was once a black box and look inside.&lt;/p&gt;
+
+&lt;p&gt;When you are in closed system, like public PaaS, you care little for where your application is running, as long as the service reports it as running. It is just a service.&lt;/p&gt;
+
+&lt;p&gt;This is fine for developers, who only care that their Python or Ruby code is executing in the way it should be and there is no latency in loading their web pages. For the Operations teams of large organizations, it is a different story.&lt;/p&gt;
+
+&lt;p&gt;As we move to ownership of the system, with open-source projects like Cloud Foundry and OpenShift becoming more and more popular, we start to care more. One of the reasons for this, is the audience is changing. The users of these systems are moving from the novice individuals and startups to the more serious enterprise focused users.&lt;/p&gt;
+
+&lt;p&gt;We want to know where our applications are running. Enterprise IT is concerned with scale and not just with an individual application, but with the system as a whole. They want to scale it across the organization, across teams, across departments, across budgets and expose it into areas where trust may not be guaranteed.&lt;/p&gt;
+
+&lt;p&gt;Security is everything. Reliability and understanding of the system is important, just as it is with legacy infrastructure. Isolation between application instances is paramount, to ensure the integrity of the platform.&lt;/p&gt;
+
+&lt;p&gt;Many, if not most, private and public PaaS solutions have been using LXC containers for several years now. It was out of this that technologies like Docker were born. It is the desire for private PaaS and container orchestration that has fueled rapid adoption and ground-swell around Docker.&lt;/p&gt;
+
+&lt;p&gt;In many ways, it felt like Docker shined a light on what is a core component of private PaaS, and helped with a greater understanding of the potential of private PaaS. Many are still rubbing their eyes in wonder and have not yet realized what it would mean to add an orchestration layer on top of containers. Some do not care, but Enterprise IT does.&lt;/p&gt;
+
+&lt;h2 id=&quot;justthebeginning&quot;&gt;Just The Beginning&lt;/h2&gt;
+
+&lt;p&gt;Yes, as Krishnan mentions, there is a lot of speculation on the future of PaaS. As a technology, PaaS adoption is not moving quickly enough for some, and they equate rapid adoption to a successful market. PaaS is new, and PaaS is definitely evolving, but &lt;em&gt;we&lt;/em&gt; are definitely seeing adoption.&lt;/p&gt;
+
+&lt;p&gt;At ActiveState, we see so many new technologies in this space that it makes for exciting times. For Enterprise IT, who are known to move more cautiously, it must feel like stepping onto a quickly moving escalator. Many have not even seen an escalator before, so they continue to opt for the stairs.&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;Image courtesy of &lt;a href=&quot;http://www.flickr.com/photos/loop_oh/4621885147/&quot;&gt;loop_oh@flickr&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;</description>
+	<pubDate>Thu, 16 Jan 2014 21:45:42 +0000</pubDate>
+</item>
+<item>
+	<title>ActiveBlog:  Insights on Code, the Cloud and More: Highly Distributed Ruby Rspec Tests - Part One - Theory</title>
+	<guid>http://www.activestate.com/blog/3855 at http://www.activestate.com</guid>
+	<link>http://www.activestate.com/blog/2014/01/highly-distributed-ruby-rspec-tests-part-one-theory</link>
+	<description>&lt;p&gt;&lt;img alt=&quot;&quot; src=&quot;http://www.activestate.com/sites/default/files/images/blog/ruby_balloons_240x180.jpg&quot; /&gt;
+One thing that slows developers down, other than &lt;a href=&quot;http://www.smithsonianmag.com/arts-culture/fact-of-fiction-the-legend-of-the-qwerty-keyboard-49863249/&quot;&gt;the QWERTY keyboard&lt;/a&gt;, is running tests. Test-driven development is widely accepted as the best way to write code. Yes, it takes time to write tests, but it is an investment which leads to more resilient code as development progresses. Once they get into the flow, it becomes a joy for developers to run the tests and feel confident in their changes. They have instant feedback on whether they have broken anything [1].&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, as the project ages and grows, the time it takes to run the tests increases from a few seconds to several minutes, or even hours. The tight feedback loop that made developers nibble has gone.&lt;/p&gt;
+
+&lt;p&gt;You look at ways to make the tests run faster. You look for any tests that you can remove. You look for any tests that you can speed up. You look at running tests in parallel.&lt;/p&gt;
+
+&lt;p&gt;Maybe you make some progress and the tests run twice as fast. Great! Unfortunately, two months later you are back in the same position, only this time you already have all your optimizations in place. Things are just not scaling.&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;&lt;em&gt;[1] Of course, we all know that passing tests does not actually prove that &lt;strong&gt;nothing&lt;/strong&gt; is broken, but even the smallest set of tests will tell us that not &lt;strong&gt;everything&lt;/strong&gt; is broken.&lt;/em&gt;&lt;/small&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;increasingproductivity&quot;&gt;Increasing Productivity&lt;/h2&gt;
+
+&lt;p&gt;In this blog post, I am going look at how to increase developer productivity, by running your tests in a distributed manner.&lt;/p&gt;
+
+&lt;p&gt;Similar to the wave of “big data” technologies, such as Hadoop and NoSQL, where we realized that if we scale horizontally across machines we can increase the volume and speed at which we can process data, I am going to apply the same logic to running our tests.&lt;/p&gt;
+
+&lt;h2 id=&quot;whypaas&quot;&gt;Why PaaS?&lt;/h2&gt;
+
+&lt;p&gt;With the following example, I am going to focus on Ruby Rspec tests. I have run &lt;a href=&quot;http://www.bigfastblog.com/map-reduce-with-ruby-using-hadoop&quot;&gt;distributed Ruby with Hadoop&lt;/a&gt; before, and it would be possible to make that work, but big data solutions are designed primarily for processing data. PaaS is designed for long running, dedicated, and often complex, applications.&lt;/p&gt;
+
+&lt;p&gt;We want fine grain control on our test environment. We want to set up a test environment similar to our development environment, or ideally close to production. PaaS gives us that and allows us to quickly replicate that environment horizontally across a large cluster of machines.&lt;/p&gt;
+
+&lt;p&gt;At its core, PaaS is designed for running the code that developers create and scaling it horizontally. Tests are simply more of the same code that needs to be run in a specific environment.&lt;/p&gt;
+
+&lt;p&gt;Running tests often requires creating throw-away databases, which is another core feature of most PaaS solutions, like &lt;a href=&quot;http://www.activestate.com/stackato&quot;&gt;Stackato&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;wherewereat&quot;&gt;Where We’re At&lt;/h2&gt;
+
+&lt;p&gt;As an example, let’s look at some Ruby Rspec tests, that &lt;a href=&quot;http://www.activestate.com/blog/2014/01/using-docker-run-ruby-rspec-ci-jenkins&quot;&gt;I am recently familiar with&lt;/a&gt;, from the Cloud Foundry &lt;a href=&quot;https://github.com/cloudfoundry/cloud_controller_ng&quot;&gt;Cloud Controller&lt;/a&gt;, which is a component of the Cloud Foundry open-source project, which Stackato is based on.&lt;/p&gt;
+
+&lt;p&gt;For me, it takes about 2 hours to run these Cloud Controller Ruby Rspec tests in the basic way, with no optimizations. This uses SQLite3 and runs all the tests sequentially.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Finished in 121 minutes 1 second
+7638 examples, 62 failures, 3 pending
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The configured &lt;a href=&quot;https://travis-ci.org/cloudfoundry/cloud_controller_ng&quot;&gt;Travis-CI test run&lt;/a&gt; uses either MySQL or PostgreSQL, instead of SQLite3, and runs tests in parallel across 3 threads. This optimized test run takes around 10 minutes on Travis-CI.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;7695 examples, 0 failures, 2 pendings
+Took 589.385694927 seconds
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can see that we get a nice speed improvement from using &lt;a href=&quot;https://github.com/grosser/parallel_tests&quot;&gt;parallel_rspec&lt;/a&gt; to run tests in parallel across 3 threads. Obviously, a real database helps too. Can we do better?&lt;/p&gt;
+
+&lt;p&gt;The limitation here is that all the tests are limited to a single machine. We are always going to limited in how far we can scale vertically. Multiple threads may be able to make use of multiple cores and each thread also uses its own dedicated database, but we are still constrained to the local resources on the machine they run on.&lt;/p&gt;
+
+&lt;h2 id=&quot;scalinghorizontally&quot;&gt;Scaling Horizontally&lt;/h2&gt;
+
+&lt;p&gt;If we can run 7695 tests in 10 minutes on one machine, then how many machines would we need to bring that down to 10 seconds? About 60, if we naively assume zero overhead for distributing the tests.&lt;/p&gt;
+
+&lt;p&gt;That is 60 machines and potentially 60 dedicated databases, depending on the test runner setup.&lt;/p&gt;
+
+&lt;h2 id=&quot;paasprovisioningandorchestration&quot;&gt;PaaS Provisioning and Orchestration&lt;/h2&gt;
+
+&lt;p&gt;Using the Stackato or Cloud Foundry REST API (or command-line tools), we can programmatically provision as many PostgreSQL or MySQL databases as I need. We can create an application that manages running the tests in a distributed way and scale it across a large cluster.&lt;/p&gt;
+
+&lt;h2 id=&quot;stackatofrankenstein&quot;&gt;Stackato Frankenstein&lt;/h2&gt;
+
+&lt;p&gt;Since Stackato can run anywhere, we could potentially take a bunch of random machines and build a Stackato cluster with them. We could even run Stackato on every developer's laptop, forming them into a single Stackato cluster, and distributing our tests across them. Think of it as &lt;a href=&quot;http://setiathome.berkeley.edu/&quot;&gt;SETI@Home&lt;/a&gt; for developers running tests. Would you let 10 other developers run a 10th of their tests on your machine, if you could run your tests 10 times faster?&lt;/p&gt;
+
+&lt;h2 id=&quot;scaleupandscaledown&quot;&gt;Scale Up and Scale Down&lt;/h2&gt;
+
+&lt;p&gt;Due to the speed in which an application can be scaled up, it is possible that our distributed testing application could be scaled up on-demand and scaled down when not in use. It could momentarily consume a large percentage of unused resources on the Stackato cluster, returning them when the test run completes. The speed at which it could process the tests would depend on how much resources were available at the time.&lt;/p&gt;
+
+&lt;h2 id=&quot;designingtheapplication&quot;&gt;Designing the Application&lt;/h2&gt;
+
+&lt;p&gt;Stackato and Cloud Foundry run &quot;applications&quot;. Therefore I will refer to our test runner as an &quot;application&quot; and Cloud Foundry's Cloud Controller as the &quot;project&quot;, to save confusion.&lt;/p&gt;
+
+&lt;p&gt;What does our test runner application look like?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Centralized Code Checkout&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We will need to checkout the latest Cloud Controller code from GitHub. If we use the &lt;a href=&quot;http://docs.stackato.com/user/services/filesystem.html&quot;&gt;filesystem service&lt;/a&gt;, that Stackato provides, we can use the same instance of this checked-out code across all application instances.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Test Run Requests&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Our test runner application will need to receive requests from the developer to run the tests at a specific git branch or commit.&lt;/p&gt;
+
+&lt;p&gt;For this test run job submission we can use a HTTP REST API interface. This will allow us to easily POST and DELETE test run jobs. We can also GET the results or current status of our submitted test run. Ruby-on-Rails may be a good choice for quickly implementing this REST API.&lt;/p&gt;
+
+&lt;p&gt;Since all instances of the test runner application will be identical, any instance can receive POSTed jobs. These instances are load-balanced by Stackato's &lt;a href=&quot;http://docs.stackato.com/admin/server/router.html&quot;&gt;router&lt;/a&gt;, which itself might be load-balanced behind a hardware &lt;a href=&quot;http://docs.stackato.com/admin/cluster/index.html#cluster-load-balancer&quot;&gt;load-balancer&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;It might also be nice if we can pass a patch to apply to the checked-out code, allowing us to test uncommitted changes, but let’s leave that addition to version 2.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Orchestration&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Inter-instance communication will be needed to distribute the Rspec tests across the cluster. We can use Stackato's &lt;a href=&quot;http://docs.stackato.com/user/services/data-services.html&quot;&gt;RabbitMQ service&lt;/a&gt; to provide a way to distribute individual Rspec tests. All the tests can be sequentially added to a &lt;a href=&quot;https://www.rabbitmq.com/tutorials/tutorial-two-ruby.html&quot;&gt;RabbitMQ Work Queue&lt;/a&gt; of which all the workers (all instances of our test runner application) are subscribed. Each test runner picks off the next Rspec test in the queue and runs it. Results can either be posted back over RabbitMQ or entered directly into a central database (see below).&lt;/p&gt;
+
+&lt;p&gt;Notification of failed tests is best done over RabbitMQ. This helps with implementing things like &lt;a href=&quot;https://www.relishapp.com/rspec/rspec-core/v/2-0/docs/configuration/fail-fast&quot;&gt;fail_fast&lt;/a&gt;, which would immediately terminate a test run on the first failure.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Central Database&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We will need a central database to store and orchestrate the test run jobs. Only one job can be run at a time and we need to know when a job has completed successfully or failed. Stackato gives us many choices for this database. It could be PostgreSQL, MySQL, Redis, MongoDB or even Memcached. An relational database, such as PostgreSQL or MySQL, is probably going to be our best bet. This will allow for table locking and transactions, which will help with the orchestration. There may also be some off-the-shelf Ruby gems or Rails plugins that do a lot of this job management for us.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Test Databases&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Test databases will need to be provisioned. One for each instance of our test runner application, so that there are no collisions when running Rspec test cases across test runner instances. The best way to do this is provision them ahead of time, giving them incremental names that can then be coupled with each test runner application instance via the instance_index, mentioned above.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;service:
+  test_db_0: postgresql
+  test_db_1: postgresql
+  test_db_2: postgresql
+  test_db_3: postgresql
+  test_db_4: postgresql
+  test_db_5: postgresql
+  ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Alternatively, we might use MySQL as a testing database, since Cloud Foundry's Cloud Controller supports both.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;service:
+  test_db_0: mysql
+  test_db_1: mysql
+  test_db_2: mysql
+  test_db_3: mysql
+  test_db_4: mysql
+  test_db_5: mysql
+  ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If we were just to use sqlite3 as our test database, then provisioning databases would not be required.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Installing Dependencies&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We will need to have Ruby installed and all the system resources that our application requires.&lt;/p&gt;
+
+&lt;p&gt;We can install any system dependencies in Stackato with the &quot;&lt;a href=&quot;http://api.stacka.to/docs/reference/stackatoyml.html#hooks&quot;&gt;hooks&lt;/a&gt;&quot; section in our application's stackato.yml file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;hooks:
+  pre-staging:
+    # mysql gem requires these
+    - apt-get -y install libmysqld-dev libmysqlclient-dev mysql-client
+    # pg gem requires this
+    - apt-get -y install libpq-dev
+    # sqlite gem requires this
+    - apt-get -y install libsqlite3-dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For Ruby, we can either specify &quot;ruby19&quot; as the runtime, which will choose the default Ruby 1.9 &lt;a href=&quot;http://docs.stackato.com/user/deploy/buildpack.html&quot;&gt;buildpack&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;framework:
+  runtime: ruby19
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or we can specify a buildpack explicity, such as the publically available &lt;a href=&quot;https://github.com/ActiveState/stackato-buildpack-ruby.git&quot;&gt;stackato-buildpack-ruby.git&lt;/a&gt; or heroku-buildpack-ruby.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;buildpack: https://github.com/heroku/heroku-buildpack-ruby
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Provisioning Services&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;As mentioned above we need to have a filesystem for checking out the code, which is shared between all instances of the test runner application. We will name this &quot;gitcheckout&quot;.&lt;/p&gt;
+
+&lt;p&gt;We will name our databases for storing and orchestrating jobs, simply &quot;jobs&quot;. We will call our RabbitMQ message queue &quot;mq&quot;. Finally, our list of provisioned test databases with their incremental names.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;services:
+    gitcheckout: filesystem
+    jobs: postgresql
+    mq: rabbitmq
+    test_db_0: postgresql
+    test_db_1: postgresql
+    test_db_2: postgresql
+    test_db_3: postgresql
+    test_db_4: postgresql
+    test_db_5: postgresql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This all goes into our &lt;a href=&quot;http://docs.stackato.com/user/deploy/stackatoyml.html&quot;&gt;stackato.yml&lt;/a&gt; file, which is pushed to Stackato alongside the application code when we deploy it. At this time the databases instances, RabbitMQ instances and the filesystem instances will all be provisioned.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;This is merely a rough blueprint of what could be achieved with PaaS to help developers run highly distributed Rspec tests. The purpose being to dramatically speed up the time it takes to run tests and increase the feedback loop frequency on large projects.&lt;/p&gt;
+
+&lt;p&gt;Being able to horizontal distribute the tests would dramatically speed up the time taken to run the tests and let developers know when things are going downhill much sooner. This will result in an earlier course correction when things are going wrong. It also makes developers more engaged in writing code and running tests if they find it less laborious to utilize an overly-bloated test suite.&lt;/p&gt;
+
+&lt;p&gt;In part two of this post, we will build this on Stackato and see how well it works. Stay tuned and please post and any feedback on this design in the comments.&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;Image courtesy of &lt;a href=&quot;http://www.flickr.com/photos/61319159@N00/2936676320/&quot;&gt;westtexbamboo@flickr&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;</description>
+	<pubDate>Wed, 15 Jan 2014 17:37:21 +0000</pubDate>
+</item>
+<item>
+	<title>ActiveBlog:  Insights on Code, the Cloud and More: Dev Done Wrong - An Interview With Gabriel Hurley</title>
+	<guid>http://www.activestate.com/blog/3854 at http://www.activestate.com</guid>
+	<link>http://www.activestate.com/blog/2014/01/dev-done-wrong-interview-gabriel-hurley</link>
+	<description>&lt;p&gt;&lt;img alt=&quot;&quot; src=&quot;http://www.activestate.com/sites/default/files/images/blog/dangerous_ladder_240x176.jpg&quot; /&gt;
+In this post we interview Gabriel Hurley, Manager of Nebula’s Platform Team. Gabriel talks about what they do not teach you at school, community-based development and using GitHub as your resume. He also talks about how keeping it simple is not always sustainable, things to consider when building scalable systems and repeatability. 
+Gabriel has a wealth of experience from working at Nebula and NASA, so he understands what it takes to deliver and maintain systems at scale.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q: Can you tell us a little about your background as a developer?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I am currently the Manager for Nebula's Platform Team, but I've arrived there by a pretty diverse path. Previously at Nebula I was the UX Team's Technical Lead; I built large swaths of the web interface for the Nebula One. I was also the Project Technical Lead for the OpenStack Dashboard project (Horizon), and greatly shaped its current incarnation. Prior to that I was a Core Committer for the open source Python web framework Django, and worked as a developer in the office of the CTO for IT at NASA. So far seems pretty standard, right? Well, before that I ran a small creative design agency, and before that I was in Sales/Marketing at UC Berkeley. The last programming class I took was during my freshman year of High School. I'm almost entirely self-taught, and my skillset ranges from programming to film and photography to audio engineering to graphic design, marketing, and more. When it comes to development, though, I'm a firm believer in open source, a firm believer in great user experience, and Python and Javascript are my favorite languages.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q: What do they not teach you at school about software development?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;How about everything! As I mentioned, I'm almost entirely self-taught. In fact, the last programming class I took probably did more harm than good. What I found instead is that the best way to learn any skill is to have a project you really want to accomplish using that skill. A friend had a cool idea for a web app, and after giving it a go in PHP we discovered Python/Django and that was the turning point in my career. Django has a fantastic community of brilliant developers, and the core devs are some of the best people to learn from. One of the things I love about open source is that you can start using a project, and as you become more familiar with it you start to find bugs so you go and you report those bugs. Then maybe you decide you want to try fixing a bug. Before you know it you're a part of that community making real contributions, and the world can see the work you do. Your Github account will get you more jobs than your resume as a developer these days. Learn from others and share what you do!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q: What are the craziest “Dev Done Wrong” things that you have seen during your career?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;There's a quote in the Django community which is usually attributed to Simon Willison that goes &quot;Do the simplest thing that could possibly work.&quot; In general, this is good advice. However, it's also the root of all evil when it comes to sustainable development practices. I'd bet that many of us have, at some point in our career, FTP'd or SSH'd to a live website and changed some files on the server. This is fast, and simple, and it gets the job done. Heck, I know folks that have managed the websites of successful companies that way. And that's fine until you want to scale, or until there's an outage, or a catastrophic data loss.&lt;/p&gt;
+
+&lt;p&gt;Okay, that's a bit contrived, but it illustrates the point that simplicity is relative to the tools you have available. If that developer had been handed a github repository and a Heroku account ready-to-go what was &quot;simplest&quot; would've been a different game. If the company had their own development/deployment workflow established that embraced principles like automation and distributed storage and backups and provided these to their developers... again, &quot;simple&quot; all depends where you're starting from. So what keeps us from getting there?&lt;/p&gt;
+
+&lt;p&gt;Almost every big enterprise company, government agency, and any organization of sufficient scale has huge problems with not just legacy IT but &quot;shadow&quot; IT. I'm talking about servers sitting under people's desks being the sole backup of mission-critical data. Developers so fed up with procurement that they pay for AWS on their own credit cards. Back at NASA the first thing that was explained to me was that I may have access to data covered by the International Traffic in Arms Regulation (ITAR) and that if I let that outside of NASA's network I would likely be headed for prison. These restrictions and regulations are very real, and shadow IT poses very real risks to both companies and individuals without them even thinking about it. All because the tools and structures that are in place are too painful and people are drawn to what is simple.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q: How can PaaS assist in doing dev right?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Platform-as-a-Service (PaaS) is a key piece in doing things both repeatably and painlessly. Most PaaSes have a wealth of service templates ready-to-go. Databases like MySQL or Postgres, memcached, load balancers, message queues, all the things you need to build dynamic, scalable applications. The setup time is seconds, not hours, days or weeks. This means you can spend your time working on your application code, and you don't artificially rule out good solutions because setting them up would be too painful.&lt;/p&gt;
+
+&lt;p&gt;Repeatability is a game-changer. When you have a script or a template that can restore your entire application to a clean state in minutes or seconds it opens up worlds of possibility. The entire architecture changes. It's not about keeping your one server up every millisecond of every day and being on pager-duty in case it goes down. You build systems that can take care of themselves.&lt;/p&gt;
+
+&lt;p&gt;Netflix's (former) Chief Architect Adrian Cockcroft describes the goal of the modern application developer as being to &quot;construct a highly agile and highly available service from ephemeral and assumed broken components.&quot; The implication of that is huge. When you start with the (quite realistical) assumption that at any moment any part of your system could cease functioning you have to build your application in a very different way. Ephemeral also means that when something goes wrong, you just shoot that piece and your automation builds another one for you. Everything goes back to working, just like that. The core of this approach ultimately lies in distributed data stores (like Cassandra) and very finely decoupled service components to achieve high availability. When your database goes away, does your website stop working? When your workers stop handling your background task queue should everything come to a crashing halt? No! Each piece should be fault-tolerant at least to the point where it can handle a small amount of downtime for its connected components.&lt;/p&gt;
+
+&lt;p&gt;PaaS offerings are great for this because they encourage thinking about each component as a discrete piece, and many of them offer built-in SLA management... keeping services alive, respawning them if they die, perhaps even scaling them based on certain thresholds. These are all pieces you no longer have to worry about. Moreover, PaaSes all use some form of template or DSL to define exactly how your service or application should be deployed each time, meaning that by even using a PaaS you've already ensured repeatability for your deployment.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q: What can we expect from the upcoming joint Stackato and Nebula One webinar?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The joint webinar has a very practical story that's loosely based on a request I got while I worked at NASA: The CIO walks in one day and says &quot;we've invested millions in 'cloud' and 'big data' and nobody is using our datasets! You've got 24 hours to build a site that publishes our datasets internally or you're fired! Oh, and by the way, the data is restricted and this project is secret... everything you do has to stay inside our firewall!&quot;&lt;/p&gt;
+
+&lt;p&gt;Okay, so the &quot;24 hours or you're fired&quot; part is made up, but the point is that this problem can be solved well within that timeframe if you've got the right tools. I'm going to demonstrate how I used a private cloud (a Nebula One system) and a PaaS (ActiveState Stackato) to build a scalable web service that can do continuous deployment and communicate with the cloud's APIs in no time flat, all without any data ever leaving the company's datacenter. I literally gave myself that challenge last week (hint: I succeeded), and the core of the webinar is me walking through exactly what I did, recorded straight off my screen as I did it. The best part is that it's only a few dozen lines of my own code, and involves a full tutorial on setting up ActiveState Stackato on Nebula in the process. If my fictional company had already offered both a Nebula One system and Stackato for self-service use by anyone at the company, I could've gone from idea to finished in half an hour, first try. It's just that powerful.&lt;/p&gt;
+
+&lt;p&gt;And that, in itself, is the core of what Nebula and ActiveState are doing: we're empowering developers with self-service tools that let them get their jobs done both quickly and well by making modern best practices &quot;the simplest thing that could possibly work.&quot;&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Thanks Gabriel!&lt;/p&gt;
+
+&lt;p&gt;You can meet Gabriel and ask him questions about running Stackato on Nebula One in tomorrow’s webinar. &lt;a href=&quot;https://attendee.gotowebinar.com/register/5034981857293123074?source=blog&quot;&gt;Modern Application Development Using Stackato and Nebula&lt;/a&gt; (January 14, 2014 at 10am PST).&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;Image courtesy of &lt;a href=&quot;http://www.flickr.com/photos/thirteenofclubs/3368810746/&quot;&gt;thirteenofclubs@flickr&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;</description>
+	<pubDate>Mon, 13 Jan 2014 17:32:08 +0000</pubDate>
+</item>
+<item>
 	<title>Cloud Foundry Blog: SAP HANA Service Broker Contributed to the Cloud Foundry Incubator</title>
 	<guid>http://blog.cloudfoundry.com/?p=6072</guid>
 	<link>http://feedproxy.google.com/~r/CloudFoundry-Blog/~3/cGSBs8HNxR0/</link>

@@ -13,6 +13,19 @@
 
 	<foaf:member>
 		<foaf:Agent>
+			<foaf:name>ActiveBlog:  Insights on Code, the Cloud and More</foaf:name>
+			<foaf:weblog>
+				<foaf:Document rdf:about="http://www.activestate.com/blog/rss.xml">
+					<dc:title>ActiveBlog:  Insights on Code, the Cloud and More</dc:title>
+					<rdfs:seeAlso>
+						<rss:channel rdf:about="http://www.activestate.com/blog/rss.xml" />
+					</rdfs:seeAlso>
+				</foaf:Document>
+			</foaf:weblog>
+		</foaf:Agent>
+	</foaf:member>
+	<foaf:member>
+		<foaf:Agent>
 			<foaf:name>Cloud Foundry Blog</foaf:name>
 			<foaf:weblog>
 				<foaf:Document rdf:about="http://blog.cloudfoundry.com">
