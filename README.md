@@ -1,41 +1,48 @@
 cloudfoundry.org
-================
+=========
 
-the rails app that serves content for cloudfoundry.org
+[cloudfoundry.org] is the community site for Cloud Foundry.  
 
-### run locally
+>Cloud Foundry is the industry's *open* Platform as a Service (PaaS), providing a choice of clouds, frameworks, and application services.
 
-See [RailsInstaller.org](http://railsinstaller.org/en) if this is your first Ruby 1.9.3 app.
 
+Technology
+-----------
+
+cloudfoundry.org uses a number of open source projects to work properly:
+
+* [Twitter Bootstrap] - great UI boilerplate for modern web apps
+* [Dillinger] - online cloud based HTML5 filled Markdown Editor
+* [Brackets] - open source code editor
+
+Setting up
+--------------
+cloudfoundry.org uses a [Fork and Pull] model of collaborative development.  Follow this link to learn how to [Fork a Repo]. 
+
+1. #####Point your browser at https://github.com/cloudfoundry/cloudfoundry.org and click "Fork".
+2. #####From shell/prompt:
+
+```sh
+> git clone https://github.com/username/cloudfoundry.org.git
+# Clones your fork of the repository into the current directory
+
+> cd cloudfoundry.org
+# Changes the active directory to the newly cloned "cloudfoundry.org" directory
+
+> git remote add upstream https://github.com/cloudfoundry/cloudfoundry.org.git
+# Assigns the original repository to a remote called "upstream"
+
+> git fetch upstream
+# Pulls in changes not present in your local repository, without modifying your files
 ```
-bundle install
-rake db:migrate
-rails s
-```
 
-Once you have it running locally, you'll need to copy the layout from the admin console (and then, in order, create the Home page and its child pages About and Dojo).
+Governance and Guidelines
+--------------
 
-### deploy to cf
 
-See the [CF Getting Started guide](http://docs.cloudfoundry.com/docs/dotcom/getting-started.html) if this is your first CF app.  Then...
-
-Change the name of the app you're pushing in the manifest.yml file (eg. cforg1 or cforg) depending on which is stopped (eg. if cforg is the live version, you would change the name of the app in manifest.yml to cforg1).
-
-```
-rake assets:precompile
-cf push
-cf start appname
-```
-
-Smoke test new app (eg. http://cforg1.cfapps.io).  Then map both to cloudfoundry.org & www.cloudfoundry.org domains and unmap & stop the older version.  (Mapping ensures there is no downtime.)
-
-For example, if cforg1 is the newer version you just pushed ... 
-
-```
-cf map cforg1 cloudfoundry.org
-cf map cforg1 www.cloudfoundry.org
-cf unmap .cloudfoundry.org cforg
-cf unmap .www.cloudfoundry.org cforg
-cf stop cforg
-
-```
+[cloudfoundry.org]:http://cloudfoundry.org/
+[Twitter Bootstrap]:http://getbootstrap.com/
+[Fork and Pull]:https://help.github.com/articles/using-pull-requests
+[Fork a Repo]:https://help.github.com/articles/fork-a-repo
+[Dillinger]:http://dillinger.io/
+[Brackets]:http://brackets.io/
