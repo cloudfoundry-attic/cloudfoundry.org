@@ -26,19 +26,17 @@
 </head>
 
 <body>
-    <div class="container">
+    <div id="page" class="container">
 
-        <div class="masthead">
-
-            <div class="text-center" style="background: url(images/bg-crowd.png);background-position:center bottom;background-repeat:no-repeat">
-                <img src="images/logo_org.png">
+        
+        <div id="navbar" class="masthead">
+            <div class="text-center" style="background: url(images/bg-crowd.png);background-position:center bottom;background-repeat:no-repeat;">
+                <img src="images/logo_org.png" style="padding-bottom:15px;">
             </div>
-            <h3></h3>
+            
             <ul class="nav nav-justified">
                 <li class="active">
-                    <a href="#">
-                        <img src="images/home_icon.png">
-                    </a>
+                    <a href="#"><img src="images/home_icon.png"></a>
                 </li>
                 <li>
                     <a href="about.html">About</a>
@@ -60,18 +58,18 @@
                 </li>
             </ul>
         </div>
+        
 
         <!-- Page content container -->
-        <div class="container">
+        <div id="content" class="container" style="padding-left:0px;padding-right:0px;background-color: rgba(255, 255, 255, 0.298039);">
 
-            <!-- Jumbotron (just an example, we might not need one) -->
-            <div class="jumbotron">
-                <!-- Marketing stuff! -->
-                <div class="row">
-                    <div class="col-lg-8">
-                        <a href="learn.html"><img style="width:660px; height:342px;" src="http://blog.cloudfoundry.com/wp-content/static/cforg/img/banner-platformcf-770-eventphotos.jpg"></a>
+            <!-- Billboard -->
+            <div class="jumbotron" style="padding-top:0px; padding-bottom:0px; padding-left:17px; padding-right:17px;margin:-2px;">
+                <div class="row" style="background: #0b2141;">
+                    <div class="col-lg-8" style="padding-left:0px; padding-right:0px;">
+                        <a href="learn.html"><img class="img-responsive" src="http://blog.cloudfoundry.com/wp-content/static/cforg/img/banner-platformcf-770-eventphotos.jpg"></a>
                     </div>
-                    <div class="col-lg-3" style="background: #0b2141">
+                    <div class="col-lg-4" style="background: #0b2141;padding-left:0px;padding-right:0px;">
                         <a class="twitter-timeline" href="https://twitter.com/cloudfoundry" data-widget-id="380826923938480129" data-chrome="nofooter noheader transparent noscrollbar" data-theme="dark" width="290px" height="327px">Tweets by @cloudfoundry</a>
                         <script>
                             ! function(d, s, id) {
@@ -92,8 +90,11 @@
 
 
             <!-- Columns containing recent updates at CloudFoundry.org -->
-            <div class="row">
-                <div class="col-lg-3"  style="background-color: rgba(255, 255, 255, 0.35)">
+            <div id="events" class="row" style="padding-left:17px; padding-right:17px;">
+                
+                
+                
+                <div id="news-homepage" class="col-lg-3"  style="background-color: rgba(255, 255, 255, 0.35);">
                     <h3>Engineering Updates</h3>
                     <p>
                         November 09, 2013
@@ -122,7 +123,11 @@
                 </div>
                 <div class="col-lg-1">
                 </div>
-                <div class="col-lg-3"  style="background-color: rgba(255, 255, 255, 0.35)">
+          
+                
+                
+                
+                <div id="discussions-homepage" class="col-lg-3"  style="background-color: rgba(255, 255, 255, 0.35)">
                     <h3>Latest Discussions</h3>
                     <p>
                         December 10, 2013
@@ -150,7 +155,11 @@
                 </div>
                 <div class="col-lg-1">
                 </div>
-                <div class="col-lg-3" style="background-color: rgba(255, 255, 255, 0.35)">
+        
+        
+
+        
+                <div id="commits-homepage" class="col-lg-3" style="background-color: rgba(255, 255, 255, 0.35)">
                     <h3>Recent GitHub Commits</h3>
                     <p>
                         December 10, 2013
