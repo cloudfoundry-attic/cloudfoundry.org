@@ -3,7 +3,7 @@ cloudfoundry.org
 
 [cloudfoundry.org] is the community site for Cloud Foundry.  
 
-**Cloud Foundry is the industry's *open* Platform as a Service (PaaS), providing a choice of clouds, frameworks, and application services.**
+>Cloud Foundry is the industry's *open* Platform as a Service (PaaS), providing a choice of clouds, frameworks, and application services.
 
 
 Technology
@@ -31,7 +31,7 @@ cloudfoundry.org uses a [Fork and Pull] model of collaborative development.  Fol
 # Changes the active directory to the newly cloned "cloudfoundry.org" directory
 
 > git remote add upstream https://github.com/cloudfoundry/cloudfoundry.org.git
-# Assigns the remote repository to a remote called "upstream"
+# Assigns the original repository to a remote called "upstream"
 
 > git fetch upstream
 # Pulls in changes not present in your local repository, without modifying your files
@@ -47,7 +47,6 @@ Governance and Guidelines
 #####To check if the issue already has a branch:
 
 ```sh
-> git fetch upstream
 > git branch -r
   origin/HEAD -> origin/master
   origin/master
@@ -78,16 +77,68 @@ _Issue #9: add directory structure and files for bootstrap-based site_
 **From shell/prompt**:
 
 ```sh
-> git checkout --track -b iss2 upstream/master
-# creates a new branch called "iss9", makes it the active branch, and sets up the "upstream" configuration
+> git checkout --track -b upstream/iss9
+# creates a new remote branch called "iss9", makes it the active branch, and sets up the "upstream" configuration
 
-> git push upstream iss2
-# push the new branch to the remote repository
-
+> git fetch upstream iss9
 ```
 
 You may now start working on the issue.  
-When you are done (or ready to share your changes)...
+
+Testing
+--------------
+### Run locally
+
+See [http://tomcat.apache.org/](http://tomcat.apache.org/) to install tomcat.
+
+Go to the webapps direrctory of your tomcat installation
+
+create a cloudfoundry directory 
+```sh
+> md cloudfoundry
+```
+Change directories to the cloudfoundry directory
+```sh
+> cd cloudfoundry
+```
+
+Copy the files from the directory where you cloned the cloudfoundry repository to the cloudfoundry directory you just created
+
+Change directories to the tomcat bin directory
+```sh
+> cd apache-tomcat-7.0.35/bin
+```
+The *apache-tomcat-7.0.35* is the directory that was created where the tomcat package was unzipped.  Your directory may be slightly different based on the version of tomcat you downloaded
+
+Run the appropriate startup command:
+#####Unix
+```sh
+> startup.sh
+```
+#####Windows
+```sh
+> startup.bat
+```
+In your browser type *http://localhost:8080/cloudfoundry/*
+
+Now that you have it running locally you can start to develop and test new functionality and content
+
+### deploy to cf
+
+See the [CF Getting Started guide](http://docs.cloudfoundry.com/docs/dotcom/getting-started.html) if this is your first CF app.  
+
+Then...
+
+Change directories to the root of where you have been doing your development.
+```sh
+> cf push appname 
+(you can give your app any name you wish app name is a placeholder)
+> cf start appname
+```
+
+Smoke test new app (eg. http://appname.cfapps.io).
+
+When you have tested your changes, and it is time to merge the changes in to the branch created earlier...
 
 **Commit and push your changes**
 
@@ -96,7 +147,6 @@ When you are done (or ready to share your changes)...
 > git push upstream iss9
 
 ```
-When you have tested your changes, and it is time to merge it into the master...
 
 **Create a Pull Request**
 
