@@ -3,7 +3,7 @@ cloudfoundry.org
 
 [cloudfoundry.org] is the community site for Cloud Foundry.  
 
->Cloud Foundry is the industry's *open* Platform as a Service (PaaS), providing a choice of clouds, frameworks, and application services.
+**Cloud Foundry is the industry's *open* Platform as a Service (PaaS), providing a choice of clouds, frameworks, and application services.**
 
 
 Technology
@@ -31,7 +31,7 @@ cloudfoundry.org uses a [Fork and Pull] model of collaborative development.  Fol
 # Changes the active directory to the newly cloned "cloudfoundry.org" directory
 
 > git remote add upstream https://github.com/cloudfoundry/cloudfoundry.org.git
-# Assigns the original repository to a remote called "upstream"
+# Assigns the remote repository to a remote called "upstream"
 
 > git fetch upstream
 # Pulls in changes not present in your local repository, without modifying your files
@@ -47,6 +47,7 @@ Governance and Guidelines
 #####To check if the issue already has a branch:
 
 ```sh
+> git fetch upstream
 > git branch -r
   origin/HEAD -> origin/master
   origin/master
@@ -77,12 +78,11 @@ _Issue #9: add directory structure and files for bootstrap-based site_
 **From shell/prompt**:
 
 ```sh
-> git checkout --track -b upstream/iss9
-# creates a new remote branch called "iss9", makes it the active branch, and sets up the "upstream" configuration
+> git checkout --track -b iss2 upstream/master
+# creates a new branch called "iss9", makes it the active branch, and sets up the "upstream" configuration
 
-CHECK WITH VINCE TO SEE IF A "git branch -r" returns the upstream branch at this point.  if not, wlil need to:
-> git fetch upstream iss9
-
+> git push upstream iss2
+# push the new branch to the remote repository
 
 ```
 
