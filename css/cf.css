@@ -1,6 +1,21 @@
-.center
+div.header
 {
-    margin-left:auto;
-    margin-right:auto;
-    width:70%;
+    text-align: center;
+    background: url('/images/bg-crowd.png') no-repeat center bottom;
+}
+
+
+a.nav
+{
+    font-family: "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-size: 17px;
+    text-transform: uppercase;
+}
+
+img.logo
+{
+    padding-bottom:15px;
 }

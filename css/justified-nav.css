@@ -31,7 +31,7 @@ body {
   padding-top: 15px;
   padding-bottom: 15px;
   color: #777;
-  font-weight: bold;
+  font-weight: normal; /* CUSTOMIZED FOR CLOUDFOUNDRY */
   text-align: center;
   border-bottom: 1px solid #d5d5d5;
   background-color: #e5e5e5; /* Old browsers */
