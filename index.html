@@ -16,7 +16,7 @@
     <!-- Custom styles for this template -->
     <link href="css/cf.css" rel="stylesheet">
     <link href="css/justified-nav.css" rel="stylesheet">
-    
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -28,15 +28,17 @@
 <body>
     <div id="page" class="container">
 
-        
+
         <div id="navbar" class="masthead">
             <div class="header">
                 <img class="logo" src="images/logo_org.png">
             </div>
-            
+
             <ul class="nav nav-justified">
                 <li class="active">
-                    <a href="#"><img src="images/home_icon.png"></a>
+                    <a href="#">
+                        <img src="images/home_icon.png">
+                    </a>
                 </li>
                 <li>
                     <a href="about.html" class="nav">About</a>
@@ -58,16 +60,43 @@
                 </li>
             </ul>
         </div>
-        
+
 
         <!-- Page content container -->
-        <div id="content" class="container" style="padding-left:0px;padding-right:0px;background-color: rgba(255, 255, 255, 0.298039);">
+        <div id="content" style="padding-left:0px; padding-right:15px">
+            <div style="padding: 0 0 30px 0">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <a href="learn.html">
+                            <img src="http://blog.cloudfoundry.com/wp-content/static/cforg/img/banner-platformcf-770-eventphotos.jpg" height="400px">
+                        </a>
+                    </div>
+                    <div class="col-lg-4" style="background: #0b2141">
+                        <a class="twitter-timeline" href="https://twitter.com/cloudfoundry" data-widget-id="380826923938480129" data-chrome="nofooter noheader transparent noscrollbar" data-theme="dark" width="300px" height="395px">Tweets by @cloudfoundry</a>
+                        <script>
+                            ! function(d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0],
+                                    p = /^http:/.test(d.location) ? 'http' : 'https';
+                                if (!d.getElementById(id)) {
+                                    js = d.createElement(s);
+                                    js.id = id;
+                                    js.src = p + "://platform.twitter.com/widgets.js";
+                                    fjs.parentNode.insertBefore(js, fjs);
+                                }
+                            }(document, "script", "twitter-wjs");
+                        </script>
+                    </div>    
+                </div>
+            </div>
 
             <!-- Billboard -->
-            <div class="jumbotron" style="padding-top:0px; padding-bottom:0px; padding-left:17px; padding-right:17px;margin:-2px;">
+            <!--
+            <div class="jumbotron" style="padding-top:0px; padding-bottom:0px; padding-left:0px; padding-right:0px;margin:-2px;">
                 <div class="row" style="background: #0b2141;">
                     <div class="col-lg-8" style="padding-left:0px; padding-right:0px;">
-                        <a href="learn.html"><img class="img-responsive" src="http://blog.cloudfoundry.com/wp-content/static/cforg/img/banner-platformcf-770-eventphotos.jpg"></a>
+                        <a href="learn.html">
+                            <img class="img-responsive" src="http://blog.cloudfoundry.com/wp-content/static/cforg/img/banner-platformcf-770-eventphotos.jpg">
+                        </a>
                     </div>
                     <div class="col-lg-4" style="background: #0b2141;padding-left:0px;padding-right:0px;">
                         <a class="twitter-timeline" href="https://twitter.com/cloudfoundry" data-widget-id="380826923938480129" data-chrome="nofooter noheader transparent noscrollbar" data-theme="dark" width="290px" height="327px">Tweets by @cloudfoundry</a>
@@ -88,177 +117,189 @@
                 <br>
             </div>
 
-
-            <!-- Columns containing recent updates at CloudFoundry.org -->
-            <div id="events" class="row" style="padding-left:17px; padding-right:17px;">
-                
-                
-                <div id="news-homepage" class="col-lg-3">
-                    <div class="news-homepage">
-                        <div class="column-title">
-                            <h3>Engineering Updates</h3>
-                        </div>
-                        <div class="view-content">
-                            <p>
-                                <span class="views-field-timestamp">November 09, 2013</span>
-                                <br>
-                                <a href="http://blog.cloudfoundry.com/2013/11/09/announcing-cloud-foundry-cf-v6/" target="_blank">Announcing Cloud Foundry cf v6</a>              
-                            </p>
-                            <p>
-                                <span class="views-field-timestamp">September 06, 2013</span>
-                                <br>
-                                <a href="http://blog.cloudfoundry.com/2013/09/06/introducing-the-cloud-foundry-java-buildpack/" target="_blank">Introducing the Cloud Foundry Java Buildpack</a>              
-                            </p>
-                            <p>
-                                <span class="views-field-timestamp">August 01, 2013</span>
-                                <br>
-                                <a href="http://blog.cloudfoundry.com/2013/07/31/domains-and-ip-addresses-reserved-for-documentation-and-why-you-should-use-them/" target="_blank">Domains and IP Addresses Reserved for Documentation – and Why You Should Use Them</a>              
-                            </p>
-                            <p>
-                                <span class="views-field-timestamp">July 24, 2013</span>
-                                <br>
-                                <a href="http://blog.cloudfoundry.com/2013/07/24/cloud-foundry-is-open-and-pivotal-part-2/" target="_blank">Cloud Foundry is Open and Pivotal, Part 2</a>              
-                            </p>
-                            <div class="button-more">
-                                <a href="http://blog.cloudfoundry.com/category/engineering/" target="_blank">Read more</a>
-                            </div>
-                        </div>
+-->
+            <div class="row">
+                <div class="col-lg-1" style="width: 50px"></div>
+                <!-- News Column -->
+                <div class="col-lg-3 news-homepage">
+                    <div class="column-title">
+                        <h4>Engineering Updates</h4>
+                    </div>
+                    <div class="view-content">
+                        <p>
+                            <span class="views-field-timestamp">November 09, 2013</span>
+                            <br>
+                            <a href="http://blog.cloudfoundry.com/2013/11/09/announcing-cloud-foundry-cf-v6/" target="_blank">Announcing Cloud Foundry cf v6</a>
+                        </p>
+                        <p>
+                            <span class="views-field-timestamp">September 06, 2013</span>
+                            <br>
+                            <a href="http://blog.cloudfoundry.com/2013/09/06/introducing-the-cloud-foundry-java-buildpack/" target="_blank">Introducing the Cloud Foundry Java Buildpack</a>
+                        </p>
+                        <p>
+                            <span class="views-field-timestamp">August 01, 2013</span>
+                            <br>
+                            <a href="http://blog.cloudfoundry.com/2013/07/31/domains-and-ip-addresses-reserved-for-documentation-and-why-you-should-use-them/" target="_blank">Domains and IP Addresses Reserved for Documentation – and Why You Should Use Them</a>
+                        </p>
+                        <p>
+                            <span class="views-field-timestamp">July 24, 2013</span>
+                            <br>
+                            <a href="http://blog.cloudfoundry.com/2013/07/24/cloud-foundry-is-open-and-pivotal-part-2/" target="_blank">Cloud Foundry is Open and Pivotal, Part 2</a>
+                        </p>
+                        <a class="btn btn-primary" href="http://blog.cloudfoundry.com/category/engineering/" target="_blank">Read more &raquo;</a>
                     </div>
                 </div>
-      
-                
-                
-                
-                <div id="discussions-homepage" class="col-lg-3"  style="background-color: rgba(255, 255, 255, 0.35)">
-                    <h3>Latest Discussions</h3>
-                    <p>
-                        December 10, 2013
-                        <br>
-                        <a href="https://groups.google.com/a/cloudfoundry.org/d/topic/bosh-dev/s45-wvtoem4" target="_blank">Re: [bosh-dev] src_alt - possible changes</a>
-                    </p>
-                    <p>
-                        December 10, 2013
-                        <br>
-                        <a href="https://groups.google.com/a/cloudfoundry.org/d/topic/bosh-dev/s45-wvtoem4" target="_blank">Re: [bosh-dev] src_alt - possible changes</a>
-                    </p>
-                    <p>
-                        December 10, 2013
-                        <br>
-                        <a href="https://groups.google.com/a/cloudfoundry.org/d/topic/bosh-dev/rAuernDQocg" target="_blank">Re: [bosh-dev] Configure VM with multiple network interfaces ?</a>
-                    </p>
-                    <p>
-                        December 10, 2013</span>
-                        <br>
-                        <a href="https://groups.google.com/a/cloudfoundry.org/d/topic/bosh-dev/rAuernDQocg" target="_blank">Re: [bosh-dev] Configure VM with multiple network interfaces ?</a>
-                    </p>
-                    <p>
-                        <a class="btn btn-primary" href="http://groups.google.com/a/cloudfoundry.org/groups/dir">Read More &raquo;</a>
-                    </p>
+                <!-- /News Column -->
+                <div class="col-lg-1" style="width: 20px"></div>
+                <!-- Discussions Column -->
+                <div class="col-lg-3 discussions-homepage">
+                    <div class="column-title">
+                        <h4>Latest Discussions</h4>
+                    </div>
+                    <div class="view-content">
+                        <p>
+                            <span class="views-field-timestamp">December 10, 2013</span>
+                            <br>
+                            <a href="https://groups.google.com/a/cloudfoundry.org/d/topic/bosh-dev/s45-wvtoem4" target="_blank">Re: [bosh-dev] src_alt - possible changes</a>
+                        </p>
+                        <p>
+                            <span class="views-field-timestamp">December 10, 2013</span>
+                            <br>
+                            <a href="https://groups.google.com/a/cloudfoundry.org/d/topic/bosh-dev/s45-wvtoem4" target="_blank">Re: [bosh-dev] src_alt - possible changes</a>
+                        </p>
+                        <p>
+                            <span class="views-field-timestamp">December 10, 2013</span>
+                            <br>
+                            <a href="https://groups.google.com/a/cloudfoundry.org/d/topic/bosh-dev/rAuernDQocg" target="_blank">Re: [bosh-dev] Configure VM with multiple network interfaces ?</a>
+                        </p>
+                        <p>
+                            <span class="views-field-timestamp">December 10, 2013</span>
+                            <br>
+                            <a href="https://groups.google.com/a/cloudfoundry.org/d/topic/bosh-dev/rAuernDQocg" target="_blank">Re: [bosh-dev] Configure VM with multiple network interfaces ?</a>
+                        </p>
+                        <p>
+                            <a class="btn btn-primary" href="http://groups.google.com/a/cloudfoundry.org/groups/dir">Read More &raquo;</a>
+                        </p>
+                    </div>
                 </div>
-                <div class="col-lg-1">
+                <!-- /Discussions Column -->
+                <div class="col-lg-1" style="width: 20px"></div>
+                <!-- Commits Column -->
+                <div class="col-lg-3 commits-homepage">
+                    <div class="column-title">
+                        <h4>GitHub Commits</h4>
+                    </div>
+                    <div class="view-content">
+                        <p>
+                            <span class="views-field-timestamp">December 10, 2013</span>
+                            <br>
+                            <a href="https://github.com/cloudfoundry/bosh/commit/42748a613ef28e18f6ab8c742d527d30e749afa6" target="_blank">
+                                Adding final release for build 1525
+                            </a>
+                        </p>
+                        <p>
+                            <span class="views-field-timestamp">December 09, 2013</span>
+                            <br>
+                            <a href="https://github.com/cloudfoundry/bosh/commit/df3988df23cc9985ef36e5abfed0649e9124f782" target="_blank">
+                                Mount persistent disk during bootstrap
+                            </a>
+                        </p>
+                        <p>
+                            <span class="views-field-timestamp">December 09, 2013</span>
+                            <br>
+                            <a href="https://github.com/cloudfoundry/bosh/commit/9a87569491751e2e9904c3b2d1613b3a81a4a2ab" target="_blank">
+                                Added list disk action
+                            </a>
+                        </p>
+                        <p>
+                            <span class="views-field-timestamp">December 09, 2013</span>
+                            <br>
+                            <a href="https://github.com/cloudfoundry/bosh/commit/ad0d15a8583b2b4778e894d3ce12026fb433a15c" target="_blank">
+                                backfill test for ResourceWait#for_resource sleep callback
+                            </a>
+                        </p>
+                        <p>
+                            <a class="btn btn-primary" href="http://github.com/cloudfoundry">Go to GitHub &raquo;</a>
+                        </p>
+                    </div>
                 </div>
-        
-        
-
-        
-                <div id="commits-homepage" class="col-lg-3" style="background-color: rgba(255, 255, 255, 0.35)">
-                    <h3>Recent GitHub Commits</h3>
-                    <p>
-                        December 10, 2013
-                        <br>
-                        <a href="https://github.com/cloudfoundry/bosh/commit/42748a613ef28e18f6ab8c742d527d30e749afa6" target="_blank">
-                            Adding final release for build 1525
-                        </a>
-                    </p>
-                    <p>
-                        December 09, 2013
-                        <br>
-                        <a href="https://github.com/cloudfoundry/bosh/commit/df3988df23cc9985ef36e5abfed0649e9124f782" target="_blank">
-                            Mount persistent disk during bootstrap
-                        </a>
-                    </p>
-                    <p>
-                        December 09, 2013
-                        <br>
-                        <a href="https://github.com/cloudfoundry/bosh/commit/9a87569491751e2e9904c3b2d1613b3a81a4a2ab" target="_blank">
-                            Added list disk action
-                        </a>
-                    </p>
-                    <p>
-                        December 09, 2013
-                        <br>
-                        <a href="https://github.com/cloudfoundry/bosh/commit/ad0d15a8583b2b4778e894d3ce12026fb433a15c" target="_blank">
-                            backfill test for ResourceWait#for_resource sleep callback
-                        </a>
-                    </p>
-                    <p>
-                        <a class="btn btn-primary" href="http://github.com/cloudfoundry">Go to GitHub &raquo;</a>
-                    </p>
-                </div>
+                <!-- /Commits Column -->
             </div>
 
-            <div class="row">
-                <div class="col-lg-12" style="background-color: rgba(255, 255, 255, 0.35)">
-                    <h3>Activity</h3>
-                    <img src="http://blog.cloudfoundry.com/wp-content/static/cforg/img/ohloh/130917summary.png" style="margin-right: 60px;">
-                    <img src="http://blog.cloudfoundry.com/wp-content/static/cforg/img/ohloh/130917commits.png">
-                    <p class="source">Source: Ohloh</p>
+            <br>
+            <div class="row" style="padding-left:15px">
+                <div class="col-lg-12 activity-homepage">
+                    <div class="column-title">
+                        <h4>Activity</h4>
+                    </div>
+                    <div class="view-content">
+                        <img src="http://blog.cloudfoundry.com/wp-content/static/cforg/img/ohloh/130917summary.png" style="margin-right: 60px;">
+                        <img src="http://blog.cloudfoundry.com/wp-content/static/cforg/img/ohloh/130917commits.png">
+                        <p class="source">Source: Ohloh</p>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12" style="background-color: rgba(255, 255, 255, 0.35)">
-                    <h3>Community</h3>
-                    <img src="http://blog.cloudfoundry.com/wp-content/static/cforg/img/ohloh/130917recent.png" style="margin-right: 60px;">
-                    <img src="http://blog.cloudfoundry.com/wp-content/static/cforg/img/ohloh/130917contributors.png">
-                    <p class="source">Source: Ohloh</p>
+            <br>
+            <div class="row"  style="padding-left:15px">
+                <div class="col-lg-12 community-homepage">
+                    <div class="column-title">
+                        <h4>Community</h4>
+                    </div>
+                    <div class="view-content">
+                        <img src="http://blog.cloudfoundry.com/wp-content/static/cforg/img/ohloh/130917recent.png" style="margin-right: 60px;">
+                        <img src="http://blog.cloudfoundry.com/wp-content/static/cforg/img/ohloh/130917contributors.png">
+                        <p class="source">Source: Ohloh</p>
+                    </div>
                 </div>
             </div>
 
             <!-- End of Page content container -->
         </div>
 
-        <!-- Site footer -->
-        <div id="footer">
-            <div class="row">
-                <div class="col-md-2">
-                    <a href="about.html">About</a>
-                </div>
-                <div class="col-md-2">
-                    <a href="http://docs.cloudfoundry.com/">Documentation</a>
-                </div>
-                <div class="col-md-2">
-                    <a href="http://github.com/cloudfoundry">Source Code</a>
-                </div>
-                <div class="col-md-2">
-                    <a href="http://groups.google.com/a/cloudfoundry.org/groups/dir">Mailing Lists</a>
-                </div>
-                <div class="col-md-2">
-                    <a href="blog.html">Blog</a>
-                </div>
-                <div class="col-md-2">
-                    <a href="http://github.com/cloudfoundry-community/cf-docs-contrib/wiki">Wiki</a>
-                </div>
-            </div>
-
-            <div id="copyright">
-                <p>&copy;
-                    <script>
-                        var d = new Date();
-                        document.write(d.getFullYear());
-                    </script>
-                    cloudfoundry.org
-                </p>
-            </div>
-        </div>
         <!-- /container -->
 
     </div>
     <!-- /container -->
 
+    <!-- Site footer -->
+    <div id="footer">
+        <ul class='links'>
+            <li>
+                <a href="about.html">About</a>
+            </li>
+            <li>•</li>
+            <li>
+                <a href="http://docs.cloudfoundry.com/">Documentation</a>
+            </li>
+            <li>•</li>
+            <li>
+                <a href="http://github.com/cloudfoundry">Source Code</a>
+            </li>
+            <li>•</li>
+            <li>
+                <a href="http://groups.google.com/a/cloudfoundry.org/groups/dir">Mailing Lists</a>
+            </li>
+            <li>•</li>
+            <li>
+                <a href="blog.html">Blog</a>
+            </li>
+            <li>•</li>
+            <li>
+                <a href="http://github.com/cloudfoundry-community/cf-docs-contrib/wiki">Wiki</a>
+            </li>
+        </ul>
 
-    <!-- Bootstrap core JavaScript
-        ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+        <div id="copyright">
+            <p>&copy;
+                <script>
+                    var d = new Date();
+                    document.write(d.getFullYear());
+                </script>
+                cloudfoundry.org
+            </p>
+        </div>
+    </div>
+    <!-- / footer -->
 </body>
 
 </html>
