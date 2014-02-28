@@ -1,0 +1,136 @@
+---
+title: Welcome to the Cloud Foundry Community
+---
+
+<div id='billboard-homepage'>
+  <a href="http://cfsummit.com" id='billboard-banner'>
+    <img id='home-banner-desk' src="../images/CFSummit2014_Billboard.png" style="width: 100%;height: 100%;">
+    <img id='home-banner-mobile' src="../images/CFSummit2014_Billboard_Mobile.png">
+  </a>
+
+  <div id='twitter-block'>
+    <a class="twitter-timeline" href="https://twitter.com/cloudfoundry" data-widget-id="380826923938480129" data-chrome="nofooter noheader transparent noscrollbar"  data-theme="dark" width="290px" height="320px">Tweets by @cloudfoundry</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  </div><!--end of twitter-block-->
+</div><!--end billboard-homepage-->
+
+
+<div class="news-homepage">
+  <div class="column-title">
+    <h3>Engineering Updates</h3>
+  </div>
+
+  <div class='view-content'>
+    <div id="updates">Loading...</div>
+    <% if @blogentries %>
+      <% @blogentries.take(4).each do |i| %>
+        <p>
+          <span class="views-field-timestamp"><%= i.published.strftime("%B %d, %Y") %></span>
+          <br>
+          <a href = "<%= i.url %>" target="_blank"><%= i.title %></a>
+        </p>
+      <% end %>
+    <% end %>
+
+    <div class="button-more">
+      <a href="http://blog.cloudfoundry.com/category/engineering/" target='_blank'>Read more</a>
+    </div>
+
+  </div><!--end of view-content-->
+</div><!--end of news-homepage-->
+
+
+<div class="discussions-homepage">
+  <div class="column-title">
+    <h3>Latest Discussions</h3>
+  </div>
+
+  <div class='view-content'>
+    <div id="discussions">Loading...</div>
+    <% if @discussionentries %>
+      <% @discussionentries.take(4).each do |i| %>
+        <p>
+          <span class="views-field-timestamp"><%= i.published.strftime("%B %d, %Y") %></span>
+          <br>
+          <a href = "<%= i.url %>" target="_blank"><%= i.title %></a>
+        </p>
+      <% end %>
+    <% end %>
+
+    <div class="button-more">
+      <a href="http://groups.google.com/a/cloudfoundry.org/groups/dir" target='_blank'>Read more</a>
+    </div>
+
+  </div><!--end of view-content-->
+</div><!--end of discussions-homepage-->
+
+
+<div class="commits-homepage">
+  <div class="column-title">
+    <h3>Recent GitHub Commits</h3>
+  </div>
+
+  <div class='view-content'>
+    <div id="commits">Loading...</div>
+    <% if @commitentries %>
+      <% @commitentries.take(4).each do |i| %>
+        <p>
+          <span class="views-field-timestamp"><%= i.published.strftime("%B %d, %Y") %></span>
+          <br>
+          <a href = "<%= i.url %>" target="_blank"><%= i.title %></a>
+        </p>
+      <% end %>
+    <% end %>
+
+    <div class="button-more">
+      <a href="http://github.com/cloudfoundry" target='_blank'>Go to GitHub</a>
+    </div>
+
+  </div><!--end of view-content-->
+</div><!--end of commits-homepage-->
+
+<div class="activity-homepage">
+  <div class="column-title">
+    <h3>Activity</h3>
+  </div>
+
+  <div class="view-content">
+    <div style='float:left;width: 100%;'>
+      <p><strong>30 Day Summary</strong></p>
+      <p>
+        761 commits<br>
+        110 contributors (including 49 new contributors)<br>
+      </p>
+      <p><strong>12 Month Summary</strong></p>
+      <p>
+        14569 commits (Up +611 (4%) from previous 12 months)<br>
+        955 contributors (Up +713 (294%) from previous 12 months)<br>
+      </p>
+    </div>
+    <p class="source">Source: Ohloh</p>
+  </div><!--end of view-content-->
+</div><!--end of activity-homepage-->
+
+<div class="community-homepage">
+  <div class="column-title">
+    <h3>Community</h3>
+  </div>
+
+  <div class="view-content">
+    <div style='float:left;width: 100%;'>
+      <p><strong>Most Recent Contributors</strong></p>
+      <p><ul>
+        <li>Tammer Saleh</li>
+        <li>Abhijit Hiremagalur</li>
+        <li>James Bayer</li>
+        <li>Stephen Levine</li>
+        <li>Tim Jarratt</li>
+        <li>Karen Wang</li>
+        <li>Max Brunsfeld</li>
+        <li>Aram Price</li>
+      </ul></p>
+    </div>
+    <p class="source">Source: Ohloh</p>
+  </div><!--end of view-content-->
+</div><!--end of community-homepage-->
+

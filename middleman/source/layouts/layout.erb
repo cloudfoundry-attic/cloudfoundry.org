@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title><%= current_page.data.title %> | Cloud Foundry Community</title>
+    
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no" id="Viewport" name="viewport"/>
+    <link href='../images/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <%= stylesheet_link_tag "normalize", "all" %>
+    <%= javascript_include_tag  "all" %>
+
+    <script>
+
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-22181585-2', 'cloudfoundry.org');
+      ga('send', 'pageview');
+
+    </script>
+  </head>
+  
+  <body class="<%= page_classes %>">
+    <div class="viewport">
+      <div class="mobile-navigation--wrapper mobile-only">
+        <div class="navigation-drawer--container">
+          <div class="navigation-item-list">
+            <div class="navbar-link active"><a href="/">Home</a></div>
+            <div class="navbar-link"><a href="/about">About</a></div>
+            <div class="navbar-link"><a href="/learn">Learn</a></div>
+            <div class="navbar-link"><a href="/get-in">Get Involved</a></div>
+            <div class="navbar-link"><a href="http://docs.cloudfoundry.org">Documentation</a></div>
+            <div class="navbar-link"><a href="http://blog.cloudfoundry.com">Blog</a></div>
+            <div class="navbar-link"><a href='https://github.com/cloudfoundry-community/cf-docs-contrib/wiki'>Wiki</a></div>
+            <div class="navbar-link"><a href='https://github.com/cloudfoundry'>Source Code</a></div>
+            <div class="navbar-link"><a href='http://groups.google.com/a/cloudfoundry.org/groups/dir'>Mailing Lists</a></div>
+            <div class="navbar-link"><a href='/dojo/index.html'>The Dojo</a></div>
+          </div><!--end of navigation-item-list-->
+        </div><!--end of navigation-drawer container-->
+        <div class="mobile-nav"><div class="nav-icon"></div></div>
+      </div><!--end of mobile-navigation wrapper-->
+      <img id='bg' src="../images/bg-plain-x.jpg">
+        <div id='header'>
+          <div id='header-bg'>
+            <div id='logo'>
+              <a href='/'><img src='../images/logo_org.png'></a>
+            </div><!--end of logo-->
+          </div><!--end of header-bg-->
+        </div><!--end of header-->
+
+      <div id="page">
+        <div class='desktop-only'>
+          <div id='navbar'>
+            <!--[if lt IE 9 ]>
+            <style>
+              #content-home, #content, .news-homepage, .commits-homepage, .discussions-homepage {background:  #ebf0fa;}
+              .news-homepage, .commits-homepage, .discussions-homepage {border:1px solid #ccc}
+            </style>
+            <![endif]-->
+             <ul id='nav'>
+               <li id='icon-home-li'><a id='icon-home-link' href='/'><img id='icon-home' src='../images/icon-home.png'></a></li>
+                <li><a id='about' href='/about/index.html'>About</a></li>
+                <li><a id='learn' href="/learn/index.html">Learn</a></li>
+                <li><a href='http://docs.cloudfoundry.org'>Documentation</a></li>
+                <li><a id='get-in' href='/get-in/index.html'>Get Involved</a></li>
+                <li><a href='http://blog.cloudfoundry.com' target='_blank'>Blog</a></li>
+                <li id="wiki"><a href='https://github.com/cloudfoundry-community/cf-docs-contrib/wiki' target='_blank'>Wiki</a></li>
+              </ul>
+          </div><!--end of navbar-->
+        </div><!--end of desktop-only-->
+
+
+        <div id="content">
+
+          <%= yield %>
+
+        </div><!--end of content-->
+
+      </div><!--end of page-->
+      <div id="footer">
+        <div id="container-footer">
+          <div class="bg_social">
+            <ul class="social">
+              <li>
+              <a href="http://twitter.com/cloudfoundry" target="_blank">
+              <img alt="Twitter" src="/images/twitter_large.png">
+              </a>
+              </li>
+              <li>
+              <a href="https://plus.google.com/114245065906861739918/posts" target="_blank">
+              <img alt="Google+" src="/images/gplus_large.png">
+              </a>
+              </li>
+              <li>
+              <a href="http://facebook.com/cloudfoundry" target="_blank">
+              <img alt="Facebook" src="/images/facebook_large.png">
+              </a>
+              </li>
+              <li>
+              <a href="http://youtube.com/cloudfoundry" target="_blank">
+              <img alt="Youtube" src="/images/youtube_large.png">
+              </a>
+              </li>
+            </ul>
+          </div><!-- End of bg_social -->
+          <ul class="links">
+            <li>
+                <a href="/about/index.html">About</a>
+            </li>
+            <li class="disc">•</li>
+            <li>
+                <a href="http://docs.cloudfoundry.org/">Documentation</a>
+            </li>
+            <li class="disc">•</li>
+            <li>
+                <a href="https://github.com/cloudfoundry" target="_blank">Source Code</a>
+            </li>
+            <li class="disc">•</li>
+            <li>
+                <a href="https://groups.google.com/a/cloudfoundry.org/forum/#!browse" target="_blank">Mailing Lists</a>
+            </li>
+            <li class="disc">•</li>
+            <li>
+                <a href="http://blog.cloudfoundry.com/">Blog</a>
+            </li>
+            <li class="disc">•</li>
+            <li>
+                 <a href="https://github.com/cloudfoundry-community/cf-docs-contrib/wiki" target="_blank">Wiki</a>
+            </li>
+            <li class="disc">•</li>
+            <li>
+                 <a href="/dojo/index.html">The Dojo</a>
+            </li>
+          </ul>
+          <div class="copyright">
+            <div class="hr-horizontal-dark"></div>
+            <br>
+            <p>
+              ©
+              <script>
+                //<![CDATA[
+                  var d = new Date();
+                  document.write(d.getFullYear());
+                //]]>
+              </script>
+              <a href="http://gopivotal.com" target="_blank">Pivotal Software</a> Inc. All Rights Reserved.
+            </p>
+          </div><!-- End of copyright -->
+        </div><!-- End of container-footer -->
+      </div>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+  </body>
+</html>
