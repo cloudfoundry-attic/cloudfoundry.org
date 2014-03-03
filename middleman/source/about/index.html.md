@@ -80,13 +80,13 @@ Chris currently works as an IBM Distinguished Engineer and CTO for Cloud Interop
 <br>
 <br>
 
-![Jonathan King](../images/cab/king.jpg)
+![Jonathan King](../images/cab/wray.jpg)
 
-#### Jonathan King
+#### Jared Wray
 
-##### VP of Cloud Strategy & Business Development, Savvis
+##### Chief Technology Officer for CenturyLink Cloud
 
-Jonathan is the Vice President of Cloud Strategy & Business Development at Savvis. He has extensive experience in alliances, sales, marketing, M & A, process, operations, law, finance, government affairs and technology as well as noted success in alliance development, complex IT solutions and collaboration among distributed internal and external stakeholders at all organizational levels. Prior to Savvis, he was SVP of Business Development for Joyent and Client Partner Director for Verizon.
+Jared Wray, Chief Technology Officer for CenturyLink Cloud, is an early cloud pioneer and visionary architect. As founder and CTO of Tier 3, Wray architected the Tier 3 cloud and built it into an industry recognized cloud innovation and performance leader. Tier 3 was acquired by CentryLink in 2013 and is now the foundation of CenturyLink Cloud. Wray is a respected thought leader in the enterprise cloud services space, having originated the Iron Foundry open source Platform as a Service (Paas) project. A serial entrepreneur, Wray previously founded Dual, an interactive development agency with clients such as Microsoft and Nintendo.
 
 <br>
 <br>
