@@ -18,7 +18,7 @@ title: About
 <li>CloudSoft Corp</li>
 <li>DTS Corporation</li>
 <li>Ebay x.commerce</li>
-<li>Garantia Data</li>
+<li>Huawei</li>
 <li>IBM</li>
 <li>Innovation Factory</li>
 <li>Intalio</li>
@@ -26,18 +26,22 @@ title: About
 <li>iron.io</li>
 <li>Load Impact</li>
 <li>Neo Technology</li>
+<li>Northwest Independent Ruby Development</li>
 <li>NTT</li>
 <li>OGIS-RI</li>
 <li>Orange</li>
 <li>Piston Cloud</li>
 <li>Rakuten</li>
+<li>Redis Labs</li>
 <li>SAP</li>
 <li>Savvis</li>
 <li>Sebula Bilisim Tek. LTD STI</li>
 <li>SendGrid</li>
 <li>SM-ePaaS, Inc</li>
 <li>Swisscom</li>
+<li>Symantec</li>
 <li>Tier 3</li>
+<li>The Church of Jesus Christ of Latter-day Saints</li>
 <li>Uhuru Software</li>
 <li>ZephirWorks</li>
 <li>Zhejiang University</li>
