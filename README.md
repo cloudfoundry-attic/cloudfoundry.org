@@ -114,3 +114,7 @@ When you have tested your changes, and it is time to merge the changes in to the
 
 **Create a Pull Request**
 
+
+For admins
+--------------
+If you have publishing rights for the www.cloudfoundry.org website, please use the publish.sh script.
