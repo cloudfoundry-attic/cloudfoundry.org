@@ -8,29 +8,43 @@ title: About
 <h3>Corporations Contributing to Cloud Foundry</h3>
 <p><a href="https://github.com/cloudfoundry/cloud_controller_ng/blob/master/CONTRIBUTING.md" target="_blank">Join</a> the other organizations that have signed the corporate contributor's license agreement enabling them to contribute to Cloud Foundry.</p>
 <ul>
+<li>84codes</li>
 <li>ActiveState</li>
 <li>Altoros</li>
 <li>AnyNines</li>
 <li>AppFog (Savvis)</li>
 <li>Blue Box</li>
+<li>CloudCredo</li>
 <li>CloudSoft Corp</li>
 <li>DTS Corporation</li>
 <li>Ebay x.commerce</li>
+<li>Huawei</li>
 <li>IBM</li>
 <li>Innovation Factory</li>
 <li>Intalio</li>
 <li>Intel</li>
+<li>iron.io</li>
 <li>Load Impact</li>
 <li>Neo Technology</li>
+<li>Northwest Independent Ruby Development</li>
+<li>NTT</li>
 <li>OGIS-RI</li>
+<li>Orange</li>
+<li>Piston Cloud</li>
 <li>Rakuten</li>
+<li>Redis Labs</li>
 <li>SAP</li>
 <li>Savvis</li>
+<li>Sebula Bilisim Tek. LTD STI</li>
+<li>SendGrid</li>
 <li>SM-ePaaS, Inc</li>
 <li>Swisscom</li>
+<li>Symantec</li>
 <li>Tier 3</li>
+<li>The Church of Jesus Christ of Latter-day Saints</li>
 <li>Uhuru Software</li>
 <li>ZephirWorks</li>
+<li>Zhejiang University</li>
 </ul>
 </div>
 
@@ -73,9 +87,9 @@ This scope includes:
 
 #### Chris Ferris
 
-##### Distinguished Engineer and CTO for Cloud Interoperability, Standards and Open Source Organization, IBM
+##### Distinguished Engineer and CTO for Cloud Interoperability, Open Technologies, IBM
 
-Chris currently works as an IBM Distinguished Engineer and CTO for Cloud Interoperability in IBM Software Group's Standards and Open Source organization. He has been involved in the architecture, design, and engineering of distributed systems for most of his 33+ year career in IT and has been actively engaged in open standards and open source development since 1999. He currently provides technical leadership for IBM's engagements in OpenStack and Cloud Foundry, as well as for IBM's participation in open standards activities relevant to Cloud. He enjoys tennis, both as a spectator and as an avid club player.
+Chris currently works as an IBM Distinguished Engineer and CTO for Cloud Interoperability in IBM Software Group's Open Technologies organization. He has been involved in the architecture, design, and engineering of distributed systems for most of his 33+ year career in IT and has been actively engaged in open standards and open source development since 1999. He currently provides technical leadership for IBM's engagements in OpenStack and Cloud Foundry, as well as for IBM's participation in open standards activities relevant to Cloud. He enjoys tennis, both as a spectator and as an avid club player.
 
 <br>
 <br>
