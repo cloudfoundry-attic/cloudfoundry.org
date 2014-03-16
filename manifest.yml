@@ -2,11 +2,11 @@
 applications:
 - name: cforg1
   memory: 512MB
-  instances: 1
+  instances: 2
   host: cforg1
   domain: cfapps.io
 - name: cforg2
   memory: 512MB
-  instances: 1
+  instances: 2
   host: cforg2
   domain: cfapps.io
