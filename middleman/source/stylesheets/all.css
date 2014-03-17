@@ -1329,7 +1329,8 @@ p.home-title {
 #content {
   clear: left;
   padding: 40px;
-    background:white;
+  background:white;
+  min-height: 800px;
 }
 
 .dojo-main-image {

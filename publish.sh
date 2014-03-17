@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Use this publish script if you are still on cf v5
+
 sh build.sh
 
 cf target https://api.run.pivotal.io

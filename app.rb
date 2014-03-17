@@ -24,6 +24,10 @@ get "/get-in" do
   redirect '/get-in/index.html'
 end
 
+get "/contribute" do
+  redirect '/get-in/index.html'
+end
+
 get '/individualcontribution.pdf' do
   redirect 'http://blog.cloudfoundry.com/wp-content/static/cforg/pdfs/individualcontribution.pdf'
 end
