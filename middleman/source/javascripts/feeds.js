@@ -1,5 +1,5 @@
 function loadFeedControl() {
-  var feed = "http://blog.cloudfoundry.com/category/engineering/feed?"+new Date().getTime();
+  var feed = "http://blog.cloudfoundry.org/category/engineering/feed?"+new Date().getTime();
   var fg = new GFdynamicFeedControl(feed, "updates");
   var feed2 = "https://groups.google.com/a/cloudfoundry.org/forum/feed/vcap-dev/msgs/atom_v1_0.xml?"+new Date().getTime();
   var fg2 = new GFdynamicFeedControl(feed2, "discussions");
