@@ -17,6 +17,7 @@ title: About
 <li>CloudCredo</li>
 <li>CloudSoft Corp</li>
 <li>DTS Corporation</li>
+<li>EMC</li>
 <li>Ebay x.commerce</li>
 <li>Huawei</li>
 <li>IBM</li>
@@ -31,6 +32,7 @@ title: About
 <li>OGIS-RI</li>
 <li>Orange</li>
 <li>Piston Cloud</li>
+<li>Rackspace</li>
 <li>Rakuten</li>
 <li>Redis Labs</li>
 <li>SAP</li>
@@ -43,6 +45,8 @@ title: About
 <li>Tier 3</li>
 <li>The Church of Jesus Christ of Latter-day Saints</li>
 <li>Uhuru Software</li>
+<li>Velankani Information Systems</li>
+<li>VMware</li>
 <li>ZephirWorks</li>
 <li>Zhejiang University</li>
 </ul>
