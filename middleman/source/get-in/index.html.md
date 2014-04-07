@@ -41,15 +41,26 @@ To learn more about Cloud Foundry, visit one or more of the following resources:
 
 ## Meetups and Events
 
-Come meet other CF newbies and pros at a Cloud Foundry meetup or event.
+Come meet other CF newbies and pros at a Cloud Foundry meetup or event. 
 
-* [Pivotal Open Source Hub](http://www.meetup.com/Pivotal-Open-Source-Hub/)
-* [Silicon Valley Cloud Foundry Meetup](http://www.meetup.com/CloudFoundry/)
-* [The Boston Area Cloud Foundry Meetup](http://www.meetup.com/Boston-Area-Cloud-Foundry-Meetup/)
-* [New York City Cloud Foundry Meetup](http://www.meetup.com/New-York-City-Cloud-Foundry-Meetup/)
+* [Silicon Valley](http://www.meetup.com/CloudFoundry/)
+* [San Diego, Ca](http://www.meetup.com/San-Diego-Cloud-Foundry-Meetup)
+* [Palo Alto, Ca](http://www.meetup.com/Cloud-Foundry-Community-Meetup/)
+* [Los Angeles, Ca](http://www.meetup.com/Los-Angeles-Cloud-Foundry-Meetup)
 * [Bay Area Bosh](http://www.meetup.com/Bay-Area-Bosh/)
-* [Cloud Foundry Seattle](http://www.meetup.com/CloudFoundrySeattle/)
-* [Cloud Foundry Community Meetup in Palo Alto](http://www.meetup.com/Cloud-Foundry-Community-Meetup/)
+* [Boston Area](http://www.meetup.com/Boston-Area-Cloud-Foundry-Meetup/)
+* [New York City](http://www.meetup.com/New-York-City-Cloud-Foundry-Meetup/)
+* [Seattle, Wa](http://www.meetup.com/CloudFoundrySeattle/)
+* [Minneapolis-St. Paul](http://www.meetup.com/cloudfoundry-mn)
+* [Toronto](http://www.meetup.com/Cloud-Foundry-Toronto)
+* [Colorado](http://www.meetup.com/Colorado-Cloud-Foundry-Meetup)
+* [Austin, Tx](http://www.meetup.com/Cloud-Foundry-Austin)
+* [Washington, DC](http://www.meetup.com/Washington-Cloud-Foundry-Meetup)
+* [Portland, Or](http://www.meetup.com/Portland-Cloud-Foundry-Meetup)
+* [Netherlands](http://www.meetup.com/Cloud-Foundry-User-Group-The-Netherlands)
+* [St Louis, Mo](http://www.meetup.com/Saint-Louis-Cloud-Foundry-Meetup)
+* [Beijing, China](http://www.meetup.com/Beijing-Cloud-Foundry-Meetup)
+* [Pivotal Open Source Hub](http://www.meetup.com/Pivotal-Open-Source-Hub/)
 
 In 2013, we had our first Cloud Foundry User Conference.  [Visit the conference site](http://www.platformcf.com/) to view session recordings and slides.
 
