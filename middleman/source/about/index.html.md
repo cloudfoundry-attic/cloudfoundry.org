@@ -14,6 +14,7 @@ title: About
 <li>AnyNines</li>
 <li>AppFog (Savvis)</li>
 <li>Blue Box</li>
+<li>CenturyLink</li>
 <li>CloudCredo</li>
 <li>CloudSoft Corp</li>
 <li>DTS Corporation</li>

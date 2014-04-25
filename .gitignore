@@ -18,3 +18,5 @@ middleman/.cache/sprockets
 
 # Ignore .ruby-version
 .ruby-version
+
+/middleman/.bundle
