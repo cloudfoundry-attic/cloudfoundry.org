@@ -1508,6 +1508,15 @@ iframe {
   width: 60%;
 }
 
+.foundation-link, .foundation-p {
+  width: 100%;
+  float: left;
+}
+
+.foundation-table img {
+  padding: 0 10px;
+}
+
 
 
 @media (max-width: 1250px) {
@@ -1732,6 +1741,13 @@ iframe {
   }
   .right {
     width: 88%;
+  }
+}
+
+@media (max-width: 674px) {
+  .foundation-table img {
+    padding: 0;
+    width: 20%;
   }
 }
 

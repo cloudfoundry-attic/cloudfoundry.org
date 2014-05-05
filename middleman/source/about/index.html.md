@@ -71,6 +71,32 @@ Open cloud and open source are only part of the transformation underway, there i
 | ![NTT](../images/users/CustomerLogo_NTT.png) | NTT Communications delivers global cloud services, based on Cloud Foundry, to enterprise customers. [Read More](http://blog.cloudfoundry.com/2013/02/13/ntt-communications-worlds-leading-telecom-joins-cloud-foundry-core/) |
 | ![Rakuten](../images/users/CustomerLogo_Rakuten.png) | Rakuten—the Largest E-commerce Company in Japan relies on Cloud Foundry. [Watch](http://www.youtube.com/watch?v=vxmnff8lL5o) |
 
+***
+
+### The Cloud Foundry Foundation
+
+{:.foundation-table}
+![Accenture](../images/foundation/Accenture.png)
+![ActiveState](../images/foundation/ActiveState.png)
+![BNY Mellon](../images/foundation/BNYMellon.png)
+![Capgemini](../images/foundation/Capgemini.png)
+![CenturyLink](../images/foundation/CenturyLink.png)
+![EMC](../images/foundation/EMC.png)
+![Ericsson](../images/foundation/Ericsson.png)
+![HP](../images/foundation/HP.png)
+![IBM](../images/foundation/IBM.png)
+![Intel](../images/foundation/Intel.png)
+![NTT](../images/foundation/NTT.png)
+![Pivotal](../images/foundation/Pivotal.png)
+![Rackspace](../images/foundation/Rackspace.png)
+![SAP](../images/foundation/SAP.png)
+![Verizon](../images/foundation/Verizon.png)
+![VMware](../images/foundation/VMware.png)
+
+
+{:.foundation-p}
+Accenture, BNY Mellon, Capgemini, Ericsson, GE, Intel, NTT and Verizon have been added to the Cloud Foundry Foundation, joining ActiveState, CenturyLink, EMC, HP, IBM, Pivotal, Rackspace, SAP and VMware to bring open, multi-cloud platform-as-a-service to enterprise computing. [Read More](http://www.gopivotal.com/big-data/press-release/05012014-cloud-foundry-foundation)
+
 
 ***
 
