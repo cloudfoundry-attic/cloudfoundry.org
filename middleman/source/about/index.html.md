@@ -167,15 +167,13 @@ Catherine Spence is an Enterprise Architect and PaaS Lead for Intel IT’s Cloud
 
 #### James Watters
 
-##### Head of Product, Marketing, and Ecosystem for Cloud Foundry at Pivotal
+##### Vice President of Product, Marketing, and Ecosystem for Cloud Foundry at Pivotal
 
-James is the head of Product for Cloud Foundry where he oversees product development and strategy. He is also responsible for the marketing, developer relations and ecosystem development functions of the group.
+James Watters currently leads a twenty person product management, product marketing, business development, and solution engineering organization responsible for Pivotal's Cloud Foundry based enterprise software and SaaS products.
+
+An expert in open cloud technologies, James is the go-to-source for many of the industry’s thought leaders and has been featured in leading publications such as eWeek, Forbes, GigaOm and Wired. He enjoys a popular Twitter following on all things PaaS.
 
 
-<br>
-<br>
-<br>
-<br>
 <br>
 <br>
 
