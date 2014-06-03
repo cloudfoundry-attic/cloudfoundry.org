@@ -78,24 +78,41 @@ Open cloud and open source are only part of the transformation underway, there i
 {:.foundation-table}
 ![Accenture](../images/foundation/Accenture.png)
 ![ActiveState](../images/foundation/ActiveState.png)
+![Alpine Data Labs](../images/foundation/AlpineDataLabs.png)
+![Altoros](../images/foundation/Altoros.png)
+![Anchora](../images/foundation/Anchora.png)
+![anynines](../images/foundation/anynines.png)
+![AppDynamics](../images/foundation/AppDynamics.png)
+![AzulSystems](../images/foundation/AzulSystems.png)
+![BlueBox](../images/foundation/BlueBox.png)
 ![BNY Mellon](../images/foundation/BNYMellon.png)
+![Canonical](../images/foundation/Canonical.png)
 ![Capgemini](../images/foundation/Capgemini.png)
 ![CenturyLink](../images/foundation/CenturyLink.png)
+![CloudCredo](../images/foundation/CloudCredo.png)
+![Docker](../images/foundation/Docker.png)
 ![EMC](../images/foundation/EMC.png)
 ![Ericsson](../images/foundation/Ericsson.png)
+![GE](../images/foundation/GE.png)
 ![HP](../images/foundation/HP.png)
 ![IBM](../images/foundation/IBM.png)
 ![Intel](../images/foundation/Intel.png)
+![jFrog](../images/foundation/jFrog.png)
+![MongoDB](../images/foundation/MongoDB.png)
 ![NTT](../images/foundation/NTT.png)
+![PistonCloudComputing](../images/foundation/PistonCloudComputing.png)
 ![Pivotal](../images/foundation/Pivotal.png)
 ![Rackspace](../images/foundation/Rackspace.png)
+![RedisLabs](../images/foundation/RedisLabs.png)
 ![SAP](../images/foundation/SAP.png)
+![Stark&Wayne](../images/foundation/Stark&Wayne.png)
+![Telus](../images/foundation/Telus.png)
 ![Verizon](../images/foundation/Verizon.png)
 ![VMware](../images/foundation/VMware.png)
 
 
 {:.foundation-p}
-Accenture, BNY Mellon, Capgemini, Ericsson, GE, Intel, NTT and Verizon have been added to the Cloud Foundry Foundation, joining ActiveState, CenturyLink, EMC, HP, IBM, Pivotal, Rackspace, SAP and VMware to bring open, multi-cloud platform-as-a-service to enterprise computing. [Read More](http://www.gopivotal.com/big-data/press-release/05012014-cloud-foundry-foundation)
+Alpine Data Labs, Altoros, Anchora, Anynines, AppDynamics, Azul Systems, Blue Box, Canonical, CloudCredo, Docker, jFrog, MongoDB, Piston Cloud Computing, Redis Labs, Stark & Wayne, and Telus join existing Cloud Foundry Foundation members Accenture, ActiveState, BNY Mellon, Capgemini, CenturyLink, EMC, Ericsson, GE, HP, IBM, Intel, NTT, Pivotal, Rackspace, SAP, Verizon, and VMware to bring open, multi-cloud platform-as-a-service to enterprise computing. [Read More](http://www.gopivotal.com/platform-as-a-service/press-release/05292014-cloud-foundry-foundation-doubles-membership)
 
 
 ***
@@ -125,7 +142,7 @@ Chris currently works as an IBM Distinguished Engineer and CTO for Cloud Interop
 <br>
 <br>
 
-![Jonathan King](../images/cab/wray.jpg)
+![Jared Wray](../images/cab/wray.png)
 
 #### Jared Wray
 
@@ -133,9 +150,6 @@ Chris currently works as an IBM Distinguished Engineer and CTO for Cloud Interop
 
 Jared Wray, Chief Technology Officer for CenturyLink Cloud, is an early cloud pioneer and visionary architect. As founder and CTO of Tier 3, Wray architected the Tier 3 cloud and built it into an industry recognized cloud innovation and performance leader. Tier 3 was acquired by CentryLink in 2013 and is now the foundation of CenturyLink Cloud. Wray is a respected thought leader in the enterprise cloud services space, having originated the Iron Foundry open source Platform as a Service (Paas) project. A serial entrepreneur, Wray previously founded Dual, an interactive development agency with clients such as Microsoft and Nintendo.
 
-<br>
-<br>
-<br>
 <br>
 
 ![Joshua McKenty](../images/cab/mckenty.jpg)
