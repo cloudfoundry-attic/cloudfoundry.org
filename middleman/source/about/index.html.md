@@ -148,7 +148,7 @@ Chris currently works as an IBM Distinguished Engineer and CTO for Cloud Interop
 
 ##### Chief Technology Officer for CenturyLink Cloud
 
-Jared Wray, Chief Technology Officer for CenturyLink Cloud, is an early cloud pioneer and visionary architect. As founder and CTO of Tier 3, Wray architected the Tier 3 cloud and built it into an industry recognized cloud innovation and performance leader. Tier 3 was acquired by CentryLink in 2013 and is now the foundation of CenturyLink Cloud. Wray is a respected thought leader in the enterprise cloud services space, having originated the Iron Foundry open source Platform as a Service (Paas) project. A serial entrepreneur, Wray previously founded Dual, an interactive development agency with clients such as Microsoft and Nintendo.
+Jared Wray, Chief Technology Officer for CenturyLink Cloud, is an early cloud pioneer and visionary architect. As founder and CTO of Tier 3, Wray architected the Tier 3 cloud and built it into an industry recognized cloud innovation and performance leader. Tier 3 was acquired by CenturyLink in 2013 and is now the foundation of CenturyLink Cloud. Wray is a respected thought leader in the enterprise cloud services space, having originated the Iron Foundry open source Platform as a Service (PaaS) project. A serial entrepreneur, Wray previously founded Dual, an interactive development agency with clients such as Microsoft and Nintendo.
 
 <br>
 
