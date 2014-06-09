@@ -83,7 +83,7 @@ Open cloud and open source are only part of the transformation underway, there i
 ![Anchora](../images/foundation/Anchora.png)
 ![anynines](../images/foundation/anynines.png)
 ![AppDynamics](../images/foundation/AppDynamics.png)
-![AzulSystems](../images/foundation/AzulSystems.png)
+![Azul Systems](../images/foundation/AzulSystems.png)
 ![BlueBox](../images/foundation/BlueBox.png)
 ![BNY Mellon](../images/foundation/BNYMellon.png)
 ![Canonical](../images/foundation/Canonical.png)
@@ -106,13 +106,14 @@ Open cloud and open source are only part of the transformation underway, there i
 ![RedisLabs](../images/foundation/RedisLabs.png)
 ![SAP](../images/foundation/SAP.png)
 ![Stark&Wayne](../images/foundation/Stark&Wayne.png)
+![Swisscom](../images/foundation/Swisscom.png)
 ![Telus](../images/foundation/Telus.png)
 ![Verizon](../images/foundation/Verizon.png)
 ![VMware](../images/foundation/VMware.png)
 
 
 {:.foundation-p}
-Alpine Data Labs, Altoros, Anchora, Anynines, AppDynamics, Azul Systems, Blue Box, Canonical, CloudCredo, Docker, jFrog, MongoDB, Piston Cloud Computing, Redis Labs, Stark & Wayne, and Telus join existing Cloud Foundry Foundation members Accenture, ActiveState, BNY Mellon, Capgemini, CenturyLink, EMC, Ericsson, GE, HP, IBM, Intel, NTT, Pivotal, Rackspace, SAP, Verizon, and VMware to bring open, multi-cloud platform-as-a-service to enterprise computing. [Read More](http://www.gopivotal.com/platform-as-a-service/press-release/05292014-cloud-foundry-foundation-doubles-membership)
+Swisscom joins existing Cloud Foundry Foundation members Accenture, ActiveState, Alpine Data Labs, Altoros, Anchora, anynines, AppDynamics, Azul Systems, Blue Box, BNY Mellon, Canonical, Capgemini, CenturyLink, CloudCredo, Docker, EMC, Ericsson, GE, HP, IBM, Intel, jFrog, MongoDB, NTT, Piston Cloud Computing, Pivotal, Rackspace, Redis Labs, SAP, Stark & Wayne, Telus, Verizon, and VMware to bring open, multi-cloud platform-as-a-service to enterprise computing. [Read More](http://www.gopivotal.com/platform-as-a-service/press-release/06092014-cloud-foundry-foundation-adds-swisscom-to-roster)
 
 
 ***
