@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Use this publish script if you are still on cf v5
+# cf v6
 
 sh build.sh
 
-cf target https://api.run.pivotal.io
+cf api https://api.run.pivotal.io
 
 cf login -o cfcommunity -s cforg
 
@@ -23,10 +23,10 @@ then
     cf logout
     exit
   fi 
-  cf map cforg1 www.cloudfoundry.org
-  cf unmap .www.cloudfoundry.org cforg2
-  cf map cforg1 cloudfoundry.org
-  cf unmap .cloudfoundry.org cforg2
+  cf map-route cforg1 cloudfoundry.org -n www
+  cf unmap-route cforg2 cloudfoundry.org -n www
+  cf map-route cforg1 cloudfoundry.org
+  cf unmap-route cforg2 cloudfoundry.org
   cf stop cforg2
 else
   cf start cforg2
@@ -41,12 +41,11 @@ else
     cf logout
     exit
   fi 
-  cf map cforg2 www.cloudfoundry.org
-  cf unmap .www.cloudfoundry.org cforg1
-  cf map cforg2 cloudfoundry.org
-  cf unmap .cloudfoundry.org cforg1
+  cf map-route cforg2 cloudfoundry.org -n www
+  cf unmap-route cforg1 cloudfoundry.org -n www
+  cf map-route cforg2 cloudfoundry.org
+  cf unmap-route cforg1 cloudfoundry.org
   cf stop cforg1
 fi
 
 cf logout
-

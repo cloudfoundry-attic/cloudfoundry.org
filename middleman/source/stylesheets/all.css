@@ -1402,6 +1402,11 @@ ul.links.inline {display:none}
   margin-right:50px;
   width: 66.3%;
   height: 100%;
+  background: url(/images/cfOrg_Billboard_Foundation.png) no-repeat center center;
+}
+
+#billboard-banner a:hover {
+  text-decoration: none;
 }
 
 
@@ -1498,8 +1503,25 @@ iframe {
   width: 100%;
 }
 
-#home-banner-mobile {
-  display: none;
+#learn-more-container {
+  margin: 340px auto 10px;
+  width: 236px;
+}
+
+.learn-more {
+  padding: 10px 60px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #0092c9;
+  font-size: 17px;
+  border: 1px solid #0092c9;
+  letter-spacing: .7px;
+}
+
+.learn-more:hover {
+  cursor: pointer;
+  border: 1px solid #60c3ee;
+  color: #60c3ee;
 }
 
 /* About */
@@ -1546,6 +1568,12 @@ iframe {
   }
 }
 
+@media (max-width: 936px) {
+  #nav li a,  #nav li a:hover, body.about #nav li a#about, body.learn #nav li a#learn, body.get-in #nav li a#get-in {
+    padding: 11px 11px 8px;
+  }
+}
+
 @media (max-width: 932px) {
   .user-table {
     width: 100%;
@@ -1554,12 +1582,6 @@ iframe {
     float:none;
     width: 90%;
     margin: 0 0 40px 0;
-  }
-}
-
-@media (max-width: 936px) {
-  #nav li a,  #nav li a:hover, body.about #nav li a#about, body.learn #nav li a#learn, body.get-in #nav li a#get-in {
-    padding: 11px 11px 8px;
   }
 }
 
@@ -1582,9 +1604,6 @@ iframe {
   }
   .mobile-only {
     display: block;
-  }
-  #billboard-banner {
-    width: 100%;
   }
   .viewport {
     position: absolute;
@@ -1778,19 +1797,27 @@ iframe {
     width: 90%;
     padding: 20px;
   }
-  #billboard-homepage {
-    height: 100%;
-  }
-  #home-banner-mobile {
-    display: block;
-  }
-  #home-banner-desk {
-    display: none;
-  }
   .right {
     width: 100%;
     padding: 0;
     background: none;
     margin-top:20px;
   }
+}
+
+@media (max-width: 360px) {
+  #billboard-banner {
+    background-size: 225%;
+  }
+  #billboard-homepage {
+    height: 100%;
+  }
+  #learn-more-container {
+    margin: 280px auto 20px;
+  }
+}
+
+@media (max-width: 320px) {
+
+
 }
