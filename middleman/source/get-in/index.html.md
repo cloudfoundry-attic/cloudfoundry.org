@@ -24,7 +24,9 @@ The Cloud Foundry open source project is comprised of a number of different repo
 
 * [Loggregator](https://github.com/cloudfoundry/loggregator) is the user application logging subsystem for Cloud Foundry.
 
-* [BOSH](https://github.com/cloudfoundry/bosh) is used for release engineering, deployment and lifecycle management.
+* [BOSH](https://github.com/cloudfoundry/bosh) is used for release engineering, deployment, and lifecycle management.
+
+* [BOSH Agent](https://github.com/cloudfoundry/bosh-agent) runs as an OS Service on every BOSH managed host and is responsible for communicating and coordinating with BOSH.
 
 <br>
 
