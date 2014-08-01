@@ -1493,14 +1493,10 @@ ul.links.inline {display:none}
   display: none;
 }
 
-.iframe {
+iframe {
   width: 48%;
   margin: 0 10px 0 0;
   display: inline-block;
-}
-
-iframe {
-  width: 100%;
 }
 
 #learn-more-container {
@@ -1755,7 +1751,7 @@ iframe {
   .dojo-main-image, #footer, #bg {
     display: none;
   }
-  .iframe {
+  iframe {
     width: 100%;
   }
   .right {
@@ -1786,7 +1782,7 @@ iframe {
 }
 
 @media (max-width: 400px) {
-  img, iframe {
+  img {
     width: 100%;
   }
   .news-homepage, .commits-homepage, .discussions-homepage, .activity-homepage, .community-homepage {

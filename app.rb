@@ -40,4 +40,3 @@ end
 not_found do
   redirect '/404.html'
 end
-

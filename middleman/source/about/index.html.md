@@ -14,12 +14,15 @@ title: About
 <li>AnyNines</li>
 <li>AppFog (Savvis)</li>
 <li>Blue Box</li>
+<li>Canonical</li>
 <li>CenturyLink</li>
+<li>Cisco</li>
 <li>CloudCredo</li>
 <li>CloudSoft Corp</li>
 <li>DTS Corporation</li>
 <li>EMC</li>
 <li>Ebay x.commerce</li>
+<li>Forio</li>
 <li>Huawei</li>
 <li>IBM</li>
 <li>Innovation Factory</li>
@@ -27,6 +30,7 @@ title: About
 <li>Intel</li>
 <li>iron.io</li>
 <li>Load Impact</li>
+<li>Mendix</li>
 <li>Neo Technology</li>
 <li>Northwest Independent Ruby Development</li>
 <li>NTT</li>
@@ -41,6 +45,7 @@ title: About
 <li>Sebula Bilisim Tek. LTD STI</li>
 <li>SendGrid</li>
 <li>SM-ePaaS, Inc</li>
+<li>Stark & Wayne</li>
 <li>Swisscom</li>
 <li>Symantec</li>
 <li>Tier 3</li>
@@ -63,13 +68,21 @@ Open cloud and open source are only part of the transformation underway, there i
 ### Who's Using It
 
 {:.user-table}
-| ![OpenCredo](../images/users/CustomerLogo_OpenCredo.png)   | Cloud Foundry helped to launch three new products for a major insurance company in just seven months. [Read More](http://blog.cloudfoundry.com/2012/03/22/how-opencredo-launched-three-new-products-in-seven-months-with-cloud-foundry/)  |
-| ![Monsanto](../images/users/CustomerLogo_MonsantoEng.png)  | Monsanto connected Cloud Foundry to HBase and kicked-off their next generation application and data analytics platform. [Read More](https://twitter.com/MonPlatformEng/status/407491427560456192)  |
+| ![OpenCredo](../images/users/CustomerLogo_OpenCredo.png)   | Cloud Foundry helped to launch three new products for a major insurance company in just seven months. [Read More](http://blog.cloudfoundry.org/2012/03/22/how-opencredo-launched-three-new-products-in-seven-months-with-cloud-foundry/)  |
+| ![Monsanto](../images/users/CustomerLogo_MonsantoEng.png)  | Monsanto connected Cloud Foundry to HBase and kicked-off their next generation application and data analytics platform. [Watch](https://www.youtube.com/watch?v=RJCB7OGeY9o&index=23&list=PLAdzTan_eSPQddps0wSNIMaYNYjMLV73X)  |
 | ![Verizon](../images/users/CustomerLogo_Verizon.png) | Cloud Foundry helps Verizon customers speed up application delivery and dynamically scale applications. [Read More](http://newscenter.verizon.com/corporate/news-articles/2013/11-12-open-cloud-innovation-with-pivotal/) |
-| ![SAP](../images/users/CustomerLogo_SAP.png) | SAP enables Cloud Foundry applications to connect to and leverage the in-memory capabilities of SAP HANA. [Read More](http://online.wsj.com/article/PR-CO-20131211-900077.html?dsk=y) |
+| ![SAP](../images/users/CustomerLogo_SAP.png) | Cloud Foundry helped SAS to streamline and speed up their development. [Watch](https://www.youtube.com/watch?v=A8kEfY7bA_8&index=17&list=PLAdzTan_eSPQddps0wSNIMaYNYjMLV73X) |
 | ![Baidu](../images/users/CustomerLogo_Baidu.png) | Baidu serves up One Billion page views a day with Cloud Foundry. [Read More](http://www.slideshare.net/wattersjames/baidu-cloudfoundry-english-24626493) |
-| ![NTT](../images/users/CustomerLogo_NTT.png) | NTT Communications delivers global cloud services, based on Cloud Foundry, to enterprise customers. [Read More](http://blog.cloudfoundry.com/2013/02/13/ntt-communications-worlds-leading-telecom-joins-cloud-foundry-core/) |
-| ![Rakuten](../images/users/CustomerLogo_Rakuten.png) | Rakuten—the Largest E-commerce Company in Japan relies on Cloud Foundry. [Watch](http://www.youtube.com/watch?v=vxmnff8lL5o) |
+| ![NTT](../images/users/CustomerLogo_NTT.png) | NTT Communications delivers global cloud services, based on Cloud Foundry, to enterprise customers. [Read More](https://www.youtube.com/watch?v=VWPiI7jKFqM&index=63&list=PLAdzTan_eSPQddps0wSNIMaYNYjMLV73X) |
+| ![Rakuten](../images/users/CustomerLogo_Rakuten.png) | Rakuten—the Largest E-commerce Company in Japan relies on Cloud Foundry. [Watch](https://www.youtube.com/watch?v=WBGtIZ4WIH4&index=64&list=PLAdzTan_eSPQddps0wSNIMaYNYjMLV73X) |
+| ![CoreLogic](../images/users/CustomerLogo_CoreLogic.png) | CoreLogic is building a product and data delivery platform based on Cloud Foundry. [Watch](https://www.youtube.com/watch?v=HZWkfOe1-tc&index=24&list=PLAdzTan_eSPQddps0wSNIMaYNYjMLV73X) |
+| ![BNY Mellon](../images/users/bnymellon.png) | Bank of New York Mellon's experiences with Cloud Foundry are influencing their strategy. [Watch](https://www.youtube.com/watch?v=eJ1j6qezthY&index=6&list=PLAdzTan_eSPQddps0wSNIMaYNYjMLV73X) |
+| ![Swisscom](../images/users/Swisscom.png) | Swisscom is using Cloud Foundry to help build its future cloud platform. [Watch](https://www.youtube.com/watch?v=fNSgltgW8AA&index=7&list=PLAdzTan_eSPQddps0wSNIMaYNYjMLV73X) |
+| ![Cisco](../images/users/Cisco.png) | Cisco discusses their experience with Cloud Foundry. [Watch](https://www.youtube.com/watch?v=peBL1QsZgcg&index=10&list=PLAdzTan_eSPQddps0wSNIMaYNYjMLV73X) |
+| ![Axel Springer](../images/users/axelspringer.png) | With Cloud Foundry, Axel Springer realized their vision of an innovative, fully automated service delivery platform by accelerating the time and quantity to market rate and reducing IT costs at the same time. [Watch](https://www.youtube.com/watch?v=GKJ6YgIZm88&index=18&list=PLAdzTan_eSPQddps0wSNIMaYNYjMLV73X) |
+| ![LDS](../images/users/lds.png) | The Church of Latter-Day Saints uses Java to build Cloud Foundry components such as service brokers and BOSH to deploy. [Watch](https://www.youtube.com/watch?v=LCC1q6tpawY&index=32&list=PLAdzTan_eSPQddps0wSNIMaYNYjMLV73X) |
+| ![SAS](../images/users/sas.png) | Cloud Foundry is helping SAS, a software vendor with 35+ years of industry history, rework its software and business. [Watch](https://www.youtube.com/watch?v=jFt0jp34lqA&index=40&list=PLAdzTan_eSPQddps0wSNIMaYNYjMLV73X) |
+
 
 ***
 
@@ -113,7 +126,7 @@ Open cloud and open source are only part of the transformation underway, there i
 
 
 {:.foundation-p}
-Swisscom joins existing Cloud Foundry Foundation members Accenture, ActiveState, Alpine Data Labs, Altoros, Anchora, anynines, AppDynamics, Azul Systems, Blue Box, BNY Mellon, Canonical, Capgemini, CenturyLink, CloudCredo, Docker, EMC, Ericsson, GE, HP, IBM, Intel, jFrog, MongoDB, NTT, Piston Cloud Computing, Pivotal, Rackspace, Redis Labs, SAP, Stark & Wayne, Telus, Verizon, and VMware to bring open, multi-cloud platform-as-a-service to enterprise computing. [Read More](http://www.gopivotal.com/platform-as-a-service/press-release/06092014-cloud-foundry-foundation-adds-swisscom-to-roster)
+Swisscom joins existing Cloud Foundry Foundation members Accenture, ActiveState, Alpine Data Labs, Altoros, Anchora, anynines, AppDynamics, Azul Systems, Blue Box, BNY Mellon, Canonical, Capgemini, CenturyLink, CloudCredo, Docker, EMC, Ericsson, GE, HP, IBM, Intel, jFrog, MongoDB, NTT, Piston Cloud Computing, Pivotal, Rackspace, Redis Labs, SAP, Stark & Wayne, Telus, Verizon, and VMware to bring open, multi-cloud platform-as-a-service to enterprise computing. [Read More](http://www.pivotal.io/platform-as-a-service/press-release/06092014-cloud-foundry-foundation-adds-swisscom-to-roster)
 
 
 ***
