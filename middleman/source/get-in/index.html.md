@@ -43,25 +43,46 @@ To learn more about Cloud Foundry, visit one or more of the following resources:
 
 Come meet other CF newbies and pros at a Cloud Foundry meetup or event. 
 
-* [Silicon Valley](http://www.meetup.com/CloudFoundry/)
+Globally
+* [Pivotal Open Source Hub](http://www.meetup.com/Pivotal-Open-Source-Hub/)
+
+United States
+* [Silicon Valley, CA](http://www.meetup.com/CloudFoundry/)
 * [San Diego, CA](http://www.meetup.com/San-Diego-Cloud-Foundry-Meetup)
 * [Palo Alto, CA](http://www.meetup.com/Cloud-Foundry-Community-Meetup/)
 * [Los Angeles, CA](http://www.meetup.com/Los-Angeles-Cloud-Foundry-Meetup)
-* [Bay Area Bosh](http://www.meetup.com/Bay-Area-Bosh/)
-* [Boston, MA](http://www.meetup.com/Boston-Area-Cloud-Foundry-Meetup/)
-* [New York City, NY](http://www.meetup.com/New-York-City-Cloud-Foundry-Meetup/)
-* [Seattle, WA](http://www.meetup.com/CloudFoundrySeattle/)
-* [Minneapolis-St. Paul, MN](http://www.meetup.com/cloudfoundry-mn)
-* [Toronto, Canada](http://www.meetup.com/Cloud-Foundry-Toronto)
+* [Bay Area Bosh, CA](http://www.meetup.com/Bay-Area-Bosh/)
 * [Denver/Boulder, CO](http://www.meetup.com/Colorado-Cloud-Foundry-Meetup)
-* [Austin, TX](http://www.meetup.com/Cloud-Foundry-Austin)
 * [Washington, DC](http://www.meetup.com/Washington-Cloud-Foundry-Meetup)
-* [Portland, OR](http://www.meetup.com/Portland-Cloud-Foundry-Meetup)
-* [Netherlands](http://www.meetup.com/Cloud-Foundry-User-Group-The-Netherlands)
+* [Boston, MA](http://www.meetup.com/Boston-Area-Cloud-Foundry-Meetup/)
+* [Minneapolis-St. Paul, MN](http://www.meetup.com/cloudfoundry-mn)
 * [St Louis, MO](http://www.meetup.com/Saint-Louis-Cloud-Foundry-Meetup)
-* [Beijing, China](http://www.meetup.com/Beijing-Cloud-Foundry-Meetup)
 * [Raleigh, NC](http://www.meetup.com/Raleigh-Cloud-Foundry-Meetup)
-* [Pivotal Open Source Hub](http://www.meetup.com/Pivotal-Open-Source-Hub/)
+* [New York City, NY](http://www.meetup.com/New-York-City-Cloud-Foundry-Meetup/)
+* [Portland, OR](http://www.meetup.com/Portland-Cloud-Foundry-Meetup)
+* [Austin, TX](http://www.meetup.com/Cloud-Foundry-Austin)
+* [Seattle, WA](http://www.meetup.com/CloudFoundrySeattle/)
+
+Canada
+* [Toronto, Canada](http://www.meetup.com/Cloud-Foundry-Toronto)
+
+China
+* [Beijing, China](http://www.meetup.com/Beijing-Cloud-Foundry-Meetup)
+
+Japan
+* [Japan](http://cloudfoundry.gr.jp/)
+
+Netherlands
+* [Netherlands](http://www.meetup.com/Cloud-Foundry-User-Group-The-Netherlands)
+
+Switzerland, Germany, Austria
+* [Switzerland, Germany, Austria](http://www.meetup.com/CloudFoundry-User-Group-DACH)
+
+United Kingdom / England
+* [London, United Kingdom](http://www.meetup.com/London-Cloud-Foundry-User-Group-LCFUG-Meetup/)
+
+
+<br>
 
 In 2013, we had our first Cloud Foundry User Conference.  [Visit the conference site](http://www.platformcf.com/) to view session recordings and slides.
 
