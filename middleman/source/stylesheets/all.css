@@ -1403,9 +1403,10 @@ ul.links.inline {display:none}
   width: 66.3%;
   height: 100%;
   background: url(/images/cfOrg_Billboard_Foundation.png) no-repeat center center;
+  text-align: center;
 }
 
-#billboard-banner a:hover {
+#learn-more-container a:hover {
   text-decoration: none;
 }
 
@@ -1500,7 +1501,7 @@ iframe {
 }
 
 #learn-more-container {
-  margin: 340px auto 10px;
+  margin: 335px auto 15px;
   width: 236px;
 }
 
