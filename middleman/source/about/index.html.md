@@ -132,15 +132,7 @@ Swisscom joins existing Cloud Foundry Foundation members Accenture, ActiveState,
 
 ### Cloud Foundry Foundation Mission Statement
 
-To establish and sustain Cloud Foundry as the global industry
-standard open source PaaS technology with a thriving ecosystem;
-
-to deliver continuous quality, value and innovation to users,
-operators and providers of Cloud Foundry technology;
-
-and, to provide a vibrant agile experience for the community's
-contributors that delivers the highest quality cloud-native applications
-and software, at high velocity with global scale.
+To establish and sustain Cloud Foundry as the global industry standard open source PaaS technology with a thriving ecosystem; to deliver continuous quality, value and innovation to users, operators and providers of Cloud Foundry technology; and, to provide a vibrant agile experience for the community's contributors that delivers the highest quality cloud-native applications and software, at high velocity with global scale.
 
 ***
 
