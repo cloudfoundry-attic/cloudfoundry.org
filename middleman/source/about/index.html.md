@@ -128,6 +128,28 @@ Open cloud and open source are only part of the transformation underway, there i
 {:.foundation-p}
 Swisscom joins existing Cloud Foundry Foundation members Accenture, ActiveState, Alpine Data Labs, Altoros, Anchora, anynines, AppDynamics, Azul Systems, Blue Box, BNY Mellon, Canonical, Capgemini, CenturyLink, CloudCredo, Docker, EMC, Ericsson, GE, HP, IBM, Intel, jFrog, MongoDB, NTT, Piston Cloud Computing, Pivotal, Rackspace, Redis Labs, SAP, Stark & Wayne, Telus, Verizon, and VMware to bring open, multi-cloud platform-as-a-service to enterprise computing. [Read More](http://www.pivotal.io/platform-as-a-service/press-release/06092014-cloud-foundry-foundation-adds-swisscom-to-roster)
 
+***
+
+### Cloud Foundry Foundation Mission Statement
+
+To establish and sustain Cloud Foundry as the global industry
+standard open source PaaS technology with a thriving ecosystem;
+
+to deliver continuous quality, value and innovation to users,
+operators and providers of Cloud Foundry technology;
+
+and, to provide a vibrant agile experience for the community's
+contributors that delivers the highest quality cloud-native applications
+and software, at high velocity with global scale.
+
+***
+
+### Cloud Foundry Foundation - Guiding Principles
+
+* Governance By Contribution - Influence within the Foundation is based on contributions.
+* IP Hygiene - IP cleanliness must be preserved at all times.
+* Equal Opportunity To Participate - Everyone has an equal opportunity to participate in projects.
+* No Surprises - Planning processes and project status are open to all.
 
 ***
 
