@@ -16,6 +16,7 @@ title: About
 <li>AppFog (Savvis)</li>
 <li>Blue Box</li>
 <li>Canonical</li>
+<li>Canopy</li>
 <li>CenturyLink</li>
 <li>Cisco</li>
 <li>CloudCredo</li>
@@ -83,6 +84,7 @@ Open cloud and open source are only part of the transformation underway, there i
 | ![Axel Springer](../images/users/axelspringer.png) | With Cloud Foundry, Axel Springer realized their vision of an innovative, fully automated service delivery platform by accelerating the time and quantity to market rate and reducing IT costs at the same time. [Watch](https://www.youtube.com/watch?v=GKJ6YgIZm88&index=18&list=PLAdzTan_eSPQddps0wSNIMaYNYjMLV73X) |
 | ![LDS](../images/users/lds.png) | The Church of Latter-Day Saints uses Java to build Cloud Foundry components such as service brokers and BOSH to deploy. [Watch](https://www.youtube.com/watch?v=LCC1q6tpawY&index=32&list=PLAdzTan_eSPQddps0wSNIMaYNYjMLV73X) |
 | ![SAS](../images/users/sas.png) | Cloud Foundry is helping SAS, a software vendor with 35+ years of industry history, rework its software and business. [Watch](https://www.youtube.com/watch?v=jFt0jp34lqA&index=40&list=PLAdzTan_eSPQddps0wSNIMaYNYjMLV73X) |
+| ![Canopy](../images/users/Canopy.png) | Canopy Cloud Fabric offers Cloud Foundry as a managed cloud service for enterprises looking for choice of tenancy, location and hosting options; rock solid enterprise SLAs; and consulting, customisation and developer professional services. [Watch](https://www.youtube.com/watch?v=YMNt6Gn3yaI) |
 
 
 ***

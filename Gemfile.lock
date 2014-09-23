@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    i18n (0.6.11)
     rack (1.5.2)
     rack-protection (1.5.2)
       rack
@@ -14,4 +15,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  i18n
   sinatra
