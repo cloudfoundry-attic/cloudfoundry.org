@@ -103,6 +103,7 @@ Open cloud and open source are only part of the transformation underway, there i
 ![BlueBox](../images/foundation/BlueBox.png)
 ![BNY Mellon](../images/foundation/BNYMellon.png)
 ![Canonical](../images/foundation/Canonical.png)
+![Canopy](../images/foundation/canopy.png)
 ![Capgemini](../images/foundation/Capgemini.png)
 ![CenturyLink](../images/foundation/CenturyLink.png)
 ![CloudCredo](../images/foundation/CloudCredo.png)
@@ -129,7 +130,7 @@ Open cloud and open source are only part of the transformation underway, there i
 
 
 {:.foundation-p}
-Swisscom joins existing Cloud Foundry Foundation members Accenture, ActiveState, Alpine Data Labs, Altoros, Anchora, anynines, AppDynamics, Azul Systems, Blue Box, BNY Mellon, Canonical, Capgemini, CenturyLink, CloudCredo, Docker, EMC, Ericsson, GE, HP, IBM, Intel, jFrog, MongoDB, NTT, Piston Cloud Computing, Pivotal, Rackspace, Redis Labs, SAP, Stark & Wayne, Telus, Verizon, and VMware to bring open, multi-cloud platform-as-a-service to enterprise computing. [Read More](http://www.pivotal.io/platform-as-a-service/press-release/06092014-cloud-foundry-foundation-adds-swisscom-to-roster)
+Swisscom joins existing Cloud Foundry Foundation members Accenture, ActiveState, Alpine Data Labs, Altoros, Anchora, anynines, AppDynamics, Azul Systems, Blue Box, BNY Mellon, Canonical, Canopy, Capgemini, CenturyLink, CloudCredo, Docker, EMC, Ericsson, GE, HP, IBM, Intel, jFrog, MongoDB, NTT, Piston Cloud Computing, Pivotal, Rackspace, Redis Labs, SAP, Stark & Wayne, Telus, Verizon, and VMware to bring open, multi-cloud platform-as-a-service to enterprise computing. [Read More](http://www.pivotal.io/platform-as-a-service/press-release/06092014-cloud-foundry-foundation-adds-swisscom-to-roster)
 
 ***
 
