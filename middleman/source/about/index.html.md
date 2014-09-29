@@ -39,6 +39,7 @@ title: About
 <li>OGIS-RI</li>
 <li>Orange</li>
 <li>Piston Cloud</li>
+<li>Pivotal</li>
 <li>Rackspace</li>
 <li>Rakuten</li>
 <li>Redis Labs</li>
