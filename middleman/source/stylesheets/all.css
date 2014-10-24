@@ -1117,8 +1117,6 @@ div.add-or-remove-shortcuts {
   line-height: 36px;
 }
 
-body.about #content img {float:left;margin: 0 30px 15px 0;}
-
 body.index #nav li a#icon-home-link {
   background: #a9d9f3;
   background: -moz-linear-gradient(top, #a9d9f3 0%, #f9f9fa 100%);
@@ -1237,14 +1235,16 @@ body.index #content{padding:0 0 40px 0;overflow: hidden;background:none;}
 }
 
 .news-homepage, .commits-homepage, .discussions-homepage {
-  float: left;
+  display: inline-block;
+  vertical-align: top;
   margin: 0 40px 40px 0;
-  width: 31%;
+  width: 30.77%;
   background: none repeat scroll 0 0 rgba(255, 255, 255, 0.5);
   -moz-box-shadow: 0 0 4px #999;
   -webkit-box-shadow: 0 0 4px #999;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  height: 450px;
+  min-height: 450px;
+  padding: 0 0 50px 0;
 }
 
 .commits-homepage {
@@ -1347,7 +1347,8 @@ p.home-title {
 }
 
 .right {
-  float: right;
+  display: inline-block;
+  vertical-align: top;
   width: 25%;
   padding: 25px 40px;
   background:#e3e8f2;
@@ -1523,62 +1524,134 @@ iframe {
 
 /* About */
 
-.user-table {
-  width: 60%;
+
+.sub-nav-tabs {
+  border-bottom: 1px solid #f1f1f1;
+  margin: 20px 0;
+  padding: 0;
+  width: 65%;
 }
 
-.foundation-link, .foundation-p {
-  width: 100%;
+.sub-nav-tab {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 12px;
+  margin: 0 0 0 10px;
+  font-weight: normal;
+  text-transform: uppercase;
+  opacity: 0.5;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-top: 1px solid transparent;
+}
+
+.sub-nav-tab:hover {
+  background: #f1f1f1;
+  cursor: pointer;
+}
+
+.sub-nav-tab:last-child {
+  margin: 0;
+}
+
+.active-tab {
+  border-top: 1px solid #f1f1f1;
+  border-right: 1px solid #f1f1f1;
+  border-left: 1px solid #f1f1f1;
+  opacity: 1;
+}
+
+.tabs {
+  display: inline-block;
+  width: 63%;
+  vertical-align: top;
+}
+
+.cab {
+  padding: 0 0 50px 0;
+}
+
+.cab img {
   float: left;
+  margin: 0 30px 15px 0;
 }
 
-.foundation-table img {
-  padding: 0 10px;
+.tab:last-child {
+  display: none;
+}
+
+.tab:last-child img {
+  margin: 0 15px 15px 0;
+}
+
+.tab:last-child h3 {
+  margin-top:20px;
 }
 
 
+/* Responsive */
 
 @media (max-width: 1250px) {
-  .news-homepage, .commits-homepage, .discussions-homepage, .activity-homepage, .community-homepage {
-    width: 100%;
-    height: 430px;
+  .news-homepage, 
+  .commits-homepage, 
+  .discussions-homepage, 
+  .activity-homepage, 
+  .community-homepage {
     margin: 0 0 40px;
   }
 }
 
 @media (max-width: 1236px) {
-  #nav li a, #nav li a:hover, body.about #nav li a#about, body.learn #nav li a#learn, body.get-in #nav li a#get-in
+  #nav li a, 
+  #nav li a:hover, 
+  body.about #nav li a#about, 
+  body.learn #nav li a#learn, 
+  body.get-in #nav li a#get-in
    {
     padding: 11px 41px 8px;
   }
 }
 
+@media (max-width: 1155px) {
+  .tabs,
+  .right {
+    width: 100%;
+  }
+  .right {
+    padding: 30px 0 0;
+    background: none;
+    margin: 30px 0 0;
+    border-top: 1px solid #ccc;
+  }
+}
+
 @media (max-width: 1136px) {
-  #nav li a,  #nav li a:hover, body.about #nav li a#about, body.learn #nav li a#learn, body.get-in #nav li a#get-in {
+  #nav li a,  
+  #nav li a:hover, 
+  body.about #nav li a#about, 
+  body.learn #nav li a#learn, 
+  body.get-in #nav li a#get-in {
     padding: 11px 31px 8px;
   }
 }
 
 @media (max-width: 1036px) {
-  #nav li a,  #nav li a:hover, body.about #nav li a#about, body.learn #nav li a#learn, body.get-in #nav li a#get-in {
+  #nav li a,  
+  #nav li a:hover, 
+  body.about #nav li a#about, 
+  body.learn #nav li a#learn, 
+  body.get-in #nav li a#get-in {
     padding: 11px 21px 8px;
   }
 }
 
 @media (max-width: 936px) {
-  #nav li a,  #nav li a:hover, body.about #nav li a#about, body.learn #nav li a#learn, body.get-in #nav li a#get-in {
+  #nav li a,  
+  #nav li a:hover, 
+  body.about #nav li a#about, 
+  body.learn #nav li a#learn, 
+  body.get-in #nav li a#get-in {
     padding: 11px 11px 8px;
-  }
-}
-
-@media (max-width: 932px) {
-  .user-table {
-    width: 100%;
-  }
-  .right {
-    float:none;
-    width: 90%;
-    margin: 0 0 40px 0;
   }
 }
 
@@ -1592,7 +1665,11 @@ iframe {
 }
 
 @media (max-width: 800px) {
-  .news-homepage, .commits-homepage, .discussions-homepage, .activity-homepage, .community-homepage {
+  .news-homepage, 
+  .commits-homepage, 
+  .discussions-homepage, 
+  .activity-homepage, 
+  .community-homepage {
     width: 100%;
     margin: 20px 0;
   }
@@ -1715,12 +1792,12 @@ iframe {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
   .mobile-navigation--wrapper .mobile-nav .nav-icon {
-  position: absolute;
-  padding: 13px;
-  background-image: url(/images/mobile-nav-icon.png);
-  background-repeat: no-repeat;
-  margin: 15px 0 0 10px;
-  cursor: pointer;
+    position: absolute;
+    padding: 13px;
+    background-image: url(/images/mobile-nav-icon.png);
+    background-repeat: no-repeat;
+    margin: 15px 0 0 10px;
+    cursor: pointer;
   }
   .mobile-navigation--wrapper .mobile-nav .nav-icon [class^=icon-] {
     color: #f1f1f1;
@@ -1749,56 +1826,61 @@ iframe {
   #billboard-homepage {
     margin-bottom: 20px;
   }
-  .dojo-main-image, #footer, #bg {
+  .dojo-main-image, 
+  #footer, 
+  #bg {
     display: none;
   }
   iframe {
     width: 100%;
   }
-  .right {
-    width: 88%;
-  }
 }
 
-@media (max-width: 674px) {
-  .foundation-table img {
-    padding: 0;
-    width: 20%;
+@media (max-width: 755px) {
+  .sub-nav-tabs {
+    width: 100%
   }
 }
 
 @media (max-width: 600px) {
-  .right {
-    width: 82%;
-  }
   #header-bg {
     background-image:none;
   }
-  #content {
-    padding: 0;
-  }
-  #content-home, #content {
+  #content-home {
     background: none;
   }
 }
 
+@media (max-width: 530px) {
+  .sub-nav-tabs {
+    border-bottom: none;
+  }
+  .sub-nav-tab {
+    padding:0;
+    display: block;
+    border-top: none;
+    border-left:none;
+    border-right:none;
+    border-bottom:1px solid #f1f1f1;
+    margin:0;
+  }
+}
+
 @media (max-width: 400px) {
-  img {
+  .cab img {
     width: 100%;
   }
-  .news-homepage, .commits-homepage, .discussions-homepage, .activity-homepage, .community-homepage {
+  .news-homepage, 
+  .commits-homepage, 
+  .discussions-homepage, 
+  .activity-homepage, 
+  .community-homepage {
     height: 500px;
   }
   #twitter-block {
     display: block;
     width: 90%;
     padding: 20px;
-  }
-  .right {
-    width: 100%;
-    padding: 0;
-    background: none;
-    margin-top:20px;
   }
 }
 
@@ -1814,7 +1896,3 @@ iframe {
   }
 }
 
-@media (max-width: 320px) {
-
-
-}

@@ -29,11 +29,11 @@ get "/contribute" do
 end
 
 get '/individualcontribution.pdf' do
-  redirect 'http://blog.cloudfoundry.com/wp-content/static/cforg/pdfs/individualcontribution.pdf'
+  redirect '/pdfs/CFF_Individual_CLA.pdf'
 end
 
 get '/corpcontribution.pdf' do
-  redirect 'http://blog.cloudfoundry.com/wp-content/static/cforg/pdfs/corpcontribution.pdf'
+  redirect '/pdfs/CFF_Corporate_CLA.pdf'
 end
  
 # route to custom error page (404.html)
