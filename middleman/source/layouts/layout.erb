@@ -30,6 +30,15 @@
   
   <body class="<%= page_classes %>">
     <div class="viewport">
+
+      <div id="lfcollabprojects-header">
+        <div class="gray-diagonal">
+          <div class="header-inner">
+            <a id="lfcollabprojects-logo" href="http://collabprojects.linuxfoundation.org">Linux Foundation Collaborative Projects</a>
+          </div>
+        </div>
+      </div> <!--end lfcollabprojects-header -->
+      
       <div class="mobile-navigation--wrapper mobile-only">
         <div class="navigation-drawer--container">
           <div class="navigation-item-list">
@@ -140,23 +149,19 @@
                  <a href="/dojo/index.html">The Dojo</a>
             </li>
           </ul>
-          <div class="copyright">
-            <div class="hr-horizontal-dark"></div>
-            <br>
-            <p>
-              ©
-              <script>
-                //<![CDATA[
-                  var d = new Date();
-                  document.write(d.getFullYear());
-                //]]>
-              </script>
-              <a href="http://pivotal.io" target="_blank">Pivotal Software</a> Inc. All Rights Reserved.
-            </p>
-          </div><!-- End of copyright -->
         </div><!-- End of container-footer -->
-      </div>
-  </div><!--end of viewport-->
+        <div id="lfcollabprojects-footer">
+          <div class="gray-diagonal">
+            <div class="footer-inner">
+              <p>© <script>var d = new Date();document.write(d.getFullYear());</script> Cloud Foundry Foundation. All Rights Reserved.</p>
+              <p>Linux Foundation is a registered trademark of The Linux Foundation. Cloud Foundry and Cloud Foundry Foundation are trademarks of Cloud Foundry Foundation.</p>
+              <p>Linux is a registered <a href="http://www.linuxfoundation.org/programs/legal/trademark" title="Linux Mark Institute">trademark</a> of Linus Torvalds.</p>
+              <p>Please see our <a href="http://www.linuxfoundation.org/terms">terms of use</a> and <a href="http://www.linuxfoundation.org/privacy">privacy policy</a>.</p>
+            </div>
+          </div>
+        </div><!--end lfcollabprojects-footer -->
+      </div><!--end footer-->
+    </div><!--end of viewport-->
   <div id="scrim"></div>
   </body>
 </html>
