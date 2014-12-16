@@ -6,7 +6,7 @@ title: Cloud Foundry Dojo
 
 ### Open Source, Open Cloud, Open Door
 
-Cloud Foundry Dojo is a unique learning experience beyond anything offered in the industry! Master Cloud Foundry by working shoulder to shoulder in the San Francisco Lab on the open-source project with the core team of Pivotal engineers, developing software the Pivotal Labs way. Qualified engineers from the Cloud Foundry community can participate in pair programming with the Cloud Foundry engineering team at Pivotal, gain invaluable experience with the core technology, and make direct contributions to the codebase. Participation typically lasts 6-12 weeks.
+It can typically take upwards of a year for a developer to gain committer status on an open source project. In some cases, even longer. The Cloud Foundry Foundation offers a unique approach to gaining committer in as little as six weeks, which we call the Cloud Foundry Dojo. The program is derived from the Pivotal labs Dojo program. It allows developers to master Cloud Foundry by working shoulder to shoulder on the open-source project with other Cloud Foundry engineers. Qualified engineers from the Cloud Foundry community can participate in pair programming with committers on a Cloud Foundry project team, gain invaluable experience with the core technology and the unique agile development environment, and make direct contributions to the codebase. Participation typically lasts 6-12 weeks.
 
 
 <div class="dojo-main-image" style="background-image:url(/images/careers4_color.jpg);">
