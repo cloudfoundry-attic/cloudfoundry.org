@@ -166,7 +166,7 @@ Jim Morrisroe, CEO of Piston Cloud Computing, Inc.
 
 ### Related Content
 + [Cloud Foundry Foundation VideoCast](/) 
-+ [Cloud Foundry Bylaws](/about/index.html#the-cloud-foundry-foundation) 
++ [Cloud Foundry Bylaws](/about#the-cloud-foundry-foundation) 
 
 ### Related Blogs
 + ActiveState: [The Cloud Foundry Foundation Officially Launches!](http://www.activestate.com/blog/2014/12/cloud-foundry-foundation-officially-launches)
