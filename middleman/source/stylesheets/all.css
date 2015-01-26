@@ -1238,13 +1238,17 @@ body.index #content{padding:0 0 40px 0;overflow: hidden;background:none;}
   display: inline-block;
   vertical-align: top;
   margin: 0 40px 40px 0;
-  width: 30.77%;
+  width: 48%;
   background: none repeat scroll 0 0 rgba(255, 255, 255, 0.5);
   -moz-box-shadow: 0 0 4px #999;
   -webkit-box-shadow: 0 0 4px #999;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   min-height: 450px;
   padding: 0 0 50px 0;
+}
+
+.discussions-homepage {
+  display: none;
 }
 
 .commits-homepage {
