@@ -51,7 +51,6 @@ United States
 * [San Diego, CA](http://www.meetup.com/San-Diego-Cloud-Foundry-Meetup)
 * [Palo Alto, CA](http://www.meetup.com/Cloud-Foundry-Community-Meetup/)
 * [Los Angeles, CA](http://www.meetup.com/Los-Angeles-Cloud-Foundry-Meetup)
-* [Bay Area Bosh, CA](http://www.meetup.com/Bay-Area-Bosh/)
 * [Denver/Boulder, CO](http://www.meetup.com/Colorado-Cloud-Foundry-Meetup)
 * [Washington, DC](http://www.meetup.com/Washington-Cloud-Foundry-Meetup)
 * [Boston, MA](http://www.meetup.com/Boston-Area-Cloud-Foundry-Meetup/)
@@ -60,7 +59,6 @@ United States
 * [New York City, NY](http://www.meetup.com/New-York-City-Cloud-Foundry-Meetup/)
 * [Portland, OR](http://www.meetup.com/Portland-Cloud-Foundry-Meetup)
 * [Austin, TX](http://www.meetup.com/Cloud-Foundry-Austin)
-* [Seattle, WA](http://www.meetup.com/CloudFoundrySeattle/)
 
 Canada
 * [Toronto, Canada](http://www.meetup.com/Cloud-Foundry-Toronto)
