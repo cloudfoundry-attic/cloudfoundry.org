@@ -55,7 +55,6 @@ United States
 * [Denver/Boulder, CO](http://www.meetup.com/Colorado-Cloud-Foundry-Meetup)
 * [Washington, DC](http://www.meetup.com/Washington-Cloud-Foundry-Meetup)
 * [Boston, MA](http://www.meetup.com/Boston-Area-Cloud-Foundry-Meetup/)
-* [Minneapolis-St. Paul, MN](http://www.meetup.com/cloudfoundry-mn)
 * [St Louis, MO](http://www.meetup.com/Saint-Louis-Cloud-Foundry-Meetup)
 * [Raleigh, NC](http://www.meetup.com/Raleigh-Cloud-Foundry-Meetup)
 * [New York City, NY](http://www.meetup.com/New-York-City-Cloud-Foundry-Meetup/)
