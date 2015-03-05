@@ -201,6 +201,7 @@ title: About
 <li>Ebay x.commerce</li>
 <li>Forio</li>
 <li>Fujitsu</li>
+<li>HP</li>
 <li>Huawei</li>
 <li>IBM</li>
 <li>Innovation Factory</li>
