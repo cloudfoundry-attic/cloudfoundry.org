@@ -4,7 +4,7 @@ title: Jobs
 
 # Jobs
 
-The Cloud Foundry Foundation is currently looking for amazingly smart, high energy people to join the team. To apply, please email <a href="mailto:jobs@cloudfoundry.org">jobs@cloudfoundry.org</a>.
+The Cloud Foundry Foundation is currently looking for amazingly smart, high energy people to join the team in the positions listed below. To apply, please email <a href="mailto:jobs@cloudfoundry.org">jobs@cloudfoundry.org</a>.
 
 ## <a name="evangelist"></a>Technical Evangelist
 
