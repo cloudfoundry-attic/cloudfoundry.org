@@ -78,6 +78,8 @@ Switzerland, Germany, Austria
 United Kingdom / England
 * [London, United Kingdom](http://www.meetup.com/London-Cloud-Foundry-User-Group-LCFUG-Meetup/)
 
+Australia
+* [Sydney, Australia](http://www.meetup.com/Sydney-Cloud-Foundry-Meetup/)
 
 <br>
 
