@@ -5,13 +5,16 @@ applications:
   instances: 2
   host: cforg1
   domain: cfapps.io
+  stack: cflinuxfs2
 - name: cforg2
   memory: 512MB
   instances: 2
   host: cforg2
   domain: cfapps.io
+  stack: cflinuxfs2
 - name: cforgstage
   memory: 256MB
   instances: 1
   host: cforgstage
   domain: cfapps.io
+  stack: cflinuxfs2
