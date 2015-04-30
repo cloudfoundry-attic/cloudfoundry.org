@@ -144,6 +144,7 @@ title: About
 <img alt="Mendix" src="/images/foundation/mendix.png">
 <img alt="Mimacom" src="/images/foundation/Mimacom_Logo.png">
 <img alt="MongoDB" src="/images/foundation/MongoDB.png">
+<img alt="New Relic" src="/images/foundation/New_Relic.png">
 <img alt="NTT" src="/images/foundation/NTT.png">
 <img alt="PistonCloudComputing" src="/images/foundation/PistonCloudComputing.png">
 <img alt="Pivotal" src="/images/foundation/Pivotal.png">
