@@ -123,6 +123,7 @@ title: About
 <img alt="AppDirect" src="/images/foundation/AppDirect.png">
 <img alt="AppDynamics" src="/images/foundation/AppDynamics.png">
 <img alt="Azul Systems" src="/images/foundation/AzulSystems.png">
+<img alt="Bloomberg" src="/images/foundation/Bloomberg.png">
 <img alt="BlueBox" src="/images/foundation/BlueBox.png">
 <img alt="BNY Mellon" src="/images/foundation/BNYMellon.png">
 <img alt="Braintribe" src="/images/foundation/BT_black_on_white.png">
