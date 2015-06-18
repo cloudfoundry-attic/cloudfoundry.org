@@ -90,11 +90,11 @@ In 2013, we had our first Cloud Foundry User Conference.  [Visit the conference 
 
 ## Ask Questions
 
-Questions about the Cloud Foundry Open Source Project can be directed to our Google Groups:
+Questions about the Cloud Foundry Open Source Project can be directed to our [mailing lists](http://lists.cloudfoundry.org/mailman/listinfo).
 
-* BOSH Developers: [https://groups.google.com/a/cloudfoundry.org/group/bosh-dev/topics](https://groups.google.com/a/cloudfoundry.org/group/bosh-dev/topics)
-* BOSH Users: [https://groups.google.com/a/cloudfoundry.org/group/bosh-users/topics](https://groups.google.com/a/cloudfoundry.org/group/bosh-users/topics)
-* VCAP (Cloud Foundry) Developers: [https://groups.google.com/a/cloudfoundry.org/group/vcap-dev/topics](https://groups.google.com/a/cloudfoundry.org/group/vcap-dev/topics)
+* BOSH: [http://lists.cloudfoundry.org/mailman/listinfo/cf-bosh](http://lists.cloudfoundry.org/mailman/listinfo/cf-bosh)
+* Cloud Foundry: [http://lists.cloudfoundry.org/mailman/listinfo/cf-dev](http://lists.cloudfoundry.org/mailman/listinfo/cf-dev)
+* Lattice: [http://lists.cloudfoundry.org/mailman/listinfo/cf-lattice](http://lists.cloudfoundry.org/mailman/listinfo/cf-lattice)
 
 <br>
 
